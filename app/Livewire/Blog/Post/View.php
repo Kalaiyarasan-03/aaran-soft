@@ -17,7 +17,7 @@ class View extends Component
     use CommonTrait;
 
     public $post_id;
-    public string $vid='';
+    public string $vid = '';
     public $body;
     public Post $post;
     public $id;
@@ -28,8 +28,8 @@ class View extends Component
     {
         $this->like++;
 
-        if ($this->post_id!=''){
-            if($this->id!='') {
+        if ($this->post_id != '') {
+            if ($this->id != '') {
                 Like::create([
                     'post_id' => $this->post_id,
                     'like' => $this->like,
@@ -50,20 +50,21 @@ class View extends Component
     {
         if ($id) {
             $this->post = Post::find($id);
-            $this->post_id= $id;
+            $this->post_id = $id;
             $this->likes = Like::find($this->post_id);
             $this->user_id = Auth::id();
 
         }
     }
 
-    public function save(){
+    public function save()
+    {
         $this->validate([
-            'user_id'=>'required',
-                'body'=>'required|min:3',
+                'user_id' => 'required',
+                'body' => 'required|min:3',
             ]
         );
-        if ($this->post_id !='') {
+        if ($this->post_id != '') {
             if ($this->vid == '') {
                 Comment::create([
                     'body' => $this->body,
@@ -73,6 +74,11 @@ class View extends Component
             } else {
                 $comment = Comment::find($this->vid);
                 $comment->body = $this->body;
+                $comment->user_id = \Auth::id();
+                $comment->post_id = $this->post_id;
+                if ($comment->user_id == \Auth::id()) {
+                    $comment->save();
+                }
 
             }
 
@@ -80,17 +86,31 @@ class View extends Component
         }
     }
 
+    public function editComment($id)
+    {
+        $obj = Comment::find($id);
+        $this->vid = $obj->id;
+        $this->body = $obj->body;
+        $this->user_id = $obj->user_id;
+        $this->post_id = $obj->post_id;
+    }
+    public function deleteComment($id)
+    {
+        $obj = Comment::find($id);
+       $obj->delete();
+    }
+
 
     public function clearFields()
     {
-        $this->body='';
+        $this->body = '';
 
     }
 
 
     public function getContact()
     {
-        $this->contacts=Contact::where('company_id','=',session()->get('company_id'))->get();
+        $this->contacts = Contact::where('company_id', '=', session()->get('company_id'))->get();
 
     }
 
@@ -98,9 +118,9 @@ class View extends Component
     public function render()
     {
         return view('livewire.blog.post.view')->layout('layouts.web')->with([
-            'list'=>Comment::where('post_id','=',$this->post_id)->orderBy('created_at','desc')
+            'list' => Comment::where('post_id', '=', $this->post_id)->orderBy('created_at', 'desc')
                 ->paginate(5),
-            'likes'=>Like::where('post_id','=',$this->post_id)
+            'likes' => Like::where('post_id', '=', $this->post_id)
 
         ]);
 
