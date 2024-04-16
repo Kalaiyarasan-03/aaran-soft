@@ -138,7 +138,7 @@
             <div><span>&nbsp;&nbsp;&nbsp;{{$obj->despatch_name}}</span></div>
         </td>
         <td colspan="2" style="text-align: center;">
-            <div><span>&nbsp;&nbsp;&nbsp;{{$obj->despatch_date}}</span>
+            <div><span>&nbsp;&nbsp;&nbsp;{{date('d-m-Y', strtotime($obj->despatch_date))}}</span>
             </div>
         </td>
     </tr>
@@ -234,8 +234,9 @@
 
     <tr>
         <td>E&OE</td>
-        <td colspan="5" align="right" style="padding-right: 20px;"><span>Total</span></td>
-        <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
+        <td colspan="2" align="right" style="padding-right: 20px;"><span>Total</span></td>
+        <td colspan="1" align="right" style="padding-right: 20px;"><span>{{$obj->total_qty+0}}</span></td>
+        <td colspan="3" align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
     </tr>
     @if($obj->sales_type==0)
         <tr>

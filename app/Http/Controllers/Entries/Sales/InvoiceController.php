@@ -24,7 +24,11 @@ class InvoiceController extends Controller
 
             Pdf::setOption(['dpi' => 150, 'defaultPaperSize' => 'a4', 'defaultFont' => 'sans-serif']);
 
-            $pdf = PDF::loadView('pdf.entries.sales.vijay_garments1', [
+                if(config('aaconfig.app_type')==301)
+                {
+            $pdf = PDF::loadView(
+                'pdf.entries.sales.vijay_garments1'
+                , [
                 'obj' => $sale,
                 'rupees' => ConvertTo::ruppesToWords($sale->grand_total),
                 'list' => $this->getSaleItems($vid),
@@ -32,6 +36,18 @@ class InvoiceController extends Controller
                 'billing_address' => Contact_detail::printDetails($sale->billing_id),
                 'shipping_address' => Contact_detail::printDetails($sale->shipping_id),
             ]);
+            }elseif (config('aaconfig.app_type')==302){
+                    $pdf = PDF::loadView(
+                        'pdf.entries.invoices.invoice1'
+                        , [
+                        'obj' => $sale,
+                        'rupees' => ConvertTo::ruppesToWords($sale->grand_total),
+                        'list' => $this->getSaleItems($vid),
+                        'cmp' => Company::printDetails(session()->get('company_id')),
+                        'billing_address' => Contact_detail::printDetails($sale->billing_id),
+                        'shipping_address' => Contact_detail::printDetails($sale->shipping_id),
+                    ]);
+                }
 
 
             $pdf->render();
@@ -56,12 +72,14 @@ class InvoiceController extends Controller
             'despatches.vname as despatch_name',
             'despatches.vdate as despatch_date',
             'transports.vname as transport_name',
+            'ledgers.vname as ledger_name',
         )
             ->join('contacts', 'contacts.id', '=', 'sales.contact_id')
             ->join('orders', 'orders.id', '=', 'sales.order_id')
             ->join('styles', 'styles.id', '=', 'sales.style_id')
             ->join('despatches', 'despatches.id', '=', 'sales.despatch_id')
             ->join('transports', 'transports.id', '=', 'sales.transport_id')
+            ->join('ledgers', 'ledgers.id', '=', 'sales.ledger_id')
             ->where('sales.id', '=', $vid)
             ->get()->firstOrFail();
     }

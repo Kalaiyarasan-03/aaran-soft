@@ -161,15 +161,11 @@
     <tr>
         <td style="padding: 0;margin: 0;">
             <div style="text-align: left;">
-                <p style="font-size: 12px; line-height: 5px ">&nbsp;&nbsp;M/s.{{$contact->get('contact_name')}}</p>
-                <p style="line-height: 5px">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$contact->get('address_1')}}</p>
-                <p style="line-height: 5px">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$contact->get('address_3')}}</p>
-                <p style="line-height: 5px">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$contact->get('gstCell')}}</p>
-                <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MSME No&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span></span>:{{$contact->get('msme_no')}}<span></span></p>
-                <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MSME Type&nbsp;<span></span>:{{$contact->get('msme_type')}}<span></span></p>
+                <p style="font-size: 12px; line-height: 5px ">&nbsp;&nbsp;M/s.{{$obj->contact_name}}</p>
+                <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$billing_address->get('address_1')}}</p>
+                <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$billing_address->get('address_2')}}</p>
+                <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$billing_address->get('address_3')}}</p>
+                <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$billing_address->get('gstcell')}}</p>
             </div>
         </td>
         <td style="padding: 0;margin: 0;">
@@ -230,7 +226,7 @@
             <td align="center" style="border-bottom: none;border-top: none;">{{$row['hsncode']}}</td>
             <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty'] + 0}}</td>
             <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['price']}}</td>
-            <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['taxable']}}</td>
+            <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['total_taxable']}}</td>
             <td align="center"
                 style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
             <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['gst_amount']}}</td>
