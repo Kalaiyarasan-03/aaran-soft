@@ -13,6 +13,7 @@ class Index extends Component
 
     public string $desc = '';
 
+    #region[save]
     public function getSave(): string
     {
             if ($this->vname != '') {
@@ -35,13 +36,14 @@ class Index extends Component
                     $obj->save();
                     $message = "Updated";
                 }
-
                 $this->desc = '';
                 return $message;
             }
         return '';
     }
+    #endregion
 
+    #region[obj]
     public function getObj($id)
     {
         if ($id) {
@@ -54,7 +56,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[list]
     public function getList()
     {
         $this->sortField = 'id';
@@ -65,7 +69,9 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[render]
     public function reRender(): void
     {
         $this->render();
@@ -77,4 +83,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

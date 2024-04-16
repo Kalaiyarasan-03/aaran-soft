@@ -23,6 +23,7 @@ class Upsert extends Component
     use CommonTrait;
 
     #region[Contact properties]
+
     public string $mobile = '';
     public string $whatsapp = '';
     public string $contact_person = '';

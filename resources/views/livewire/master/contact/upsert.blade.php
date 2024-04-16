@@ -62,6 +62,8 @@
                                     class="block w-full purple-textbox "
                                 />
 
+                                <!-- City Dropdown -------------------------------------------------------------------->
+
                                 <div x-show="isTyped"
                                      x-transition:leave="transition ease-in duration-100"
                                      x-transition:leave-start="opacity-100"
@@ -82,7 +84,6 @@
                                                             x-on:click="isTyped = false">
                                                             {{ $city->vname }}
                                                         </li>
-
                                                     @empty
                                                         @livewire('controls.model.common.city-model',[$city_name])
                                                     @endforelse
@@ -117,6 +118,7 @@
                                     class="block w-full purple-textbox"
                                 />
 
+                                <!-- State Dropdown -------------------------------------------------------------------->
                                 <div x-show="isTyped"
                                      x-transition:leave="transition ease-in duration-100"
                                      x-transition:leave-start="opacity-100"
@@ -173,6 +175,7 @@
                                     class="block w-full purple-textbox"
                                 />
 
+                                <!-- Pin-code Dropdown -------------------------------------------------------------------->
                                 <div x-show="isTyped"
                                      x-transition:leave="transition ease-in duration-100"
                                      x-transition:leave-start="opacity-100"
@@ -208,7 +211,7 @@
 
                 <div class="flex flex-col gap-2 mt-3">
                     <div class="xl:flex w-full gap-2">
-                        <label for="pincode_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Country</label>
+                        <label for="country_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Country</label>
                         <div x-data="{isTyped: @entangle('countryTyped')}" @click.away="isTyped = false" class="w-full">
                             <div class="relative">
                                 <input
@@ -227,6 +230,7 @@
                                     class="block w-full purple-textbox"
                                 />
 
+                                <!-- Country Dropdown -------------------------------------------------------------------->
                                 <div x-show="isTyped"
                                      x-transition:leave="transition ease-in duration-100"
                                      x-transition:leave-start="opacity-100"
@@ -298,9 +302,7 @@
                                     @if(isset($row['contact_detail_id']))
                                         {{  $row['contact_detail_id'] }}
                                     @endif
-
                                 </x-table.cell-text>
-
 
                                 <x-table.cell-text wire:click.prevent="changeItems({{$index}})" center>
                                     {{  $row['address_type'] }}
