@@ -11,7 +11,11 @@ class DespatchList extends Component
 {
     use CommonTrait;
 
+    #region[Properties]
     public $vdate;
+    #endregion
+
+    #region[save]
     public function getSave(): string
     {
         if ($this->vname != '') {
@@ -35,7 +39,9 @@ class DespatchList extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[obj]
     public function getObj($id)
     {
         if ($id) {
@@ -48,7 +54,9 @@ class DespatchList extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[list]
     public function getList()
     {
         return Despatch::search($this->searches)
@@ -56,15 +64,19 @@ class DespatchList extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[render]
     public function reRender(): void
     {
         $this->render()->render();
     }
+
     public function render()
     {
         return view('livewire.common.despatch-list')->with([
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

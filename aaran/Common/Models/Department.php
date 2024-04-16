@@ -19,7 +19,8 @@ class Department extends Model
         return empty($searches) ? static::query()
             : static::where('vname', 'like', '%' . $searches . '%');
     }
-    protected static function newFactory():DepartmentFactory
+
+    protected static function newFactory(): DepartmentFactory
     {
         return new DepartmentFactory();
     }

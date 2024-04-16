@@ -2,37 +2,39 @@
     <x-slot name="header">Ledger</x-slot>
 
     <x-forms.m-panel>
+
+        <!-- Top Controls --------------------------------------------------------------------------------------------->
         <x-forms.top-controls :show-filters="$showFilters"/>
 
+        <!-- Header --------------------------------------------------------------------------------------------------->
         <x-forms.table :list="$list">
             <x-slot name="table_header">
-                <x-table.ths-slno wire:click.prevent="sortBy('vname')">Sl.no</x-table.ths-slno>
-                <x-table.ths-center wire:click.prevent="sortBy('vname')">Ledger</x-table.ths-center>
-                <x-table.heading class="w-[12rem]">Action</x-table.heading>
+                <x-table.header-serial wire:click.prevent="sortBy('vname')"/>
+                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Ledger</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
+            <!-- Table Body ------------------------------------------------------------------------------------------->
             <x-slot name="table_body">
                 @forelse ($list as $index =>  $row)
+
                     <x-table.row>
+                        <x-table.cell-text center>
+                            {{ $index + 1 }}
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <p class="flex px-3 text-gray-600 truncate text-xl text-left">
-                                {{ $index + 1 }}
-                            </p>
-                        </x-table.cell>
+                        <x-table.cell-text>
+                            {{ $row->vname}}
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <p class="flex px-3 text-gray-600 truncate text-xl text-left">
-                                {{ $row->vname}}
-                            </p>
-                        </x-table.cell>
-
-                        <x-table.action :id="$row->id"/>
+                        <x-table.cell-action id="{{$row->id}}"/>
                     </x-table.row>
+
                 @empty
                     <x-table.empty/>
                 @endforelse
             </x-slot>
+
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>
@@ -40,6 +42,7 @@
 
         <x-modal.delete/>
 
+        <!-- Create/ Edit Popup --------------------------------------------------------------------------------------->
         <x-forms.create :id="$vid">
             <x-input.model-text wire:model="vname" :label="'Ledger'"/>
         </x-forms.create>

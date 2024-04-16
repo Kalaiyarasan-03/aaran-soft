@@ -17,10 +17,10 @@ class Country extends Model
     public static function search(string $searches)
     {
         return empty($searches) ? static::query()
-           : static::where('vname', 'like', '%' . $searches . '%');
+            : static::where('vname', 'like', '%' . $searches . '%');
     }
 
-    protected static function newFactory():CountryFactory
+    protected static function newFactory(): CountryFactory
     {
         return new CountryFactory();
     }

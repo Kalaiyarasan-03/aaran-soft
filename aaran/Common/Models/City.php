@@ -20,7 +20,7 @@ class City extends Model
             : static::where('vname', 'like', '%' . $searches . '%');
     }
 
-    protected static function newFactory():CityFactory
+    protected static function newFactory(): CityFactory
     {
         return new CityFactory();
     }
