@@ -2,8 +2,8 @@
 
 namespace Aaran\Common\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 
 class Despatch extends Model
 {

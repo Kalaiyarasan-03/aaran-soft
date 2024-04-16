@@ -11,7 +11,11 @@ class StateList extends Component
 {
     use CommonTrait;
 
+    #region[properties]
     public mixed $state_code;
+    #endregion
+
+    #region[save]
     public function getSave(): string
     {
         if ($this->vname != '') {
@@ -35,7 +39,9 @@ class StateList extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[obj]
     public function getObj($id)
     {
         if ($id) {
@@ -48,7 +54,9 @@ class StateList extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[list]
     public function getList()
     {
         return State::search($this->searches)
@@ -56,7 +64,9 @@ class StateList extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[render]
     public function reRender(): void
     {
         $this->render()->render();
@@ -68,4 +78,5 @@ class StateList extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }
