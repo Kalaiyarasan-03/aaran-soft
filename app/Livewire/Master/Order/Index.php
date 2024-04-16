@@ -15,6 +15,7 @@ class Index extends Component
 
     public string $order_name='';
 
+    #region[save]
     public function getSave(): string
     {
         if ($this->vname != '') {
@@ -40,7 +41,9 @@ class Index extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[obj]
     public function getObj($id)
     {
         if ($id) {
@@ -53,7 +56,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[list]
     public function getList()
     {
         return Order::search($this->searches)
@@ -62,7 +67,9 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[render]
     public function reRender(): void
     {
         $this->render()->render();
@@ -74,4 +81,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

@@ -1,10 +1,11 @@
 <div>
     <x-slot name="header">Product Entry</x-slot>
-    <x-forms.m-panel>
-                <div>
 
+    <x-forms.m-panel>
+            <div>
                 <x-input.model-text wire:model="vname" :label="'Name'"/>
 
+                <!-- Product Type ------------------------------------------------------------------------------------->
                 <x-input.model-select wire:model="product_type" :label="'Product Type'">
                     <option class="text-gray-400"> choose ..</option>
                     @foreach(\App\Enums\ProductType::cases() as $product_type)
@@ -12,7 +13,8 @@
                     @endforeach
                 </x-input.model-select>
 
-                    <div class="flex flex-row gap-3 py-3">
+                <!-- Hsn-Code------------------------------------------------------------------------------------------>
+                <div class="flex flex-row gap-3 py-3">
                         <div class="xl:flex gap-2 w-full">
                             <label for="hsncode_no" class="w-[10rem] text-zinc-500 tracking-wide py-2">Hsncode</label>
                             <div x-data="{isTyped: @entangle('hsncodeTyped')}" @click.away="isTyped = false" class="w-full">
@@ -32,6 +34,8 @@
                                         wire:keydown.enter="enterHsncode"
                                         class="block purple-textbox w-full"
                                     />
+
+                                    <!-- Hsn-Code Dropdown------------------------------------------------------------->
 
                                     <div x-show="isTyped"
                                          x-transition:leave="transition ease-in duration-100"
@@ -67,6 +71,7 @@
                         </div>
                     </div>
 
+                <!-- Units/Gst ---------------------------------------------------------------------------------------->
                 <x-input.model-select wire:model="units" :label="'Units'">
                     <option class="text-gray-400"> choose ..</option>
                     @foreach(\App\Enums\Units::cases() as $units)
@@ -83,6 +88,7 @@
 
     </x-forms.m-panel>
 
+    <!-- Save Button Area ---------------------------------------------------------------------------------------->
     <section class="mt-1">
         <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
                 <div class="flex gap-3">

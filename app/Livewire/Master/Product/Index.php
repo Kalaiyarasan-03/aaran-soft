@@ -9,10 +9,15 @@ use Livewire\Component;
 class Index extends Component
 {
     use CommonTrait;
+
+    #region[create]
     public function create(): void
     {
         $this->redirect(route('products.upsert', ['0']));
     }
+    #endregion
+
+    #region[list]
     public function getList(): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         return Product::search($this->searches)
@@ -21,7 +26,9 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[obj]
     public function getObj($id)
     {
         if ($id) {
@@ -36,17 +43,22 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
+
+    #region[delete]
     public function set_delete($id): void
     {
         $obj=$this->getObj($id);
         $obj->delete();
-
-
     }
+    #endregion
+
+    #region[render]
     public function render()
     {
         return view('livewire.master.product.index')->with([
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

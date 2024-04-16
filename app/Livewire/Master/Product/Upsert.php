@@ -15,12 +15,21 @@ class Upsert extends Component
 {
     use CommonTrait;
 
+    #region[product properties]
     public $hsncode_id = '';
     public $hsncode_no = '';
     public Collection $hsncodeCollection;
     public $highlightHsncode = 0;
     public $hsncodeTyped = false;
+    public string $vid = '';
+    public string $vname = '';
+    public string $product_type;
+    public string $units;
+    public string $gst_percent;
+    public $company_id;
+    #endregion
 
+    #region[hsn-code]
     public function decrementHsncode(): void
     {
         if ($this->highlightHsncode === 0) {
@@ -64,19 +73,15 @@ class Upsert extends Component
         $this->hsncode_id = $v['id'];
         $this->hsncode_no = $v['name'];
         $this->hsncodeTyped = false;
-
     }
 
     public function getHsncodeList(): void
     {
         $this->hsncodeCollection = $this->hsncode_no ? Hsncode::search(trim($this->hsncode_no))->get() : Hsncode::all();
     }
+    #endregion
 
-    public string $product_type;
-    public string $units;
-    public string $gst_percent;
-    public  $company_id;
-
+    #region[save]
     public function save(): string
     {
         if ($this->vname != '') {
@@ -112,7 +117,9 @@ class Upsert extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[obj]
     public function getObj($id)
     {
         if ($id) {
@@ -127,15 +134,12 @@ class Upsert extends Component
         }
         return null;
     }
+    #endregion
 
-    public string $vid = '';
-    public string $vname = '';
-
+    #region[mount]
     public function mount($id): void
     {
-
         if ($id != 0) {
-
             $obj = Product::find($id);
             $this->vid = $obj->id;
             $this->vname = $obj->vname;
@@ -148,9 +152,10 @@ class Upsert extends Component
         } else {
             $this->active_id = true;
         }
-
     }
+    #endregion
 
+    #region[render]
     public function getRoute(): void
     {
         $this->redirect(route('products'));
@@ -161,4 +166,5 @@ class Upsert extends Component
         $this->getHsncodeList();
         return view('livewire.master.product.upsert');
     }
+    #endregion
 }
