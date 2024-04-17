@@ -113,7 +113,7 @@ class InvoiceController extends Controller
     {
         return match (config('aadmin.app_type')) {
             config('clients.VIJAY_GARMENTS') =>  'pdf.entries.sales.vijay_garments1',
-            config('clients.SK_PRINTERS') =>  'pdf.offset.sales.neethu_industries',
+            config('clients.SK_PRINTERS') =>  'pdf.offset.sales.sk_prienters',
         };
     }
 }
