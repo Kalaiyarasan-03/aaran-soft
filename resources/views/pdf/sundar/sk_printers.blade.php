@@ -328,11 +328,11 @@
             <div>BANK NAME</div>
             <div>BRANCH </div>
         </td>
-        <td  align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none">
+        <td COLSPAN="3"  align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none">
             <div>:&nbsp;{{$cmp->get('bank')}}</div>
             <div>:&nbsp;{{$cmp->get('branch')}}</div>
         </td>
-        <td  colspan="3" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
+        <td  colspan="1" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
         <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Round Off</td>
         <td align="right" style="border-bottom: none; border-left: none;">{{number_format($obj->round_off,2,'.','')}}</td>
     </tr>
