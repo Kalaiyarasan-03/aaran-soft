@@ -25,11 +25,6 @@
         <ul class="flex flex-col py-6 space-y-1"
             x-data="{selected:null}">
 
-            <x-menu.sub.audit/>
-            <x-menu.sub.task/>
-            <x-menu.sub.admin/>
-            <x-menu.sub.accounts/>
-
             <x-menu.sub.master/>
             <x-menu.sub.common/>
 

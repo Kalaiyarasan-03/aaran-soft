@@ -3,15 +3,17 @@
 namespace App\Livewire\Entries\Sales;
 
 use Aaran\Common\Models\Colour;
+use Aaran\Common\Models\Despatch;
 use Aaran\Common\Models\Ledger;
 use Aaran\Common\Models\Size;
 use Aaran\Common\Models\Transport;
 use Aaran\Entries\Models\Sale;
 use Aaran\Entries\Models\Saleitem;
-use Aaran\Master\Models\Company;
 use Aaran\Master\Models\Contact;
+use Aaran\Master\Models\Contact_detail;
+use Aaran\Master\Models\Order;
 use Aaran\Master\Models\Product;
-use Aaran\Orders\Models\Order;
+use Aaran\Master\Models\Style;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
@@ -23,6 +25,8 @@ use Livewire\Component;
 class Upsert extends Component
 {
     use CommonTrait;
+
+    #region[Properties]
 
     public string $uniqueno = '';
     public string $acyear = '';
@@ -42,6 +46,7 @@ class Upsert extends Component
     public string $gst_percent = '';
     public string $itemIndex = "";
     public $itemList = [];
+    public $description;
 
     public string $company;
     public string $contact;
@@ -52,15 +57,19 @@ class Upsert extends Component
     public string $product;
     public string $colour;
     public string $size;
+    public $po_no;
+    public $grandtotalBeforeRound;
+    public $dc_no;
+
+    #endregion
+
+    #region[Contact]
 
     public $contact_id = '';
-
     public $contact_name = '';
     public Collection $contactCollection;
     public $highlightContact = 0;
     public $contactTyped = false;
-    public $grandtotalBeforeRound;
-
     public function decrementContact(): void
     {
         if ($this->highlightContact === 0) {
@@ -116,6 +125,140 @@ class Upsert extends Component
 
     }
 
+    #endregion
+
+    #region[Billing Address]
+    public $billing_id = '';
+
+    public $billing_address = '';
+    public Collection $billing_addressCollection;
+    public $highlightBilling_address = 0;
+    public $billing_addressTyped = false;
+
+    public function decrementBilling_address(): void
+    {
+        if ($this->highlightBilling_address === 0) {
+            $this->highlightBilling_address = count($this->billing_addressCollection) - 1;
+            return;
+        }
+        $this->highlightBilling_address--;
+    }
+
+    public function incrementBilling_address(): void
+    {
+        if ($this->highlightBilling_address === count($this->billing_addressCollection) - 1) {
+            $this->highlightBilling_address = 0;
+            return;
+        }
+        $this->highlightBilling_address++;
+    }
+
+    public function setBilling_address($name, $id): void
+    {
+        $this->billing_address = $name;
+        $this->billing_id = $id;
+        $this->getBilling_address();
+    }
+
+    public function enterBilling_address(): void
+    {
+        $obj = $this->billing_addressCollection[$this->highlightBilling_address] ?? null;
+
+        $this->billing_address = '';
+        $this->billing_addressCollection = Collection::empty();
+        $this->highlightBilling_address = 0;
+
+        $this->billing_address = $obj['address_1'] ?? '';
+        $this->billing_id = $obj['id'] ?? '';
+    }
+
+    #[On('refresh-billing_address')]
+    public function refreshBilling_address($v): void
+    {
+        $this->billing_id = $v['id'];
+        $this->billing_address = $v['name'];
+        $this->billing_addressTyped = false;
+
+    }
+
+    public function getBilling_address(): void
+    {
+
+        $this->billing_addressCollection = $this->billing_address ? Contact_detail::search(trim($this->billing_address))
+            ->where('contact_id', '=', $this->contact_id)
+            ->get() : contact_detail::all()->where('contact_id', '=', $this->contact_id);
+
+    }
+
+    #endregion
+
+    #region[Shipping Address]
+
+    public $shipping_id = '';
+
+    public $shipping_address = '';
+    public Collection $shipping_addressCollection;
+    public $highlightShipping_address = 0;
+    public $shipping_addressTyped = false;
+
+    public function decrementShipping_address(): void
+    {
+        if ($this->highlightShipping_address === 0) {
+            $this->highlightShipping_address = count($this->shipping_addressCollection) - 1;
+            return;
+        }
+        $this->highlightShipping_address--;
+    }
+
+    public function incrementShipping_address(): void
+    {
+        if ($this->highlightShipping_address === count($this->shipping_addressCollection) - 1) {
+            $this->highlightShipping_address = 0;
+            return;
+        }
+        $this->highlightShipping_address++;
+    }
+
+    public function setShipping_address($name, $id): void
+    {
+        $this->shipping_address = $name;
+        $this->shipping_id = $id;
+        $this->getShipping_address();
+    }
+
+    public function enterShipping_address(): void
+    {
+        $obj = $this->shipping_addressCollection[$this->highlightShipping_address] ?? null;
+
+        $this->shipping_address = '';
+        $this->shipping_addressCollection = Collection::empty();
+        $this->highlightShipping_address = 0;
+
+        $this->shipping_address = $obj['address_1'] ?? '';
+        $this->shipping_id = $obj['id'] ?? '';
+    }
+
+    #[On('refresh-shipping_address')]
+    public function refreshContact_detail_1($v): void
+    {
+        $this->shipping_id = $v['id'];
+        $this->shipping_address = $v['name'];
+        $this->shipping_addressTyped = false;
+
+    }
+
+    public function getShipping_address(): void
+    {
+
+        $this->shipping_addressCollection = $this->shipping_address ? Contact_detail::search(trim($this->shipping_address))
+            ->where('contact_id', '=', $this->contact_id)
+            ->get() : contact_detail::all()->where('contact_id', '=', $this->contact_id);
+
+    }
+
+    #endregion
+
+    #region[Order]
 
     #[Rule('required')]
     public $order_id = '';
@@ -177,6 +320,71 @@ class Upsert extends Component
             ->get() : Order::where('company_id', '=', session()->get('company_id'))->get();;
     }
 
+    #endregion
+
+    #region[Style]
+
+    public $style_id = '';
+    public $style_name = '';
+    public \Illuminate\Support\Collection $styleCollection;
+    public $highlightStyle = 0;
+    public $styleTyped = false;
+
+    public function decrementStyle(): void
+    {
+        if ($this->highlightStyle === 0) {
+            $this->highlightStyle = count($this->styleCollection) - 1;
+            return;
+        }
+        $this->highlightStyle--;
+    }
+
+    public function incrementStyle(): void
+    {
+        if ($this->highlightStyle === count($this->styleCollection) - 1) {
+            $this->highlightStyle = 0;
+            return;
+        }
+        $this->highlightStyle++;
+    }
+
+    public function enterStyle(): void
+    {
+        $obj = $this->styleCollection[$this->highlightStyle] ?? null;
+
+        $this->style_name = '';
+        $this->styleCollection = Collection::empty();
+        $this->highlightStyle = 0;
+
+        $this->style_name = $obj['vname'] ?? '';;
+        $this->style_id = $obj['id'] ?? '';;
+    }
+
+    public function setStyle($name, $id): void
+    {
+        $this->style_name = $name;
+        $this->style_id = $id;
+        $this->getStyleList();
+    }
+
+    #[On('refresh-style')]
+    public function refreshStyle($v): void
+    {
+        $this->style_id = $v['id'];
+        $this->style_name = $v['name'];
+        $this->styleTyped = false;
+
+    }
+
+    public function getStyleList(): void
+    {
+        $this->styleCollection = $this->style_name ? Style::search(trim($this->style_name))->where('company_id', '=', session()->get('company_id'))
+            ->get() : Style::all()->where('company_id', '=', session()->get('company_id'));
+    }
+
+    #endregion
+
+    #region[Transport]
 
     public $transport_id = '';
     public $transport_name = '';
@@ -236,6 +444,72 @@ class Upsert extends Component
             ->get() : Transport::all();
     }
 
+    #endregion
+
+    #region[Despatch]
+
+    public $despatch_id = '';
+    public $despatch_name = '';
+    public Collection $despatchCollection;
+    public $highlightDespatch = 0;
+    public $despatchTyped = false;
+
+    public function decrementDespatch(): void
+    {
+        if ($this->highlightDespatch === 0) {
+            $this->highlightDespatch = count($this->despatchCollection) - 1;
+            return;
+        }
+        $this->highlightDespatch--;
+    }
+
+    public function incrementDespatch(): void
+    {
+        if ($this->highlightDespatch === count($this->despatchCollection) - 1) {
+            $this->highlightDespatch = 0;
+            return;
+        }
+        $this->highlightDespatch++;
+    }
+
+    public function setDespatch($name, $id): void
+    {
+        $this->despatch_name = $name;
+        $this->despatch_id = $id;
+        $this->getdespatchList();
+    }
+
+    public function enterDespatch(): void
+    {
+        $obj = $this->despatchCollection[$this->highlightDespatch] ?? null;
+
+        $this->despatch_name = '';
+        $this->despatchCollection = Collection::empty();
+        $this->highlightDespatch = 0;
+
+        $this->despatch_name = $obj['vname'] ?? '';
+        $this->despatch_id = $obj['id'] ?? '';
+    }
+
+    #[On('refresh-despatch')]
+    public function refreshDespatch($v): void
+    {
+        $this->despatch_id = $v['id'];
+        $this->despatch_name = $v['name'];
+        $this->despatchTyped = false;
+
+    }
+
+    public function getDespatchList(): void
+    {
+        $this->despatchCollection = $this->despatch_name ? Despatch::search(trim($this->despatch_name))
+            ->get() : Despatch::all();
+    }
+
+    #endregion
+
+    #region[Ledger]
+
     public $ledger_id = '';
     public $ledger_name = '';
     public Collection $ledgerCollection;
@@ -294,9 +568,13 @@ class Upsert extends Component
             ->get() : Ledger::all();
     }
 
+    #endregion
+
+    #region[Product]
+
     public $product_id = '';
     public $product_name = '';
-    public int $gst_percent1;
+    public mixed $gst_percent1 = '';
     public Collection $productCollection;
     public $highlightProduct = 0;
     public $productTyped = false;
@@ -319,11 +597,11 @@ class Upsert extends Component
         $this->highlightProduct++;
     }
 
-    public function setProduct($name, $id,$percent): void
+    public function setProduct($name, $id, $percent): void
     {
         $this->product_name = $name;
         $this->product_id = $id;
-        $this->gst_percent1=$percent;
+        $this->gst_percent1 = $percent;
         $this->getProductList();
     }
 
@@ -344,6 +622,7 @@ class Upsert extends Component
     {
         $this->product_id = $v['id'];
         $this->product_name = $v['name'];
+        $this->gst_percent1 = $v['gst_percent'];
         $this->productTyped = false;
 
     }
@@ -354,6 +633,10 @@ class Upsert extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->get() : Product::all()->where('company_id', '=', session()->get('company_id'));
     }
+
+    #endregion
+
+    #region[Colour]
 
     public $colour_id = '';
     public $colour_name = '';
@@ -412,6 +695,9 @@ class Upsert extends Component
             ->get() : Colour::all();
     }
 
+    #endregion
+
+    #region[size]
 
     public $size_id = '';
     public $size_name = '';
@@ -471,13 +757,13 @@ class Upsert extends Component
             ->get() : Size::all();
     }
 
+    #endregion
 
+    #region[Save]
     public function save(): string
     {
-//        $this->validate();
         if ($this->uniqueno != '') {
             if ($this->vid == "") {
-
                 $obj = Sale::create([
                     'uniqueno' => "{$this->contact_id}~{$this->invoice_no}~{$this->invoice_date}",
                     'acyear' => '1',
@@ -485,7 +771,11 @@ class Upsert extends Component
                     'contact_id' => $this->contact_id,
                     'invoice_no' => $this->invoice_no,
                     'invoice_date' => $this->invoice_date,
-                    'order_id' => $this->order_id,
+                    'order_id' => $this->order_id?:1,
+                    'billing_id' => $this->billing_id,
+                    'shipping_id' => $this->shipping_id,
+                    'style_id' => $this->style_id ?: 1,
+                    'despatch_id' => $this->despatch_id ?: 1,
                     'sales_type' => $this->sales_type,
                     'transport_id' => $this->transport_id ?: 1,
                     'destination' => $this->destination,
@@ -512,6 +802,10 @@ class Upsert extends Component
                 $obj->invoice_no = $this->invoice_no;
                 $obj->invoice_date = $this->invoice_date;
                 $obj->order_id = $this->order_id;
+                $obj->billing_id = $this->billing_id;
+                $obj->shipping_id = $this->shipping_id;
+                $obj->style_id = $this->style_id;
+                $obj->despatch_id = $this->despatch_id;
                 $obj->sales_type = $this->sales_type;
                 $obj->transport_id = $this->transport_id;
                 $obj->destination = $this->destination;
@@ -524,19 +818,9 @@ class Upsert extends Component
                 $obj->round_off = $this->round_off;
                 $obj->grand_total = $this->grand_total;
                 $obj->active_id = $this->active_id;
-                if ($this->time_passed<48){
                 $obj->save();
                 DB::table('saleitems')->where('sale_id', '=', $obj->id)->delete();
                 $this->saveItem($obj->id);
-                }else{
-                    if (session()->get('usertype_id')==1){
-                        $obj->save();
-                        DB::table('saleitems')->where('sale_id', '=', $obj->id)->delete();
-                        $this->saveItem($obj->id);
-                    }else{
-                    $this->flash=true;
-                    }
-                }
                 $message = "Updated";
             }
             $this->getRoute();
@@ -550,23 +834,25 @@ class Upsert extends Component
         foreach ($this->itemList as $sub) {
             Saleitem::create([
                 'sale_id' => $id,
+                'po_no' => $sub['po_no'],
+                'dc_no' => $sub['dc_no'],
                 'product_id' => $sub['product_id'],
                 'colour_id' => $sub['colour_id'],
                 'size_id' => $sub['size_id'],
                 'qty' => $sub['qty'],
                 'price' => $sub['price'],
                 'gst_percent' => $sub['gst_percent'],
+                'description' => $sub['description'],
             ]);
         }
     }
-    public $created_at;
-    public $now;
-    public $time_passed;
-    public $flash=false;
+
+    #endregion
+
+    #region[mount]
 
     public function mount($id): void
     {
-        $this->now=\Illuminate\Support\Carbon::now();
         $this->invoice_no = Sale::nextNo();
         if ($id != 0) {
             $obj = Sale::find($id);
@@ -579,6 +865,14 @@ class Upsert extends Component
             $this->invoice_date = $obj->invoice_date;
             $this->order_id = $obj->order_id;
             $this->order_name = $obj->order->vname;
+            $this->billing_id = $obj->billing_id;
+            $this->billing_address = Contact_detail::printDetails($obj->billing_id)->get('address_1');
+            $this->shipping_id = $obj->shipping_id;
+            $this->shipping_address = Contact_detail::printDetails($obj->shipping_id)->get('address_1');
+            $this->style_id = $obj->style_id;
+            $this->style_name = $obj->style->vname;
+            $this->despatch_id = $obj->despatch_id;
+            $this->despatch_name = $obj->despatch->vname;
             $this->sales_type = $obj->sales_type;
             $this->transport_id = $obj->transport_id;
             $this->transport_name = $obj->transport->vname;
@@ -593,7 +887,7 @@ class Upsert extends Component
             $this->round_off = $obj->round_off;
             $this->grand_total = $obj->grand_total;
             $this->active_id = $obj->active_id;
-            $this->created_at=$obj->created_at;
+
             $data = DB::table('saleitems')->select('saleitems.*',
                 'products.vname as product_name',
                 'colours.vname as colour_name',
@@ -602,6 +896,8 @@ class Upsert extends Component
                 ->join('sizes', 'sizes.id', '=', 'saleitems.size_id')->where('sale_id', '=', $id)->get()->transform(function ($data) {
                     return [
                         'saleitem_id' => $data->id,
+                        'po_no' => $data->po_no,
+                        'dc_no' => $data->dc_no,
                         'product_name' => $data->product_name,
                         'product_id' => $data->product_id,
                         'colour_name' => $data->colour_name,
@@ -610,6 +906,7 @@ class Upsert extends Component
                         'size_id' => $data->size_id,
                         'qty' => $data->qty,
                         'price' => $data->price,
+                        'description' => $data->description,
                         'gst_percent' => $data->gst_percent,
                         'taxable' => $data->qty * $data->price,
                         'gst_amount' => ($data->qty * $data->price) * ($data->gst_percent) / 100,
@@ -617,7 +914,6 @@ class Upsert extends Component
                     ];
                 });
             $this->itemList = $data;
-            $this->time_passed=$this->created_at->diffInHours($this->now);
         } else {
             $this->uniqueno = "{$this->contact_id}~{$this->invoice_no}~{$this->invoice_date}";
             $this->active_id = true;
@@ -634,14 +930,20 @@ class Upsert extends Component
         $this->calculateTotal();
     }
 
+    #endregion
+
+    #region[add items]
+
     public function addItems(): void
     {
         if ($this->itemIndex == "") {
-            if (!(empty($this->colour_name)) &&
-                !(empty($this->size_name)) &&
+            if (!(empty($this->product_name)) &&
+                !(empty($this->price)) &&
                 !(empty($this->qty))
             ) {
                 $this->itemList[] = [
+                    'po_no' => $this->po_no,
+                    'dc_no' => $this->dc_no,
                     'product_name' => $this->product_name,
                     'product_id' => $this->product_id,
                     'colour_id' => $this->colour_id,
@@ -651,6 +953,7 @@ class Upsert extends Component
                     'qty' => $this->qty,
                     'price' => $this->price,
                     'gst_percent' => $this->gst_percent1,
+                    'description' => $this->description,
                     'taxable' => $this->qty * $this->price,
                     'gst_amount' => ($this->qty * $this->price) * $this->gst_percent1 / 100,
                     'subtotal' => $this->qty * $this->price + (($this->qty * $this->price) * $this->gst_percent1 / 100),
@@ -658,6 +961,8 @@ class Upsert extends Component
             }
         } else {
             $this->itemList[$this->itemIndex] = [
+                'po_no' => $this->po_no,
+                'dc_no' => $this->dc_no,
                 'product_name' => $this->product_name,
                 'product_id' => $this->product_id,
                 'colour_id' => $this->colour_id,
@@ -667,11 +972,11 @@ class Upsert extends Component
                 'qty' => $this->qty,
                 'price' => $this->price,
                 'gst_percent' => $this->gst_percent1,
+                'description' => $this->description,
                 'taxable' => $this->qty * $this->price,
                 'gst_amount' => ($this->qty * $this->price) * $this->gst_percent1 / 100,
                 'subtotal' => $this->qty * $this->price + (($this->qty * $this->price) * $this->gst_percent1 / 100),
             ];
-
         }
 
         $this->calculateTotal();
@@ -682,6 +987,8 @@ class Upsert extends Component
     public function resetsItems(): void
     {
         $this->itemIndex = '';
+        $this->po_no = '';
+        $this->dc_no = '';
         $this->product_name = '';
         $this->product_id = '';
         $this->colour_name = '';
@@ -690,6 +997,7 @@ class Upsert extends Component
         $this->size_id = '';
         $this->qty = '';
         $this->price = '';
+        $this->description = '';
         $this->gst_percent = '';
         $this->calculateTotal();
     }
@@ -699,6 +1007,8 @@ class Upsert extends Component
         $this->itemIndex = $index;
 
         $items = $this->itemList[$index];
+        $this->po_no = $items['po_no'];
+        $this->dc_no = $items['dc_no'];
         $this->product_name = $items['product_name'];
         $this->product_id = $items['product_id'];
         $this->colour_name = $items['colour_name'];
@@ -708,6 +1018,7 @@ class Upsert extends Component
         $this->qty = $items['qty'] + 0;
         $this->price = $items['price'] + 0;
         $this->gst_percent1 = $items['gst_percent'];
+        $this->description = $items['description'];
         $this->calculateTotal();
     }
 
@@ -717,6 +1028,10 @@ class Upsert extends Component
         $this->itemList = collect($this->itemList);
         $this->calculateTotal();
     }
+
+    #endregion
+
+    #region[Calculate total]
 
     public function calculateTotal(): void
     {
@@ -748,6 +1063,10 @@ class Upsert extends Component
         }
     }
 
+    #endregion
+
+    #region[Get Obj]
+
     public function getObj($id)
     {
         if ($id) {
@@ -761,6 +1080,14 @@ class Upsert extends Component
             $this->invoice_date = $obj->invoice_date;
             $this->order_id = $obj->order_id;
             $this->order_name = $obj->order->vname;
+            $this->billing_id = $obj->billing_id;
+            $this->billing_address = $obj->contact_detail->address;
+            $this->shipping_id = $obj->shipping_id;
+            $this->shipping_address = $obj->contact_detail->address;
+            $this->style_id = $obj->style_id;
+            $this->style_name = $obj->style->vname;
+            $this->despatch_id = $obj->despatch_id;
+            $this->despatch_name = $obj->despatch->vname;
             $this->sales_type = $obj->sales_type;
             $this->transport_id = $obj->transport_id;
             $this->transport_name = $obj->transport->vname;
@@ -780,6 +1107,10 @@ class Upsert extends Component
         }
         return null;
     }
+
+    #endregion
+
+    #region[Render]
 
     public function getRoute(): void
     {
@@ -801,6 +1132,12 @@ class Upsert extends Component
         $this->getColourList();
         $this->getProductList();
         $this->getSizeList();
+        $this->getBilling_address();
+        $this->getShipping_address();
+        $this->getStyleList();
+        $this->getDespatchList();
         return view('livewire.entries.sales.upsert');
     }
+
+    #endregion
 }

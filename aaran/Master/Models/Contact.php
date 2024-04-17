@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use LaravelIdea\Helper\Aaran\Master\Models\_IH_Contact_QB;
 
@@ -22,21 +23,6 @@ class Contact extends Model
             : static::where('vname', 'like', '%' . $searches . '%');
     }
 
-    public static function printDetails($ids): Collection
-    {
-        $obj = self::find($ids);
-
-        return collect([
-            'contact_name' => $obj->vname,
-            'address_1' => $obj->address_1 . ', ' . $obj->address_area,
-            'address_2' => $obj->address_2,
-            'address_3' => $obj->city->vname . ' - ' . $obj->pincode->vname . '.  ' . $obj->state->vname . ' - ' . $obj->state->state_code,
-            'gstCell' =>  'GSTin - '.$obj->gstin. ', Mobile - ' . $obj->mobile,
-            'msme_no'=>$obj->msme_no,
-            'msme_type'=>$obj->msme_type,
-        ]);
-    }
-
     public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
@@ -50,6 +36,11 @@ class Contact extends Model
     public function pincode(): BelongsTo
     {
         return $this->belongsTo(Pincode::class);
+    }
+
+    public function contact_details():HasMany
+    {
+        return $this->hasMany(Contact_detail::class);
     }
 
 }

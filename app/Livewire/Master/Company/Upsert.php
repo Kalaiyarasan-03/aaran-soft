@@ -21,6 +21,7 @@ class Upsert extends Component
     use CommonTrait;
     use WithFileUploads;
 
+    #region[properties]
     public string $mobile = '';
     public string $email = '';
     public string $gstin = '';
@@ -35,6 +36,7 @@ class Upsert extends Component
     public $acc_no;
     public $ifsc_code;
     public $branch;
+    public $isUploaded=false;
 
 
     public string $cities;
@@ -42,12 +44,12 @@ class Upsert extends Component
     public string $pincode;
     public $tenant_id;
     public Collection $tenants;
+    #endregion
 
-
+    #region[city]
     public $city_id = '';
     public $city_name = '';
     public Collection $cityCollection;
-
     public $highlightCity = 0;
     public $cityTyped = false;
 
@@ -101,7 +103,9 @@ class Upsert extends Component
     {
         $this->cityCollection = $this->city_name ? City::search(trim($this->city_name))->get() : City::all();
     }
+    #endregion
 
+    #region[state]
     public $state_id = '';
     public $state_name = '';
     public Collection $stateCollection;
@@ -159,8 +163,9 @@ class Upsert extends Component
         $this->stateCollection = $this->state_name ? State::search(trim($this->state_name))
             ->get() : State::all();
     }
+    #endregion
 
-
+    #region[pin-code]
     public $pincode_id = '';
     public $pincode_name = '';
     public Collection $pincodeCollection;
@@ -217,7 +222,9 @@ class Upsert extends Component
         $this->pincodeCollection = $this->pincode_name ? Pincode::search(trim($this->pincode_name))
             ->get() : Pincode::all();
     }
+    #endregion
 
+    #region[save]
     public function save(): string
     {
         if ($this->vname != '') {
@@ -270,7 +277,7 @@ class Upsert extends Component
                 $obj->active_id = $this->active_id;
                 $obj->tenant_id = $this->tenant_id?:'1';
                 $obj->user_id = Auth::id();
-                if ($obj->logo != $obj->logo) {
+                if ($obj->logo != $this->logo) {
                     $obj->logo = $this->save_logo();
                 } else {
                     $obj->logo = $this->logo;
@@ -283,7 +290,9 @@ class Upsert extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[mount]
     public function mount($id): void
     {
         if ($id != 0) {
@@ -316,7 +325,9 @@ class Upsert extends Component
             $this->active_id = true;
         }
     }
+    #endregion
 
+    #region[obj]
     public function getObj($id)
     {
         if ($id) {
@@ -348,7 +359,9 @@ class Upsert extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[logo]
     public function save_logo()
     {
         if ($this->logo == '') {
@@ -358,18 +371,31 @@ class Upsert extends Component
         }
     }
 
+    public function updatedlogo()
+    {
+        $this->validate([
+            'logo'=>'image|max:1024',
+        ]);
+        $this->isUploaded=true;
+    }
+    #endregion
 
+    #region[route]
     public function getRoute(): void
     {
         $this->redirect(route('companies'));
     }
+    #endregion
 
+    #region[tenants]
     public function getTenants()
     {
         $this->tenants = Tenant::all();
 
     }
+    #endregion
 
+    #region[render]
     public function render()
     {
         $this->getCityList();
@@ -378,5 +404,6 @@ class Upsert extends Component
         $this->getTenants();
         return view('livewire.master.company.upsert');
     }
+    #endregion
 
 }

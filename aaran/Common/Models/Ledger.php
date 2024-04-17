@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Ledger extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
+
     public $timestamps = false;
 
     public static function search(string $searches)
@@ -18,7 +20,7 @@ class Ledger extends Model
             : static::where('vname', 'like', '%' . $searches . '%');
     }
 
-    protected static function newFactory():LedgerFactory
+    protected static function newFactory(): LedgerFactory
     {
         return new LedgerFactory();
     }

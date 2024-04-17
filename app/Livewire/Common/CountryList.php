@@ -10,8 +10,10 @@ use Livewire\Component;
 class CountryList extends Component
 {
     use CommonTrait;
+
     public bool $showFilters = false;
 
+    #region[save]
     public function getSave(): string
     {
         if ($this->vname != '') {
@@ -33,7 +35,9 @@ class CountryList extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[obj]
     public function getObj($id)
     {
         if ($id) {
@@ -45,7 +49,9 @@ class CountryList extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[list]
     public function getList()
     {
         return Country::search($this->searches)
@@ -53,7 +59,9 @@ class CountryList extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[render]
     public function reRender(): void
     {
         $this->render()->render();
@@ -65,5 +73,5 @@ class CountryList extends Component
             'list' => $this->getList()
         ]);
     }
-
+    #endregion
 }

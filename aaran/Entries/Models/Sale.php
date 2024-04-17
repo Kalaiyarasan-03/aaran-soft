@@ -2,12 +2,15 @@
 
 namespace Aaran\Entries\Models;
 
+use Aaran\Common\Models\Despatch;
 use Aaran\Common\Models\Ledger;
 use Aaran\Common\Models\Transport;
 use Aaran\Entries\Database\Factories\SaleFactory;
 use Aaran\Master\Models\Company;
 use Aaran\Master\Models\Contact;
-use Aaran\Orders\Models\Order;
+use Aaran\Master\Models\Contact_detail;
+use Aaran\Master\Models\Order;
+use Aaran\Master\Models\Style;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,11 +20,10 @@ class Sale extends Model
 {
     use HasFactory;
 
-//    public $timestamps = false;
 
     protected $guarded = [];
 
-    public static function search(string $searches): Builder
+    public static function search(string $searches)
     {
         return empty($searches) ? static::query()
             : static::where('invoice_no', 'like', '%' . $searches . '%');
@@ -30,6 +32,16 @@ class Sale extends Model
     public static function nextNo()
     {
         return static::where('company_id','=',session()->get('company_id'))->max('invoice_no') + 1;
+    }
+
+    public function despatch():BelongsTo
+    {
+        return $this->belongsTo(Despatch::class);
+    }
+
+    public function contact_detail():BelongsTo
+    {
+        return $this->belongsTo(Contact_detail::class);
     }
 
     public function contact(): BelongsTo
@@ -44,6 +56,11 @@ class Sale extends Model
     {
         return $this->belongsTo(Order::class);
     }
+    public function style(): BelongsTo
+    {
+        return $this->belongsTo(Style::class);
+    }
+
     public function transport(): BelongsTo
     {
         return $this->belongsTo(Transport::class);

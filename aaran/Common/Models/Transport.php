@@ -9,16 +9,18 @@ use Illuminate\Database\Eloquent\Model;
 class Transport extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
+
     public $timestamps = false;
 
     public static function search(string $searches)
     {
         return empty($searches) ? static::query()
-           : static::where('vname', 'like', '%' . $searches . '%');
+            : static::where('vname', 'like', '%' . $searches . '%');
     }
 
-    protected static function newFactory():TransportFactory
+    protected static function newFactory(): TransportFactory
     {
         return new TransportFactory();
     }

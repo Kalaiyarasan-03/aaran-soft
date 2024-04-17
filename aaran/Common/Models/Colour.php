@@ -17,10 +17,10 @@ class Colour extends Model
     public static function search(string $searches)
     {
         return empty($searches) ? static::query()
-           : static::where('vname', 'like', '%' . $searches . '%');
+            : static::where('vname', 'like', '%' . $searches . '%');
     }
 
-    protected static function newFactory():ColourFactory
+    protected static function newFactory(): ColourFactory
     {
         return new ColourFactory();
     }

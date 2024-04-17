@@ -3,6 +3,7 @@
 namespace App\Livewire\Controls\Model\Common;
 
 use Aaran\Common\Models\Bank;
+use Aaran\Master\Models\Contact_detail;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -38,4 +39,8 @@ class BankModel extends Component
     {
         return view('livewire.controls.model.common.bank-model');
     }
+
+
+
+
 }
