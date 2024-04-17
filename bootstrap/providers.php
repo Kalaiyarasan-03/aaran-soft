@@ -11,15 +11,15 @@ return [
     Aaran\Entries\Providers\EntriesServiceProvider::class,
     Aaran\Blog\Providers\BlogServiceProvider::class,
     Aaran\Developer\Providers\DeveloperServiceProvider::class,
+    Aaran\Accounts\Providers\AccountsServiceProvider::class,
 
-
-//    Aaran\Erp\Providers\ErpServiceProvider::class,
-//    Aaran\Attendance\Providers\AttendanceServiceProvider::class,
-//    Aaran\Taskmanager\Providers\TaskmanagerServiceProvider::class,
-//    Aaran\Audit\Providers\AuditServiceProvider::class,
-//    Aaran\Admin\Providers\AdminServiceProvider::class,
-//    Aaran\Magalir\Providers\MagalirServiceProvider::class,
-//    Aaran\Accounts\Providers\AccountsServiceProvider::class,
 //    Aaran\Offset\Providers\OffsetServiceProvider::class,
+//    Aaran\Magalir\Providers\MagalirServiceProvider::class,
+//    Aaran\Admin\Providers\AdminServiceProvider::class,
+//    Aaran\Audit\Providers\AuditServiceProvider::class,
+//    Aaran\Taskmanager\Providers\TaskmanagerServiceProvider::class,
+//    Aaran\Attendance\Providers\AttendanceServiceProvider::class,
+//    Aaran\Erp\Providers\ErpServiceProvider::class,
+
 
 ];
