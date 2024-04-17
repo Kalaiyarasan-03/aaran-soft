@@ -320,8 +320,13 @@
             <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
         </td>
         <td  colspan="3" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
-        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;Shipping Charges</td>
-        <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+        @if($obj->additional!=0)
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;Shipping Charges</td>
+            <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+        @else
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;</td>
+            <td align="right" style="border-bottom: none; border-left: none;">&nbsp;</td>
+        @endif
     </tr>
     <tr>
         <td colspan="3" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;">
@@ -441,8 +446,13 @@
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
             <td  colspan="3" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
+            @if($obj->additional!=0)
             <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;Shipping Charges</td>
             <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+            @else
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;</td>
+                <td align="right" style="border-bottom: none; border-left: none;">&nbsp;</td>
+            @endif
         </tr>
         <tr>
             <td colspan="3" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;">
