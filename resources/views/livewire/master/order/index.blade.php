@@ -49,7 +49,7 @@
                         {{--                        </x-table.cell>--}}
 
 
-                        <x-table.action :id="$row->id"/>
+                        <x-table.cell-action id="{{$row->id}}"/>
                     </x-table.row>
 
                 @empty

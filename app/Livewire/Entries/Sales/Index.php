@@ -13,20 +13,24 @@ use Livewire\Component;
 class Index extends Component
 {
     use CommonTrait;
+
+    #region[sale properties]
     public $byOrder;
     public Collection $contacts;
     public Collection $orders;
     public $sortField_1='invoice_no';
+    #endregion
 
+    #region[create]
     public function create(): void
     {
         $this->redirect(route('sales.upsert', ['0']));
     }
+    #endregion
 
-
+    #region[list]
     public function getList()
     {
-
         return Sale::search($this->searches)
             ->where('active_id', '=', $this->activeRecord)
             ->when($this->start_date,function ($query,$start_date){
@@ -41,12 +45,10 @@ class Index extends Component
             ->where('company_id', '=',  session()->get('company_id'))
             ->orderBy($this->sortField_1, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
-
-//            ->when($this->byOrder,function ($query,$byOrder){
-//                return $query->where('order_id',$byOrder);
-//            })
-
     }
+    #endregion
+
+    #region[sort]
     public function sortBy($field): void
     {
         if ($this->sortField_1=== $field) {
@@ -56,37 +58,41 @@ class Index extends Component
         }
         $this->sortField = $field;
     }
+    #endregion
+
+    #region[delete]
     public function set_delete($id): void
     {
         $obj=Sale::find($id);
         DB::table('saleitems')->where('sale_id', '=', $this->vid)->delete();
         $obj->delete();
     }
+    #endregion
 
+    #region[print]
     public function print($id)
     {
 
         $this->redirect(route('sales.print', [Sale::find($id)]));
     }
+    #endregion
 
+    #region[contact]
     public function getContact()
     {
         $this->contacts=Contact::where('company_id','=',session()->get('company_id'))->get();
 
     }
-//    public function getOrder()
-//    {
-//        $this->orders=Order::where('company_id','=',session()->get('company_id'))->get();
-//
-//    }
+    #endregion
 
+#region[render]
     public function render()
     {
         $this->getContact();
-//        $this->getOrder();
         return view('livewire.entries.sales.index')
             ->with([
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

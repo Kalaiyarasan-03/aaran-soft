@@ -23,6 +23,7 @@ class Upsert extends Component
 {
     use CommonTrait;
 
+    #region[Properties]
     public string $uniqueno = '';
     public string $acyear = '';
     public string $purchase_no = '';
@@ -61,6 +62,48 @@ class Upsert extends Component
     public $contactTyped = false;
     public $grandtotalBeforeRound;
 
+    #[Rule('required')]
+    public $order_id = '';
+    public $order_name = '';
+    public Collection $orderCollection;
+    public $highlightOrder = 0;
+    public $orderTyped = false;
+
+    #[Rule('required')]
+    public $transport_id = '';
+    public $transport_name = '';
+    public Collection $transportCollection;
+    public $highlightTransport = 0;
+    public $transportTyped = false;
+
+    #[Rule('required')]
+    public $ledger_id = '';
+    public $ledger_name = '';
+    public Collection $ledgerCollection;
+    public $highlightLedger = 0;
+    public $ledgerTyped = false;
+
+    public $product_id = '';
+    public $product_name = '';
+    public int $gst_percent1;
+    public Collection $productCollection;
+    public $highlightProduct = 0;
+    public $productTyped = false;
+
+    public $colour_id = '';
+    public $colour_name = '';
+    public Collection $colourCollection;
+    public $highlightColour = 0;
+    public $colourTyped = false;
+
+    public $size_id = '';
+    public $size_name = '';
+    public Collection $sizeCollection;
+    public $highlightSize = 0;
+    public $sizeTyped = false;
+    #endregion
+
+    #region[Contact]
     public function decrementContact(): void
     {
         if ($this->highlightContact === 0) {
@@ -109,22 +152,14 @@ class Upsert extends Component
 
     public function getContactList(): void
     {
-
-
         $this->contactCollection = $this->contact_name ? Contact::search(trim($this->contact_name))
             ->where('company_id', '=', session()->get('company_id'))->get()
             : Contact::all()->where('company_id', '=', session()->get('company_id'));
 
     }
+    #endregion
 
-
-    #[Rule('required')]
-    public $order_id = '';
-    public $order_name = '';
-    public Collection $orderCollection;
-    public $highlightOrder = 0;
-    public $orderTyped = false;
-
+    #region[Order]
     public function decrementOrder(): void
     {
         if ($this->highlightOrder === 0) {
@@ -177,15 +212,10 @@ class Upsert extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->get() : Order::all()->where('company_id', '=', session()->get('company_id'));
     }
+    #endregion
 
-    #[Rule('required')]
-    public $transport_id = '';
-    public $transport_name = '';
-    public Collection $transportCollection;
-    public $highlightTransport = 0;
-    public $transportTyped = false;
-
-    public function decrementTransport(): void
+    #region[Transport]
+   public function decrementTransport(): void
     {
         if ($this->highlightTransport === 0) {
             $this->highlightTransport = count($this->transportCollection) - 1;
@@ -236,14 +266,9 @@ class Upsert extends Component
         $this->transportCollection = $this->transport_name ? Transport::search(trim($this->transport_name))
             ->get() : Transport::all();
     }
+    #endregion
 
-    #[Rule('required')]
-    public $ledger_id = '';
-    public $ledger_name = '';
-    public Collection $ledgerCollection;
-    public $highlightLedger = 0;
-    public $ledgerTyped = false;
-
+    #region[Ledger]
     public function decrementLedger(): void
     {
         if ($this->highlightLedger === 0) {
@@ -295,14 +320,9 @@ class Upsert extends Component
         $this->ledgerCollection = $this->ledger_name ? Ledger::search(trim($this->ledger_name))
             ->get() : Ledger::all();
     }
+    #endregion
 
-    public $product_id = '';
-    public $product_name = '';
-    public int $gst_percent1;
-    public Collection $productCollection;
-    public $highlightProduct = 0;
-    public $productTyped = false;
-
+    #region[Product]
     public function decrementProduct(): void
     {
         if ($this->highlightProduct === 0) {
@@ -356,13 +376,9 @@ class Upsert extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->get() : Product::all()->where('company_id', '=', session()->get('company_id'));
     }
+    #endregion
 
-    public $colour_id = '';
-    public $colour_name = '';
-    public Collection $colourCollection;
-    public $highlightColour = 0;
-    public $colourTyped = false;
-
+    #region[Colour]
     public function decrementColour(): void
     {
         if ($this->highlightColour === 0) {
@@ -413,14 +429,9 @@ class Upsert extends Component
         $this->colourCollection = $this->colour_name ? Colour::search(trim($this->colour_name))
             ->get() : Colour::all();
     }
+    #endregion
 
-
-    public $size_id = '';
-    public $size_name = '';
-    public Collection $sizeCollection;
-    public $highlightSize = 0;
-    public $sizeTyped = false;
-
+    #region[Size]
     public function decrementSize(): void
     {
         if ($this->highlightSize === 0) {
@@ -472,7 +483,9 @@ class Upsert extends Component
         $this->sizeCollection = $this->size_name ? Size::search(trim($this->size_name))
             ->get() : Size::all();
     }
+    #endregion
 
+    #region[Save]
     public function save(): string
     {
         if ($this->uniqueno != '') {
@@ -533,7 +546,9 @@ class Upsert extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[Save Items]
     public function saveItem($id): void
     {
         foreach ($this->itemList as $sub) {
@@ -548,7 +563,9 @@ class Upsert extends Component
             ]);
         }
     }
+    #endregion
 
+    #region[Mount]
     public function mount($id): void
     {
         $this->Entry_no = Purchase::nextNo();
@@ -613,7 +630,9 @@ class Upsert extends Component
             $this->purchase_date = Carbon::now()->format('Y-m-d');
         }
     }
+    #endregion
 
+    #region[Add Items]
     public function addItems(): void
     {
         if ($this->itemIndex == "") {
@@ -657,7 +676,9 @@ class Upsert extends Component
         $this->resetsItems();
         $this->render();
     }
+    #endregion
 
+    #region[Reset Items]
     public function resetsItems(): void
     {
         $this->itemIndex = '';
@@ -672,7 +693,9 @@ class Upsert extends Component
         $this->gst_percent = '';
         $this->calculateTotal();
     }
+    #endregion
 
+    #region[Change items]
     public function changeItems($index): void
     {
         $this->itemIndex = $index;
@@ -689,20 +712,25 @@ class Upsert extends Component
         $this->gst_percent1 = $items['gst_percent'];
         $this->calculateTotal();
     }
+    #endregion
 
+    #region[Route]
     public function getRoute(): void
     {
-
         $this->redirect(route('purchases'));
     }
+    #endregion
 
+    #region[Remove Items]
     public function removeItems($index): void
     {
         unset($this->itemList[$index]);
         $this->itemList = collect($this->itemList);
         $this->calculateTotal();
     }
+    #endregion
 
+    #region[Total]
     public function calculateTotal()
     {
         if ($this->itemList) {
@@ -731,9 +759,10 @@ class Upsert extends Component
             $this->round_off = round(floatval($this->round_off), 2);
             $this->grand_total = round((floatval($this->grand_total)) + (floatval($this->additional)), 2);
         }
-
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -766,14 +795,16 @@ class Upsert extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[Print]
     public function print(): void
     {
-
         $this->redirect(route('purchases.print', [$this->vid]));
     }
+    #endregion
 
-
+    #region[Render]
     public function render()
     {
         $this->getContactList();
@@ -785,4 +816,5 @@ class Upsert extends Component
         $this->getSizeList();
         return view('livewire.entries.purchase.upsert');
     }
+    #endregion
 }

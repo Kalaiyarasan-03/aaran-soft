@@ -1,9 +1,13 @@
 <div>
     <x-slot name="header">Receipt Entry</x-slot>
     <x-forms.m-panel>
+
+        <!-- Left Area -------------------------------------------------------------------------------------------------->
         <div class="md:grid grid-cols-2 gap-2 ">
             <div class="px-4">
+                    <!-- Party Name ------------------------------------------------------------------------------------->
                 <div class="xl:flex w-full gap-2 pt-3">
+
                     <label for="size_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Party Name</label>
                     <div x-data="{isTyped: @entangle('contactTyped')}" @click.away="isTyped = false" class="w-full">
                         <div class="relative ">
@@ -55,6 +59,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Payment Model -------------------------------------------------------------------------------------->
                 <div class="xl:flex w-full gap-2 pt-3">
                     <label for="receipttype_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Payment-Model</label>
                     <div x-data="{isTyped: @entangle('recepittypeTyped')}" @click.away="isTyped = false" class="w-full">
@@ -108,11 +114,15 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Right Area --------------------------------------------------------------------------------------------->
             <div class="px-4">
                 <x-input.model-date wire:model="vdate" :label="'Date'"/>
                 <x-input.model-text wire:model="receipt_amount" :label="'Receipt Amount'"/>
                 <x-input.model-text wire:model="chq_no" :label="'Cheque No'"/>
                 <x-input.model-date wire:model="chq_date" :label="'Cheque Date'"/>
+
+                    <!-- Bank Name -------------------------------------------------------------------------------------->
                 <div class="md:flex w-full gap-2 pt-3">
                     <label for="bank_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Bank Name</label>
                     <div x-data="{isTyped: @entangle('bankTyped')}" @click.away="isTyped = false" class="w-full">
@@ -168,8 +178,9 @@
             </div>
             </div>
     </x-forms.m-panel>
-    <div class="px-8 border border-gray-400 border-t-0 bg-gray-100 rounded-b-md shadow-lg w-full">
 
+    <!-- Footer --------------------------------------------------------------------------------------------------------->
+    <div class="px-8 border border-gray-400 border-t-0 bg-gray-100 rounded-b-md shadow-lg w-full">
         <div class="flex flex-row justify-between py-4">
             <div class="flex gap-3">
                 <x-button.save/>

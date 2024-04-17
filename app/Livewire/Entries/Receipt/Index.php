@@ -13,28 +13,39 @@ use Livewire\Component;
 class Index extends Component
 {
     use CommonTrait;
+
+    #region[Receipt Properties]
     public $sortField_1='vdate';
     public Collection $contacts;
     public Collection $receipt_types;
     public $byModel;
+    #endregion
 
+    #region[get contact]
     public function getContact()
     {
         $this->contacts=Contact::where('company_id','=',session()->get('company_id'))->get();
 
     }
+    #endregion
 
+    #region[receipt]
     public function getReceipt()
     {
         $this->receipt_types = Receipttype::where('active_id', '=', $this->activeRecord)->get();
 
     }
+    #endregion
+
+    #region[create]
     public function create(): void
     {
         $this->redirect(route('receipts.upsert', ['0']));
     }
+    #endregion
 
 
+    #region[list]
     public function getList()
     {
         return Receipt::search($this->searches)
@@ -55,7 +66,9 @@ class Index extends Component
             ->orderBy($this->sortField_1, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[sort]
     public function sortBy($field): void
     {
         if ($this->sortField_1=== $field) {
@@ -65,7 +78,9 @@ class Index extends Component
         }
         $this->sortField = $field;
     }
+    #endregion
 
+    #region[delete]
     public function set_delete($id)
     {
         $obj=$this->getObj($id);
@@ -73,7 +88,9 @@ class Index extends Component
         $obj->delete();
 
     }
+    #endregion
 
+    #region[obj]
     private function getObj($id)
     {
         if ($id) {
@@ -98,6 +115,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
+
+    #region[render]
     public function render()
     {
         $this->getContact();
@@ -106,4 +126,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }
