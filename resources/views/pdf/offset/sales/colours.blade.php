@@ -129,31 +129,20 @@
 <table width="100%" class="print:*">
     <thead>
     <tr>
-        <td colspan="2" style="padding-top: 10px">
-            <div class="logoLeft">
-                <img style="position: fixed;margin-left: 20px;padding-top: 5px;height: 70px;width: auto;" src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
-            </div>
-            <div style="height: 65px;" class="bg-blue-400 ">
-                <div style="text-align: center; width: 100%;color: #3b82f6;" class="companyname">{{$cmp->get('company_name')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">{{$cmp->get('address_1')}}</div>
-                <div style="text-align: center; width: 100%;" class="address2">{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">&nbsp;</div>
-                <div style="text-align: center; width: 100%;" class="address1">&nbsp;</div>
-                <div style="text-align: center; width: 100%; margin-bottom: 6px;" class="address1">&nbsp;</div>
-            </div>
+        <td colspan="2" style="padding-top: 10px;border: none;">
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
         </td>
     </tr>
-    <tr>
-        <td colspan="2" style="  background-color: darkgray">
-            <div style=" height: 18px;text-align: center;  vertical-align: middle; color: white; font-size: medium  ">
-                Invoice
 
-            </div>
-            <div style="text-align: right; color: white; margin-top: -20px; margin-bottom: 4px">
-                Original copy&nbsp;&nbsp;&nbsp;&nbsp;
-            </div>
-        </td>
-    </tr>
     <tr>
         <td style="padding: 0;margin: 0;">
             <div style="text-align: left;">
