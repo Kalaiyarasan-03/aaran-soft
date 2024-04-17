@@ -6,7 +6,7 @@ class SaleEntry
 {
     public static function enabled(string $feature): bool
     {
-        return match (config('aaconfig.app_type')) {
+        return match (config('aadmin.app_type')) {
             config('clients.VIJAY_GARMENTS') => in_array($feature, config('vijayGarments.customise', [])),
             config('clients.NEETHU_INDUSTRIES') => in_array($feature, config('neethuIndustries.customise', [])),
             config('clients.SK_PRINTERS') => in_array($feature, config('sk_printers.customise', [])),

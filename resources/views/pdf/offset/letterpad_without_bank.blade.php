@@ -127,23 +127,19 @@
 
 <table width="100%" class="print:*">
     <thead>
-    <tr><td colspan="2" style="margin-top: 2px; margin-bottom: 2px;border-bottom: none;">&nbsp;</td></tr>
     <tr>
-        <td colspan="2" style="border-top: none;border-bottom: none;">
-            <div class="logoLeft">
-                <img style="position: fixed;margin-left: 20px;padding-top: 5px;height: 100px;width: auto;" src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
-            </div>
-            <div style="height: 65px;" class="bg-blue-400 ">
-                <div style="text-align: center; width: 100%;color: #3b82f6;font-size: 20px;" class="companyname">{{$cmp->get('company_name')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">{{$cmp->get('address_1')}}</div>
-                <div style="text-align: center; width: 100%;" class="address2">{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">&nbsp;{{$cmp->get('state')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">Email:&nbsp;{{$cmp->get('email')}}&nbsp;/&nbsp;{{$cmp->get('gstin')}}</div>
-                <div style="text-align: center; width: 100%; margin-bottom: 6px;" class="address1">&nbsp;</div>
-            </div>
+        <td colspan="2" style="border: none;">
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
         </td>
     </tr>
-    <tr><td colspan="2" style="margin-top: 2px; margin-bottom: 2px;border-top: none;">&nbsp;</td></tr>
     <tr>
         <td colspan="2" style="  background-color: darkgray">
             <div style=" height: 18px;text-align: center;  vertical-align: middle; color: white; font-size: medium  ">
@@ -165,11 +161,11 @@
                 <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$billing_address->get('gstcell')}}</p>
             </div>
         </td>
-        <td style="padding: 0;margin: 0;">
+        <td width="40%" style="padding: 0;margin: 0;">
             <div style="text-align: left; width: 100%;">
                 <div><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Invoice no:&nbsp;</span><span
                         style="font-size: 18px;">&nbsp;&nbsp;{{$obj->invoice_no}}</span></div>
-                <div><span style="vertical-align: middle;font-size: 13px; ">&nbsp;&nbsp;Date:&nbsp;</span><span
+                <div style="padding-top: 10px;"><span style="vertical-align: middle;font-size: 13px; ">&nbsp;&nbsp;Date:&nbsp;</span><span
                         style="font-size: 14px;">{{$obj->invoice_date ?date('d-m-Y', strtotime($obj->invoice_date)):''}}</span>
                 </div>
             </div>
@@ -400,7 +396,7 @@
         </tr>
     @endif
     <tr>
-        <td colspan="7"><span>Amount Chargeable (in words)</span>
+        <td colspan="7"><span>Amount (in words)</span>
             <div style="margin-top: 5px">
                 {{$rupees}}Only
             </div>
