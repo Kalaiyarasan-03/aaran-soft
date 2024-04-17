@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\NoticeBoard;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Taskmanager\Models\NoticeBoard;
+use Aaran\Crm\Models\NoticeBoard;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;

@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\BankStatementEntry;
 
 use Aaran\Audit\Models\ClientBank;
-use Aaran\Taskmanager\Models\BankStatementEntry;
+use Aaran\Crm\Models\BankStatementEntry;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;

@@ -70,6 +70,7 @@ class Upsert extends Component
     public Collection $contactCollection;
     public $highlightContact = 0;
     public $contactTyped = false;
+
     public function decrementContact(): void
     {
         if ($this->highlightContact === 0) {
@@ -771,9 +772,9 @@ class Upsert extends Component
                     'contact_id' => $this->contact_id,
                     'invoice_no' => $this->invoice_no,
                     'invoice_date' => $this->invoice_date,
-                    'order_id' => $this->order_id?:1,
-                    'billing_id' => $this->billing_id,
-                    'shipping_id' => $this->shipping_id,
+                    'order_id' => $this->order_id ?: 1,
+                    'billing_id' => $this->billing_id ?: Contact_detail::getId($this->contact_id),
+                    'shipping_id' => $this->shipping_id ?: Contact_detail::getId($this->contact_id),
                     'style_id' => $this->style_id ?: 1,
                     'despatch_id' => $this->despatch_id ?: 1,
                     'sales_type' => $this->sales_type,
@@ -837,8 +838,8 @@ class Upsert extends Component
                 'po_no' => $sub['po_no'],
                 'dc_no' => $sub['dc_no'],
                 'product_id' => $sub['product_id'],
-                'colour_id' => $sub['colour_id'],
-                'size_id' => $sub['size_id'],
+                'colour_id' => $sub['colour_id'] ?: '1',
+                'size_id' => $sub['size_id'] ?: '1',
                 'qty' => $sub['qty'],
                 'price' => $sub['price'],
                 'gst_percent' => $sub['gst_percent'],

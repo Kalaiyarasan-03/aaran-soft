@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Magalir\MgMember;
 
-use Aaran\Magalir\Models\MgClub;
-use Aaran\Magalir\Models\MgMember;
+use Aaran\Finance\Magalir\Models\MgClub;
+use Aaran\Finance\Magalir\Models\MgMember;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;

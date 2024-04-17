@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\Turnover;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Taskmanager\Models\Turnover;
+use Aaran\Crm\Models\Turnover;
 use App\Enums\Months;
 use App\Enums\Status;
 use App\Enums\Years;

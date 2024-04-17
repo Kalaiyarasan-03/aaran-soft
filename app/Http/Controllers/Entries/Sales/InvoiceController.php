@@ -24,31 +24,15 @@ class InvoiceController extends Controller
 
             Pdf::setOption(['dpi' => 150, 'defaultPaperSize' => 'a4', 'defaultFont' => 'sans-serif']);
 
-                if(config('aaconfig.app_type')==301)
-                {
-            $pdf = PDF::loadView(
-                'pdf.entries.sales.vijay_garments1'
+            $pdf = PDF::loadView($this->getPdfViewPath()
                 , [
-                'obj' => $sale,
-                'rupees' => ConvertTo::ruppesToWords($sale->grand_total),
-                'list' => $this->getSaleItems($vid),
-                'cmp' => Company::printDetails(session()->get('company_id')),
-                'billing_address' => Contact_detail::printDetails($sale->billing_id),
-                'shipping_address' => Contact_detail::printDetails($sale->shipping_id),
-            ]);
-            }elseif (config('aaconfig.app_type')==302){
-                    $pdf = PDF::loadView(
-                        'pdf.entries.invoices.invoice1'
-                        , [
-                        'obj' => $sale,
-                        'rupees' => ConvertTo::ruppesToWords($sale->grand_total),
-                        'list' => $this->getSaleItems($vid),
-                        'cmp' => Company::printDetails(session()->get('company_id')),
-                        'billing_address' => Contact_detail::printDetails($sale->billing_id),
-                        'shipping_address' => Contact_detail::printDetails($sale->shipping_id),
-                    ]);
-                }
-
+                    'obj' => $sale,
+                    'rupees' => ConvertTo::ruppesToWords($sale->grand_total),
+                    'list' => $this->getSaleItems($vid),
+                    'cmp' => Company::printDetails(session()->get('company_id')),
+                    'billing_address' => Contact_detail::printDetails($sale->billing_id),
+                    'shipping_address' => Contact_detail::printDetails($sale->shipping_id),
+                ]);
 
             $pdf->render();
 
@@ -123,5 +107,13 @@ class InvoiceController extends Controller
                     'sub_total' => number_format((($data->qty * $data->price) * ($data->gst_percent / 100)) + ($data->qty * $data->price), 2, '.', ''),
                 ];
             });
+    }
+
+    private function getPdfViewPath()
+    {
+        return match (config('aadmin.app_type')) {
+            config('clients.VIJAY_GARMENTS') =>  'pdf.entries.sales.vijay_garments1',
+            config('clients.SK_PRINTERS') =>  'pdf.offset.sales.neethu_industries',
+        };
     }
 }

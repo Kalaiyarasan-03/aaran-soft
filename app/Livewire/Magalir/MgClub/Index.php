@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Magalir\MgClub;
 
-use Aaran\Magalir\Models\MgClub;
+use Aaran\Finance\Magalir\Models\MgClub;
 use App\Livewire\Trait\CommonTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;

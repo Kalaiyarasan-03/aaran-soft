@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Admin\Creditbook;
 
-use Aaran\Admin\Models\CreditBook;
+use Aaran\Sundar\Models\CreditBook;
 use App\Livewire\Trait\CommonTrait;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;

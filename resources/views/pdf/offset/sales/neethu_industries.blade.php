@@ -291,7 +291,7 @@
                 course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
             </div>
         </td>
-        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;CGST&nbsp;{{ $row['gst_percent']}}&nbsp;%</td>
+{{--        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;CGST&nbsp;{{ $row['gst_percent']}}&nbsp;%</td>--}}
         <td align="right" style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
     </tr>
     <tr>
@@ -299,7 +299,7 @@
         <div>* Goods once sold cannot be return back or exchanged</div>
         <div>* Seller cannot be responsible for any damage/mistakes.</div>
         </td>
-        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;SGST&nbsp;{{ $row['gst_percent']}}&nbsp;%</td>
+{{--        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;SGST&nbsp;{{ $row['gst_percent']}}&nbsp;%</td>--}}
         <td align="right" style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
     </tr>
     <tr>

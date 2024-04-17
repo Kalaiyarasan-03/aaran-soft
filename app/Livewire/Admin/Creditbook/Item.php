@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Admin\Creditbook;
 
-use Aaran\Admin\Models\CreditBook;
-use Aaran\Admin\Models\CreditBookItem;
+use Aaran\Sundar\Models\CreditBook;
+use Aaran\Sundar\Models\CreditBookItem;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;

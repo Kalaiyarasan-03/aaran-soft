@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\Gstcredit;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Taskmanager\Models\Gstcredit;
+use Aaran\Crm\Models\Gstcredit;
 use App\Enums\Years;
 use App\Livewire\Trait\CommonTrait;
 use Illuminate\Support\Facades\Auth;

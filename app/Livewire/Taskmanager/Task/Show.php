@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Taskmanager\Task;
 
-use Aaran\Taskmanager\Models\Reply;
-use Aaran\Taskmanager\Models\Task;
+use Aaran\Crm\Models\Reply;
+use Aaran\Crm\Models\Task;
 use App\Enums\Active;
 use App\Enums\Status;
 use App\Livewire\Trait\CommonTrait;

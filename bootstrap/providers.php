@@ -5,12 +5,12 @@ return [
     App\Providers\EventServiceProvider::class,
     App\Providers\FortifyServiceProvider::class,
     App\Providers\JetstreamServiceProvider::class,
-    Aaran\Aaconfig\Providers\AaconfigServiceProvider::class,
+    Aaran\Aadmin\Providers\AadminServiceProvider::class,
     Aaran\Common\Providers\CommonServiceProvider::class,
     Aaran\Master\Providers\MasterServiceProvider::class,
     Aaran\Entries\Providers\EntriesServiceProvider::class,
     Aaran\Blog\Providers\BlogServiceProvider::class,
-    Aaran\Demo\Providers\DemoServiceProvider::class,
+    Aaran\Developer\Providers\DeveloperServiceProvider::class,
 
 
 //    Aaran\Erp\Providers\ErpServiceProvider::class,

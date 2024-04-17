@@ -3,6 +3,7 @@
 namespace Aaran\Master\Models;
 
 use Aaran\Common\Models\{City, Pincode, State};
+use Dflydev\DotAccessData\Data;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Collection;
@@ -28,6 +29,12 @@ class Contact_detail extends Model
             'gstcell' =>  'GSTin : '.$obj->gstin,
             'email'=>$obj->email,
         ]);
+    }
+
+    public static function getId(mixed $contact_id)
+    {
+        $obj = self::where('contact_id','=', $contact_id)->firstOrFail();;
+        return $obj->id;
     }
 
     public function contact(): BelongsTo

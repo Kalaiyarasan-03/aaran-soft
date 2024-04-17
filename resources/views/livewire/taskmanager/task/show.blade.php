@@ -41,7 +41,7 @@
                                 <div class="flex flex-row gap-2">
                                     <span class=" text-sm py-0.5 text-gray-500">Assign To :</span>
                                     <span
-                                            class=" text-md text-gray-600">{{ \Aaran\Taskmanager\Models\Task::allocate($allocated) }}</span>
+                                            class=" text-md text-gray-600">{{ \Aaran\Crm\Models\Task::allocate($allocated) }}</span>
 
                                 </div>
 

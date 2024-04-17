@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Magalir\MgLoan;
 
-use Aaran\Magalir\Models\MgClub;
-use Aaran\Magalir\Models\MgLoan;
-use Aaran\Magalir\Models\MgMember;
-use Aaran\Magalir\Models\MgPassbook;
+use Aaran\Finance\Magalir\Models\MgClub;
+use Aaran\Finance\Magalir\Models\MgLoan;
+use Aaran\Finance\Magalir\Models\MgMember;
+use Aaran\Finance\Magalir\Models\MgPassbook;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;

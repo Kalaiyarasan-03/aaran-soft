@@ -3,13 +3,12 @@
 namespace App\Livewire\Taskmanager\Activities;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Taskmanager\Models\Activities;
+use Aaran\Crm\Models\Activities;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Index extends Component

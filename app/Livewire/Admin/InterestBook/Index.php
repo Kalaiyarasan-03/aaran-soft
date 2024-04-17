@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Admin\InterestBook;
 
-use Aaran\Admin\Models\CreditBook;
-use Aaran\Admin\Models\InterestBook;
+use Aaran\Sundar\Models\CreditBook;
+use Aaran\Sundar\Models\InterestBook;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;

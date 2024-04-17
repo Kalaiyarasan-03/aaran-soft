@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Audit\Client\Sub\Turnover;
 
-use Aaran\Taskmanager\Models\Turnover;
+use Aaran\Crm\Models\Turnover;
 use App\Enums\Status;
 use App\Livewire\Trait\CommonTrait;
 use Illuminate\Support\Facades\Auth;

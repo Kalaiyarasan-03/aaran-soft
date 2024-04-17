@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\Task;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Taskmanager\Models\Task;
+use Aaran\Crm\Models\Task;
 use App\Livewire\Trait\CommonTrait;
 use App\Models\User;
 use Carbon\Carbon;

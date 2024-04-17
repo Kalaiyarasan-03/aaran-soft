@@ -4,7 +4,7 @@ namespace App\Livewire\Magalir\MgCollection;
 
 use Aaran\Audit\Models\BankBalance;
 use Aaran\Audit\Models\ClientBank;
-use Aaran\Magalir\Models\MgPassbook;
+use Aaran\Finance\Magalir\Models\MgPassbook;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;

@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\PaymentSlip;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Taskmanager\Models\PaymentSlip;
+use Aaran\Crm\Models\PaymentSlip;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;

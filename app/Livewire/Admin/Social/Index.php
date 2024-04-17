@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Admin\Social;
 
-use Aaran\Admin\Models\Mailid;
+use Aaran\Sundar\Models\Mailid;
 use App\Livewire\Trait\CommonTrait;
 use Livewire\Component;
 

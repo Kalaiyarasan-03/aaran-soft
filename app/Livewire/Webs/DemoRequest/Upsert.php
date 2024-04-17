@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Webs\DemoRequest;
 
-use Aaran\Demo\Models\DemoRequest;
+use Aaran\Developer\Models\DemoRequest;
 use Illuminate\Support\Str;
 use Livewire\Component;
 

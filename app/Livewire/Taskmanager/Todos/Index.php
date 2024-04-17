@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Taskmanager\Todos;
 
-use Aaran\Taskmanager\Models\Todos;
+use Aaran\Crm\Models\Todos;
 use Carbon\Carbon;
-use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\Component;
 
 #[Title('My Todo List')]
 class Index extends Component
