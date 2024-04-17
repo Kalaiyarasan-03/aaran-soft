@@ -129,21 +129,17 @@
     <thead>
     <tr><td colspan="2" style="margin-top: 2px; margin-bottom: 2px;border-bottom: none;">&nbsp;</td></tr>
     <tr>
-        <td colspan="1" style="border-top: none;border-bottom: none;">
+        <td colspan="2" style="border-top: none;border-bottom: none;">
             <div class="logoLeft">
-                <img style="position: fixed;margin-left: 20px;padding-top: 10px;height: 60px;width: auto;" src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
+                <img style="position: fixed;margin-left: 20px;padding-top: 5px;height: 100px;width: auto;" src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
             </div>
-            <div style="height: 65px; padding: 10px;" class="bg-blue-400 column1">
-                <div style="text-align: center;position: relative; width: 100%;flex: auto;color: #16a34a;font-size: 23px;padding-left: 33px;" class="companyname ">{{$cmp->get('company_name')}}</div>
-                <div style="text-align: left; width: 100%; position: relative" class="address2">&nbsp;</div>
-                <div style="text-align: center;position: relative; width: 100%;flex: auto" class="companyname">E-mail:{{$cmp->get('email')}}</div>
-            </div>
-        </td>
-        <td style="border-top: none;border-bottom: none;">
-            <div style="height: 65px; padding-top: 0px; padding-left: 5px;" class="bg-blue-400 column2">
-            <div style="text-align: left; width: 100%; position: relative" class="address1">{{$cmp->get('address_1')}}</div>
-                <div style="text-align: left; width: 100%; position: relative" class="address2">&nbsp;</div>
-                <div style="text-align: left; width: 100%; position: relative" class="address2">{{$cmp->get('address_2')}}</div>
+            <div style="height: 65px;" class="bg-blue-400 ">
+                <div style="text-align: center; width: 100%;color: #3b82f6;font-size: 20px;" class="companyname">{{$cmp->get('company_name')}}</div>
+                <div style="text-align: center; width: 100%;" class="address1">{{$cmp->get('address_1')}}</div>
+                <div style="text-align: center; width: 100%;" class="address2">{{$cmp->get('address_2')}}</div>
+                <div style="text-align: center; width: 100%;" class="address1">&nbsp;{{$cmp->get('state')}}</div>
+                <div style="text-align: center; width: 100%;" class="address1">Email:&nbsp;{{$cmp->get('email')}}&nbsp;/&nbsp;{{$cmp->get('gstin')}}</div>
+                <div style="text-align: center; width: 100%; margin-bottom: 6px;" class="address1">&nbsp;</div>
             </div>
         </td>
     </tr>
@@ -384,8 +380,8 @@
         </tr>
         <tr>
             <td colspan="7" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;Shipping Charges</td>
-            <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;</td>
+            <td align="right" style="border-bottom: none; border-left: none;">&nbsp;</td>
         </tr>
         <tr>
             <td colspan="7" align="center" style="border-bottom: none;border-top: none;"></td>
