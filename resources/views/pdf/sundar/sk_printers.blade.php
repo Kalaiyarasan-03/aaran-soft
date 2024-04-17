@@ -477,9 +477,7 @@
     </tr>
     </tbody>
 </table>
-
-@if(\Aaran\Aadmin\Src\SaleEntry::hasDc_no())
 <div style="text-align: center;font-size:10px; padding-top: 5px; ">This is a Computer Generated Invoice</div>
-@endif
+
 </body>
 </html>

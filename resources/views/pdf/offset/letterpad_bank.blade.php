@@ -128,20 +128,17 @@
 
 <table width="100%" class="print:*">
     <thead>
-    <tr><td colspan="2" style="margin-top: 2px; margin-bottom: 2px;border-bottom: none;">
-            <div style="text-align: center; width: 100%;color: #3b82f6;font-size: 35px;" class="companyname">{{$cmp->get('company_name')}}</div>
-        </td></tr>
     <tr>
-        <td colspan="2" style="border-top: none;border-bottom: none;">
-            <div class="logoLeft">
-                <img style="position: fixed;margin-left: 20px;padding-top: 5px;height: 100px;width: auto;" src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
-            </div>
-            <div style="height: 65px;" class="bg-blue-400 ">
-                <div style="text-align: center; width: 100%;" class="address1">{{$cmp->get('address_1')}}</div>
-                <div style="text-align: center; width: 100%;" class="address2">{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">&nbsp;{{$cmp->get('state')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">Email:&nbsp;{{$cmp->get('email')}}&nbsp;/&nbsp;{{$cmp->get('gstin')}}</div>
-            </div>
+        <td colspan="2" style="border: none;">
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
         </td>
     </tr>
     <tr>
@@ -477,9 +474,7 @@
     </tr>
     </tbody>
 </table>
-
-@if(\Aaran\Aadmin\Src\SaleEntry::hasDc_no())
 <div style="text-align: center;font-size:10px; padding-top: 5px; ">This is a Computer Generated Invoice</div>
-@endif
+
 </body>
 </html>

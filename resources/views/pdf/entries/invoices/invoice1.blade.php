@@ -141,12 +141,7 @@
     </tr>
     <tr>
         <td colspan="4" rowspan="3" style="padding: 10px;">
-            <div style="text-align: left;">
-                <p style="font-size: 12px; line-height: 5px ">&nbsp;&nbsp;M/s.{{$contact->get('contact_name')}}</p>
-                <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$contact->get('address_1')}}</p>
-                <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$contact->get('address_3')}}</p>
-                <p style="line-height: 5px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$contact->get('gstCell')}}</p>
-            </div>
+
         </td>
         <td colspan="2">
             <div><span>&nbsp;&nbsp;Buyer's Order No:&nbsp;</span><span>&nbsp;&nbsp;{{$obj->invoice_no}}</span></div>
