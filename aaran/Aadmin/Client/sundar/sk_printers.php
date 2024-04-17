@@ -10,22 +10,9 @@ return [
     ],
 
     'customise' => [
-//        SaleEntry::order(),
-//        SaleEntry::Po_no(),
-//        SaleEntry::Dc_no()
-
-         SaleEntry::order(),
-        SaleEntry::billingAddress(),
-        SaleEntry::shippingAddress(),
-        SaleEntry::style(),
-        SaleEntry::despatch(),
-        SaleEntry::transport(),
-        SaleEntry::destination(),
-        SaleEntry::bundle(),
-
+        SaleEntry::order(),
+        SaleEntry::Po_no(),
+        SaleEntry::Dc_no(),
         SaleEntry::productDescription(),
-        SaleEntry::colour(),
-        SaleEntry::size(),
-
     ],
 ];
