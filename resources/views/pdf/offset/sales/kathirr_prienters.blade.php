@@ -304,8 +304,8 @@
     </tr>
     <tr>
         <td colspan="7" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;</td>
-        <td align="center" style="border-bottom: none; border-left: none;">&nbsp;</td>
+        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;Shipping Charges</td>
+        <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
     </tr>
     <tr>
         <td colspan="7" align="center" style="border-bottom: none;border-top: none;"></td>
@@ -384,8 +384,8 @@
         </tr>
         <tr>
             <td colspan="7" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;</td>
-            <td align="right" style="border-bottom: none; border-left: none;">&nbsp;</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;Shipping Charges</td>
+            <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
         </tr>
         <tr>
             <td colspan="7" align="center" style="border-bottom: none;border-top: none;"></td>
@@ -406,7 +406,7 @@
     <tr>
         <td colspan="7"><span>Amount Chargeable (in words)</span>
             <div style="margin-top: 5px">
-                {{$rupees}}
+                {{$rupees}}Only
             </div>
         </td>
         <td colspan="5" align="left" style="border-bottom: none;border-right: none; font-weight: bold; font-size:medium;">GRAND TOTAL</td>
