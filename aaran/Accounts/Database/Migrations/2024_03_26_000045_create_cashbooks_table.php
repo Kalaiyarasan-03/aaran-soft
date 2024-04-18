@@ -10,6 +10,9 @@ return new class extends Migration
     {
         Schema::create('cashbooks', function (Blueprint $table) {
             $table->id();
+            $table->string('uniqueno')->unique();
+            $table->string('acyear')->nullable();
+            $table->foreignId('company_id')->references('id')->on('companies');
             $table->date('vdate');
             $table->string('vmode');
             $table->foreignId('order_id')->nullable();
@@ -21,7 +24,7 @@ return new class extends Migration
             $table->string('approved')->nullable();
             $table->string('remarks')->nullable();
             $table->string('status_id')->nullable();
-            $table->foreignId('company_id')->references('id')->on('companies');
+
             $table->string('active_id',10)->nullable();
             $table->timestamps();
         });
