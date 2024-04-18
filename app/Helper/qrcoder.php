@@ -17,12 +17,12 @@ class qrcoder
         $options->cssClass = 'qrcode';
         $options->moduleValues = [
             // finder
-            QRMatrix::M_FINDER_DARK => '#A71111', // dark (true)
-            QRMatrix::M_FINDER_DOT => '#A71111', // finder dot, dark (true)
-            QRMatrix::M_FINDER => '#FFBFBF', // light (false)
+            QRMatrix::M_FINDER_DARK => '', // dark (true)
+            QRMatrix::M_FINDER_DOT => '', // finder dot, dark (true)
+            QRMatrix::M_FINDER => '', // light (false)
             // alignment
-            QRMatrix::M_ALIGNMENT_DARK => '#A70364',
-            QRMatrix::M_ALIGNMENT => '#FFC9C9',
+            QRMatrix::M_ALIGNMENT_DARK => '',
+            QRMatrix::M_ALIGNMENT => '',
         ];
 
 
