@@ -14,6 +14,7 @@ class CityList extends Component
     #region[save]
     public function getSave(): string
     {
+
         $this->validate(['vname' => 'required|unique:cities,vname']);
         if ($this->vname != '') {
             if ($this->vid == "") {

@@ -12,24 +12,29 @@ class BankList extends Component
     use CommonTrait;
 
     #region[save]
+
     public function getSave(): string
     {
-        if ($this->vname != '') {
-            if ($this->vid == "") {
-                Bank::create([
-                    'vname' => Str::ucfirst($this->vname),
-                    'active_id' => $this->active_id,
-                ]);
-                $message = "Saved";
+        try {
+            if ($this->vname != '') {
+                if ($this->vid == "") {
+                    Bank::create([
+                        'vname' => Str::ucfirst($this->vname),
+                        'active_id' => $this->active_id,
+                    ]);
+                    $message = "Saved";
 
-            } else {
-                $obj = Bank::find($this->vid);
-                $obj->vname = Str::ucfirst($this->vname);
-                $obj->active_id = $this->active_id;
-                $obj->save();
-                $message = "Updated";
+                } else {
+                    $obj = Bank::find($this->vid);
+                    $obj->vname = Str::ucfirst($this->vname);
+                    $obj->active_id = $this->active_id;
+                    $obj->save();
+                    $message = "Updated";
+                }
+                return $message;
             }
-            return $message;
+        } catch (\Throwable $th) {
+            throw $th;
         }
         return '';
     }
