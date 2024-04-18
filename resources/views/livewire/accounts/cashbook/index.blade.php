@@ -158,14 +158,18 @@
             <x-input.model-text wire:model="paidby" :label="'Person'"/>
             <x-input.model-text wire:model="payment" :label="'Payment'"/>
             <x-input.model-text wire:model="remarks" :label="'Purpose'"/>
-            <div class="px-5 py-1 w-full mb-2">
-                <div class="flex flex-col md:flex-row justify-between gap-3">
-                    <div class="flex gap-3">
-                        <x-buttons.save :vid="$vid"/>
-                        <x-buttons.back/>
-                    </div>
-                </div>
-            </div>
+
+{{--            <div class="px-5 py-1 w-full mb-2">--}}
+{{--                <div class="flex flex-col md:flex-row justify-between gap-3">--}}
+{{--                    <div class="flex gap-3">--}}
+{{--                        <x-buttons.save :vid="$vid"/>--}}
+{{--                        <x-buttons.back/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+            <x-forms.m-panel-bottom-button save back print/>
+
         </div>
 
     </x-jet.modal>
@@ -177,14 +181,18 @@
             <x-input.model-text wire:model="paidby" :label="'Person'"/>
             <x-input.model-text wire:model="receipt" :label="'Receipt'"/>
             <x-input.model-text wire:model="remarks" :label="'Purpose'"/>
-            <div class="px-5 py-1 w-full mb-2">
-                <div class="flex flex-col md:flex-row justify-between gap-3">
-                    <div class="flex gap-3">
-                        <x-buttons.save :vid="$vid"/>
-                        <x-buttons.back/>
-                    </div>
-                </div>
-            </div>
+
+{{--            <div class="px-5 py-1 w-full mb-2">--}}
+{{--                <div class="flex flex-col md:flex-row justify-between gap-3">--}}
+{{--                    <div class="flex gap-3">--}}
+{{--                        <x-buttons.save :vid="$vid"/>--}}
+{{--                        <x-buttons.back/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+            <x-forms.m-panel-bottom-button save back print/>
+
         </div>
 
     </x-jet.modal>
