@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('cashbooks', function (Blueprint $table) {
             $table->id();
-            $table->string('uniqueno')->unique();
             $table->string('acyear')->nullable();
             $table->foreignId('company_id')->references('id')->on('companies');
             $table->date('vdate');
