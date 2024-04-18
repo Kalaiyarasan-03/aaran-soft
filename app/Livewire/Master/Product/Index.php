@@ -28,7 +28,7 @@ class Index extends Component
     }
     #endregion
 
-    #region[obj]
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {

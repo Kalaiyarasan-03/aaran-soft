@@ -4,8 +4,11 @@
         <section>
             <div class="grid grid-cols-2 gap-12">
 
+            <!-- Top Left Area ---------------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col gap-2">
+
+                        <!-- Order No --------------------------------------------------------------------------------->
                         <label for="order_no" class="gray-label">Order No</label>
                         <div x-data="{isTyped: @entangle('orderTyped')}" @click.away="isTyped = false">
                             <div class="relative">
@@ -58,6 +61,7 @@
                         </div>
                     </div>
 
+                    <!-- Style Name ---------------------------------------------------------------------------------------->
                     <div class="flex flex-col gap-2">
                         <label for="style_name" class="gray-label">Style Name</label>
                         <div x-data="{isTyped: @entangle('styleTyped')}" @click.away="isTyped = false">
@@ -108,6 +112,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Job No ---------------------------------------------------------------------------------------->
 
                     <div class="flex flex-col gap-2">
                         <label for="jobcard_no" class="gray-label">Job No</label>
@@ -165,6 +171,7 @@
 
                 </div>
 
+                <!-- Top Right Area ----------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col gap-2">
                         <label for="vno" class="gray-label">Challan No</label>
@@ -182,13 +189,13 @@
                     </div>
                 </div>
             </div>
-
         </section>
 
         <section>
             Add Items
         </section>
 
+        <!-- Add Items ------------------------------------------------------------------------------------------------>
         <section class="flex flex-row w-full">
 
             <div class="w-full">
@@ -232,11 +239,8 @@
                                                 <th class="px-2 text-center border border-gray-300">SIZE</th>
                                                 <th class="px-2 text-center border border-gray-300">QTY</th>
                                             </tr>
-
                                             </thead>
-
                                             <tbody>
-
 
                                             @if(isset($sectionInwardCollection))
                                                 @forelse ($sectionInwardCollection as $i => $sectionInward)
@@ -273,7 +277,6 @@
                                                     </tr>
                                                 @endforelse
                                             @endif
-
                                             </tbody>
                                         </table>
 
@@ -294,6 +297,8 @@
             </button>
         </section>
 
+        <!--Display Table---------------------------------------------------------------------------------------------->
+
         <section>
 
             <div class="py-2 mt-5">
@@ -308,9 +313,7 @@
                         <th class="px-2 text-center border border-gray-300">QTY</th>
                         <th class="w-12 px-1 text-center border border-gray-300">ACTION</th>
                     </tr>
-
                     </thead>
-
                     <tbody>
 
                     @php
@@ -339,9 +342,7 @@
                         @php
                             $totalQty += $row['qty']+0
                         @endphp
-
                     @endforeach
-
 
                     </tbody>
                     <tfoot class="mt-2">
@@ -350,20 +351,17 @@
                         <td class="px-2 text-center border border-gray-300">{{$totalQty}}</td>
                     </tr>
                     </tfoot>
-
                 </table>
-
             </div>
 
             <div class="mt-5 flex gap-3">
                 <label for="receiver_details" class="gray-label">Receiver Details</label>
                 <input id="receiver_details" wire:model="receiver_details" class="purple-textbox w-[32rem]"/>
             </div>
-
-
         </section>
 
     </x-forms.m-panel>
+        <!--Table Footer ---------------------------------------------------------------------------------------------->
     <section>
         <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
             <div class="flex flex-col md:flex-row justify-between gap-3">

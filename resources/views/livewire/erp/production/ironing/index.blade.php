@@ -2,68 +2,63 @@
     <x-slot name="header">Ironing Note</x-slot>
 
     <x-forms.m-panel>
-        <x-forms.top-controls :show-filters="$showFilters"/>
 
+        <!-- Top Controls --------------------------------------------------------------------------------------------->
+        <x-forms.top-controls :show-filters="$showFilters"/>
         <x-forms.table>
+
+
+        <!-- Header --------------------------------------------------------------------------------------------------->
             <x-slot name="table_header">
-                <x-table.ths wire:click.prevent="sortBy('vname')">Sl No</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Order No</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Job No</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Date</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Ironing Master</x-table.ths>
-                <x-table.ths-center wire:click.prevent="sortBy('vname')">Ironing Qty</x-table.ths-center>
-                <x-table.ths-center >Action</x-table.ths-center>
+                <x-table.header-serial wire:click.prevent="sortBy('vno')"/>
+                <x-table.header-text wire:click.prevent="sortBy('vno')" center>Order No</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vno')" center>Job No</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vno')" center>Date</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vno')" center>Ironing Master</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vno')" center>Qty</x-table.header-text>
+                <x-table.header-text center>Action</x-table.header-text>
             </x-slot>
+
+            <!-- Table Body ------------------------------------------------------------------------------------------->
             <x-slot name="table_body">
                 @forelse ($list as $index =>  $row)
                     <x-table.row>
-                        <x-table.cell>
-                            <a href="{{route('ironings.upsert',[$row->id])}}"
-                               class="flex flex-col px-3">
-                                <div class="text-gray-600 truncate text-xl text-left">
-                                    {{ $index+1 }}
-                                </div>
+                        <x-table.cell-text center>
+                            <a href="{{route('ironings.upsert',[$row->id])}}">
+                                {{ $index+1 }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('ironings.upsert',[$row->id])}}"
-                               class="flex flex-col px-3">
-                                <div class="text-gray-600 truncate text-xl text-left">
-                                    {{ $row->order->vname }}
-                                </div>
+                        <x-table.cell-text center>
+                            <a href="{{route('ironings.upsert',[$row->id])}}">
+                                {{ $row->order->vname }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('ironings.upsert',[$row->id])}}"
-                               class="flex px-3 text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text center>
+                            <a href="{{route('ironings.upsert',[$row->id])}}">
                                 {{ $row->jobcard_id }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-
-
-                        <x-table.cell>
-                            <a href="{{route('ironings.upsert',[$row->id])}}"
-                               class="flex flex-col px-3 text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text center>
+                            <a href="{{route('ironings.upsert',[$row->id])}}">
                                 {{date('d-m-Y', strtotime($row->vdate))}}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('ironings.upsert',[$row->id])}}"
-                               class="flex flex-col px-3 text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text center>
+                            <a href="{{route('ironings.upsert',[$row->id])}}">
                                 {{ $row->iron_master }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('ironings.upsert',[$row->id])}}"
-                               class="flex flex-col px-3 text-gray-600 truncate text-xl text-center">
+                        <x-table.cell-text center>
+                            <a href="{{route('ironings.upsert',[$row->id])}}">
                                 {{ $row->total_qty + 0 }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
+
                         <x-table.cell>
                             <div class="w-full flex justify-center gap-3">
                                 <a href="{{route('ironings.upsert',[$row->id])}}"
@@ -80,10 +75,13 @@
                             </div>
                         </x-table.cell>
                     </x-table.row>
+
                 @empty
                     <x-table.empty/>
                 @endforelse
             </x-slot>
+
+            <!-- Table Footer------------------------------------------------------------------------------------------>
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>

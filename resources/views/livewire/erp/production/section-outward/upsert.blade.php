@@ -6,7 +6,7 @@
         <section class="grid grid-cols-2 gap-12">
             <div class="flex flex-col gap-3">
 
-
+                <!-- Top Left Area ------------------------------------------------------------------------------------>
                 <div class="flex flex-col gap-2">
                     <label for="contact_name" class="gray-label">Party Name</label>
                     <div x-data="{isTyped: @entangle('contactTyped')}" @click.away="isTyped = false">
@@ -61,6 +61,7 @@
                     </div>
                 </div>
 
+                <!-- Order No ----------------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-2">
                     <label for="order_no" class="gray-label">Order No</label>
                     <div x-data="{isTyped: @entangle('orderTyped')}" @click.away="isTyped = false">
@@ -114,6 +115,7 @@
                     </div>
                 </div>
 
+                <!-- Job No ------------------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-2">
                     <label for="jobcard_no" class="gray-label">Job No</label>
                     <div x-data="{isTyped: @entangle('jobcardTyped')}" @click.away="isTyped = false">
@@ -169,9 +171,9 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
+            <!-- Right Area ------------------------------------------------------------------------------------------->
             <div class="flex flex-col gap-3">
                 <div class="flex flex-col gap-2">
                     <label for="vno" class="gray-label">V.NO</label>
@@ -184,13 +186,14 @@
             </div>
         </section>
 
+        <!-- Add Items ------------------------------------------------------------------------------------------------>
         <section>
             Add Items
         </section>
 
         <section class="flex flex-row w-full">
 
-            {{--Pe Inward--------------------------------------------------------------------------------------------}}
+            <!-- pe-inward Dropdown ----------------------------------------------------------------------------------->
             <div class="w-full">
                 <label for="pe_inward_no"></label>
                 <div x-data="{isTyped: @entangle('inwardTyped')}" @click.away="isTyped = false">
@@ -295,6 +298,7 @@
             </button>
         </section>
 
+            <!-- Display Table ---------------------------------------------------------------------------------------->
         <section>
 
             <div class="py-2 mt-5">
@@ -309,9 +313,7 @@
                         <th class="px-2 text-center border border-gray-300">QTY</th>
                         <th class="w-12 px-1 text-center border border-gray-300">ACTION</th>
                     </tr>
-
                     </thead>
-
                     <tbody>
 
                     @php
@@ -326,10 +328,15 @@
                                     {{$index+1}}
                                 </button>
                             </td>
-                            <td class="px-2 text-left border border-gray-300" wire:click.prevent="changeItems({{$index}})">{{$row['pe_inward_no']}}</td>
-                            <td class="px-2 text-center border border-gray-300" wire:click.prevent="changeItems({{$index}})">{{$row['colour_name']}}</td>
-                            <td class="px-2 text-center border border-gray-300" wire:click.prevent="changeItems({{$index}})">{{$row['size_name']}}</td>
-                            <td class="px-2 text-center border border-gray-300" wire:click.prevent="changeItems({{$index}})">{{floatval($row['qty'])}}</td>
+
+                            <td class="px-2 text-left border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{$row['pe_inward_no']}}</td>
+                            <td class="px-2 text-center border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{$row['colour_name']}}</td>
+                            <td class="px-2 text-center border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{$row['size_name']}}</td>
+                            <td class="px-2 text-center border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{floatval($row['qty'])}}</td>
                             <td class="text-center border border-gray-300">
                                 <button wire:click.prevent="removeItems({{$index}})"
                                         class="py-1.5 w-full text-red-500 items-center ">
@@ -342,18 +349,16 @@
                         @endphp
 
                     @endforeach
-
-
                     </tbody>
+
+                    <!-- Table Footer ----------------------------------------------------------------------------------->
                     <tfoot class="mt-2">
                     <tr class="h-8 text-sm border border-gray-400 bg-gray-50">
                         <td colspan="4" class="px-2 text-xs text-right border border-gray-300">&nbsp;TOTALS&nbsp;&nbsp;&nbsp;</td>
                         <td class="px-2 text-center border border-gray-300">{{$totalQty}}</td>
                     </tr>
                     </tfoot>
-
                 </table>
-
             </div>
 
             <div class="mt-5 flex gap-3">
@@ -365,6 +370,7 @@
         </section>
     </x-forms.m-panel>
 
+    <!-- Footer ------------------------------------------------------------------------------------------------------->
     <section>
         <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
             <div class="flex flex-col md:flex-row justify-between gap-3">

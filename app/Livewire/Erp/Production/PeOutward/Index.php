@@ -8,11 +8,15 @@ use Illuminate\Support\Facades\DB;
 
 class Index extends EntriesIndexAbstract
 {
+
+    #region[create]
     public function create(): void
     {
         $this->redirect(route('peoutwards.upsert', ['0']));
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         return PeOutward::search($this->searches)
@@ -32,6 +36,9 @@ class Index extends EntriesIndexAbstract
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
+
+    #region[Delete]
     public function set_delete($id): void
     {
         $obj=$this->getObj($id);
@@ -56,18 +63,22 @@ class Index extends EntriesIndexAbstract
         }
         return null;
     }
+    #endregion
 
+    #region[Print]
     public function print($id)
     {
 
         $this->redirect(route('peoutwards.print', [$this->getObj($id)]));
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         return view('livewire.erp.production.pe-outward.index')->with([
             'list' => $this->getList()
         ]);
     }
-
+    #endregion
 }

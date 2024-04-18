@@ -17,15 +17,53 @@ use Livewire\Component;
 
 class Upsert extends Component
 {
-    //
-    // Order no
-    //
+    #region[Jobcard Properties]
     public $order_id = '';
     public $order_no = '';
     public Collection $orderCollection;
     public $highlightOrder = 0;
     public $orderTyped = false;
 
+    public $style_id = '';
+    public $style_name = '';
+    public Collection $styleCollection;
+    public $highlightStyle = 0;
+    public $styleTyped = false;
+
+    public $fabric_lot_id = '';
+    public $fabric_lot_name = '';
+    public Collection $fabricLotCollection;
+    public $highlightFabricLot = 0;
+    public $fabricLotTyped = false;
+
+    public $colour_id = '';
+    public $colour_name = '';
+    public Collection $colourCollection;
+    public $highlightColour = 0;
+    public $colourTyped = false;
+
+    public $size_id = '';
+    public $size_name = '';
+    public Collection $sizeCollection;
+    public $highlightSize = 0;
+    public $sizeTyped = false;
+
+    public $jobcard_item_id = '';
+    public $jobcard_item_name = '';
+    public Collection $jobcardItemCollection;
+    public $highlightJobcardItem = 0;
+    public $jobcardItemTyped = false;
+
+    public string $vid = '';
+    public string $vno = '';
+    public string $vdate = '';
+    public mixed $total_qty = 0;
+    public string $itemIndex = "";
+    public $itemList = [];
+    public mixed $qty;
+    #endregion
+
+    #region[Order]
     public function decrementOrder(): void
     {
         if ($this->highlightOrder === 0) {
@@ -78,16 +116,9 @@ class Upsert extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->get() : Order::where('company_id', '=', session()->get('company_id'))->get();
     }
+    #endregion
 
-    //
-    // Style no
-    //
-
-    public $style_id = '';
-    public $style_name = '';
-    public Collection $styleCollection;
-    public $highlightStyle = 0;
-    public $styleTyped = false;
+    #region[Style]
 
     public function decrementStyle(): void
     {
@@ -140,16 +171,9 @@ class Upsert extends Component
         $this->styleCollection = $this->style_name ? Style::search(trim($this->style_name))->where('company_id', '=', session()->get('company_id'))
             ->get() : Style::all()->where('company_id', '=', session()->get('company_id'));
     }
+    #endregion
 
-    //
-    // Fabric Lot
-    //
-
-    public $fabric_lot_id = '';
-    public $fabric_lot_name = '';
-    public Collection $fabricLotCollection;
-    public $highlightFabricLot = 0;
-    public $fabricLotTyped = false;
+    #region[Fabic Lot]
 
     public function decrementFabricLot(): void
     {
@@ -201,17 +225,11 @@ class Upsert extends Component
     {
         $this->fabricLotCollection = $this->fabric_lot_name ? FabricLot::search(trim($this->fabric_lot_name))
             ->where('company_id', '=', session()->get('company_id'))
-            ->get() : FabricLot::all() ->where('company_id', '=', session()->get('company_id'));
+            ->get() : FabricLot::all()->where('company_id', '=', session()->get('company_id'));
     }
-    //
-    // Colour name
-    //
+    #endregion
 
-    public $colour_id = '';
-    public $colour_name = '';
-    public Collection $colourCollection;
-    public $highlightColour = 0;
-    public $colourTyped = false;
+    #region[Colour]
 
     public function decrementColour(): void
     {
@@ -263,16 +281,9 @@ class Upsert extends Component
         $this->colourCollection = $this->colour_name ? Colour::search(trim($this->colour_name))
             ->get() : Colour::all();
     }
+    #endregion
 
-    //
-    // Size name
-    //
-
-    public $size_id = '';
-    public $size_name = '';
-    public Collection $sizeCollection;
-    public $highlightSize = 0;
-    public $sizeTyped = false;
+    #region[Size]
 
     public function decrementSize(): void
     {
@@ -324,17 +335,10 @@ class Upsert extends Component
         $this->sizeCollection = $this->size_name ? Size::search(trim($this->size_name))
             ->get() : Size::all();
     }
+    #endregion
 
+    #region[Jobcard Item]
 
-    //
-    // Job List
-    //
-
-    public $jobcard_item_id = '';
-    public $jobcard_item_name = '';
-    public Collection $jobcardItemCollection;
-    public $highlightJobcardItem = 0;
-    public $jobcardItemTyped = false;
 
     public function decrementJobcardItem(): void
     {
@@ -421,22 +425,9 @@ class Upsert extends Component
 
         $this->jobcardItemCollection = $data;
     }
+    #endregion
 
-    //
-    // properties
-    //
-
-    public string $vid = '';
-    public string $vno = '';
-    public string $vdate = '';
-    public mixed $total_qty = 0;
-    public string $itemIndex = "";
-    public $itemList = [];
-    public mixed $qty;
-
-    //
-    // mount
-    //
+    #region[Mount]
 
     public function mount($id): void
     {
@@ -484,10 +475,9 @@ class Upsert extends Component
         }
 
     }
+    #endregion
 
-    //
-    // add items
-    //
+    #region[Add Items]
     public function addItems(): void
     {
         if ($this->itemIndex == "") {
@@ -568,10 +558,9 @@ class Upsert extends Component
             }
         }
     }
+    #endregion
 
-    //
-    // save
-    //
+    #region[Save]
 
     public function save(): string
     {
@@ -641,12 +630,13 @@ class Upsert extends Component
             ]);
         }
     }
+    #endregion
 
+    #region[Route]
     public function getRoute(): void
     {
         $this->redirect(route('jobcards'));
     }
-
 
     public function render()
     {
@@ -658,4 +648,5 @@ class Upsert extends Component
 
         return view('livewire.erp.production.jobcard.upsert');
     }
+    #endregion
 }
