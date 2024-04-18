@@ -4,13 +4,9 @@
         <div class="flex justify-between gap-3 py-5 xl:pl-12">
             <div class="w-1/4">
 
-                {{--                @if(Aaran\Aadmin\Src\Customise::hasTodoList())--}}
-                {{--                        <livewire:taskmanager.todos.index/>--}}
-                {{--                @endif--}}
-
-
-              <img src="{{\App\Helper\qrcoder::generate('5e18b83ca9b5a96a39a92498548c51cd587d10f8861cd1cadbd9b9491b05fcf5')}}">
-
+                                @if(Aaran\Aadmin\Src\Customise::hasTodoList())
+                                        <livewire:taskmanager.todos.index/>
+                                @endif
 
             </div>
 
