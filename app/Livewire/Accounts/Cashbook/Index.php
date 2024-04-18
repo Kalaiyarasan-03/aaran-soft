@@ -41,7 +41,6 @@ class Index extends Component
     public $approved;
     public $status_id;
     public $acyear;
-    public $uniqueno;
 
     public function create(): void
     {
@@ -85,7 +84,6 @@ class Index extends Component
         }
         $obj->vdate = $this->vdate;
         $obj->acyear = $this->acyear;
-        $obj->uniqueno = $this->vmode.'~'.$this->vdate;
         $obj->vmode = $this->vmode;
         $obj->cashbill_id = $this->cashbill_id;
         $obj->paidby = $this->paidby;
@@ -111,7 +109,6 @@ class Index extends Component
                 $this->order_no = $obj->order->vname;
             }
             $this->vdate = $obj->vdate;
-            $this->uniqueno = $obj->uniqueno;
             $this->acyear = $obj->acyear;
             $this->cashbill_id = $obj->cashbill_id;
             $this->paidby = $obj->paidby;
@@ -291,7 +288,6 @@ class Index extends Component
         }
 
         Cashbook::create([
-            'uniqueno' => "{$this->vmode}~{$this->vdate}",
             'acyear' => '1',
             'vmode' => $this->vmode,
             'order_id' => $this->order_id,
