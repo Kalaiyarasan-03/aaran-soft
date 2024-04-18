@@ -364,10 +364,11 @@ class Upsert extends Component
     #region[logo]
     public function save_logo()
     {
+        $logo_name=$this->logo->getClientOriginalName();
         if ($this->logo == '') {
             return $this->logo = 'empty';
         } else {
-            return $this->logo->store('logo', 'public');
+            return $this->logo->storeAs('logo', $logo_name,'public');
         }
     }
 
