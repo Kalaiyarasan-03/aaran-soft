@@ -17,12 +17,47 @@ class Upsert extends Component
 {
     use CommonTrait;
 
+    #region[Properties]
     public $contact_id = '';
     public $contact_name = '';
     public Collection $contactCollection;
     public $highlightContact = 0;
     public $contactTyped = false;
 
+    public $receipttype_id = '';
+    public $receipttype_name = '';
+    public Collection $receipttypeCollection;
+    public $highlightReceipttype = 0;
+    public $receipttypeTyped = false;
+
+    public $bank_id = '';
+    public $bank_name = '';
+    public Collection $bankCollection;
+    public $highlightBank = 0;
+    public $bankTyped = false;
+
+    public string $company;
+    public string $contact;
+    public string $bank;
+    public string $receipttype;
+    public string $acyear = '';
+    public string $vid = '';
+    public string $vdate = '';
+    public string $chq_no = '';
+    public string $payment_amount = '';
+    public string $chq_date = '';
+    public $list = [];
+    public string $receipt_id = "";
+    public string $againstby = "";
+
+    public string $vno = "";
+    public string $vamount = "";
+    public string $ramount = "";
+    public string $total_vamount = "";
+    public string $total_ramount = "";
+    #endregion
+
+    #region[Contact]
     public function decrementContact(): void
     {
         if ($this->highlightContact === 0) {
@@ -68,20 +103,17 @@ class Upsert extends Component
         $this->contactTyped = false;
 
     }
+    #endregion
 
+    #region[List]
     public function getContactList(): void
     {
-
-        $this->contactCollection = $this->contact_name ? Contact::search(trim($this->contact_name))->where('company_id', '=', session()->get('company_id'))->get() : Contact::all()->where('company_id','=',session()->get('company_id'));
-
+        $this->contactCollection = $this->contact_name ? Contact::search(trim($this->contact_name))->where('company_id', '=',
+            session()->get('company_id'))->get() : Contact::all()->where('company_id','=',session()->get('company_id'));
     }
+    #endregion
 
-    public $receipttype_id = '';
-    public $receipttype_name = '';
-    public Collection $receipttypeCollection;
-    public $highlightReceipttype = 0;
-    public $receipttypeTyped = false;
-
+    #region[Receipt]
     public function decrementReceipttype(): void
     {
         if ($this->highlightReceipttype === 0) {
@@ -133,13 +165,9 @@ class Upsert extends Component
         $this->receipttypeCollection = $this->receipttype_name ? Receipttype::search(trim($this->receipttype_name))
             ->get() : Receipttype::all();
     }
+    #endregion
 
-    public $bank_id = '';
-    public $bank_name = '';
-    public Collection $bankCollection;
-    public $highlightBank = 0;
-    public $bankTyped = false;
-
+    #region[Bank]
     public function decrementBank(): void
     {
         if ($this->highlightBank === 0) {
@@ -183,7 +211,6 @@ class Upsert extends Component
         $this->bank_id = $v['id'];
         $this->bank_name = $v['name'];
         $this->bankTyped = false;
-
     }
 
     public function getBankList(): void
@@ -191,27 +218,9 @@ class Upsert extends Component
         $this->bankCollection = $this->bank_name ? Bank::search(trim($this->bank_name))
             ->get() : Bank::all();
     }
+    #endregion
 
-    public string $company;
-    public string $contact;
-    public string $bank;
-    public string $receipttype;
-    public string $acyear = '';
-    public string $vid = '';
-    public string $vdate = '';
-    public string $chq_no = '';
-    public string $payment_amount = '';
-    public string $chq_date = '';
-    public $list = [];
-    public string $receipt_id = "";
-    public string $againstby = "";
-
-    public string $vno = "";
-    public string $vamount = "";
-    public string $ramount = "";
-    public string $total_vamount = "";
-    public string $total_ramount = "";
-
+    #region[Mount]
     public function mount($id)
     {
         $this->vdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
@@ -250,7 +259,9 @@ class Upsert extends Component
             $this->active_id=true;
         }
     }
+    #endregion
 
+    #region[Save]
     public function save(): string
     {
         if ($this->vid == "") {
@@ -285,19 +296,20 @@ class Upsert extends Component
             $obj->save();
             DB::table('receiptitems')->where('receipt_id', '=', $obj->id)->delete();
             $message = "Updated";
-
-
         }
         $this->getRoute();
         return $message;
     }
+    #endregion
 
+    #region[Route]
     public function getRoute(): void
     {
-
         $this->redirect(route('payments'));
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         $this->getContactList();
@@ -305,4 +317,5 @@ class Upsert extends Component
         $this->getBankList();
         return view('livewire.entries.payment.upsert');
     }
+    #endregion
 }

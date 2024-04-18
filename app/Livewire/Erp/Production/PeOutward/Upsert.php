@@ -18,15 +18,52 @@ use Livewire\Component;
 class Upsert extends Component
 {
 
-    //
-    // Contact
-    //
+    #region[PeOutwrd Properties]
     public string $contact_name = '';
     public string $contact_id = '';
     public Collection $contactCollection;
     public int $highlightContact = 0;
     public bool $contactTyped = false;
 
+    public $order_id = '';
+    public $order_no = '';
+    public Collection $orderCollection;
+    public $highlightOrder = 0;
+    public $orderTyped = false;
+
+    public string $jobcard_id = '';
+    public string $jobcard_no = '';
+    public Collection $jobcardCollection;
+    public int $highlightJobcard = 0;
+    public bool $jobcardTyped = false;
+
+    public string $cutting_id = '';
+    public string $cutting_no = '';
+    public Collection $cuttingCollection;
+    public int $highlightCutting = 0;
+    public bool $cuttingTyped = false;
+    public string $style_name = '';
+
+    public string $vno = '';
+    public string $vdate = '';
+    public mixed $total_qty = 0;
+    public mixed $receiver_details = '';
+    public string $active_id = '1';
+    public string $vid = '';
+
+    public string $itemIndex = "";
+    public $itemList = [];
+
+    public $jobcard_item_id;
+    public $cutting_item_id;
+    public $colour_id;
+    public $colour_name;
+    public $size_id;
+    public $size_name;
+    public $qty;
+    #endregion
+
+    #region[Contact]
     public function incrementContact(): void
     {
         if ($this->highlightContact === count($this->contactCollection) - 1) {
@@ -79,15 +116,9 @@ class Upsert extends Component
         $this->contactTyped = false;
 
     }
+    #endregion
 
-    //
-    // Order no
-    //
-    public $order_id = '';
-    public $order_no = '';
-    public Collection $orderCollection;
-    public $highlightOrder = 0;
-    public $orderTyped = false;
+    #region[Order]
 
     public function decrementOrder(): void
     {
@@ -141,16 +172,9 @@ class Upsert extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->get() : Order::where('company_id', '=', session()->get('company_id'))->get();
     }
+    #endregion
 
-
-    //
-    // Job Card
-    //
-    public string $jobcard_id = '';
-    public string $jobcard_no = '';
-    public Collection $jobcardCollection;
-    public int $highlightJobcard = 0;
-    public bool $jobcardTyped = false;
+    #region[Jobcard]
 
     public function incrementJobcard(): void
     {
@@ -205,15 +229,9 @@ class Upsert extends Component
         $this->jobcard_no = $v['name'];
         $this->jobcardTyped = false;
     }
-    //
-    // Cutting item
-    //
-    public string $cutting_id = '';
-    public string $cutting_no = '';
-    public Collection $cuttingCollection;
-    public int $highlightCutting = 0;
-    public bool $cuttingTyped = false;
-    public string $style_name = '';
+    #endregion
+
+    #region[Cutting]
 
     public function incrementCutting(): void
     {
@@ -300,15 +318,9 @@ class Upsert extends Component
         $this->cuttingCollection = $data;
 
     }
-    //
-    // properties
-    //
-    public string $vno = '';
-    public string $vdate = '';
-    public mixed $total_qty = 0;
-    public mixed $receiver_details = '';
-    public string $active_id = '1';
-    public string $vid = '';
+    #endregion
+
+    #region[Mount]
 
     public function mount($id)
     {
@@ -358,19 +370,9 @@ class Upsert extends Component
             $this->itemList = $data;
         }
     }
+    #endregion
 
-
-    public string $itemIndex = "";
-    public $itemList = [];
-
-    public $jobcard_item_id;
-    public $cutting_item_id;
-    public $colour_id;
-    public $colour_name;
-    public $size_id;
-    public $size_name;
-    public $qty;
-
+   #region[Add Items]
 
     public function addItems(): void
     {
@@ -457,7 +459,9 @@ class Upsert extends Component
             }
         }
     }
+    #endregion
 
+    #region[Save]
     public function save(): string
     {
         if (session()->has('company_id')) {
@@ -509,7 +513,9 @@ class Upsert extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[Save Item]
     public function saveItem($id): void
     {
         foreach ($this->itemList as $sub) {
@@ -538,7 +544,9 @@ class Upsert extends Component
 
         }
     }
+    #endregion
 
+    #region[Route]
     public function getRoute(): void
     {
         $this->redirect(route('peoutwards'));
@@ -549,7 +557,9 @@ class Upsert extends Component
 
         $this->redirect(route('peoutwards.print', [$this->vid]));
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         $this->getContactList();
@@ -558,4 +568,5 @@ class Upsert extends Component
         $this->getCuttingList();
         return view('livewire.erp.production.pe-outward.upsert');
     }
+    #endregion
 }

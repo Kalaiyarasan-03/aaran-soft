@@ -12,17 +12,22 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    public $sortField_1='purchase_no';
     use CommonTrait;
+
+    #region[Properties]
+    public $sortField_1='purchase_no';
     public Collection $contacts;
     public Collection $orders;
+    #endregion
 
-
+    #region[Create]
     public function create(): void
     {
         $this->redirect(route('purchases.upsert', ['0']));
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         return Purchase::search($this->searches)
@@ -43,18 +48,23 @@ class Index extends Component
             ->orderBy($this->sortField_1, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Contact]
     public function getContact()
     {
         $this->contacts=Contact::where('company_id','=',session()->get('company_id'))->get();
-
     }
+    #endregion
+
+    #region[Order]
     public function getOrder()
     {
         $this->orders=Order::where('company_id','=',session()->get('company_id'))->get();
-
     }
+    #endregion
 
+    #region[Sort]
     public function sortBy($field): void
     {
         if ($this->sortField_1=== $field) {
@@ -64,7 +74,9 @@ class Index extends Component
         }
         $this->sortField = $field;
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -99,20 +111,26 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
-    public function set_delete($id): void
+    #region[Delete]
+        public function set_delete($id): void
     {
         $obj=$this->getObj($id);
         DB::table('purchaseitems')->where('purchase_id', '=', $this->vid)->delete();
         $obj->delete();
     }
+    #endregion
 
+    #region[Print]
     public function print($id)
     {
 
         $this->redirect(route('purchases.print', [$this->getObj($id)]));
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         $this->getContact();
@@ -121,4 +139,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

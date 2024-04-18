@@ -18,7 +18,7 @@ use Livewire\Component;
 class Upsert extends Component
 {
 
-
+    #region[Ironing Properties]
     public string $vid = '';
     public string $vno = '';
     public string $vdate = '';
@@ -42,7 +42,27 @@ class Upsert extends Component
     public $orderTyped = false;
     public  $receiver_details;
 
+    public $style_id = '';
+    public $style_name = '';
+    public Collection $styleCollection;
+    public $highlightStyle = 0;
+    public $styleTyped = false;
 
+    public $jobcard_id = '';
+    public $jobcard_no = '';
+    public Collection $jobcardCollection;
+    public $highlightJobcard = 0;
+    public $jobcardTyped = false;
+
+    public  $section_inward_id = '';
+    public  $section_inward_no = '';
+    public Collection $sectionInwardCollection;
+    public int $highlightSectionInward = 0;
+    public bool $sectionTyped = false;
+    #endregion
+
+
+    #region[Order]
     public function decrementOrder(): void
     {
         if ($this->highlightOrder === 0) {
@@ -95,16 +115,9 @@ class Upsert extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->get() : Order::all()->where('company_id','=',session()->get('company_id'));
     }
+    #endregion
 
-    //
-    // Style no
-    //
-
-    public $style_id = '';
-    public $style_name = '';
-    public Collection $styleCollection;
-    public $highlightStyle = 0;
-    public $styleTyped = false;
+    #region[Style]
 
     public function decrementStyle(): void
     {
@@ -158,16 +171,9 @@ class Upsert extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->get() : Style::all()->where('company_id','=',session()->get('company_id'));
     }
+    #endregion
 
-    //
-    // Job no
-    //
-
-    public $jobcard_id = '';
-    public $jobcard_no = '';
-    public Collection $jobcardCollection;
-    public $highlightJobcard = 0;
-    public $jobcardTyped = false;
+    #region[Jobcard]
 
     public function decrementJobcard(): void
     {
@@ -223,12 +229,10 @@ class Upsert extends Component
                 ->get() : Jobcard::where('order_id', '=', $this->order_id)->get();
         }
     }
+    #endregion
 
-    public  $section_inward_id = '';
-    public  $section_inward_no = '';
-    public Collection $sectionInwardCollection;
-    public int $highlightSectionInward = 0;
-    public bool $sectionTyped = false;
+    #region[Section Inward]
+
 
     public function incrementSectionInward(): void
     {
@@ -311,10 +315,11 @@ class Upsert extends Component
             });
 
         $this->sectionInwardCollection = $data;
-
-
-
     }
+    #endregion
+
+
+    #region[Mount]
 
     public function mount($id)
     {
@@ -370,7 +375,9 @@ class Upsert extends Component
             $this->itemList = $data;
         }
     }
+    #endregion
 
+    #region[Add Items]
     public function addItems(): void
     {
         if ($this->itemIndex == "") {
@@ -454,6 +461,9 @@ class Upsert extends Component
             }
         }
     }
+    #endregion
+
+    #region[Save]
 
     public function save(): string
     {
@@ -535,12 +545,13 @@ class Upsert extends Component
             $item_1->save();
         }
     }
+    #endregion
 
+    #region[Route]
     public function getRoute(): void
     {
         $this->redirect(route('ironings'));
     }
-
 
     public function render()
     {
@@ -550,4 +561,5 @@ class Upsert extends Component
         $this->getSectionInwardList();
         return view('livewire.erp.production.ironing.upsert');
     }
+    #endregion
 }

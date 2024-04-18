@@ -4,9 +4,9 @@
     <x-forms.m-panel>
 
         <section class="grid grid-cols-2 gap-12">
+
+            <!-- Left Area ---------------------------------------------------------------------------------------->
             <div class="flex flex-col gap-3">
-
-
                 <div class="flex flex-col gap-2">
                     <label for="contact_name" class="gray-label">Party Name</label>
                     <div x-data="{isTyped: @entangle('contactTyped')}" @click.away="isTyped = false">
@@ -61,6 +61,7 @@
                     </div>
                 </div>
 
+                <!-- Order No ------------------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-2">
                     <label for="order_no" class="gray-label">Order No</label>
                     <div x-data="{isTyped: @entangle('orderTyped')}" @click.away="isTyped = false">
@@ -114,6 +115,7 @@
                     </div>
                 </div>
 
+                <!-- Job No ------------------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-2">
                     <label for="jobcard_no" class="gray-label">Job No</label>
                     <div x-data="{isTyped: @entangle('jobcardTyped')}" @click.away="isTyped = false">
@@ -169,9 +171,9 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
+            <!--Right Area -------------------------------------------------------------------------------------------->
             <div class="flex flex-col gap-3">
                 <div class="flex flex-col gap-2">
                     <label for="vno" class="gray-label">V.NO</label>
@@ -192,13 +194,14 @@
             </div>
         </section>
 
+        <!--Add Items ------------------------------------------------------------------------------------------------->
         <section>
             Add Items
         </section>
 
         <section class="flex flex-row w-full">
 
-            {{--cutting--------------------------------------------------------------------------------------------}}
+            <!--Outward Items ----------------------------------------------------------------------------------------->
             <div class="w-full">
                 <label for="section_outward_no"></label>
                 <div x-data="{isTyped: @entangle('sectionTyped')}" @click.away="isTyped = false">
@@ -232,6 +235,7 @@
 
                                     <div class="overflow-y-scroll h-96">
 
+                                        <!--Dropdown Table ----------------------------------------------------------------------------------------->
                                         <table class="w-full">
                                             <thead>
                                             <tr class="h-8 text-xs bg-gray-100 border border-gray-300">
@@ -241,9 +245,7 @@
                                                 <th class="px-2 text-center border border-gray-300">SIZE</th>
                                                 <th class="px-2 text-center border border-gray-300">QTY</th>
                                             </tr>
-
                                             </thead>
-
                                             <tbody>
 
 
@@ -266,15 +268,16 @@
                                                         <td class="px-2 text-center border border-gray-300">{{$sectionOutward['size_name']}}</td>
                                                         <td class="px-2 text-center border border-gray-300">{{$sectionOutward['qty']}}</td>
                                                     </tr>
-
                                                 @empty
                                                     <tr>
                                                         <td>&nbsp;
                                                         </td>
                                                     </tr>
+
                                                     <tr>
                                                         <td colspan="5">
-                                                            <a href="{{route('sectionoutwards.upsert',['0'])}}" role="button"
+                                                            <a href="{{route('sectionoutwards.upsert',['0'])}}"
+                                                               role="button"
                                                                class="flex items-center justify-center bg-green-500 w-full h-8 text-white text-center">
                                                                 Not found , Want to create new
                                                             </a>
@@ -294,6 +297,7 @@
                 </div>
             </div>
 
+            <!--Display Table ----------------------------------------------------------------------------------------->
             <div class="w-full">
                 <label for="cutting_qty"></label>
                 <input id="cutting_qty" wire:model="qty" class="w-full border-gray-200" placeholder="Qty">
@@ -334,10 +338,15 @@
                                     {{$index+1}}
                                 </button>
                             </td>
-                            <td class="px-2 text-left border border-gray-300" wire:click.prevent="changeItems({{$index}})">{{$row['section_outward_no']}}</td>
-                            <td class="px-2 text-center border border-gray-300" wire:click.prevent="changeItems({{$index}})">{{$row['colour_name']}}</td>
-                            <td class="px-2 text-center border border-gray-300" wire:click.prevent="changeItems({{$index}})">{{$row['size_name']}}</td>
-                            <td class="px-2 text-center border border-gray-300" wire:click.prevent="changeItems({{$index}})">{{floatval($row['qty'])}}</td>
+
+                            <td class="px-2 text-left border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{$row['section_outward_no']}}</td>
+                            <td class="px-2 text-center border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{$row['colour_name']}}</td>
+                            <td class="px-2 text-center border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{$row['size_name']}}</td>
+                            <td class="px-2 text-center border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{floatval($row['qty'])}}</td>
                             <td class="text-center border border-gray-300">
                                 <button wire:click.prevent="removeItems({{$index}})"
                                         class="py-1.5 w-full text-red-500 items-center ">
@@ -345,23 +354,20 @@
                                 </button>
                             </td>
                         </tr>
+
                         @php
                             $totalQty += $row['qty']+0
                         @endphp
-
                     @endforeach
-
-
                     </tbody>
+
                     <tfoot class="mt-2">
                     <tr class="h-8 text-sm border border-gray-400 bg-gray-50">
                         <td colspan="4" class="px-2 text-xs text-right border border-gray-300">&nbsp;TOTALS&nbsp;&nbsp;&nbsp;</td>
                         <td class="px-2 text-center border border-gray-300">{{$totalQty}}</td>
                     </tr>
                     </tfoot>
-
                 </table>
-
             </div>
 
             <div class="mt-5 flex gap-3">
@@ -373,6 +379,7 @@
         </section>
     </x-forms.m-panel>
 
+    <!-- Save Button -------------------------------------------------------------------------------------------------->
     <section>
         <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
             <div class="flex flex-col md:flex-row justify-between gap-3">
@@ -380,9 +387,6 @@
                     <x-button.save/>
                     <x-button.back/>
                 </div>
-{{--                <div>--}}
-{{--                    <x-button.print/>--}}
-{{--                </div>--}}
             </div>
         </div>
     </section>

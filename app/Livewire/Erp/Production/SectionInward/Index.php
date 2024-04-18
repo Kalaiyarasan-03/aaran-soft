@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class Index extends EntriesIndexAbstract
 {
+    #region[create]
     public function create(): void
     {
         $this->redirect(route('sectioninwards.upsert', ['0']));
     }
+    #endregion
 
+    #region[get List]
     public function getList()
     {
         return SectionInward::search($this->searches)
@@ -31,12 +34,18 @@ class Index extends EntriesIndexAbstract
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
+
+    #region[Delete]
     public function set_delete($id): void
     {
-        $obj=$this->getObj($id);
+        $obj = $this->getObj($id);
         DB::table('section_inward_items')->where('section_inward_id', '=', $this->vid)->delete();
         $obj->delete();
     }
+    #endregion
+
+    #region[get Obj]
     private function getObj($id)
     {
         if ($id) {
@@ -57,12 +66,15 @@ class Index extends EntriesIndexAbstract
         }
         return null;
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         return view('livewire.erp.production.section-inward.index')->with([
             'list' => $this->getList()
         ]);
     }
+    #endregion
 
 }

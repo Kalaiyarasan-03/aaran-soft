@@ -3,9 +3,11 @@
     <x-forms.m-panel>
         <section class="grid grid-cols-2">
 
+        <!-- Top Left Area ------------------------------------------------------------------------------------------------>
             <div class="mt-3 ">
-
                 <div class="xl:flex w-full gap-2">
+
+                    <!-- Party Name --------------------------------------------------------------------------------------->
                     <label for="contact_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Party Name</label>
                     <div x-data="{isTyped: @entangle('contactTyped')}" @click.away="isTyped = false" class="w-full">
                         <div class="relative ">
@@ -64,7 +66,8 @@
                     </div>
                 </div>
 
-                @if(\Aaran\Aadmin\Src\SaleEntry::hasOrder())
+                <!-- Order No --------------------------------------------------------------------------------------------->
+                @if(\Aaran\Aaconfig\Src\SaleEntry::hasOrder())
                     <div class="xl:flex flex-col gap-2 pt-6">
                         <div class="xl:flex w-full gap-2">
                             <label for="order_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Order NO</label>
@@ -123,7 +126,8 @@
                     </div>
                 @endif
 
-                @if(\Aaran\Aadmin\Src\SaleEntry::hasBillingAddress())
+                <!-- Billing Address -------------------------------------------------------------------------------------->
+                @if(\Aaran\Aaconfig\Src\SaleEntry::hasBillingAddress())
                     <div class="xl:flex gap-2 w-full pt-6">
                         <label for="billing_address" class="w-[10rem] text-zinc-500 tracking-wide py-2">Billing
                             Address</label>
@@ -186,7 +190,8 @@
                     </div>
                 @endif
 
-                @if(\Aaran\Aadmin\Src\SaleEntry::hasShippingAddress())
+                <!-- Shipping Address ------------------------------------------------------------------------------------->
+                @if(\Aaran\Aaconfig\Src\SaleEntry::hasShippingAddress())
                     <div class="xl:flex gap-2 w-full pt-6">
                         <label for="shipping_address" class="w-[10rem] text-zinc-500 tracking-wide py-2">Shipping
                             Address</label>
@@ -251,9 +256,12 @@
 
             </div>
 
+            <!-- Top Right Area-------------------------------------------------------------------------------------------->
+
             <div class="ml-5">
 
                 <x-input.model-text wire:model="invoice_no" :label="'Invoice No'"/>
+
                 <x-input.model-text wire:model="invoice_date" :label="'Invoice Date'" type="date"/>
 
                 <x-input.model-select wire:model="sales_type" :label="'Sales Type'">
@@ -263,8 +271,8 @@
                     @endforeach
                 </x-input.model-select>
 
-
-                @if(\Aaran\Aadmin\Src\SaleEntry::hasStyle())
+                <!-- Style ------------------------------------------------------------------------------------------------>
+                @if(\Aaran\Aaconfig\Src\SaleEntry::hasStyle())
                     <div class="xl:flex gap-2 w-full pt-4">
                         <label for="contact_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Style</label>
                         <div x-data="{isTyped: @entangle('styleTyped')}" @click.away="isTyped = false"
@@ -318,7 +326,8 @@
                     </div>
                 @endif
 
-                @if(\Aaran\Aadmin\Src\SaleEntry::hasDespatch())
+                <!-- Despatch --------------------------------------------------------------------------------------------->
+                @if(\Aaran\Aaconfig\Src\SaleEntry::hasDespatch())
                     <div class="xl:flex gap-2 w-full pt-4">
                         <label for="contact_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Despatch No</label>
                         <div x-data="{isTyped: @entangle('despatchTyped')}" @click.away="isTyped = false"
@@ -372,17 +381,18 @@
                     </div>
                 @endif
             </div>
-
         </section>
-
         <x-forms.section-border/>
+
+        <!-- Sale Items  -------------------------------------------------------------------------------------------------->
 
         <section class="text-xl font-bold text-orange-400">
             Sales Item
         </section>
         <section class="flex flex-row w-full gap-0.5">
 
-            @if(\Aaran\Aadmin\Src\SaleEntry::hasPo_no())
+        <!--PO/DC  -------------------------------------------------------------------------------------------------------->
+            @if(\Aaran\Aaconfig\Src\SaleEntry::hasPo())
                 <div class="w-full">
                     <label for="qty"></label>
                     <input id="qty" wire:model.live="po_no" class="block w-full purple-textbox-no-rounded"
@@ -400,6 +410,7 @@
                 </div>
             @endif
 
+            <!--Product Name ---------------------------------------------------------------------------------------------->
             <div class="w-full">
                 <label for="product_name"></label>
                 <div x-data="{isTyped: @entangle('productTyped')}" @click.away="isTyped = false">
@@ -454,7 +465,8 @@
                 </div>
             </div>
 
-            @if(\Aaran\Aadmin\Src\SaleEntry::hasProductDescription())
+            <!--Product Description --------------------------------------------------------------------------------------->
+            @if(\Aaran\Aaconfig\Src\SaleEntry::hasProductDescription())
                 <div class="w-full">
                     <label for="qty"></label>
                     <input id="qty" wire:model.live="description" class="block w-full purple-textbox-no-rounded"
@@ -463,8 +475,8 @@
                 </div>
             @endif
 
-
-            @if(\Aaran\Aadmin\Src\SaleEntry::hasColour())
+            <!--Colour Name ----------------------------------------------------------------------------------------------->
+            @if(\Aaran\Aaconfig\Src\SaleEntry::hasColour())
                 <div class="w-full">
                     <label for="colour_name"></label>
                     <div x-data="{isTyped: @entangle('colourTyped')}" @click.away="isTyped = false">
@@ -519,7 +531,8 @@
                 </div>
             @endif
 
-            @if(\Aaran\Aadmin\Src\SaleEntry::hasSize())
+            <!--Size ------------------------------------------------------------------------------------------------------>
+            @if(\Aaran\Aaconfig\Src\SaleEntry::hasSize())
                 <div class="w-full">
                     <label for="size_name"></label>
                     <div x-data="{isTyped: @entangle('sizeTyped')}" @click.away="isTyped = false">
@@ -574,12 +587,15 @@
                 </div>
             @endif
 
+            <!-- Quantity ------------------------------------------------------------------------------------------------->
             <div class="w-full">
                 <label for="qty"></label>
                 <input id="qty" wire:model.live="qty" class="block w-full purple-textbox-no-rounded"
                        autocomplete="false"
                        placeholder="Qty">
             </div>
+
+            <!-- Price ---------------------------------------------------------------------------------------------------->
             <div class="w-full">
                 <label for="price"></label>
                 <input id="price" wire:model.live="price" class="block w-full purple-textbox-no-rounded"
@@ -589,10 +605,10 @@
             <button wire:click="addItems" class="px-3 bg-green-500 text-white font-semibold tracking-wider ">Add
             </button>
         </section>
+
+        <!-- Display Items ----------------------------------------------------------------------------------------------->
         <section>
-
             <div class="py-2 mt-5">
-
 
                 <table class="w-full">
                     <thead>
@@ -617,6 +633,7 @@
                         @if(\Aaran\Aadmin\Src\SaleEntry::hasSize())
                             <th class="px-2 text-center border border-gray-300">SIZE</th>
                         @endif
+
                         <th class="px-2 text-center border border-gray-300">QTY</th>
                         <th class="px-2 text-center border border-gray-300">PRICE</th>
                         <th class="px-2 text-center border border-gray-300">TAXABLE</th>
@@ -625,8 +642,9 @@
                         <th class="px-2 text-center border border-gray-300">SUBTOTAL</th>
                         <th class="w-12 px-1 text-center border border-gray-300">ACTION</th>
                     </tr>
-
                     </thead>
+
+                    <!--Display Table Items ------------------------------------------------------------------------------->
                     <tbody>
 
                     @if ($itemList)
@@ -694,6 +712,8 @@
                         @endforeach
                     @endif
                     </tbody>
+
+                    <!-- Table Bottom ------------------------------------------------------------------------------------->
                     <tfoot class="mt-2">
                     <tr class="h-8 text-sm border border-gray-400 bg-cyan-50">
                         <td colspan="4" class="px-2 text-xs text-right border border-gray-300">&nbsp;TOTALS&nbsp;&nbsp;&nbsp;</td>
@@ -712,12 +732,15 @@
 
         </section>
         <x-forms.section-border/>
+
         <section class="grid grid-cols-2 gap-2 ">
+        <!-- Bottom Left -------------------------------------------------------------------------------------------------->
             <section class="w-full">
                 <div class="w-3/4">
-
                     <div class="flex flex-col gap-2 pt-5">
                         <div class="xl:flex w-full gap-2">
+
+                            <!-- Ledger ----------------------------------------------------------------------------------->
                             <label for="ledger_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Ledger</label>
                             <div x-data="{isTyped: @entangle('ledgerTyped')}" @click.away="isTyped = false"
                                  class='w-full'>
@@ -773,6 +796,8 @@
                         </div>
                     </div>
 
+                    <!-- Transport ---------------------------------------------------------------------------------------->
+                    @if(\Aaran\Aaconfig\Src\SaleEntry::hasTransport())
 
                     @if(\Aaran\Aadmin\Src\SaleEntry::hasTransport())
                         <div class="flex flex-col gap-2 pt-5">
@@ -843,6 +868,8 @@
                     @endif
                 </div>
             </section>
+
+            <!-- Bottom Right  -------------------------------------------------------------------------------------------->
 
             <section class="w-full">
                 <div class="w-3/4 mr-3 ml-auto ">

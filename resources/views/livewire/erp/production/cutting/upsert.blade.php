@@ -1,11 +1,15 @@
 <div>
     <x-slot name="header">Cutting Note Details</x-slot>
     <x-forms.m-panel>
+
         <section>
             <div class="grid grid-cols-2 gap-12">
 
+                <!-- Top Left Area ------------------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col gap-2">
+
+                        <!-- Order No --------------------------------------------------------------------------------------->
                         <label for="order_no" class="gray-label">Order No</label>
                         <div x-data="{isTyped: @entangle('orderTyped')}" @click.away="isTyped = false">
                             <div class="relative">
@@ -58,6 +62,7 @@
                         </div>
                     </div>
 
+                    <!-- Job No --------------------------------------------------------------------------------------->
                     <div class="flex flex-col gap-2">
                         <label for="jobcard_no" class="gray-label">Job No</label>
                         <div x-data="{isTyped: @entangle('jobcardTyped')}" @click.away="isTyped = false">
@@ -111,15 +116,16 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
 
+                <!-- Top Right ------------------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col gap-2">
+                        <!-- Challan No --------------------------------------------------------------------------------------->
                         <label for="vno" class="gray-label">Challan No</label>
                         <input id="vno" wire:model="vno" class="purple-textbox">
                     </div>
+
                     <div class="flex flex-col gap-2">
                         <label for="date" class="gray-label">Date</label>
                         <input id="date" wire:model="vdate" type="date" class="purple-textbox">
@@ -128,11 +134,11 @@
             </div>
 
             <div class="grid grid-cols-2 mt-3 gap-12">
-
                 <div class="flex flex-col gap-2">
                     &nbsp;
                 </div>
 
+                <!-- Cutting Master -------------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col gap-2">
                         <label for="cutting_master" class="gray-label">Cutting Master</label>
@@ -143,6 +149,7 @@
             </div>
         </section>
 
+        <!-- Add Items --------------------------------------------------------------------------------------------------->
         <section>
             Add Items
         </section>
@@ -150,7 +157,7 @@
         <form wire:submit="addItems">
             <section class="flex flex-row w-full gap-0.5">
 
-                {{--Job details -------------------------------------------------------------------------------------}}
+                <!--Jobcard Item ----------------------------------------------------------------------------------------->
                 <div class="w-full">
                     <label for="jobcard_item_id"></label>
                     <div x-data="{isTyped: @entangle('jobcardItemTyped')}" @click.away="isTyped = false">
@@ -190,32 +197,28 @@
                                                     <th class="px-2 text-center border border-gray-300">SIZE</th>
                                                     <th class="px-2 text-center border border-gray-300">QTY</th>
                                                 </tr>
-
                                                 </thead>
-
                                                 <tbody>
 
                                                 @if($jobcardItemCollection)
                                                     @forelse ($jobcardItemCollection as $i => $jobcardItem)
 
-
-                                                            <tr class="cursor-pointer px-3 hover:font-bold hover:bg-yellow-100 border-b border-gray-300 h-8
+                                                        <tr class="cursor-pointer px-3 hover:font-bold hover:bg-yellow-100 border-b border-gray-300 h-8
                                                         {{ $highlightJobcardItem === $i ? 'bg-yellow-100' : '' }}"
-                                                                wire:click="setJobcardItem(
+                                                            wire:click="setJobcardItem(
                                                                                 '{{$jobcardItem['jobcard_item_id']}}',
                                                                                 '{{$jobcardItem['fabric_lot_id']}}','{{$jobcardItem['fabric_lot_no']}}',
                                                                                 '{{$jobcardItem['colour_id']}}','{{$jobcardItem['colour_name']}}',
                                                                                 '{{$jobcardItem['size_id']}}','{{$jobcardItem['size_name']}}',
                                                                                 '{{$jobcardItem['qty']}}' )"
-                                                                x-on:click="isTyped = false">
+                                                            x-on:click="isTyped = false">
 
-                                                                {{-- for Lot--}}
-                                                                <td class="px-2 border border-gray-300 text-center ">{{$jobcardItem['fabric_lot_no']}}</td>
-                                                                <td class="px-2 border border-gray-300 text-center ">{{$jobcardItem['colour_name']}}</td>
-                                                                <td class="px-2 border border-gray-300 text-center ">{{$jobcardItem['size_name']}}</td>
-                                                                <td class="px-2 border border-gray-300 text-center ">{{$jobcardItem['qty']}}</td>
-                                                            </tr>
-
+                                                            {{-- for Lot--}}
+                                                            <td class="px-2 border border-gray-300 text-center ">{{$jobcardItem['fabric_lot_no']}}</td>
+                                                            <td class="px-2 border border-gray-300 text-center ">{{$jobcardItem['colour_name']}}</td>
+                                                            <td class="px-2 border border-gray-300 text-center ">{{$jobcardItem['size_name']}}</td>
+                                                            <td class="px-2 border border-gray-300 text-center ">{{$jobcardItem['qty']}}</td>
+                                                        </tr>
 
                                                     @empty
                                                         <a href="{{route('jobcards.upsert',['0'])}}" role="button"
@@ -234,22 +237,20 @@
                         </div>
                     </div>
                 </div>
-                {{--Qty -------------------------------------------------------------------------------------}}
+
+                <!--Quantity --------------------------------------------------------------------------------------------->
                 <div class="w-full">
                     <label for="qty"></label>
                     <input x-data x-ref="qty" id="qty" wire:model="qty" class="block w-full purple-textbox-no-rounded"
                            placeholder="Qty">
                 </div>
-
                 <button type="submit" class="px-3 bg-green-500 text-white font-semibold tracking-wider ">Add
                 </button>
-
-
             </section>
         </form>
 
         <section>
-
+            <!--Display Table -------------------------------------------------------------------------------------------->
             <div class="py-2 mt-5">
 
                 <table class="w-full">
@@ -278,10 +279,16 @@
                                     {{$index+1}}
                                 </button>
                             </td>
-                            <td class="px-2 text-left border border-gray-300"  wire:click.prevent="changeItems({{$index}})">{{$row['fabric_lot_no']}}</td>
-                            <td class="px-2 text-center border border-gray-300"  wire:click.prevent="changeItems({{$index}})">{{$row['colour_name']}}</td>
-                            <td class="px-2 text-center border border-gray-300"  wire:click.prevent="changeItems({{$index}})">{{$row['size_name']}}</td>
-                            <td class="px-2 text-center border border-gray-300" wire:click.prevent="changeItems({{$index}})">{{floatval($row['qty'])}}</td>
+
+                            <!--Display Table Items --------------------------------------------------------------------------------------->
+                            <td class="px-2 text-left border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{$row['fabric_lot_no']}}</td>
+                            <td class="px-2 text-center border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{$row['colour_name']}}</td>
+                            <td class="px-2 text-center border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{$row['size_name']}}</td>
+                            <td class="px-2 text-center border border-gray-300"
+                                wire:click.prevent="changeItems({{$index}})">{{floatval($row['qty'])}}</td>
                             <td class="text-center border border-gray-300">
                                 <button wire:click.prevent="removeItems({{$index}})"
                                         class="py-1.5 w-full text-red-500 items-center ">
@@ -294,9 +301,9 @@
                         @endphp
 
                     @endforeach
-
-
                     </tbody>
+
+                    <!--Table Footer --------------------------------------------------------------------------------------->
                     <tfoot class="mt-2">
                     <tr class="h-8 text-sm border border-gray-400 bg-gray-50">
                         <td colspan="4" class="px-2 text-xs text-right border border-gray-300">&nbsp;TOTALS&nbsp;&nbsp;&nbsp;</td>
@@ -311,15 +318,13 @@
         </section>
     </x-forms.m-panel>
 
+    <!--Save Button -------------------------------------------------------------------------------------------------------->
     <section>
         <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
             <div class="flex flex-col md:flex-row justify-between gap-3">
                 <div class="flex gap-3">
                     <x-button.save/>
                     <x-button.back/>
-                </div>
-                <div>
-{{--                    <x-button.print/>--}}
                 </div>
             </div>
         </div>

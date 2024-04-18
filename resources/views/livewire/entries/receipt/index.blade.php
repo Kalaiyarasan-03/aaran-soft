@@ -2,6 +2,8 @@
     <x-slot name="header">Receipt</x-slot>
 
     <x-forms.m-panel>
+
+        <!-- Top Controls --------------------------------------------------------------------------------------------->
         <x-forms.top-controls-filter :show-filters="$showFilters" />
         <x-input.advance-search-filter :show-filters="$showFilters" :contacts="$contacts" :orders="''">
             <div>
@@ -13,57 +15,54 @@
                 </x-input.model-select>
             </div>
         </x-input.advance-search-filter>
+
+        <!-- Header --------------------------------------------------------------------------------------------------->
         <x-forms.table>
             <x-slot name="table_header">
-                <x-table.ths wire:click.prevent="sortBy('vname')">Sl No</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Date</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Party Name</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Model</x-table.ths>
-                <x-table.ths-center wire:click.prevent="sortBy('vname')">Amount</x-table.ths-center>
-                <x-table.ths-center>Action</x-table.ths-center>
+                <x-table.header-serial wire:click.prevent="sortBy('vdate')"/>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Date</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Party Name</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Model</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Amount</x-table.header-text>
+                <x-table.header-text center>Action</x-table.header-text>
             </x-slot>
+
+            <!-- Table Body ------------------------------------------------------------------------------------------->
             <x-slot name="table_body">
                 @forelse ($list as $index =>  $row)
+
                     <x-table.row>
-
-                        <x-table.cell>
-                            <a href="{{route('receipts.upsert',[$row->id])}}"
-                               class="flex flex-col px-3">
-                                <div class="text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text center>
+                            <a href="{{route('receipts.upsert',[$row->id])}}">
                                     {{ $index+1}}
-                                </div>
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('receipts.upsert',[$row->id])}}"
-                               class="flex flex-col px-3 text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text center>
+                            <a href="{{route('receipts.upsert',[$row->id])}}">
                                 {{date('d-m-Y', strtotime($row->vdate))}}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('receipts.upsert',[$row->id])}}"
-                               class="flex px-3 text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text center>
+                            <a href="{{route('receipts.upsert',[$row->id])}}">
                                 {{ $row->contact->vname }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('receipts.upsert',[$row->id])}}"
-                               class="flex flex-col px-3">
-                                <div class="text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text center>
+                            <a href="{{route('receipts.upsert',[$row->id])}}">
                                     {{ $row->receipttype->vname}}
-                                </div>
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('receipts.upsert',[$row->id])}}"
-                               class="flex flex-col px-3 text-gray-600 truncate text-xl text-center">
+                        <x-table.cell-text center>
+                            <a href="{{route('receipts.upsert',[$row->id])}}">
                                 {{ $row->receipt_amount}}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
+
+                        <!-- Button Action ---------------------------------------------------------------------------->
                         <x-table.cell>
                             <div class="w-full flex justify-center gap-3">
                                 <a href="{{route('receipts.upsert',[$row->id])}}"
@@ -80,15 +79,19 @@
                             </div>
                         </x-table.cell>
                     </x-table.row>
+
                 @empty
                     <x-table.empty/>
                 @endforelse
             </x-slot>
+
+            <!-- Table Footer ----------------------------------------------------------------------------------------->
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>
         </x-forms.table>
 
         <x-modal.delete/>
+
     </x-forms.m-panel>
 </div>

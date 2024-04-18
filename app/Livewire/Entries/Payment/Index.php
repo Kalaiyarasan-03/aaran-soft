@@ -14,29 +14,36 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[Properties]
     public $sortField_1 = 'vdate';
     public $byModel;
     public Collection $contacts;
     public Collection $receipt_types;
+    #endregion
 
+    #region[Contact]
     public function getContact()
     {
         $this->contacts = Contact::where('company_id', '=', session()->get('company_id'))->get();
 
     }
+    #endregion
 
+    #region[Receipt]
     public function getReceipt()
     {
         $this->receipt_types = Receipttype::where('active_id', '=', $this->activeRecord)->get();
-
     }
+    #endregion
 
+    #region[Create]
     public function create(): void
     {
         $this->redirect(route('payments.upsert', ['0']));
     }
+    #endregion
 
-
+    #region[List]
     public function getList()
     {
         return Payment::search($this->searches)
@@ -57,7 +64,9 @@ class Index extends Component
             ->orderBy($this->sortField_1, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Sort]
     public function sortBy($field): void
     {
         if ($this->sortField_1 === $field) {
@@ -67,15 +76,18 @@ class Index extends Component
         }
         $this->sortField = $field;
     }
+    #endregion
 
+    #region[delete]
     public function set_delete($id)
     {
         $obj = $this->getObj($id);
         DB::table('paymentitems')->where('payment_id', '=', $this->vid)->delete();
         $obj->delete();
-
     }
+    #endregion
 
+    #region[get Obj]
     private function getObj($id)
     {
         if ($id) {
@@ -100,7 +112,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         $this->getContact();
@@ -109,4 +123,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }
