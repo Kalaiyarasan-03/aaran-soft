@@ -4,8 +4,10 @@
     <x-forms.m-panel>
 
             <div class="flex flex-row gap-2 py-2 justify-end">
-                <button wire:click="create_receipt" class="w-20 font-extrabold bg-green-600 hover:bg-green-600 border-b-4 border-green-700 hover:border-green-700 focus:outline-none text-white  uppercase  shadow-md rounded-lg  py-1">Receipt</button>
-                <button wire:click="create" class="w-20 font-extrabold bg-red-600 hover:bg-red-600 border-b-4 border-red-700 hover:border-red-700 focus:outline-none text-white  uppercase  shadow-md rounded-lg  py-1">Payment</button>
+                <button wire:click="create_receipt" class="w-20  bg-green-600 hover:bg-green-700
+                border-green-700 hover:border-green-700 focus:outline-none text-white  uppercase  shadow-lg rounded-lg  py-1">Receipt</button>
+                <button wire:click="create" class="w-20 bg-red-600 hover:bg-red-700 border-red-700
+                hover:border-red-700 focus:outline-none text-white  uppercase  shadow-lg rounded-lg  py-1">Payment</button>
 
             </div>
 
@@ -100,6 +102,7 @@
             <label class="text-lg font-extrabold">{{$vmode}}</label>
             <x-forms.section-border class="py-2"/>
             <x-input.model-date wire:model="vdate" :label="'Date'"/>
+            @if($vmode=='Payment')
             <div class="flex flex-col mb-2">
                 <div class="flex ">
                     <label for="order_no" class="gray-label flex">Order No</label>
@@ -155,47 +158,38 @@
                 </div>
 
             </div>
-            <x-input.model-text wire:model="paidby" :label="'Person'"/>
             <x-input.model-text wire:model="payment" :label="'Payment'"/>
-            <x-input.model-text wire:model="remarks" :label="'Purpose'"/>
-
-{{--            <div class="px-5 py-1 w-full mb-2">--}}
-{{--                <div class="flex flex-col md:flex-row justify-between gap-3">--}}
-{{--                    <div class="flex gap-3">--}}
-{{--                        <x-buttons.save :vid="$vid"/>--}}
-{{--                        <x-buttons.back/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-            <x-forms.m-panel-bottom-button save back print/>
-
-        </div>
-
-    </x-jet.modal>
-    <x-jet.modal wire:model.defer="showEditModal_1">
-        <div class="px-6  pt-4">
-            <label class="text-lg font-extrabold">{{$vmode}}</label>
-            <x-forms.section-border class="py-2"/>
-            <x-input.model-date wire:model="vdate" :label="'Date'"/>
+            @else
+                <x-input.model-text wire:model="receipt" :label="'Receipt'"/>
+            @endif
             <x-input.model-text wire:model="paidby" :label="'Person'"/>
-            <x-input.model-text wire:model="receipt" :label="'Receipt'"/>
             <x-input.model-text wire:model="remarks" :label="'Purpose'"/>
-
-{{--            <div class="px-5 py-1 w-full mb-2">--}}
-{{--                <div class="flex flex-col md:flex-row justify-between gap-3">--}}
-{{--                    <div class="flex gap-3">--}}
-{{--                        <x-buttons.save :vid="$vid"/>--}}
-{{--                        <x-buttons.back/>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
-            <x-forms.m-panel-bottom-button save back print/>
-
+            <div class="px-5 py-1 w-full mb-2">
+                <div class="flex flex-col md:flex-row justify-between gap-3 ">
+                    <div class="flex gap-3">
+                        <button wire:click.prevent="$set('showEditModal', false)"
+                                class='inline-flex items-center px-4 py-2 border border-transparent
+                               rounded-md font-semibold text-xs text-white uppercase tracking-widest
+                               focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-150
+                               focus:ring-gray-500 bg-gray-600 hover:bg-gray-500 active:bg-gray-700 border-gray-600'>
+                            <x-icons.icon :icon="'chevrons-left'" class="h-5 w-auto block px-1.5"/>
+                            Cancel
+                        </button>
+                        <button type="submit" wire:click.prevent="goSubmit"
+                           class="
+                                                        inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs text-white uppercase tracking-widest
+                                                        transition-all shadow-xs
+                                                        bg-gradient-to-r from-blue-600 to-blue-500 hover:bg-gradient-to-b dark:shadow-blue-900
+                                                        shadow-blue-200 hover:shadow-2xl hover:shadow-blue-200 hover:-tranneutral-y-px">
+                            <x-icons.icon :icon="'save'" class="h-5 w-auto block px-1.5"/>
+                            SAVE
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </x-jet.modal>
+
 
 
     <div class="px-5 py-3">

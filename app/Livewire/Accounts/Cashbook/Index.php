@@ -43,14 +43,14 @@ class Index extends Component
 
     public function create(): void
     {
-        $this->showEditModal = true;
+        $this->showEditModal = !  $this->showEditModal;
         $this->mount();
         $this->vmode="Payment";
 
     }
     public function create_receipt(): void
     {
-        $this->showEditModal_1 = true;
+        $this->showEditModal = ! $this->showEditModal;
         $this->mount();
         $this->vmode="Receipt";
 
@@ -59,7 +59,7 @@ class Index extends Component
     public function edit($id)
     {
         $obj=Cashbook::find($id);
-        if ($obj->vmode=='receipt'){
+        if ($obj->vmode=='Receipt'){
             $obj = $this->getobj($id);
             $this->create_receipt();
         }else{
