@@ -127,18 +127,21 @@
         </div>
 
     </x-forms.m-panel>
-    <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
 
-        <div class="flex flex-col md:flex-row justify-between gap-3">
-            <div class="flex gap-3">
-                <x-buttons.save :vid="$vid"/>
-                <x-buttons.back/>
-            </div>
+    <x-forms.m-panel-bottom-button save back print/>
 
-            <div>
-                    <x-buttons.delete/>
-            </div>
+{{--    <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">--}}
 
-        </div>
-    </div>
+{{--        <div class="flex flex-col md:flex-row justify-between gap-3">--}}
+{{--            <div class="flex gap-3">--}}
+{{--                <x-buttons.save :vid="$vid"/>--}}
+{{--                <x-buttons.back/>--}}
+{{--            </div>--}}
+
+{{--            <div>--}}
+{{--                    <x-buttons.delete/>--}}
+{{--            </div>--}}
+
+{{--        </div>--}}
+{{--    </div>--}}
 </div>

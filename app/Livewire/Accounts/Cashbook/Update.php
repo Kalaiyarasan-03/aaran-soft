@@ -64,7 +64,7 @@ class Update extends Component
         }
     }
 
-    public function goSubmit()
+    public function save()
     {
         $this->validate();
 
