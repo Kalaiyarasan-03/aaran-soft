@@ -85,6 +85,8 @@
                                   placeholder-gray-400 text-base focus:outline-none
                                   focus:ring-1 focus:ring-gray-300 focus:border-transparent w-full">
                 </label>
+{{--                <x-input.model-text wire:model="verified" :label="'Verified'"/>--}}
+{{--                <x-input.model-date wire:model="verified_on" :label="'Verified On'"/>--}}
             </div>
         </div>
     </div>

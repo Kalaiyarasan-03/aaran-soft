@@ -1,8 +1,8 @@
 <?php
 
-namespace Aaran\Crm\Database\Seeders;
+namespace Aaran\Taskmanager\Database\Seeders;
 
-use Aaran\Crm\Models\Todos;
+use Aaran\Taskmanager\Models\Todos;
 use Illuminate\Database\Seeder;
 
 class TodosSeeder extends Seeder

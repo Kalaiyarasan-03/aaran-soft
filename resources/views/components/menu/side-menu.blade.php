@@ -26,6 +26,8 @@
             x-data="{selected:null}">
 
             <x-menu.sub.entries/>
+            <x-menu.sub.task/>
+            <x-menu.sub.audit/>
             <x-menu.sub.accounts/>
             <x-menu.sub.master/>
             <x-menu.sub.common/>

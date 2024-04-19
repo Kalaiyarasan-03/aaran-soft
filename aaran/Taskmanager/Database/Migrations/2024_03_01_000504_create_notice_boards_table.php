@@ -8,23 +8,24 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('activities', function (Blueprint $table) {
+        Schema::create('notice_boards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
             $table->date('cdate');
-            $table->text('vname');
             $table->string('client_id')->nullable();
-            $table->string('duration')->nullable();
-            $table->string('channel')->nullable();
+            $table->text('vname');
             $table->text('remarks')->nullable();
-            $table->foreignId('company_id')->references('id')->on('companies');
+            $table->string('verified')->nullable();
+            $table->string('verified_on')->nullable();
             $table->string('active_id',3)->nullable();
+            $table->string('priority')->nullable();
+            $table->foreignId('company_id')->references('id')->on('companies');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('activities');
+        Schema::dropIfExists('notice_boards');
     }
 };

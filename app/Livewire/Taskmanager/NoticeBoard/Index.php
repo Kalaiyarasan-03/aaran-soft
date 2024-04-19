@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\NoticeBoard;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Crm\Models\NoticeBoard;
+use Aaran\Taskmanager\Models\NoticeBoard;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -21,6 +21,8 @@ class Index extends Component
     public string $priority = '';
     public Collection $dates;
     public Collection $clients;
+    public $verified;
+    public $verified_on;
 
     public function mount()
     {
@@ -37,6 +39,8 @@ class Index extends Component
                     'client_id' => $this->client_id,
                     'vname' => $this->vname,
                     'remarks' => $this->remarks,
+                    'verified' => $this->verified,
+                    'verified_on' => $this->verified_on,
                     'active_id' => $this->active_id ?: '0',
                     'user_id' => Auth::id(),
                     'company_id' => session()->get('company_id'),
@@ -50,6 +54,8 @@ class Index extends Component
                 $obj->client_id = $this->client_id;
                 $obj->vname = $this->vname;
                 $obj->remarks = $this->remarks;
+                $obj->verified = $this->verified;
+                $obj->verified_on = $this->verified_on;
                 $obj->active_id = $this->active_id ?: '0';
                 $obj->user_id = Auth::id();
                 $obj->company_id = session()->get('company_id');
@@ -60,6 +66,8 @@ class Index extends Component
             $this->cdate = '';
             $this->client_id = '';
             $this->vname = '';
+            $this->verified = '';
+            $this->verified_on = '';
             $this->remarks = '';
             $this->priority = '';
             return $message;
@@ -76,6 +84,8 @@ class Index extends Component
             $this->client_id = $obj->client_id;
             $this->vname = $obj->vname;
             $this->remarks = $obj->remarks;
+            $this->verified = $obj->verified;
+            $this->verified_on = $obj->verified_on;
             $this->active_id = $obj->active_id;
             $this->priority = $obj->priority;
             return $obj;

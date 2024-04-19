@@ -2,8 +2,8 @@
 
 namespace App\Livewire\Taskmanager\Task;
 
-use Aaran\Crm\Models\Reply;
-use Aaran\Crm\Models\Task;
+use Aaran\Taskmanager\Models\Reply;
+use Aaran\Taskmanager\Models\Task;
 use App\Enums\Active;
 use App\Enums\Status;
 use App\Livewire\Trait\CommonTrait;
@@ -31,6 +31,8 @@ class Show extends Component
     public $users;
     public $replies;
     public $commentsCount;
+    public $verified;
+    public $verified_on;
 
 
     public function mount($id): void
@@ -38,8 +40,9 @@ class Show extends Component
         $this->getObj($id);
 
 
-        $this->replies = Reply::where('task_id', $id) ->where('company_id', '=', session()->get('company_id'))->get();
-        $this->commentsCount = Reply::where('task_id', $id) ->where('company_id', '=', session()->get('company_id'))->count();
+        $this->replies = Reply::where('task_id', $id)->where('company_id', '=', session()->get('company_id'))->get();
+        $this->commentsCount = Reply::where('task_id', $id)->where('company_id', '=',
+            session()->get('company_id'))->count();
     }
 
     public function getSave(): string
@@ -50,11 +53,15 @@ class Show extends Component
                 Reply::create([
                     'task_id' => $this->task_id,
                     'vname' => $this->reply,
+                    'verified' => $this->verified,
+                    'verified_on' => $this->verified_on,
                     'company_id' => session()->get('company_id'),
                     'user_id' => Auth::user()->id,
                 ]);
 
                 $this->reply = '';
+                $this->verified_on = '';
+                $this->verified = '';
             }
         }
         redirect()->to(route('tasks.replies', [$this->task_id]));
@@ -74,6 +81,8 @@ class Show extends Component
             $this->body = $obj->body;
             $this->channel = $obj->channel;
             $this->allocated = $obj->allocated;
+            $this->verified = $obj->verified;
+            $this->verified_on = $obj->verified_on;
             $this->updated_at = $obj->updated_at;
             $this->status = $obj->status;
             $this->username = $obj->user->name;
@@ -85,7 +94,7 @@ class Show extends Component
 
     public function updateStatus(): void
     {
-        $this->validate(['changeStatus'=>'required']);
+        $this->validate(['changeStatus' => 'required']);
         $obj = Task::find($this->task_id);
         $obj->status = $this->changeStatus;
         $obj->save();

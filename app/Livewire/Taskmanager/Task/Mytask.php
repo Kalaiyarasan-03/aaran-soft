@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\Task;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Crm\Models\Task;
+use Aaran\Taskmanager\Models\Task;
 use App\Livewire\Trait\CommonTrait;
 use App\Models\User;
 use Carbon\Carbon;
@@ -25,6 +25,8 @@ class Mytask extends Component
     public $users;
     public $clients;
     public $commentsCount;
+    public $verified;
+    public $verified_on;
 
     public function mount()
     {
@@ -44,6 +46,8 @@ class Mytask extends Component
                     'body' => $this->body,
                     'channel' => $this->channel,
                     'allocated' => $this->allocated,
+                    'verified' => $this->verified,
+                    'verified_on' => $this->verified_on,
                     'user_id' => Auth::user()->id,
                     'status' => 1,
                     'company_id' => session()->get('company_id'),
@@ -58,6 +62,8 @@ class Mytask extends Component
                 $obj->body = $this->body;
                 $obj->channel = $this->channel;
                 $obj->allocated = $this->allocated;
+                $obj->verified = $this->verified;
+                $obj->verified_on = $this->verified_on;
                 $obj->status = $this->status;
                 $obj->company_id = session()->get('company_id');
                 $obj->active_id = $this->active_id;
@@ -70,6 +76,8 @@ class Mytask extends Component
             $this->body = '';
             $this->channel = '';
             $this->allocated = '';
+            $this->verified = '';
+            $this->verified_on = '';
             $this->status = '';
 
             return $message;
@@ -87,6 +95,8 @@ class Mytask extends Component
             $this->body = $obj->body;
             $this->channel = $obj->channel;
             $this->allocated = $obj->allocated;
+            $this->verified = $obj->verified;
+            $this->verified_on = $obj->verified_on;
             $this->status = $obj->status;
             $this->active_id = $obj->active_id;
 
