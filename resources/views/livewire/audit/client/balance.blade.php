@@ -3,6 +3,8 @@
 
     <x-forms.m-panel>
 
+        <!-- Top Controls --------------------------------------------------------------------------------------------->
+
         <div class="flex flex-row justify-between">
             <div>
                 Latest
@@ -14,6 +16,7 @@
                     @endforeach
                 @endif
             </div>
+
             <div>
                 <label>
                     <input wire:model="cdate" wire:change.debounce="reRender" type="date"
@@ -23,13 +26,17 @@
             <div></div>
         </div>
 
+        <!-- Header --------------------------------------------------------------------------------------------------->
+
         <x-forms.table :list="$list">
             <x-slot name="table_header">
-                <x-table.ths-slno wire:click.prevent="sortBy('vname')">Sl.no</x-table.ths-slno>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Company Name</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Balance</x-table.ths>
-                <x-table.ths >Action</x-table.ths>
+                <x-table.header-serial wire:click.prevent="sortBy('invoice_no')"/>
+                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Company Name</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Balance</x-table.header-text>
+                <x-table.header-text center>Action</x-table.header-text>
             </x-slot>
+
+            <!-- Table Body ------------------------------------------------------------------------------------------->
             <x-slot name="table_body">
 
                 @php
@@ -37,31 +44,27 @@
                 @endphp
 
                 @forelse ($list as $index =>  $row)
-                    <x-table.row>
 
-                        <x-table.cell>
-                            <a href="{{route('clients.show',[$row->id])}}"
-                               class="flex px-3 text-gray-600 truncate text-xl text-left">
+                    <x-table.row>
+                        <x-table.cell-text center>
+                            <a href="{{route('clients.show',[$row->id])}}">
                                 {{ $index + 1 }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('clients.show',[$row->id])}}"
-                               class="flex flex-col px-3">
-                                <div class="text-gray-600 truncate text-xl text-left">
-                                    {{ $row->clientBank->vname }}
-                                </div>
+                        <x-table.cell-text center>
+                            <a href="{{route('clients.show',[$row->id])}}">
+                                {{ $row->clientBank->vname }}
                             </a>
+                        </x-table.cell-text>
 
-                        </x-table.cell>
-
-                        <x-table.cell>
-                            <a href="{{route('clients.show',[$row->id])}}"
-                               class="flex flex-col px-1 text-gray-600 truncate text-xl text-right">
+                        <x-table.cell-text center>
+                            <a href="{{route('clients.show',[$row->id])}}">
                                 {{ \App\Helper\ConvertTo::rupeesFormat($row->balance) }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
+
+                        {{--                        <x-table.cell-action id="{{$row->id}}"/>--}}
 
                         <x-table.action :id="$row->id"/>
                     </x-table.row>
@@ -73,6 +76,7 @@
                 @empty
                     <x-table.empty/>
                 @endforelse
+
                 <x-table.row>
                     <td colspan="2" class="px-2 text-xl text-right text-gray-400 border border-gray-300">&nbsp;TOTALS&nbsp;&nbsp;&nbsp;
                     </td>
@@ -80,12 +84,15 @@
                     <td class="px-2 text-right  text-xl border border-gray-300">&nbsp;</td>
                 </x-table.row>
             </x-slot>
+
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>
         </x-forms.table>
 
         <x-modal.delete/>
+
+        <!--Form Create   --------------------------------------------------------------------------------------------->
 
         <x-forms.create :id="$vid">
 
@@ -101,7 +108,6 @@
             <x-input.model-text wire:model="balance" :label="'Balance'"/>
 
         </x-forms.create>
-
 
         <div class="space-x-2 flex items-center justify-end w-full ">
             <x-button.secondary wire:click="generate">
