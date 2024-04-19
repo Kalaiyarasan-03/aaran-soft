@@ -108,6 +108,7 @@ class Index extends Component
         $obj->company_id = session()->get('company_id');
         $obj->status_id = $this->status_id;
         $obj->save();
+        $this->reTotal();
         session()->flash('success', '"' . $this->vmode . '"  has been updated.');
     }
     #endregion

@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('channel', 3)->nullable();
             $table->foreignId('allocated')->references('id')->on('users');
             $table->string('status', 3)->nullable();
+            $table->string('verified')->nullable();
+            $table->string('verified_on')->nullable();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignId('company_id')->references('id')->on('companies');
             $table->string('active_id', 3)->nullable();

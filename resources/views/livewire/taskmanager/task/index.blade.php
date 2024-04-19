@@ -49,7 +49,7 @@
                                 <div class="flex flex-row gap-2">
                                     <span class=" text-sm py-0.5 text-gray-500">Assign To :</span>
                                     <span
-                                            class=" text-md text-gray-600">{{ \Aaran\Crm\Models\Task::allocate($row->allocated) }}</span>
+                                            class=" text-md text-gray-600">{{ \Aaran\Taskmanager\Models\Task::allocate($row->allocated) }}</span>
 
                                 </div>
 
@@ -106,6 +106,7 @@
 
             <x-input.model-text wire:model="vname" :label="'Title'"/>
 
+
             <div class="px-1 py-4">
                 <x-input.rich-text wire:model="body" :placeholder="''"/>
             </div>
@@ -124,6 +125,8 @@
                     <option value="{{$user->id}}">{{$user->name}}</option>
                 @endforeach
             </x-input.model-select>
+            <x-input.model-text wire:model="verified" :label="'Verified'"/>
+            <x-input.model-date wire:model="verified_on" :label="'Verified On'"/>
 
         </x-forms.create>
 

@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\Activities;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Crm\Models\Activities;
+use Aaran\Taskmanager\Models\Activities;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -22,6 +22,8 @@ class Index extends Component
     public string $remarks = '';
     public Collection $clients;
     public Collection $dates;
+    public $verified;
+    public $verified_on;
 
 
     public function mount()
@@ -42,6 +44,8 @@ class Index extends Component
                     'client_id' => $this->client_id,
                     'duration' => $this->duration,
                     'channel' => $this->channel,
+                    'verified' => $this->verified,
+                    'verified_on' => $this->verified_on,
                     'remarks' => $this->remarks,
                     'company_id' => session()->get('company_id'),
                     'active_id' => $this->active_id,
@@ -57,6 +61,8 @@ class Index extends Component
                 $obj->duration = $this->duration;
                 $obj->channel = $this->channel;
                 $obj->remarks = $this->remarks;
+                $obj->verified = $this->verified;
+                $obj->verified_on = $this->verified_on;
                 $obj->company_id = session()->get('company_id');
                 $obj->active_id = $this->active_id;
                 $obj->save();
@@ -66,6 +72,8 @@ class Index extends Component
             $this->client_id = '';
             $this->remarks = '';
             $this->duration = '';
+            $this->verified = '';
+            $this->verified_on = '';
             $this->channel = '';
             $this->reRender();
             return $message;
@@ -83,6 +91,8 @@ class Index extends Component
             $this->client_id = $obj->client_id;
             $this->duration = $obj->duration;
             $this->channel = $obj->channel;
+            $this->verified = $obj->verified;
+            $this->verified_on = $obj->verified_on;
             $this->remarks = $obj->remarks;
             $this->active_id = $obj->active_id;
             return $obj;
