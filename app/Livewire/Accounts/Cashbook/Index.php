@@ -13,21 +13,18 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination;
+
+    #region[Cashbook properties]
     public $id;
-
-
     public $perPage = 50;
-
     public $sortField = 'id';
-
     public $sortAsc = true;
-
     public $searches = '';
 
-    public $vdate='';
-    public $vid='';
-    public $vmode='';
-    public string $remarks= '';
+    public $vdate = '';
+    public $vid = '';
+    public $vmode = '';
+    public string $remarks = '';
     public $cashbill_id = null;
     public string $paidby = '';
     public float $receipt = 0;
@@ -35,50 +32,66 @@ class Index extends Component
     public float $balance = 0;
 
     public Collection $orders;
-    public $showEditModal=false;
-    public $showEditModal_1=false;
+    public $showEditModal = false;
+    public $showEditModal_1 = false;
     public $openingbalance = 0;
     public $approved;
     public $status_id;
     public $acyear;
 
+    public $order_id = '';
+    public $order_no = '';
+    public Collection $orderCollection;
+    public $highlightOrder = 0;
+    public $orderTyped = false;
+
+    #endregion
+
+    #region[Create]
     public function create(): void
     {
-        $this->showEditModal = !  $this->showEditModal;
+        $this->showEditModal = !$this->showEditModal;
         $this->mount();
-        $this->vmode="Payment";
+        $this->vmode = "Payment";
 
     }
+
     public function create_receipt(): void
     {
-        $this->showEditModal = ! $this->showEditModal;
+        $this->showEditModal = !$this->showEditModal;
         $this->mount();
-        $this->vmode="Receipt";
+        $this->vmode = "Receipt";
 
     }
+    #endregion
 
+    #region[Edit]
     public function edit($id)
     {
-        $obj=Cashbook::find($id);
-        if ($obj->vmode=='Receipt'){
+        $obj = Cashbook::find($id);
+        if ($obj->vmode == 'Receipt') {
             $obj = $this->getobj($id);
             $this->create_receipt();
-        }else{
+        } else {
             $obj = $this->getobj($id);
             $this->create();
         }
     }
+    #endregion
 
+    #region[Mount]
     public function mount()
     {
         $this->vdate = Carbon::parse(Carbon::now())->format('Y-m-d');
 
     }
+    #endregion
 
+    #region[Update]
     private function update()
     {
         $obj = Cashbook::find($this->vid);
-        if ($obj->order_id!=0){
+        if ($obj->order_id != 0) {
 
             $obj->order_id = $this->order_id;
         }
@@ -97,14 +110,16 @@ class Index extends Component
         $obj->save();
         session()->flash('success', '"' . $this->vmode . '"  has been updated.');
     }
+    #endregion
 
+    #region[get Obj]
     public function getobj($id)
     {
         if ($id) {
             $obj = Cashbook::find($id);
             $this->vid = $obj->id;
             $this->vmode = $obj->vmode;
-            if ($obj->order_id!=0){
+            if ($obj->order_id != 0) {
                 $this->order_id = $obj->order_id;
                 $this->order_no = $obj->order->vname;
             }
@@ -120,7 +135,9 @@ class Index extends Component
             $this->status_id = $obj->status_id;
         }
     }
+    #endregion
 
+    #region[Sort]
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
@@ -131,7 +148,9 @@ class Index extends Component
 
         $this->sortField = $field;
     }
+    #endregion
 
+    #region[Retotal]
     public function reTotal()
     {
         $count = Cashbook::count();
@@ -167,13 +186,9 @@ class Index extends Component
         return redirect()->to(route('cashbooks'));
 
     }
+    #endregion
 
-    public $order_id = '';
-    public $order_no = '';
-    public Collection $orderCollection;
-    public $highlightOrder = 0;
-    public $orderTyped = false;
-
+    #region[Order]
     public function decrementOrder(): void
     {
         if ($this->highlightOrder === 0) {
@@ -226,20 +241,26 @@ class Index extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->get() : Order::where('company_id', '=', session()->get('company_id'))->get();
     }
+    #endregion
 
+    #region[Delete]
     public function getDelete($id)
     {
         $obj = Cashbook::find($id);
         $obj->delete();
         return redirect()->to(route('cashbooks'));
     }
+    #endregion
 
+    #region[Back]
     public function goBack()
     {
         $this->clearFields();
         return redirect()->to(route('cashbooks'));
     }
+    #endregion
 
+    #region[Submit]
     public function goSubmit()
     {
 
@@ -251,7 +272,9 @@ class Index extends Component
         $this->clearFields();
         return redirect()->to(route('cashbooks'));
     }
+    #endregion
 
+    #region[Clear Fields]
     public function clearFields()
     {
         $this->vmode = '';
@@ -262,7 +285,9 @@ class Index extends Component
         $this->receipt = 0;
         $this->payment = 0;
     }
+    #endregion
 
+    #region[Save]
     private function save()
     {
         $this->findBalance();
@@ -298,7 +323,7 @@ class Index extends Component
             'payment' => $this->payment,
             'balance' => ($this->balance + $this->receipt) - $this->payment,
             'approved' => "0",
-            'remarks' =>$this->remarks,
+            'remarks' => $this->remarks,
             'company_id' => session()->get('company_id'),
             'status_id' => '1',
         ]);
@@ -309,7 +334,9 @@ class Index extends Component
 
         session()->flash('success', '"' . $this->vmode . '"  has been Saved.');
     }
+    #endregion
 
+    #region[Find]
     private function findBalance()
     {
         $receipt = Cashbook::sum('receipt');
@@ -318,8 +345,9 @@ class Index extends Component
         $this->balance = $receipt - $payment;
 
     }
+    #endregion
 
-
+    #region[Render]
     public function render()
     {
         $this->getOrderList();
@@ -331,4 +359,5 @@ class Index extends Component
                 ->paginate($this->perPage)
         ]);
     }
+    #endregion
 }
