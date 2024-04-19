@@ -1,8 +1,8 @@
 <?php
 
-namespace Aaran\Crm\Database\Factories;
+namespace Aaran\Taskmanager\Database\Factories;
 
-use Aaran\Crm\Models\Todos;
+use Aaran\Taskmanager\Models\Todos;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TodosFactory extends Factory

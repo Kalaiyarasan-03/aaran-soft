@@ -1,6 +1,6 @@
 <?php
 
-namespace Aaran\Crm\Models;
+namespace Aaran\Taskmanager\Models;
 
 use Aaran\Audit\Models\Client;
 use App\Models\User;

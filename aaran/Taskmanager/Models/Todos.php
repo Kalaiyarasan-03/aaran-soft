@@ -1,8 +1,8 @@
 <?php
 
-namespace Aaran\Crm\Models;
+namespace Aaran\Taskmanager\Models;
 
-use Aaran\Crm\Database\Factories\TodosFactory;
+use Aaran\Taskmanager\Database\Factories\TodosFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
