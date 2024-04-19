@@ -5,7 +5,7 @@ namespace App\Livewire\Audit\Client;
 use Aaran\Audit\Models\Biller;
 use Aaran\Audit\Models\Client;
 use Aaran\Audit\Models\ClientDetail;
-use Aaran\Crm\Models\Turnover;
+use Aaran\Taskmanager\Models\Turnover;
 use App\Enums\Active;
 use App\Livewire\Trait\CommonTrait;
 use Livewire\Component;
