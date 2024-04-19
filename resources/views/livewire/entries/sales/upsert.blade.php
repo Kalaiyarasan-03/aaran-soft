@@ -3,7 +3,7 @@
     <x-forms.m-panel>
         <section class="grid grid-cols-2">
 
-        <!-- Top Left Area ------------------------------------------------------------------------------------------------>
+            <!-- Top Left Area ------------------------------------------------------------------------------------------------>
             <div class="mt-3 ">
                 <div class="xl:flex w-full gap-2">
 
@@ -12,19 +12,19 @@
                     <div x-data="{isTyped: @entangle('contactTyped')}" @click.away="isTyped = false" class="w-full">
                         <div class="relative ">
                             <input
-                                    id="contact_name"
-                                    type="search"
-                                    wire:model.live="contact_name"
-                                    autocomplete="off"
-                                    placeholder="Party Name.."
-                                    @focus="isTyped = true"
-                                    @keydown.escape.window="isTyped = false"
-                                    @keydown.tab.window="isTyped = false"
-                                    @keydown.enter.prevent="isTyped = false"
-                                    wire:keydown.arrow-up="decrementContact"
-                                    wire:keydown.arrow-down="incrementContact"
-                                    wire:keydown.enter="enterContact"
-                                    class="block w-full purple-textbox "
+                                id="contact_name"
+                                type="search"
+                                wire:model.live="contact_name"
+                                autocomplete="off"
+                                placeholder="Party Name.."
+                                @focus="isTyped = true"
+                                @keydown.escape.window="isTyped = false"
+                                @keydown.tab.window="isTyped = false"
+                                @keydown.enter.prevent="isTyped = false"
+                                wire:keydown.arrow-up="decrementContact"
+                                wire:keydown.arrow-down="incrementContact"
+                                wire:keydown.enter="enterContact"
+                                class="block w-full purple-textbox "
                             />
                             @error('contact_id')
                             <span class="text-red-500">{{'The Party Name is Required.'}}</span>
@@ -67,7 +67,8 @@
                 </div>
 
                 <!-- Order No --------------------------------------------------------------------------------------------->
-                @if(\Aaran\Aaconfig\Src\SaleEntry::hasOrder())
+
+                @if(\Aaran\Aadmin\Src\SaleEntry::hasOrder())
                     <div class="xl:flex flex-col gap-2 pt-6">
                         <div class="xl:flex w-full gap-2">
                             <label for="order_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Order NO</label>
@@ -75,19 +76,19 @@
                                  class="w-full">
                                 <div class="relative">
                                     <input
-                                            id="order_name"
-                                            type="search"
-                                            wire:model.live="order_name"
-                                            autocomplete="off"
-                                            placeholder="Order.."
-                                            @focus="isTyped = true"
-                                            @keydown.escape.window="isTyped = false"
-                                            @keydown.tab.window="isTyped = false"
-                                            @keydown.enter.prevent="isTyped = false"
-                                            wire:keydown.arrow-up="decrementOrder"
-                                            wire:keydown.arrow-down="incrementOrder"
-                                            wire:keydown.enter="enterOrder"
-                                            class="block w-full purple-textbox"
+                                        id="order_name"
+                                        type="search"
+                                        wire:model.live="order_name"
+                                        autocomplete="off"
+                                        placeholder="Order.."
+                                        @focus="isTyped = true"
+                                        @keydown.escape.window="isTyped = false"
+                                        @keydown.tab.window="isTyped = false"
+                                        @keydown.enter.prevent="isTyped = false"
+                                        wire:keydown.arrow-up="decrementOrder"
+                                        wire:keydown.arrow-down="incrementOrder"
+                                        wire:keydown.enter="enterOrder"
+                                        class="block w-full purple-textbox"
                                     />
                                     @error('order_id')
                                     <span class="text-red-500">{{'The Order is Required.'}}</span>
@@ -127,7 +128,8 @@
                 @endif
 
                 <!-- Billing Address -------------------------------------------------------------------------------------->
-                @if(\Aaran\Aaconfig\Src\SaleEntry::hasBillingAddress())
+
+                @if(\Aaran\Aadmin\Src\SaleEntry::hasBillingAddress())
                     <div class="xl:flex gap-2 w-full pt-6">
                         <label for="billing_address" class="w-[10rem] text-zinc-500 tracking-wide py-2">Billing
                             Address</label>
@@ -135,19 +137,19 @@
                              class="w-full">
                             <div class="relative ">
                                 <input
-                                        id="billing_address"
-                                        type="search"
-                                        wire:model.live="billing_address"
-                                        autocomplete="off"
-                                        placeholder="Billing Address.."
-                                        @focus="isTyped = true"
-                                        @keydown.escape.window="isTyped = false"
-                                        @keydown.tab.window="isTyped = false"
-                                        @keydown.enter.prevent="isTyped = false"
-                                        wire:keydown.arrow-up="decrementBilling_address"
-                                        wire:keydown.arrow-down="incrementBilling_address"
-                                        wire:keydown.enter="enterBilling_address"
-                                        class="block w-full purple-textbox "
+                                    id="billing_address"
+                                    type="search"
+                                    wire:model.live="billing_address"
+                                    autocomplete="off"
+                                    placeholder="Billing Address.."
+                                    @focus="isTyped = true"
+                                    @keydown.escape.window="isTyped = false"
+                                    @keydown.tab.window="isTyped = false"
+                                    @keydown.enter.prevent="isTyped = false"
+                                    wire:keydown.arrow-up="decrementBilling_address"
+                                    wire:keydown.arrow-down="incrementBilling_address"
+                                    wire:keydown.enter="enterBilling_address"
+                                    class="block w-full purple-textbox "
                                 />
                                 <div x-show="isTyped"
                                      x-transition:leave="transition ease-in duration-100"
@@ -191,7 +193,8 @@
                 @endif
 
                 <!-- Shipping Address ------------------------------------------------------------------------------------->
-                @if(\Aaran\Aaconfig\Src\SaleEntry::hasShippingAddress())
+
+                @if(\Aaran\Aadmin\Src\SaleEntry::hasShippingAddress())
                     <div class="xl:flex gap-2 w-full pt-6">
                         <label for="shipping_address" class="w-[10rem] text-zinc-500 tracking-wide py-2">Shipping
                             Address</label>
@@ -199,19 +202,19 @@
                              class="w-full">
                             <div class="relative ">
                                 <input
-                                        id="shipping_address"
-                                        type="search"
-                                        wire:model.live="shipping_address"
-                                        autocomplete="off"
-                                        placeholder="Shipping Address.."
-                                        @focus="isTyped = true"
-                                        @keydown.escape.window="isTyped = false"
-                                        @keydown.tab.window="isTyped = false"
-                                        @keydown.enter.prevent="isTyped = false"
-                                        wire:keydown.arrow-up="decrementShipping_address"
-                                        wire:keydown.arrow-down="incrementShipping_address"
-                                        wire:keydown.enter="enterShipping_address"
-                                        class="block w-full purple-textbox "
+                                    id="shipping_address"
+                                    type="search"
+                                    wire:model.live="shipping_address"
+                                    autocomplete="off"
+                                    placeholder="Shipping Address.."
+                                    @focus="isTyped = true"
+                                    @keydown.escape.window="isTyped = false"
+                                    @keydown.tab.window="isTyped = false"
+                                    @keydown.enter.prevent="isTyped = false"
+                                    wire:keydown.arrow-up="decrementShipping_address"
+                                    wire:keydown.arrow-down="incrementShipping_address"
+                                    wire:keydown.enter="enterShipping_address"
+                                    class="block w-full purple-textbox "
                                 />
                                 <div x-show="isTyped"
                                      x-transition:leave="transition ease-in duration-100"
@@ -272,26 +275,27 @@
                 </x-input.model-select>
 
                 <!-- Style ------------------------------------------------------------------------------------------------>
-                @if(\Aaran\Aaconfig\Src\SaleEntry::hasStyle())
+
+                @if(\Aaran\Aadmin\Src\SaleEntry::hasStyle())
                     <div class="xl:flex gap-2 w-full pt-4">
                         <label for="contact_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Style</label>
                         <div x-data="{isTyped: @entangle('styleTyped')}" @click.away="isTyped = false"
                              class="w-full">
                             <div class="relative ">
                                 <input
-                                        id="style_name"
-                                        type="search"
-                                        wire:model.live="style_name"
-                                        autocomplete="off"
-                                        placeholder="Style Name.."
-                                        @focus="isTyped = true"
-                                        @keydown.escape.window="isTyped = false"
-                                        @keydown.tab.window="isTyped = false"
-                                        @keydown.enter.prevent="isTyped = false"
-                                        wire:keydown.arrow-up="decrementStyle"
-                                        wire:keydown.arrow-down="incrementStyle"
-                                        wire:keydown.enter="enterStyle"
-                                        class="block w-full purple-textbox"
+                                    id="style_name"
+                                    type="search"
+                                    wire:model.live="style_name"
+                                    autocomplete="off"
+                                    placeholder="Style Name.."
+                                    @focus="isTyped = true"
+                                    @keydown.escape.window="isTyped = false"
+                                    @keydown.tab.window="isTyped = false"
+                                    @keydown.enter.prevent="isTyped = false"
+                                    wire:keydown.arrow-up="decrementStyle"
+                                    wire:keydown.arrow-down="incrementStyle"
+                                    wire:keydown.enter="enterStyle"
+                                    class="block w-full purple-textbox"
                                 />
 
                                 <div x-show="isTyped"
@@ -327,26 +331,27 @@
                 @endif
 
                 <!-- Despatch --------------------------------------------------------------------------------------------->
-                @if(\Aaran\Aaconfig\Src\SaleEntry::hasDespatch())
+
+                @if(\Aaran\Aadmin\Src\SaleEntry::hasDespatch())
                     <div class="xl:flex gap-2 w-full pt-4">
                         <label for="contact_name" class="w-[10rem] text-zinc-500 tracking-wide py-2">Despatch No</label>
                         <div x-data="{isTyped: @entangle('despatchTyped')}" @click.away="isTyped = false"
                              class="w-full">
                             <div class="relative ">
                                 <input
-                                        id="style_name"
-                                        type="search"
-                                        wire:model.live="despatch_name"
-                                        autocomplete="off"
-                                        placeholder="Despatch No.."
-                                        @focus="isTyped = true"
-                                        @keydown.escape.window="isTyped = false"
-                                        @keydown.tab.window="isTyped = false"
-                                        @keydown.enter.prevent="isTyped = false"
-                                        wire:keydown.arrow-up="decrementDespatch"
-                                        wire:keydown.arrow-down="incrementDespatch"
-                                        wire:keydown.enter="enterDespatch"
-                                        class="block w-full purple-textbox"
+                                    id="style_name"
+                                    type="search"
+                                    wire:model.live="despatch_name"
+                                    autocomplete="off"
+                                    placeholder="Despatch No.."
+                                    @focus="isTyped = true"
+                                    @keydown.escape.window="isTyped = false"
+                                    @keydown.tab.window="isTyped = false"
+                                    @keydown.enter.prevent="isTyped = false"
+                                    wire:keydown.arrow-up="decrementDespatch"
+                                    wire:keydown.arrow-down="incrementDespatch"
+                                    wire:keydown.enter="enterDespatch"
+                                    class="block w-full purple-textbox"
                                 />
 
                                 <div x-show="isTyped"
@@ -389,10 +394,12 @@
         <section class="text-xl font-bold text-orange-400">
             Sales Item
         </section>
+
         <section class="flex flex-row w-full gap-0.5">
 
-        <!--PO/DC  -------------------------------------------------------------------------------------------------------->
-            @if(\Aaran\Aaconfig\Src\SaleEntry::hasPo())
+            <!--PO/DC  -------------------------------------------------------------------------------------------------------->
+
+            @if(\Aaran\Aadmin\Src\SaleEntry::hasPo_no())
                 <div class="w-full">
                     <label for="qty"></label>
                     <input id="qty" wire:model.live="po_no" class="block w-full purple-textbox-no-rounded"
@@ -416,19 +423,19 @@
                 <div x-data="{isTyped: @entangle('productTyped')}" @click.away="isTyped = false">
                     <div class="relative">
                         <input
-                                id="product_name"
-                                type="search"
-                                wire:model.live="product_name"
-                                autocomplete="off"
-                                placeholder="Product Name.."
-                                @focus="isTyped = true"
-                                @keydown.escape.window="isTyped = false"
-                                @keydown.tab.window="isTyped = false"
-                                @keydown.enter.prevent="isTyped = false"
-                                wire:keydown.arrow-up="decrementProduct"
-                                wire:keydown.arrow-down="incrementProduct"
-                                wire:keydown.enter="enterProduct"
-                                class="block w-full purple-textbox-no-rounded"
+                            id="product_name"
+                            type="search"
+                            wire:model.live="product_name"
+                            autocomplete="off"
+                            placeholder="Product Name.."
+                            @focus="isTyped = true"
+                            @keydown.escape.window="isTyped = false"
+                            @keydown.tab.window="isTyped = false"
+                            @keydown.enter.prevent="isTyped = false"
+                            wire:keydown.arrow-up="decrementProduct"
+                            wire:keydown.arrow-down="incrementProduct"
+                            wire:keydown.enter="enterProduct"
+                            class="block w-full purple-textbox-no-rounded"
                         />
 
                         <div x-show="isTyped"
@@ -457,6 +464,7 @@
                                                 @livewire('controls.model.master.product-model',[$product_name])
                                             @endforelse
                                         @endif
+
                                     </ul>
                                 </div>
                             </div>
@@ -466,7 +474,8 @@
             </div>
 
             <!--Product Description --------------------------------------------------------------------------------------->
-            @if(\Aaran\Aaconfig\Src\SaleEntry::hasProductDescription())
+
+            @if(\Aaran\Aadmin\Src\SaleEntry::hasProductDescription())
                 <div class="w-full">
                     <label for="qty"></label>
                     <input id="qty" wire:model.live="description" class="block w-full purple-textbox-no-rounded"
@@ -476,25 +485,26 @@
             @endif
 
             <!--Colour Name ----------------------------------------------------------------------------------------------->
-            @if(\Aaran\Aaconfig\Src\SaleEntry::hasColour())
+
+            @if(\Aaran\Aadmin\Src\SaleEntry::hasColour())
                 <div class="w-full">
                     <label for="colour_name"></label>
                     <div x-data="{isTyped: @entangle('colourTyped')}" @click.away="isTyped = false">
                         <div class="relative">
                             <input
-                                    id="colour_name"
-                                    type="search"
-                                    wire:model.live="colour_name"
-                                    autocomplete="off"
-                                    placeholder="Colour Name.."
-                                    @focus="isTyped = true"
-                                    @keydown.escape.window="isTyped = false"
-                                    @keydown.tab.window="isTyped = false"
-                                    @keydown.enter.prevent="isTyped = false"
-                                    wire:keydown.arrow-up="decrementColour"
-                                    wire:keydown.arrow-down="incrementColour"
-                                    wire:keydown.enter="enterColour"
-                                    class="block w-full purple-textbox-no-rounded"
+                                id="colour_name"
+                                type="search"
+                                wire:model.live="colour_name"
+                                autocomplete="off"
+                                placeholder="Colour Name.."
+                                @focus="isTyped = true"
+                                @keydown.escape.window="isTyped = false"
+                                @keydown.tab.window="isTyped = false"
+                                @keydown.enter.prevent="isTyped = false"
+                                wire:keydown.arrow-up="decrementColour"
+                                wire:keydown.arrow-down="incrementColour"
+                                wire:keydown.enter="enterColour"
+                                class="block w-full purple-textbox-no-rounded"
                             />
 
                             <div x-show="isTyped"
@@ -532,25 +542,26 @@
             @endif
 
             <!--Size ------------------------------------------------------------------------------------------------------>
-            @if(\Aaran\Aaconfig\Src\SaleEntry::hasSize())
+
+            @if(\Aaran\Aadmin\Src\SaleEntry::hasSize())
                 <div class="w-full">
                     <label for="size_name"></label>
                     <div x-data="{isTyped: @entangle('sizeTyped')}" @click.away="isTyped = false">
                         <div class="relative">
                             <input
-                                    id="size_name"
-                                    type="search"
-                                    wire:model.live="size_name"
-                                    autocomplete="off"
-                                    placeholder="Size.."
-                                    @focus="isTyped = true"
-                                    @keydown.escape.window="isTyped = false"
-                                    @keydown.tab.window="isTyped = false"
-                                    @keydown.enter.prevent="isTyped = false"
-                                    wire:keydown.arrow-up="decrementSize"
-                                    wire:keydown.arrow-down="incrementSize"
-                                    wire:keydown.enter="enterSize"
-                                    class="block w-full purple-textbox-no-rounded"
+                                id="size_name"
+                                type="search"
+                                wire:model.live="size_name"
+                                autocomplete="off"
+                                placeholder="Size.."
+                                @focus="isTyped = true"
+                                @keydown.escape.window="isTyped = false"
+                                @keydown.tab.window="isTyped = false"
+                                @keydown.enter.prevent="isTyped = false"
+                                wire:keydown.arrow-up="decrementSize"
+                                wire:keydown.arrow-down="incrementSize"
+                                wire:keydown.enter="enterSize"
+                                class="block w-full purple-textbox-no-rounded"
                             />
 
                             <div x-show="isTyped"
@@ -734,7 +745,7 @@
         <x-forms.section-border/>
 
         <section class="grid grid-cols-2 gap-2 ">
-        <!-- Bottom Left -------------------------------------------------------------------------------------------------->
+            <!-- Bottom Left -------------------------------------------------------------------------------------------------->
             <section class="w-full">
                 <div class="w-3/4">
                     <div class="flex flex-col gap-2 pt-5">
@@ -746,19 +757,19 @@
                                  class='w-full'>
                                 <div class="relative">
                                     <input
-                                            id="ledger_name"
-                                            type="search"
-                                            wire:model.live="ledger_name"
-                                            autocomplete="off"
-                                            placeholder="Ledger.."
-                                            @focus="isTyped = true"
-                                            @keydown.escape.window="isTyped = false"
-                                            @keydown.tab.window="isTyped = false"
-                                            @keydown.enter.prevent="isTyped = false"
-                                            wire:keydown.arrow-up="decrementLedger"
-                                            wire:keydown.arrow-down="incrementLedger"
-                                            wire:keydown.enter="enterLedger"
-                                            class="block w-full purple-textbox"
+                                        id="ledger_name"
+                                        type="search"
+                                        wire:model.live="ledger_name"
+                                        autocomplete="off"
+                                        placeholder="Ledger.."
+                                        @focus="isTyped = true"
+                                        @keydown.escape.window="isTyped = false"
+                                        @keydown.tab.window="isTyped = false"
+                                        @keydown.enter.prevent="isTyped = false"
+                                        wire:keydown.arrow-up="decrementLedger"
+                                        wire:keydown.arrow-down="incrementLedger"
+                                        wire:keydown.enter="enterLedger"
+                                        class="block w-full purple-textbox"
                                     />
                                     @error('ledger_id')
                                     <span class="text-red-500">{{'The Ledger is Required.'}}</span>
@@ -797,7 +808,6 @@
                     </div>
 
                     <!-- Transport ---------------------------------------------------------------------------------------->
-                    @if(\Aaran\Aaconfig\Src\SaleEntry::hasTransport())
 
                     @if(\Aaran\Aadmin\Src\SaleEntry::hasTransport())
                         <div class="flex flex-col gap-2 pt-5">
@@ -808,19 +818,19 @@
                                      class="w-full">
                                     <div class="relative">
                                         <input
-                                                id="transport_name"
-                                                type="search"
-                                                wire:model.live="transport_name"
-                                                autocomplete="off"
-                                                placeholder="Transport.."
-                                                @focus="isTyped = true"
-                                                @keydown.escape.window="isTyped = false"
-                                                @keydown.tab.window="isTyped = false"
-                                                @keydown.enter.prevent="isTyped = false"
-                                                wire:keydown.arrow-up="decrementTransport"
-                                                wire:keydown.arrow-down="incrementTransport"
-                                                wire:keydown.enter="enterTransport"
-                                                class="block w-full purple-textbox"
+                                            id="transport_name"
+                                            type="search"
+                                            wire:model.live="transport_name"
+                                            autocomplete="off"
+                                            placeholder="Transport.."
+                                            @focus="isTyped = true"
+                                            @keydown.escape.window="isTyped = false"
+                                            @keydown.tab.window="isTyped = false"
+                                            @keydown.enter.prevent="isTyped = false"
+                                            wire:keydown.arrow-up="decrementTransport"
+                                            wire:keydown.arrow-down="incrementTransport"
+                                            wire:keydown.enter="enterTransport"
+                                            class="block w-full purple-textbox"
                                         />
                                         @error('transport_id')
                                         <span class="text-red-500">{{'The Transport is Required.'}}</span>
@@ -880,30 +890,30 @@
 
                     <div class="grid w-full grid-cols-2 pt-6">
                         <label
-                                class="px-3 pb-2 text-left text-gray-600 text-md">Taxable&nbsp;Amount&nbsp;:&nbsp;&nbsp;</label>
+                            class="px-3 pb-2 text-left text-gray-600 text-md">Taxable&nbsp;Amount&nbsp;:&nbsp;&nbsp;</label>
                         <label class="px-3 pb-2 text-right text-gray-800 text-md">{{  $total_taxable }}</label>
                     </div>
 
 
                     <div class="grid w-full grid-cols-2 pt-6">
                         <label
-                                class="px-3 pb-2 text-left text-gray-600 text-md">Gst&nbsp;:&nbsp;&nbsp;</label>
+                            class="px-3 pb-2 text-left text-gray-600 text-md">Gst&nbsp;:&nbsp;&nbsp;</label>
                         <label class="px-3 pb-2 text-right text-gray-800 text-md">{{  $total_gst }}</label>
                     </div>
 
 
                     <div class="grid w-full grid-cols-2 pt-6">
                         <label
-                                class="px-3 pb-2 text-left text-gray-600 text-md">Round off&nbsp;:&nbsp;&nbsp;</label>
+                            class="px-3 pb-2 text-left text-gray-600 text-md">Round off&nbsp;:&nbsp;&nbsp;</label>
                         <label class="px-3 pb-2 text-right text-gray-800 text-md">{{$round_off}}</label>
                     </div>
 
 
                     <div class="grid w-full grid-cols-2 pt-6">
                         <label
-                                class="px-3 pb-2 text-xl text-left text-gray-600">Grand&nbsp;Total&nbsp;:&nbsp;&nbsp;</label>
+                            class="px-3 pb-2 text-xl text-left text-gray-600">Grand&nbsp;Total&nbsp;:&nbsp;&nbsp;</label>
                         <label
-                                class="px-3 pb-2 text-xl font-extrabold text-right text-gray-800">{{$grand_total}}</label>
+                            class="px-3 pb-2 text-xl font-extrabold text-right text-gray-800">{{$grand_total}}</label>
                     </div>
                 </div>
             </section>
