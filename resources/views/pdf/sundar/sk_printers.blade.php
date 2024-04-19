@@ -8,7 +8,7 @@
     <title>Printing SalesInovice DC</title>
     <style type="text/css">
         * {
-            font-family: Verdana, Arial, sans-serif;
+            font-family: Verdana, Arial, sans-serif, Helvetica, Times;
         }
 
         .inr-sign::before {
@@ -129,7 +129,7 @@
 <table width="100%" class="print:*">
     <thead>
     <tr><td colspan="2" style="margin-top: 2px; margin-bottom: 2px;border-bottom: none;">
-            <div style="text-align: center; width: 100%;color: #3b82f6;font-size: 35px;" class="companyname">{{$cmp->get('company_name')}}</div>
+            <div style="font-family:Times,serif;text-align: center; width: 100%;color: #3b82f6;font-size: 35px;" class="companyname">{{$cmp->get('company_name')}}</div>
         </td></tr>
     <tr>
         <td colspan="2" style="border-top: none;border-bottom: none;">
@@ -146,11 +146,11 @@
     </tr>
     <tr>
         <td colspan="2" style="  background-color: darkgray">
-            <div style=" height: 18px;text-align: center;  vertical-align: middle; color: white; font-size: medium  ">
-                Invoice
+            <div style=" height: 18px;text-align: center;  vertical-align: middle; color: white;font-size: 18px; ">
+                INVOICE
 
             </div>
-            <div style="text-align: right; color: white; margin-top: -20px; margin-bottom: 4px">
+            <div style="text-align: right; color: white; margin-top: -20px; margin-bottom: 4px;font-size: 15px;">
                 Original copy&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
         </td>
@@ -470,7 +470,7 @@
     @endif
     <tr>
         <td colspan="7"><span>Amount (in words)</span>
-            <div style="margin-top: 5px">
+            <div style="margin-top: 5px;font-size: 12px;font-weight: bold;">
                 {{$rupees}}Only
             </div>
         </td>
@@ -478,9 +478,9 @@
         <td align="center" style="border-bottom: none; border-left: none;font-weight: bold; font-size:medium;">{{number_format($obj->grand_total,2,'.','')}}</td>
     </tr>
     <tr>
-        <td colspan="6" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px ;">Receiver Sign
+        <td colspan="7" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px ;">Receiver Sign
         </td>
-        <td colspan="7" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; ">
+        <td colspan="6" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; ">
             &nbsp;for&nbsp;{{$cmp->get('company_name')}}
             <div style="padding-top: 34px;  margin-top:16px">Authorized signatory</div>
         </td>
