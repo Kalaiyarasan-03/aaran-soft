@@ -179,7 +179,8 @@
             <!-- Save & Cancel ---------------------------------------------------------------------------------------->
             <div class="px-6 py-3 text-right">
                 <div class="flex flex-col md:flex-row justify-between gap-3 ">
-                    <div></div>
+                    <div
+                    ></div>
                     <div class="flex gap-3">
                         <button wire:click.prevent="$set('showEditModal', false)"
                                 class='inline-flex items-center px-4 py-2 border border-transparent

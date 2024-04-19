@@ -1,6 +1,6 @@
 <?php
 
-namespace Aaran\Crm\Providers;
+namespace Aaran\Taskmanager\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

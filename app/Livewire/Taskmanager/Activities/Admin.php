@@ -3,7 +3,7 @@
 namespace App\Livewire\Taskmanager\Activities;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Crm\Models\Activities;
+use Aaran\Taskmanager\Models\Activities;
 use App\Livewire\Trait\CommonTrait;
 use App\Models\User;
 use Carbon\Carbon;
@@ -25,6 +25,8 @@ class Admin extends Component
     public Collection $dates;
     public Collection $users;
     public mixed $user_id = '';
+    public $verified;
+    public $verified_on;
 
 
     public function mount()
@@ -47,6 +49,8 @@ class Admin extends Component
                     'duration' => $this->duration,
                     'channel' => $this->channel,
                     'remarks' => $this->remarks,
+                    'verified' => $this->verified,
+                    'verified_on' => $this->verified_on,
                     'company_id' => session()->get('company_id'),
                     'active_id' => $this->active_id,
                 ]);
@@ -61,6 +65,8 @@ class Admin extends Component
                 $obj->duration = $this->duration;
                 $obj->channel = $this->channel;
                 $obj->remarks = $this->remarks;
+                $obj->verified = $this->verified;
+                $obj->verified_on = $this->verified_on;
                 $obj->company_id = session()->get('company_id');
                 $obj->active_id = $this->active_id;
                 $obj->save();
@@ -71,6 +77,8 @@ class Admin extends Component
             $this->remarks = '';
             $this->duration = '';
             $this->channel = '';
+            $this->verified = '';
+            $this->verified_on = '';
             $this->reRender();
             return $message;
         }
@@ -88,6 +96,8 @@ class Admin extends Component
             $this->duration = $obj->duration;
             $this->channel = $obj->channel;
             $this->remarks = $obj->remarks;
+            $this->verified = $obj->verified;
+            $this->verified_on = $obj->verified_on;
             $this->active_id = $obj->active_id;
             return $obj;
         }
