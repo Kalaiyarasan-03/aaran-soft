@@ -5,7 +5,7 @@
             <div class="w-1/4">
 
                                 @if(Aaran\Aadmin\Src\Customise::hasTodoList())
-                                        <livewire:taskmanager.todos.index/>
+{{--                                        <livewire:taskmanager.todos.index/>--}}
                                 @endif
 
             </div>
