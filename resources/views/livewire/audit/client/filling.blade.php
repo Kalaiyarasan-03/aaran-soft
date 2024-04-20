@@ -2,7 +2,7 @@
     <x-slot name="header">GST Filling</x-slot>
 
     <x-forms.m-panel>
-
+        <!-- Top Controls -------------------------------------------------------------------------------------------->
         <div class="flex flex-row gap-3 py-3">
 
             <div class="flex flex-row gap-3 py-3 w-full">
@@ -26,75 +26,75 @@
             </div>
         </div>
 
+        <!-- Header --------------------------------------------------------------------------------------------------->
+
         <x-forms.table :list="$list">
             <x-slot name="table_header">
-                <x-table.ths-slno wire:click.prevent="sortBy('client_id')">SL.NO</x-table.ths-slno>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">Client</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">GSTR-1</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">GSTR-3B</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">Status</x-table.ths>
-                <x-table.ths >Action</x-table.ths>
+                <x-table.header-serial wire:click.prevent="sortBy('invoice_no')"/>
+                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Client</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>GSTR-1</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>GSTR-3B</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Status</x-table.header-text>
+                <x-table.header-text center>Action</x-table.header-text>
             </x-slot>
+
+            <!-- Table Body ------------------------------------------------------------------------------------------->
+
             <x-slot name="table_body">
                 @forelse ($list as $index =>  $row)
                     <x-table.row>
 
-                        <x-table.cell>
+                        <x-table.cell-text center>
                             <button wire:click.prevent="edit({{ $row->id }})">
-                                <p class="flex px-3 text-gray-600 truncate text-xl text-left">
-                                    {{ $index + 1 }}
-                                </p>
+                                {{ $index + 1 }}
                             </button>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
+                        <x-table.cell-text center>
                             <button wire:click.prevent="edit({{ $row->id }})">
-                                <p class="flex px-3 text-gray-600 truncate text-xl text-left">
-                                    {{ $row->client->vname }}
-                                </p>
+                                {{ $row->client->vname }}
                             </button>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
+                        <x-table.cell-text center>
                             <button wire:click.prevent="edit({{ $row->id }})">
-                                <p class="flex px-3 text-gray-600 truncate text-xl text-left">
-                                    {{ $row->gstr1_arn }}
-                                    -{{$row->gstr1_date ?  date('d-m-Y',strtotime($row->gstr1_date )) : '' }}
-                                </p>
+                                {{ $row->gstr1_arn }}
+                                -{{$row->gstr1_date ?  date('d-m-Y',strtotime($row->gstr1_date )) : '' }}
                             </button>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
+                        <x-table.cell-text center>
                             <button wire:click.prevent="edit({{ $row->id }})">
-                                <p class="flex px-3 text-gray-600 truncate text-xl text-left">
-                                    {{ $row->gstr3b_arn }}
-                                    -{{$row->gstr3b_date ?  date('d-m-Y',strtotime($row->gstr3b_date )) : '' }}
-                                </p>
+                                {{ $row->gstr3b_arn }}
+                                -{{$row->gstr3b_date ?  date('d-m-Y',strtotime($row->gstr3b_date )) : '' }}
                             </button>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
+                        <x-table.cell-text center>
                             <div
                                 class="flex w-full items-center justify-center  text-center {{  \App\Enums\Status::tryFrom($row->status_id)->getStyle()}}">
                                 <p class="flex w-full text-xl text-center  items-center justify-center p-1">
                                     {{ \App\Enums\Status::tryFrom($row->status_id)->getName()}}
                                 </p>
                             </div>
-                        </x-table.cell>
-
+                        </x-table.cell-text>
 
                         <x-table.action :id="$row->id"/>
                     </x-table.row>
+
                 @empty
                     <x-table.empty/>
                 @endforelse
             </x-slot>
+
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>
         </x-forms.table>
 
         <x-modal.delete/>
+
+        <!-- Create --------------------------------------------------------------------------------------------------->
 
         <x-forms.create :id="$vid">
             <x-input.model-text wire:model="gstr1_arn" autofocus :label="'GSTR-1-ARN'"/>
@@ -105,7 +105,7 @@
 
         <div class="flex flex-row justify-between px-5">
 
-        <x-button.primary wire:click="generate">Generate</x-button.primary>
+            <x-button.primary wire:click="generate">Generate</x-button.primary>
             <div>Hi, yet to be file - <span class="px-5 text-xl text-red-500 font-extrabold">{{$filed}}</span></div>
         </div>
 

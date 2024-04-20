@@ -25,6 +25,7 @@ class Filling extends Component
     public mixed $gstr3b_arn;
     public mixed $gstr3b_date;
     public mixed $filed;
+
     #endregion
 
     #region[Mount]
@@ -129,19 +130,27 @@ class Filling extends Component
     #region[Count]
     public function FiledCount()
     {
-        $f = DB::table('gstfillings')
+        $f = DB::table('client_gst_filings')
             ->where('status_id', '=', Status::FINISHED->value)
             ->where('month', '=', $this->month)
             ->where('year', '=', $this->year)
             ->count();//filed count
 
-        $c = DB::table('gstfillings')
+        $c = DB::table('client_gst_filings')
             ->where('month', '=', $this->month)
             ->where('year', '=', $this->year)
             ->count();//client count
 
         $this->filed = $c - $f;
     }
+    #endregion
+
+    #region[delete]
+//    public function set_delete($id): void
+//    {
+//        $obj=ClientGstFiling::find($id);
+//        $obj->delete();
+//    }
     #endregion
 
     #region[Render]
