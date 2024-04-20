@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Taskmanager\BankStatementEntry;
+namespace App\Livewire\Audit\BankStatementEntry;
 
 use Aaran\Audit\Models\ClientBank;
 use Aaran\Crm\Models\BankStatementEntry;

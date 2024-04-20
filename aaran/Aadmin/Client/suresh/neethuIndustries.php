@@ -15,4 +15,8 @@ return [
         SaleEntry::transport(),
 
     ],
+
+    'menus'=>[
+
+    ]
 ];

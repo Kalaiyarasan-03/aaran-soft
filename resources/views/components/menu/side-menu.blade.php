@@ -25,12 +25,25 @@
         <ul class="flex flex-col py-6 space-y-1"
             x-data="{selected:null}">
 
-            <x-menu.sub.entries/>
-            <x-menu.sub.task/>
-            <x-menu.sub.audit/>
-            <x-menu.sub.accounts/>
-            <x-menu.sub.master/>
-            <x-menu.sub.common/>
+            @if(Aaran\Aadmin\Src\MainMenu::hasAudit())
+                <x-menu.sub.audit/>
+            @endif
+            @if(Aaran\Aadmin\Src\MainMenu::hasEntries())
+                <x-menu.sub.entries/>
+            @endif
+            @if(Aaran\Aadmin\Src\MainMenu::hasTask())
+                <x-menu.sub.task/>
+            @endif
+            @if(Aaran\Aadmin\Src\MainMenu::hasAccounts())
+                <x-menu.sub.accounts/>
+            @endif
+            @if(Aaran\Aadmin\Src\MainMenu::hasMaster())
+                <x-menu.sub.master/>
+            @endif
+            @if(Aaran\Aadmin\Src\MainMenu::hasCommon())
+                <x-menu.sub.common/>
+            @endif
+
             <x-menu.sub.logout/>
         </ul>
     </div>

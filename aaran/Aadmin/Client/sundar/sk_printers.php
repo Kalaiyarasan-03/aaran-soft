@@ -15,4 +15,8 @@ return [
         SaleEntry::Dc_no(),
         SaleEntry::productDescription(),
     ],
+
+    'menus'=>[
+
+    ]
 ];

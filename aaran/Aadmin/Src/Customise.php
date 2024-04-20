@@ -12,6 +12,7 @@ class Customise
             config('clients.VIJAY_GARMENTS') => in_array($feature, config('vijayGarments.features', [])),
             config('clients.NEETHU_INDUSTRIES') => in_array($feature, config('neethuIndustries.features', [])),
             config('clients.SK_PRINTERS') => in_array($feature, config('sk_printers.features', [])),
+            config('clients.AARAN_ASSOCIATES') => in_array($feature, config('aaran_associates.features', [])),
         };
     }
 

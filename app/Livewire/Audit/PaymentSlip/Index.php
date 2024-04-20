@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Taskmanager\PaymentSlip;
+namespace App\Livewire\Audit\PaymentSlip;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Crm\Models\PaymentSlip;

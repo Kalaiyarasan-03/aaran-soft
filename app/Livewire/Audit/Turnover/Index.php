@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Taskmanager\Turnover;
+namespace App\Livewire\Audit\Turnover;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Crm\Models\Turnover;

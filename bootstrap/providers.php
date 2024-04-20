@@ -17,7 +17,7 @@ return [
 //    Aaran\Erp\Providers\ErpServiceProvider::class,
 //    Aaran\Attendance\Providers\AttendanceServiceProvider::class,
     Aaran\Taskmanager\Providers\TaskmanagerServiceProvider::class,
-    Aaran\Audit\Providers\AuditServiceProvider::class,
+//    Aaran\Audit\Providers\AuditServiceProvider::class,
 //    Aaran\Admin\Providers\AdminServiceProvider::class,
 //    Aaran\Magalir\Providers\MagalirServiceProvider::class,
 //    Aaran\Accounts\Providers\AccountsServiceProvider::class,

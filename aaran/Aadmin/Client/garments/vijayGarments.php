@@ -2,6 +2,7 @@
 
 use Aaran\Aadmin\Src\Customise;
 use Aaran\Aadmin\Src\SaleEntry;
+use Aaran\Aadmin\Src\MainMenu;
 
 return [
 
@@ -23,4 +24,11 @@ return [
         SaleEntry::colour(),
         SaleEntry::size(),
     ],
+
+    'menus' => [
+        MainMenu::entries(),
+        MainMenu::accounts(),
+        MainMenu::master(),
+        MainMenu::common(),
+    ]
 ];

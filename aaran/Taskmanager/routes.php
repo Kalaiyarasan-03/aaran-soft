@@ -15,10 +15,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('activities', App\Livewire\Taskmanager\Activities\Index::class)->name('activities');
     Route::get('activities/admins', App\Livewire\Taskmanager\Activities\Admin::class)->name('activities.admins');
     Route::get('noticeboards', App\Livewire\Taskmanager\NoticeBoard\Index::class)->name('noticeboards');
-    Route::get('payment-slips', App\Livewire\Taskmanager\PaymentSlip\Index::class)->name('payment-slips');
+    Route::get('payment-slips', \App\Livewire\Audit\PaymentSlip\Index::class)->name('payment-slips');
 
-    Route::get('turnovers', App\Livewire\Taskmanager\Turnover\Index::class)->name('turnovers');
-    Route::get('gstcredits', App\Livewire\Taskmanager\Gstcredit\Index::class)->name('gstcredits');
-    Route::get('bankStatementEntries', App\Livewire\Taskmanager\BankStatementEntry\Index ::class)->name('bankStatementEntries');
+    Route::get('turnovers', \App\Livewire\Audit\Turnover\Index::class)->name('turnovers');
+    Route::get('gstcredits', \App\Livewire\Audit\Gstcredit\Index::class)->name('gstcredits');
+    Route::get('bankStatementEntries', \App\Livewire\Audit\BankStatementEntry\Index ::class)->name('bankStatementEntries');
 
 });

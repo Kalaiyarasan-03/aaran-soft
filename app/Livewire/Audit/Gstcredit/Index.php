@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Taskmanager\Gstcredit;
+namespace App\Livewire\Audit\Gstcredit;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Crm\Models\Gstcredit;
