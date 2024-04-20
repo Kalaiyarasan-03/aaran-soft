@@ -2,10 +2,8 @@
 
 namespace App\Livewire\Audit\Client;
 
-use Aaran\Audit\Models\ClientBilled;
 use Aaran\Audit\Models\Client;
 use Aaran\Audit\Models\ClientDetail;
-use Aaran\Taskmanager\Models\Turnover;
 use App\Enums\Active;
 use App\Livewire\Trait\CommonTrait;
 use Livewire\Component;
@@ -171,45 +169,6 @@ class Show extends Component
     public string $companyx;
     public string $modex;
 
-    public function createBillPlan(): void
-    {
-        if ($this->client_id) {
-            ClientBilled::create([
-                'client_id' => $this->client_id,
-                'vname' => $this->companyx,
-                'mode' => $this->modex,
-                'active_id' => Active::ACTIVE->value,
-                'company_id' => session()->get('company_id'),
-            ]);
-        }
-
-        $this->billPlanModal = false;
-        $this->render();
-
-    }
-
-    public function deleteBillPlan($id): void
-    {
-        if ($id) {
-            $obj = ClientBilled::find($id);
-            if ($obj) {
-                $obj->delete();
-            }
-        }
-        $this->render();
-    }
-
-
-    public function getBilling(): void
-    {
-        $this->billing = ClientBilled::where('client_id', '=', $this->client_id)
-            ->where('company_id', '=', session()->get('company_id'))->get();
-    }
-
-    public function getTurnover(): void
-    {
-        $this->turnover = Turnover::where('client_id', '=', $this->client_id)->get();
-    }
 
 
     public function redirectTo(): void
@@ -230,8 +189,6 @@ class Show extends Component
     {
         $this->getClient();
         $this->getClientDetails();
-        $this->getBilling();
-        $this->getTurnover();
 
         return view('livewire.audit.client.show');
     }
