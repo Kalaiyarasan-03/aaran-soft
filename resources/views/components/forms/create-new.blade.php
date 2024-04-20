@@ -4,7 +4,7 @@
 
 <form wire:submit.prevent="save">
     <div class="w-full">
-        <x-jet.modal wire:model.defer="showEditModal">
+        <x-jet.modal :maxWidth="'6xl'" wire:model.defer="showEditModal">
             <div class="px-6  pt-4">
                 <div class="text-lg">
                     {{$id === "" ? 'New Entry' : 'Edit Entry'}}
