@@ -13,9 +13,12 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[Cashbook properties]
     public string $group = '';
     public string $payable = '';
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vname != '' or $this->group != '') {
@@ -52,7 +55,9 @@ class Index extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[Create]
     public function createClientDetails($id): void
     {
         ClientDetail::create([
@@ -81,7 +86,9 @@ class Index extends Component
             'acc_email_pass' => '',
         ]);
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -95,7 +102,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'id';
@@ -108,7 +117,9 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function reRender(){
         $this->render();
     }
@@ -119,4 +130,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

@@ -16,6 +16,7 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[Payment properties]
     public mixed $serial = 0;
 
     #[Url(history: true)]
@@ -34,6 +35,13 @@ class Index extends Component
     public Collection $allGroups;
     public $cdate;
 
+    public $client_id;
+    public $receive_id;
+    public $activeX = '';
+
+    #endregion
+
+    #region[Mount]
     public function mount()
     {
         $this->clients = Client::all()->where('company_id', '=', session()->get('company_id'));
@@ -46,7 +54,9 @@ class Index extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->orderBy('group')->get();
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->sender_id != '') {
@@ -97,7 +107,9 @@ class Index extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -118,10 +130,9 @@ class Index extends Component
         return null;
     }
 
-    public $client_id;
-    public $receive_id;
-    public $activeX = '';
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'serial';
@@ -180,7 +191,9 @@ class Index extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function reRender(): void
     {
         $this->render();
@@ -202,4 +215,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

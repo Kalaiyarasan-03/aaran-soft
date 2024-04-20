@@ -11,6 +11,7 @@ class Upsert extends Component
 {
     use WithFileUploads;
 
+    #region[properties]
     public mixed $vid = '';
     public string $title;
     public string $body;
@@ -19,7 +20,9 @@ class Upsert extends Component
     public $id;
     public $user_id;
     public $company_id;
+    #endregion
 
+    #region[Mount]
     public function mount($id)
     {
         if ($id != 0) {
@@ -31,10 +34,10 @@ class Upsert extends Component
             $this->user_id = $post->user_id;
 
         }
-
-
     }
+    #endregion
 
+    #region[Delete]
     public function set_delete($id): void
     {
         $post = Post::find($id);
@@ -43,7 +46,9 @@ class Upsert extends Component
         $post->delete();
         $this->redirect(route('posts'));
     }
+    #endregion
 
+    #region[Save]
     public function save()
     {
         if ($this->title != '') {
@@ -74,9 +79,10 @@ class Upsert extends Component
 
             }
         }
-
     }
+    #endregion
 
+    #region[Image]
     public function updatedImage()
     {
         $this->validate([
@@ -91,11 +97,11 @@ class Upsert extends Component
     {
         return $this->image->store('photos','public');
     }
+    #endregion
 
-
+    #region[Route]
     public function getRoute(): void
     {
-
         $this->redirect(route('posts'));
     }
 
@@ -104,4 +110,5 @@ class Upsert extends Component
     {
         return view('livewire.blog.post.upsert')->layout('layouts.web');
     }
+    #endregion
 }

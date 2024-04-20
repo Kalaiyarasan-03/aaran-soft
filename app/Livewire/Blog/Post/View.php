@@ -16,6 +16,7 @@ class View extends Component
     use WithPagination;
     use CommonTrait;
 
+    #region[properties]
     public $post_id;
     public string $vid = '';
     public $body;
@@ -23,7 +24,9 @@ class View extends Component
     public $id;
     public $like = 0;
     public $user_id;
+    #endregion
 
+    #region[Increment]
     public function incrementLike()
     {
         $this->like++;
@@ -37,7 +40,9 @@ class View extends Component
             }
         }
     }
+    #endregion
 
+    #region[Delete]
     public function set_delete($id): void
     {
         $comment = Comment::find($id);
@@ -45,8 +50,8 @@ class View extends Component
 //        $this->redirect(route('posts'));
     }
 
-
-    public function mount($id)
+        #region[Cashbook properties]
+        public function mount($id)
     {
         if ($id) {
             $this->post = Post::find($id);
@@ -56,7 +61,9 @@ class View extends Component
 
         }
     }
+    #endregion
 
+    #region[Save]
     public function save()
     {
         $this->validate([
@@ -85,7 +92,9 @@ class View extends Component
             $this->clearFields();
         }
     }
+    #endregion
 
+    #region[Edit]
     public function editComment($id)
     {
         $obj = Comment::find($id);
@@ -99,22 +108,24 @@ class View extends Component
         $obj = Comment::find($id);
        $obj->delete();
     }
+    #endregion
 
-
+    #region[Clear]
     public function clearFields()
     {
         $this->body = '';
 
     }
 
-
     public function getContact()
     {
         $this->contacts = Contact::where('company_id', '=', session()->get('company_id'))->get();
 
     }
+    #endregion
 
 
+    #region[Render]
     public function render()
     {
         return view('livewire.blog.post.view')->layout('layouts.web')->with([
@@ -123,6 +134,6 @@ class View extends Component
             'likes' => Like::where('post_id', '=', $this->post_id)
 
         ]);
-
     }
+    #endregion
 }
