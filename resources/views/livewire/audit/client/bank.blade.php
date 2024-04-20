@@ -79,9 +79,9 @@
 
         <!--Form Create ----------------------------------------------------------------------------------------------->
 
-        <x-forms.create :id="$vid">
+        <x-forms.create-new :id="$vid">
 
-            <div class="flex">
+            <div class="flex w-full">
                 <div class="lg ml-2 px-8">
 
                     <x-input.model-select wire:model="client_id" :label="'client'">
@@ -110,7 +110,7 @@
                     <x-input.model-text wire:model="dvcatm" :label="'dvcatm'"/>
                 </div>
             </div>
-        </x-forms.create>
+        </x-forms.create-new>
 
     </x-forms.m-panel>
 </div>

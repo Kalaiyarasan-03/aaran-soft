@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('gstfillings', function (Blueprint $table) {
+        Schema::create('client_gst_filings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_id')->references('id')->on('clients');
             $table->string('month');
@@ -26,6 +26,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('gstfillings');
+        Schema::dropIfExists('client_gst_filings');
     }
 };
