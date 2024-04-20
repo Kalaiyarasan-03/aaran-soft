@@ -81,8 +81,8 @@
 
         <x-forms.create-new :id="$vid">
 
-            <div class="flex w-full">
-                <div class="lg ml-2 px-8">
+            <div class="lg:flex w-full">
+                <div class="lg:ml-2 px-8 w-1/2">
 
                     <x-input.model-select wire:model="client_id" :label="'client'">
                         <option class="text-gray-400"> choose ..</option>
@@ -100,7 +100,7 @@
                 </div>
 
 
-                <div class=" px-8">
+                <div class="lg:px-8 w-1/2">
                     <x-input.model-text wire:model="customer_id2" :label="'User Id'"/>
                     <x-input.model-text wire:model="pks" :label="'Pks'"/>
                     <x-input.model-text wire:model="trs" :label="'Trs'"/>
