@@ -12,18 +12,20 @@ use Livewire\WithPagination;
 class Index extends Component
 {
     use WithPagination;
+
+    #region[Attendance properties]
     public Attendance $attendance;
     public $vid = '';
     public $vdate = '';
     public $in_time = '';
     public $out_time = '';
-    public mixed $amount= '';
-    public mixed $total_amount= 307.69;
+    public mixed $amount = '';
+    public mixed $total_amount = 307.69;
     public $user_name = '';
     public $user_id = '';
+    #endregion
 
-
-
+    #region[Save]
     public function save()
     {
         if ($this->vid == "") {
@@ -46,15 +48,19 @@ class Index extends Component
             $obj->save();
         }
     }
+    #endregion
 
+    #region[List]
     public function getlist()
     {
-        return Attendance::all()->whereBetween('vdate',  [
+        return Attendance::all()->whereBetween('vdate', [
             Carbon::now()->startOfMonth()->format('Y-m-d'),
             Carbon::now()->endOfMonth()->format('Y-m-d')
-        ])  ->where('company_id', '=', session()->get('company_id'))->where('user_id', Auth::id());
+        ])->where('company_id', '=', session()->get('company_id'))->where('user_id', Auth::id());
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -69,29 +75,36 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[Mark In]
     public function mark_in()
     {
-        if ($this->vid== "") {
-        $this->in_time = Carbon::now()->format('g:i:s');
-        $this->vdate = Carbon::parse(Carbon::now());
-        $this->out_time = '';
-        $this->save();
+        if ($this->vid == "") {
+            $this->in_time = Carbon::now()->format('g:i:s');
+            $this->vdate = Carbon::parse(Carbon::now());
+            $this->out_time = '';
+            $this->save();
         }
     }
+    #endregion
 
+    #region[Mark Out]
     public function mark_out($id)
     {
         $this->getObj($id);
-        if ($this->out_time==""){
-        $this->save();
+        if ($this->out_time == "") {
+            $this->save();
         }
     }
+    #endregion
+
+    #region[Render]
     public function render()
     {
         return view('livewire.attendance.attendance.index')->with([
             'list' => $this->getList()
         ]);
-
     }
+    #endregion
 }

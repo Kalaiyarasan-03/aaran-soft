@@ -8,7 +8,7 @@
         <x-forms.top-controls :show-filters="$showFilters"/>
         <x-forms.table :list="$list">
 
-        <!-- Header --------------------------------------------------------------------------------------------------->
+            <!-- Header --------------------------------------------------------------------------------------------------->
 
             <x-slot name="table_header">
                 <x-table.header-serial wire:click.prevent="sortBy('vname')"/>
@@ -18,7 +18,7 @@
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>IFSC</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>Active</x-table.header-text>
                 <x-table.header-text center>Action</x-table.header-text>
-              </x-slot>
+            </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
 
@@ -77,29 +77,39 @@
 
         <x-modal.delete/>
 
-            <!--Form Create ------------------------------------------------------------------------------------------->
+        <!--Form Create ----------------------------------------------------------------------------------------------->
 
         <x-forms.create :id="$vid">
 
-            <x-input.model-select wire:model="client_id" :label="'client'">
-                <option class="text-gray-400"> choose ..</option>
-                @foreach($clients as $row)
-                    <option value="{{$row->id}}">{{$row->vname}}</option>
-                @endforeach
-            </x-input.model-select>
-            <x-input.model-text wire:model="vname" :label="'company'"/>
-            <x-input.model-text wire:model="acno" :label="'Ac No'"/>
-            <x-input.model-text wire:model="ifsc" :label="'IFSC Code'"/>
-            <x-input.model-text wire:model="bank" :label="'Bank'"/>
-            <x-input.model-text wire:model="branch" :label="'Branch'"/>
-            <x-input.model-text wire:model="customer_id" :label="'Customer Id'"/>
-            <x-input.model-text wire:model="customer_id2" :label="'User Id'"/>
-            <x-input.model-text wire:model="pks" :label="'Pks'"/>
-            <x-input.model-text wire:model="trs" :label="'Trs'"/>
-            <x-input.model-text wire:model="profileps" :label="'Profile'"/>
-            <x-input.model-text wire:model="mobile" :label="'Mobile'"/>
-            <x-input.model-text wire:model="email" :label="'Email'"/>
-            <x-input.model-text wire:model="dvcatm" :label="'dvcatm'"/>
+            <div class="flex">
+                <div class="lg ml-2 px-8">
+
+                    <x-input.model-select wire:model="client_id" :label="'client'">
+                        <option class="text-gray-400"> choose ..</option>
+                        @foreach($clients as $row)
+                            <option value="{{$row->id}}">{{$row->vname}}</option>
+                        @endforeach
+                    </x-input.model-select>
+
+                    <x-input.model-text wire:model="vname" :label="'company'"/>
+                    <x-input.model-text wire:model="acno" :label="'Ac No'"/>
+                    <x-input.model-text wire:model="ifsc" :label="'IFSC Code'"/>
+                    <x-input.model-text wire:model="bank" :label="'Bank'"/>
+                    <x-input.model-text wire:model="branch" :label="'Branch'"/>
+                    <x-input.model-text wire:model="customer_id" :label="'Customer Id'"/>
+                </div>
+
+
+                <div class=" px-8">
+                    <x-input.model-text wire:model="customer_id2" :label="'User Id'"/>
+                    <x-input.model-text wire:model="pks" :label="'Pks'"/>
+                    <x-input.model-text wire:model="trs" :label="'Trs'"/>
+                    <x-input.model-text wire:model="profileps" :label="'Profile'"/>
+                    <x-input.model-text wire:model="mobile" :label="'Mobile'"/>
+                    <x-input.model-text wire:model="email" :label="'Email'"/>
+                    <x-input.model-text wire:model="dvcatm" :label="'dvcatm'"/>
+                </div>
+            </div>
         </x-forms.create>
 
     </x-forms.m-panel>

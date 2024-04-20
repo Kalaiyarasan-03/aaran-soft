@@ -13,16 +13,22 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[Bank properties]
     public mixed $bank_id;
     public mixed $entry;
     public mixed $remarks;
     public mixed $status_id;
     public mixed $current_date;
+    #endregion
 
-    public function mount(){
+    #region[Mount]
+    public function mount()
+    {
         $this->current_date = (Carbon::parse(Carbon::now())->format('Y-m-d'));
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vid) {
@@ -40,7 +46,9 @@ class Index extends Component
         $this->status_id = '';
         return 'Updated';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -53,7 +61,9 @@ class Index extends Component
             $this->active_id = $obj->active_id;
         }
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'client_banks_id';
@@ -63,12 +73,14 @@ class Index extends Component
                 'bank_statement_entries.*'
             )
             ->join('client_banks', 'client_banks.id', '=', 'bank_statement_entries.client_banks_id')
-            ->where('bank_statement_entries.active_id','=', $this->activeRecord)
+            ->where('bank_statement_entries.active_id', '=', $this->activeRecord)
             ->where('company_id', '=', session()->get('company_id'))
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Generate]
     public function generate()
     {
         $gstClient = ClientBank::where('active_id', '=', '1')->get();
@@ -92,7 +104,9 @@ class Index extends Component
         }
         $this->reRender();
     }
+    #endregion
 
+    #region[Render]
     public function reRender()
     {
         $this->render();
@@ -104,4 +118,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

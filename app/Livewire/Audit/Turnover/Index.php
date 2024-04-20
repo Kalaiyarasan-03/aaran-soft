@@ -15,6 +15,7 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[Turnover properties]
     public mixed $client_id;
     public mixed $month;
     public mixed $year;
@@ -22,13 +23,17 @@ class Index extends Component
     public mixed $achieved;
     public mixed $remarks;
     public mixed $status_id;
+    #endregion
 
+    #region[Mount]
     public function mount()
     {
         $this->month = Months::AUGUST->value;
         $this->year = Years::AY_2024->value;
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vid) {
@@ -53,7 +58,9 @@ class Index extends Component
         $this->status_id = '';
         return 'Updated';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -65,7 +72,9 @@ class Index extends Component
             $this->status_id = $obj->status_id;
         }
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'client_id';
@@ -77,7 +86,9 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Generate]
     public function generate()
     {
         $gstClient = Client::all()->where('company_id', '=', session()->get('company_id'));
@@ -106,7 +117,9 @@ class Index extends Component
         }
         $this->reRender();
     }
+    #endregion
 
+    #region[Render]
     public function reRender()
     {
         $this->render();
@@ -118,4 +131,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

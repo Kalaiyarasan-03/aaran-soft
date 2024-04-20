@@ -15,6 +15,7 @@ class Fee extends Component
 {
     use CommonTrait;
 
+    #region[Fee properties]
     public string $month;
     public string $year;
     public mixed $client_id;
@@ -29,14 +30,17 @@ class Fee extends Component
     public string $status_id;
 
     public mixed $diff;
+    #endregion
 
-
+    #region[Mount]
     public function mount()
     {
         $this->month = date("m");
         $this->year = Years::AY_2024->value;
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -56,7 +60,9 @@ class Fee extends Component
             $this->active_id = $obj->active_id;
         }
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vid) {
@@ -92,7 +98,9 @@ class Fee extends Component
         $this->client = '';
         return 'Updated';
     }
+    #endregion
 
+    #region[Generate]
     public function generate(): void
     {
         $gstClient = Client::where('payable', '=', '1')
@@ -128,7 +136,9 @@ class Fee extends Component
             }
         }
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'client_id';
@@ -141,7 +151,11 @@ class Fee extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
-    public function reRender(){
+    #endregion
+
+    #region[Render]
+    public function reRender()
+    {
         $this->render();
     }
 
@@ -151,4 +165,5 @@ class Fee extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

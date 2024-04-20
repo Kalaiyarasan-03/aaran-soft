@@ -14,19 +14,24 @@ class Balance extends Component
 {
     use CommonTrait;
 
+    #region[Balance properties]
     public string $client_bank_id = '';
     public mixed $cdate;
     public mixed $balance = 0;
     public $clients;
     public $dates;
+    #endregion
 
+    #region[Mount]
     public function mount()
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->clients = ClientBank::where('active_id', '=', '1')->where('company_id', '=', session()->get('company_id'))->get();
         $this->dates = DB::table('bank_balances')->select('cdate')->distinct('cdate')->limit(3)->orderBy('cdate', 'desc')->get();
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->client_bank_id != '' or $this->acno != '' or $this->ifsc != '') {
@@ -48,7 +53,9 @@ class Balance extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -61,7 +68,9 @@ class Balance extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[Generate]
     public function generate(): void
     {
         $gstClient = ClientBank::where('active_id', '=', '1')->where('company_id', '=', session()->get('company_id'))->get();
@@ -88,7 +97,9 @@ class Balance extends Component
             }
         }
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'client_bank_id';
@@ -100,7 +111,9 @@ class Balance extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function reRender()
     {
         $this->render();
@@ -108,10 +121,9 @@ class Balance extends Component
 
     public function render()
     {
-
-
         return view('livewire.audit.client.balance')->with([
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

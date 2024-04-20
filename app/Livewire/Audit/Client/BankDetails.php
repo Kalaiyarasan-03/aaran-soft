@@ -11,9 +11,12 @@ class BankDetails extends Component
 {
     use CommonTrait;
 
+    #region[Bank-details properties]
     public ClientBank $bank;
     public Collection $banks;
+    #endregion
 
+    #region[Client Bank]
     public function getClientBank()
     {
         $this->banks=ClientBank::all();
@@ -22,18 +25,22 @@ class BankDetails extends Component
     {
         $this->mount($i);
     }
+    #endregion
 
-
+    #region[Mount]
     public function mount($id)
     {
         if ($id) {
             $this->bank = ClientBank::find($id);
         }
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         $this->getClientBank();
         return view('livewire.audit.client.bank-details');
     }
+    #endregion
 }

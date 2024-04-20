@@ -13,6 +13,7 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[Gst properties]
     public mixed $client_id;
     public mixed $month;
     public mixed $year;
@@ -28,13 +29,17 @@ class Index extends Component
     public mixed $purchase_cgst;
     public mixed $purchase_sgst;
     public mixed $remarks;
+    #endregion
 
+    #region[Mount]
     public function mount()
     {
         $this->month = date("m");
         $this->year = Years::AY_2024->value;
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vid) {
@@ -74,7 +79,9 @@ class Index extends Component
         $this->remarks = '';
         return 'Updated';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -95,7 +102,9 @@ class Index extends Component
             $this->remarks = $obj->remarks;
         }
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'client_id';
@@ -107,7 +116,9 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Generate]
     public function generate()
     {
         $gstClient = Client::all()->where('company_id', '=', session()->get('company_id'));
@@ -142,12 +153,13 @@ class Index extends Component
         }
         $this->reRender();
     }
+    #endregion
 
+    #region[Render]
     public function reRender()
     {
         $this->render();
     }
-
 
     public function render()
     {
@@ -155,4 +167,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

@@ -12,6 +12,7 @@ class Show extends Component
 {
     use CommonTrait;
 
+    #region[Show properties]
     public Client $client;
     public string $mobile = '';
     public string $whatsapp = '';
@@ -39,6 +40,17 @@ class Show extends Component
     public bool $showModal;
     public $modalName;
 
+    public bool $billPlanModal;
+    public $clients;
+
+    public string $companyx;
+    public string $modex;
+
+    public $turnover;
+    public $billing;
+    #endregion
+
+    #region[Mount]
     public function mount($id)
     {
 
@@ -49,7 +61,9 @@ class Show extends Component
 
         }
     }
+    #endregion
 
+    #region[Client]
     public function getClient(): void
     {
         $this->client = Client::find($this->client_id);
@@ -85,8 +99,9 @@ class Show extends Component
             $this->acc_email_pass = $obj->acc_email_pass;
         }
     }
+    #endregion
 
-
+    #region[Show Detail]
     public function showDetailModal($v): void
     {
         $this->showModal = true;
@@ -118,7 +133,9 @@ class Show extends Component
                 break;
         }
     }
+    #endregion
 
+    #region[Update Details]
     public function upsertDetails(): void
     {
         if ($this->vid) {
@@ -126,7 +143,6 @@ class Show extends Component
         }
         $this->showModal = false;
     }
-
 
     public function updateClientDetails(): void
     {
@@ -155,35 +171,27 @@ class Show extends Component
         $obj->acc_email_pass = $this->acc_email_pass;
         $obj->save();
     }
+    #endregion
 
-
-    public bool $billPlanModal;
-    public $clients;
-
+    #region[BillPlan]
     public function showBillPlan(): void
     {
-
         $this->billPlanModal = true;
     }
-
-    public string $companyx;
-    public string $modex;
-
 
 
     public function redirectTo(): void
     {
         redirect()->to(route('clients'));
     }
+    #endregion
 
+    #region[Render]
     public function reRender(): void
     {
         $this->render();
         $this->dispatch('refresh-turnover', id: $this->client_id);
     }
-
-    public $turnover;
-    public $billing;
 
     public function render()
     {
@@ -192,4 +200,5 @@ class Show extends Component
 
         return view('livewire.audit.client.show');
     }
+    #endregion
 }

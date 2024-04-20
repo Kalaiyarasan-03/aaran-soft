@@ -16,6 +16,7 @@ class Filling extends Component
 {
     use CommonTrait;
 
+    #region[Filling properties]
     public mixed $month;
     public mixed $year;
     public mixed $client_id;
@@ -24,7 +25,9 @@ class Filling extends Component
     public mixed $gstr3b_arn;
     public mixed $gstr3b_date;
     public mixed $filed;
+    #endregion
 
+    #region[Mount]
     public function mount()
     {
         $this->month = date("m") -1;
@@ -32,7 +35,9 @@ class Filling extends Component
 
 
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vid) {
@@ -58,7 +63,9 @@ class Filling extends Component
         $this->gstr3b_date = '';
         return 'Updated';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -70,7 +77,9 @@ class Filling extends Component
             $this->gstr3b_date = $obj->gstr3b_date;
         }
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'client_id';
@@ -82,7 +91,9 @@ class Filling extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Generate]
     public function generate()
     {
         $gstClient = Client::all()->where('company_id','=',session()->get('company_id'));
@@ -113,7 +124,9 @@ class Filling extends Component
         }
         $this->reRender();
     }
+    #endregion
 
+    #region[Count]
     public function FiledCount()
     {
         $f = DB::table('gstfillings')
@@ -129,7 +142,9 @@ class Filling extends Component
 
         $this->filed = $c - $f;
     }
+    #endregion
 
+    #region[Render]
     public function reRender()
     {
         $this->render();
@@ -143,4 +158,5 @@ class Filling extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

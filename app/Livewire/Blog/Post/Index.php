@@ -10,18 +10,23 @@ class Index extends Component
 {
     public $company_id;
 
+    #region[Mount]
     public function mount()
     {
         if (Auth::user() != '') {
             $this->company_id = session()->get('company_id');
         }
     }
+    #endregion
 
+    #region[Create]
     public function create(): void
     {
         $this->redirect(route('posts.upsert', ['0']));
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         return view('livewire.blog.post.index')->layout('layouts.web')->with([
@@ -30,6 +35,6 @@ class Index extends Component
                     return $query->where('company_id', '=', $company_id);
                 })
         ]);
-
     }
+    #endregion
 }
