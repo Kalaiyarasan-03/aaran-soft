@@ -179,6 +179,13 @@ class Show extends Component
         $this->billPlanModal = true;
     }
 
+    public function delete()
+    {
+        $obj = ClientDetail::find( $this->vid);
+        $obj->delete();
+        $this->redirectTo();
+    }
+
 
     public function redirectTo(): void
     {
