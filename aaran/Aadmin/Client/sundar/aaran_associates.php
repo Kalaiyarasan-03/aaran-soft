@@ -30,5 +30,6 @@ return [
         MainMenu::accounts(),
         MainMenu::master(),
         MainMenu::common(),
+        MainMenu::task(),
     ]
 ];

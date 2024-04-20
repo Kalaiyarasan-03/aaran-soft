@@ -14,7 +14,7 @@ class Mytask extends Component
 {
     use CommonTrait;
 
-    public string $client_id;
+    public string $client_id = '1';
     public string $body;
     public mixed $cdate;
     public string $channel;
@@ -32,7 +32,7 @@ class Mytask extends Component
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->users = User::all()->where('tenant_id','=',session()->get('tenant_id'));
-        $this->clients = Client::all()->where('company_id','=',session()->get('company_id'));
+//        $this->clients = Client::all()->where('company_id','=',session()->get('company_id'));
     }
 
     public function getSave(): string

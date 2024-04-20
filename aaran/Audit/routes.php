@@ -17,9 +17,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('bankBalances', App\Livewire\Audit\Client\Balance::class)->name('bankBalances');
 
-    Route::get('salesTracks', App\Livewire\Audit\Client\Sub\SalesTrack\Index::class)->name('salesTracks');
-    Route::get('salesTracks/{id}/items', App\Livewire\Audit\Client\Sub\SalesTrack\Items::class)->name('salesTracks.items');
-    Route::get('salesTracks/{id}/bills', App\Livewire\Audit\Client\Sub\SalesTrack\Bill::class)->name('salesTracks.bills');
-    Route::get('salesTracks/{id}/billItems', App\Livewire\Audit\Client\Sub\SalesTrack\BillItem::class)->name('salesTracks.billItems');
-    Route::get('salesTracks/{id}/show', App\Livewire\Audit\Client\Sub\SalesTrack\Show::class)->name('salesTracks.show');
 });

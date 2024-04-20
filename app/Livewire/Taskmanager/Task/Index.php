@@ -32,7 +32,7 @@ class Index extends Component
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->users = User::all()->where('tenant_id','=',session()->get('tenant_id'));
-        $this->clients = Client::all()->where('company_id','=',session()->get('company_id'));
+//        $this->clients = Client::all()->where('company_id','=',session()->get('company_id'));
     }
 
     public function getSave(): string

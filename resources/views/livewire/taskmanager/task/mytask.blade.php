@@ -24,7 +24,7 @@
                         <div class="flex justify-between w-full py-1">
                             <a href="{{ route('tasks.replies',[$row->id]) }}"
                                class="cursor-pointer w-full text-2xl text-left px-3 hover:underline underline-offset-8">
-                                {{ $row->title }}&nbsp;&nbsp;-&nbsp;&nbsp;{{ $row->client->vname }}
+{{--                                {{ $row->title }}&nbsp;&nbsp;-&nbsp;&nbsp;{{ $row->client->vname }}--}}
                             </a>
                             <div class="p-1">
                                 <a
@@ -46,7 +46,9 @@
                                 <div class="flex flex-row gap-2">
                                     <span class=" text-sm py-0.5 text-gray-500">Assign To :</span>
                                     <span
-                                            class=" text-md text-gray-600">{{\Aaran\Crm\Models\Task::allocate($row->allocated) }}</span>
+                                            class=" text-md text-gray-600">
+{{--                                        {{\Aaran\Crm\Models\Task::allocate($row->allocated) }}--}}
+                                    </span>
 
                                 </div>
 
@@ -96,9 +98,11 @@
 
             <x-input.model-select wire:model="client_id" :label="'Client'">
                 <option class="text-gray-400"> choose ..</option>
+                @if(isset($clients))
                 @foreach($clients as $client)
                     <option value="{{$client->id}}">{{$client->vname}}</option>
                 @endforeach
+                @endif
             </x-input.model-select>
 
             <x-input.model-text wire:model="vname" :label="'Title'"/>
