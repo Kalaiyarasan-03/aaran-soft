@@ -8,13 +8,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('clients', App\Livewire\Audit\Client\Index::class)->name('clients');
     Route::get('clients/{id}/show', App\Livewire\Audit\Client\Show::class)->name('clients.show');
 
-    Route::get('fees', App\Livewire\Audit\Client\Fee::class)->name('fees');
+    Route::get('clientFee', App\Livewire\Audit\Client\Fee::class)->name('clientFee');
 
-    Route::get('client_banks', App\Livewire\Audit\Client\Bank::class)->name('client_banks');
+    Route::get('clientBank', App\Livewire\Audit\Client\Bank::class)->name('clientBank');
     Route::get('banks/{id}/details', App\Livewire\Audit\Client\BankDetails::class)->name('banks.details');
 
-    Route::get('gstfillings', App\Livewire\Audit\Client\Filling::class)->name('gstfillings');
+    Route::get('clientGstFilings', App\Livewire\Audit\Client\Filling::class)->name('clientGstFilings');
 
-    Route::get('bankBalances', App\Livewire\Audit\Client\Balance::class)->name('bankBalances');
+    Route::get('clientBankBalance', App\Livewire\Audit\Client\Balance::class)->name('clientBankBalance');
+    Route::get('clientGstCredits', App\Livewire\Audit\Gstcredit\Index::class)->name('clientGstCredits');
+
+
+
 
 });
