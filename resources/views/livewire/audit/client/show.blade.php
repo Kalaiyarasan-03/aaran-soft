@@ -7,9 +7,9 @@
             <div class="flex flex-row gap-2 justify-between">
 
                 <div class="flex  flex-row gap-3">
-{{--                <div class="text-xl text-gray-500 py-2">Client Id:</div>--}}
-{{--                <div--}}
-{{--                    class="text-2xl bg-amber-200 rounded-full px-4 py-1 flex items-center justify-center">{{$client->id}}</div>--}}
+                <div class="text-xl text-gray-500 py-2">Client Id:</div>
+                <div
+                    class="text-2xl bg-amber-200 rounded-full px-4 py-1 flex items-center justify-center">{{$client->id}}</div>
                 </div>
 
 
@@ -195,13 +195,21 @@
                                         wire:click="showDetailModal('contactDetails')">
                                     Edit Details
                                     <x-icons.icon :icon="'pencil'"
-                                                           class="text-blue-500 h-5 w-auto block"/>
+                                                  class="text-blue-500 h-5 w-auto block"/>
                                 </button>
                             </x-table.cell>
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
-                                        &nbsp;
+                                        <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                                onclick="copyToClipboard('{{'Name-'.$vname.',Mobile-'.$mobile.',Email-'.$email.',Gst-'.$gstin.',Address-'.$address_1.$address_2}}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                            </svg>
+
+                                        </button>
                                     </p>
                                 </div>
                             </x-table.cell>
@@ -210,7 +218,7 @@
                                         wire:click="showDetailModal('address')">
                                     Edit Address
                                     <x-icons.icon :icon="'pencil'"
-                                                           class="text-blue-500 h-5 w-auto block"/>
+                                                  class="text-blue-500 h-5 w-auto block"/>
                                 </button>
                             </x-table.cell>
                         </x-table.row>
@@ -256,19 +264,39 @@
                             </x-table.cell>
 
                             <x-table.cell>
-                                <div class="flex px-3">
+                                <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
-                                        {{ $gst_pass }}
+                                        {{$gst_pass }}
                                     </p>
+
+                                    <div>
+                                        <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                                onclick="copyToClipboard('{{ $gst_pass  }}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                            </svg>
+
+                                        </button>
+                                    </div>
                                 </div>
                             </x-table.cell>
 
 
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
+                                    <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                            onclick="copyToClipboard('{{ 'gst_user id:'.$gst_user.'-'.'gst_pass:'.$gst_pass  }}')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                        </svg>
+                                    </button>
                                     <x-button.link wire:click="showDetailModal('gstPass')">&nbsp;
                                         <x-icons.icon :icon="'pencil'"
-                                                               class="text-blue-500 h-5 w-auto block"/>
+                                                      class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </div>
                             </x-table.cell>
@@ -304,19 +332,42 @@
                             </x-table.cell>
 
                             <x-table.cell>
-                                <div class="flex px-3">
+
+                                <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
                                         {{$einvoice_pass}}
                                     </p>
+
+                                    <div>
+                                        <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                                onclick="copyToClipboard(' {{$einvoice_pass}}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                            </svg>
+
+                                        </button>
+                                    </div>
                                 </div>
+
                             </x-table.cell>
 
 
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
+                                    <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                            onclick="copyToClipboard(' {{'einvoice_user:'.$einvoice_user.'-'.'einvoice_pass:'.$einvoice_pass}}')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                        </svg>
+
+                                    </button>
                                     <x-button.link wire:click="showDetailModal('einvoice')">&nbsp;
                                         <x-icons.icon :icon="'pencil'"
-                                                               class="text-blue-500 h-5 w-auto block"/>
+                                                      class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </div>
                             </x-table.cell>
@@ -352,19 +403,43 @@
                             </x-table.cell>
 
                             <x-table.cell>
-                                <div class="flex px-3">
+
+                                <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
-                                        {{ $eway_pass }}
+                                        {{$eway_pass}}
                                     </p>
+
+                                    <div>
+                                        <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                                onclick="copyToClipboard(' {{$eway_pass}}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                            </svg>
+
+                                        </button>
+                                    </div>
                                 </div>
+
                             </x-table.cell>
 
 
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
+                                    <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                            onclick="copyToClipboard(' {{'eway_user:'.$eway_user.'-'.'eway_pass:'.$eway_pass}}')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                        </svg>
+
+                                    </button>
+
                                     <x-button.link wire:click="showDetailModal('eway')">&nbsp;
                                         <x-icons.icon :icon="'pencil'"
-                                                               class="text-blue-500 h-5 w-auto block"/>
+                                                      class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </div>
                             </x-table.cell>
@@ -400,19 +475,43 @@
                             </x-table.cell>
 
                             <x-table.cell>
-                                <div class="flex px-3">
+
+                                <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
-                                        {{ $einvoice_api_pass }}
+                                        {{$einvoice_api_pass}}
                                     </p>
+
+                                    <div>
+                                        <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                                onclick="copyToClipboard('{{ $einvoice_api_pass }}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                            </svg>
+
+                                        </button>
+                                    </div>
                                 </div>
+
+
                             </x-table.cell>
 
 
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
+                                    <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                            onclick="copyToClipboard('{{ 'einvoice_api:'.$einvoice_api.'-'.'einvoice_api_pass:'.$einvoice_api_pass }}')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                        </svg>
+
+                                    </button>
                                     <x-button.link wire:click="showDetailModal('einvoiceApi')">&nbsp;
                                         <x-icons.icon :icon="'pencil'"
-                                                               class="text-blue-500 h-5 w-auto block"/>
+                                                      class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </div>
                             </x-table.cell>
@@ -448,18 +547,41 @@
                             </x-table.cell>
 
                             <x-table.cell>
-                                <div class="flex px-3">
+
+                                <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
-                                        {{ $eway_api_pass }}
+                                        {{$eway_api_pass}}
                                     </p>
+
+                                    <div>
+                                        <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                                onclick="copyToClipboard('{{ $eway_api_pass }}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                            </svg>
+
+                                        </button>
+                                    </div>
                                 </div>
+
                             </x-table.cell>
 
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
+                                    <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                            onclick="copyToClipboard('{{ 'eway_api:'.$eway_api.'-'.'eway_api_pass'. $eway_api_pass }}')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                        </svg>
+
+                                    </button>
                                     <x-button.link wire:click="showDetailModal('ewayApi')">&nbsp;
                                         <x-icons.icon :icon="'pencil'"
-                                                               class="text-blue-500 h-5 w-auto block"/>
+                                                      class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </div>
                             </x-table.cell>
@@ -495,18 +617,41 @@
                             </x-table.cell>
 
                             <x-table.cell>
-                                <div class="flex px-3">
+
+                                <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
-                                        {{ $acc_email_pass }}
+                                        {{$acc_email_pass}}
                                     </p>
+
+                                    <div>
+                                        <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                                onclick="copyToClipboard('{{ $acc_email_pass }}')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                            </svg>
+
+                                        </button>
+                                    </div>
                                 </div>
+
                             </x-table.cell>
 
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
+                                    <button class="text-gray-300 hover:text-blue-600" value="copy"
+                                            onclick="copyToClipboard('{{ 'acc_email:'.$acc_email.'-'.'acc_email_pass:'.$acc_email_pass }}')">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                  d="M15.666 3.888A2.25 2.25 0 0013.5 2.25h-3c-1.03 0-1.9.693-2.166 1.638m7.332 0c.055.194.084.4.084.612v0a.75.75 0 01-.75.75H9a.75.75 0 01-.75-.75v0c0-.212.03-.418.084-.612m7.332 0c.646.049 1.288.11 1.927.184 1.1.128 1.907 1.077 1.907 2.185V19.5a2.25 2.25 0 01-2.25 2.25H6.75A2.25 2.25 0 014.5 19.5V6.257c0-1.108.806-2.057 1.907-2.185a48.208 48.208 0 011.927-.184"/>
+                                        </svg>
+
+                                    </button>
                                     <x-button.link wire:click="showDetailModal('accEmail')">&nbsp;
                                         <x-icons.icon :icon="'pencil'"
-                                                               class="text-blue-500 h-5 w-auto block"/>
+                                                      class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </div>
                             </x-table.cell>
@@ -518,13 +663,20 @@
             </div>
 
             <!-- Table -->
-            <div class="pt-6">
+            <div class="pt-6 flex gap-3">
                 <div class="mt-5">
                     <a href="{{route('clients')}}" class="mt-5 bg-gray-400 text-white tracking-wider px-4 py-1
                 rounded-md flex items-center w-24 hover:bg-gray-500">
                         <x-icons.icon :icon="'chevrons-left'" class="h-8 w-auto inline-block items-center"/>
                         Back
                     </a>
+                </div>
+                <div class="mt-5">
+                    <button class="mt-5 bg-red-400 text-white tracking-wider px-2 py-1
+                rounded-md flex items-center w-24 hover:bg-red-500" wire:click="delete" wire:confirm="Are you want to delete">
+                        <x-icons.icon :icon="'trash'" class="h-8 w-auto inline-block items-center"/>
+                        Delete
+                    </button>
                 </div>
             </div>
         </div>
