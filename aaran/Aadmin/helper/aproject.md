@@ -44,34 +44,57 @@
 - Credit Note
 - Journal
 
-## Task - 500
--
 
-## Audit - 600
-- SoftConfig
+## Audit - 400
+- Client
+- Client Details
+- Client Fee
+- Client Gst Filing
+- Client Bank
+- Client Bank balance
+- Client Turnover
+- Gst Credit
+- Sales Track
+
+## Task - 500
+- Task
+- My Task
+- Activities
+- All Activities
+- Notice Board
+- Todos
+- All Todos
+
 
 ## Accounts - 600
-- SoftConfig
+- Cash book
+- Bank Book
 
 ## Erp - 700
--
-
+- Job Work
+- Cutting
+- Printing and embroider Outward
+- Printing and embroider inward
+- Section outward
+- Section inward
+- ironing and packing
+- fabric lot
 
 
 ## Developer - 700
-- SoftConfig
+- 
 
-## Aaconfig - 800
-- SoftConfig
+## Aadmin - 800
+- Config
 
 ## Demo - 900
 - DemoRequest
 
 ## Sundar - 1000
-- SoftConfig
+- 
 
 ## Blog - 1100
-- SoftConfig
+- 
 
 
 
