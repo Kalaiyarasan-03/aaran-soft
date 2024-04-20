@@ -3,7 +3,7 @@
 namespace App\Livewire\Audit\Client;
 
 use Aaran\Audit\Models\Client;
-use Aaran\Audit\Models\Gstfilling;
+use Aaran\Audit\Models\ClientGstFiling;
 use App\Enums\Months;
 use App\Enums\Status;
 use App\Enums\Years;
@@ -36,7 +36,7 @@ class Filling extends Component
     public function getSave(): string
     {
         if ($this->vid) {
-            $obj = Gstfilling::find($this->vid);
+            $obj = ClientGstFiling::find($this->vid);
             $obj->gstr1_arn = $this->gstr1_arn;
             $obj->gstr1_date = $this->gstr1_date;
             $obj->gstr3b_arn = $this->gstr3b_arn;
@@ -62,7 +62,7 @@ class Filling extends Component
     public function getObj($id)
     {
         if ($id) {
-            $obj = Gstfilling::find($id);
+            $obj = ClientGstFiling::find($id);
             $this->vid = $obj->id;
             $this->gstr1_arn = $obj->gstr1_arn;
             $this->gstr1_date = $obj->gstr1_date;
@@ -75,7 +75,7 @@ class Filling extends Component
     {
         $this->sortField = 'client_id';
 
-        return Gstfilling::search($this->searches)
+        return ClientGstFiling::search($this->searches)
             ->where('month', '=', $this->month)
             ->where('year', '=', $this->year)
             ->where('company_id','=',session()->get('company_id'))
@@ -89,7 +89,7 @@ class Filling extends Component
 
         foreach ($gstClient as $obj) {
 
-            $gstv = Gstfilling::where('client_id', '=', $obj->id)
+            $gstv = ClientGstFiling::where('client_id', '=', $obj->id)
                 ->Where('month', '=', $this->month)
                 ->Where('year', '=', $this->year)
                 ->where('company_id','=',session()->get('company_id'))
@@ -97,7 +97,7 @@ class Filling extends Component
 
             if ($gstv->count() == 0) {
 
-                Gstfilling::create([
+                ClientGstFiling::create([
                     'month' => $this->month,
                     'year' => $this->year,
                     'client_id' => $obj->id,

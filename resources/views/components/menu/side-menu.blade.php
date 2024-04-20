@@ -28,12 +28,13 @@
             @if(Aaran\Aadmin\Src\MainMenu::hasAudit())
                 <x-menu.sub.audit/>
             @endif
-            @if(Aaran\Aadmin\Src\MainMenu::hasEntries())
-                <x-menu.sub.entries/>
-            @endif
             @if(Aaran\Aadmin\Src\MainMenu::hasTask())
                 <x-menu.sub.task/>
             @endif
+            @if(Aaran\Aadmin\Src\MainMenu::hasEntries())
+                <x-menu.sub.entries/>
+            @endif
+
             @if(Aaran\Aadmin\Src\MainMenu::hasAccounts())
                 <x-menu.sub.accounts/>
             @endif

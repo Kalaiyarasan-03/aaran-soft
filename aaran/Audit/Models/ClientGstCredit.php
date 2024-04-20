@@ -1,18 +1,20 @@
 <?php
 
-namespace Aaran\Audit\Models\Client\Sub;
+namespace Aaran\Audit\Models;
 
-use Aaran\Audit\Models\Client;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
-class SalesTrackItem extends Model
+class ClientGstCredit extends Model
 {
+    use HasFactory;
 
     protected $guarded = [];
 
-    public static function search(string $searches)
+    public static function search(string $searches): Builder
     {
         return empty($searches) ? static::query()
             : static::where('vname', 'like', '%' . $searches . '%');
@@ -23,8 +25,9 @@ class SalesTrackItem extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function salesTrack(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(SalesTrack::class);
+        return $this->belongsTo(User::class);
     }
+
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Aaran\Aadmin\Src\Customise;
+use Aaran\Aadmin\Src\MainMenu;
 use Aaran\Aadmin\Src\SaleEntry;
 
 return [
@@ -17,6 +18,9 @@ return [
     ],
 
     'menus'=>[
-
+        MainMenu::entries(),
+        MainMenu::accounts(),
+        MainMenu::master(),
+        MainMenu::common(),
     ]
 ];

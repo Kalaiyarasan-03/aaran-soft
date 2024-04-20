@@ -31,5 +31,6 @@ return [
         MainMenu::master(),
         MainMenu::common(),
         MainMenu::task(),
+        MainMenu::audit(),
     ]
 ];

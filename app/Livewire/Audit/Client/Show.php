@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Audit\Client;
 
-use Aaran\Audit\Models\Biller;
+use Aaran\Audit\Models\ClientBilled;
 use Aaran\Audit\Models\Client;
 use Aaran\Audit\Models\ClientDetail;
 use Aaran\Taskmanager\Models\Turnover;
@@ -174,7 +174,7 @@ class Show extends Component
     public function createBillPlan(): void
     {
         if ($this->client_id) {
-            Biller::create([
+            ClientBilled::create([
                 'client_id' => $this->client_id,
                 'vname' => $this->companyx,
                 'mode' => $this->modex,
@@ -191,7 +191,7 @@ class Show extends Component
     public function deleteBillPlan($id): void
     {
         if ($id) {
-            $obj = Biller::find($id);
+            $obj = ClientBilled::find($id);
             if ($obj) {
                 $obj->delete();
             }
@@ -202,7 +202,7 @@ class Show extends Component
 
     public function getBilling(): void
     {
-        $this->billing = Biller::where('client_id', '=', $this->client_id)
+        $this->billing = ClientBilled::where('client_id', '=', $this->client_id)
             ->where('company_id', '=', session()->get('company_id'))->get();
     }
 

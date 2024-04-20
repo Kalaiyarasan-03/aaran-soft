@@ -1,5 +1,6 @@
 <x-menu.base.li-menuitem :routes="'clients'" :label="'Client'"/>
-<x-menu.base.li-menuitem :routes="'gstfillings'" :label="'GST Filling'"/>
-<x-menu.base.li-menuitem :routes="'gstcredits'" :label="'GST Credits'"/>
-<x-menu.base.li-menuitem :routes="'turnovers'" :label="'Turnover'"/>
-<x-menu.base.li-menuitem :routes="'salesTracks'" :label="'Sales Track'"/>
+<x-menu.base.li-menuitem :routes="'clientGstFilings'" :label="'GST Filling'"/>
+<x-menu.base.li-menuitem :routes="'clientGstCredits'" :label="'GST Credits'"/>
+<x-menu.base.li-menuitem :routes="'clientBank'" :label="'Bank'"/>
+<x-menu.base.li-menuitem :routes="'clientBankBalance'" :label="'Bank Balance'"/>
+<x-menu.base.li-menuitem :routes="'clientFee'" :label="'Fees'"/>

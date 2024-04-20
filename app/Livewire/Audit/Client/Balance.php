@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Audit\Client;
 
-use Aaran\Audit\Models\BankBalance;
+use Aaran\Audit\Models\ClientBankBalance;
 use Aaran\Audit\Models\ClientBank;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
@@ -31,7 +31,7 @@ class Balance extends Component
     {
         if ($this->client_bank_id != '' or $this->acno != '' or $this->ifsc != '') {
             if ($this->vid !== "") {
-                $obj = BankBalance::find($this->vid);
+                $obj = ClientBankBalance::find($this->vid);
                 $obj->client_bank_id = $this->client_bank_id;
                 $obj->cdate = $this->cdate;
                 $obj->balance = $this->balance;
@@ -52,7 +52,7 @@ class Balance extends Component
     public function getObj($id)
     {
         if ($id) {
-            $obj = BankBalance::find($id);
+            $obj = ClientBankBalance::find($id);
             $this->vid = $obj->id;
             $this->client_bank_id = $obj->client_bank_id;
             $this->cdate = $obj->cdate;
@@ -72,13 +72,13 @@ class Balance extends Component
 
         foreach ($gstClient as $obj) {
 
-            $v = BankBalance::where('client_bank_id', '=', $obj->id)
+            $v = ClientBankBalance::where('client_bank_id', '=', $obj->id)
                 ->where('company_id', '=', session()->get('company_id'))
                 ->Where('cdate', '=', $this->cdate)
                 ->get();
 
             if ($v->count() == 0) {
-                BankBalance::create([
+                ClientBankBalance::create([
                     'client_bank_id' => $obj->id,
                     'cdate' => $this->cdate,
                     'balance' => 0,
@@ -94,7 +94,7 @@ class Balance extends Component
         $this->sortField = 'client_bank_id';
 
 
-        return BankBalance::search($this->searches)
+        return ClientBankBalance::search($this->searches)
             ->whereDate('cdate', '=', $this->cdate)
             ->where('company_id', '=', session()->get('company_id'))
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

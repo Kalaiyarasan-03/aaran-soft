@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Magalir\MgCollection;
 
-use Aaran\Audit\Models\BankBalance;
+use Aaran\Audit\Models\ClientBankBalance;
 use Aaran\Audit\Models\ClientBank;
 use Aaran\Finance\Magalir\Models\MgPassbook;
 use App\Livewire\Trait\CommonTrait;
@@ -32,7 +32,7 @@ class Index extends Component
     {
         if ($this->client_bank_id != '' or $this->acno != '' or $this->ifsc != '') {
             if ($this->vid !== "") {
-                $obj = BankBalance::find($this->vid);
+                $obj = ClientBankBalance::find($this->vid);
                 $obj->client_bank_id = $this->client_bank_id;
                 $obj->cdate = $this->cdate;
                 $obj->balance = $this->balance;
@@ -52,7 +52,7 @@ class Index extends Component
     public function getObj($id)
     {
         if ($id) {
-            $obj = BankBalance::find($id);
+            $obj = ClientBankBalance::find($id);
             $this->vid = $obj->id;
             $this->client_bank_id = $obj->client_bank_id;
             $this->cdate = $obj->cdate;
