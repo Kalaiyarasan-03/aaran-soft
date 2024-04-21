@@ -1,5 +1,5 @@
 <div>
-    <x-slot name="header">GST Filling</x-slot>
+    <x-slot name="header">GST Filing</x-slot>
 
     <x-forms.m-panel>
         <!-- Top Controls -------------------------------------------------------------------------------------------->
@@ -30,12 +30,12 @@
 
         <x-forms.table :list="$list">
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('invoice_no')"/>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Client</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>GSTR-1</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>GSTR-3B</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Status</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-serial/>
+                <x-table.header-text center>Client</x-table.header-text>
+                <x-table.header-text center>GSTR-1</x-table.header-text>
+                <x-table.header-text center>GSTR-3B</x-table.header-text>
+                <x-table.header-text center>Status</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
@@ -79,7 +79,7 @@
                             </div>
                         </x-table.cell-text>
 
-                        <x-table.action :id="$row->id"/>
+                        <x-table.cell-action :id="$row->id"/>
                     </x-table.row>
 
                 @empty

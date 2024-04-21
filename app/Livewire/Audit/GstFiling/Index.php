@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Livewire\Audit\old;
+namespace App\Livewire\Audit\GstFiling;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Audit\Models\ClientGstFiling;
+use App\Enums\Active;
 use App\Enums\Status;
 use App\Enums\Years;
 use App\Livewire\Trait\CommonTrait;
@@ -11,11 +12,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class Filling extends Component
+class Index extends Component
 {
     use CommonTrait;
 
-    #region[Filling properties]
+    #region[properties]
     public mixed $month;
     public mixed $year;
     public mixed $client_id;
@@ -52,7 +53,7 @@ class Filling extends Component
             } else {
                 $obj->status_id = Status::PENDING->value;
             }
-            $obj->company_id=session()->get('company_id');
+//            $obj->company_id=session()->get('company_id');
             $obj->user_id = Auth::id();
             $obj->save();
         }
@@ -87,7 +88,7 @@ class Filling extends Component
         return ClientGstFiling::search($this->searches)
             ->where('month', '=', $this->month)
             ->where('year', '=', $this->year)
-            ->where('company_id','=',session()->get('company_id'))
+//            ->where('company_id','=',session()->get('company_id'))
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
@@ -96,14 +97,14 @@ class Filling extends Component
     #region[Generate]
     public function generate()
     {
-        $gstClient = Client::all()->where('company_id','=',session()->get('company_id'));
+        $gstClient = Client::where('active_id','=', Active::ACTIVE)->get();
 
         foreach ($gstClient as $obj) {
 
             $gstv = ClientGstFiling::where('client_id', '=', $obj->id)
                 ->Where('month', '=', $this->month)
                 ->Where('year', '=', $this->year)
-                ->where('company_id','=',session()->get('company_id'))
+//                ->where('company_id','=',session()->get('company_id'))
                 ->get();
 
             if ($gstv->count() == 0) {
@@ -117,7 +118,7 @@ class Filling extends Component
                     'gstr3b_arn' => '',
                     'gstr3b_date' => '',
                     'status_id' => '1',
-                    'company_id'=> session()->get('company_id'),
+//                    'company_id'=> session()->get('company_id'),
                     'user_id' => Auth::id()
                 ]);
             }
@@ -144,14 +145,6 @@ class Filling extends Component
     }
     #endregion
 
-    #region[delete]
-//    public function set_delete($id): void
-//    {
-//        $obj=ClientGstFiling::find($id);
-//        $obj->delete();
-//    }
-    #endregion
-
     #region[Render]
     public function reRender()
     {
@@ -162,7 +155,7 @@ class Filling extends Component
     {
         $this->FiledCount();
 
-        return view('livewire.audit.client.filling')->with([
+        return view('livewire.audit.gst-filing.index')->with([
             'list' => $this->getList()
         ]);
     }
