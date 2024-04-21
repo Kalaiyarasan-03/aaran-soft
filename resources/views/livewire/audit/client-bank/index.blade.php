@@ -13,10 +13,10 @@
             <x-slot name="table_header">
                 <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" left>Company Name</x-table.header-text>
-                <x-table.header-text center>Bank</x-table.header-text>
-                <x-table.header-text center>Acno</x-table.header-text>
+                <x-table.header-text left>Bank</x-table.header-text>
+                <x-table.header-text left>Acno</x-table.header-text>
                 <x-table.header-text center>IFSC</x-table.header-text>
-                <x-table.header-text center>Active</x-table.header-text>
+                <x-table.header-text left>Branch</x-table.header-text>
                 <x-table.header-action/>
             </x-slot>
 
@@ -38,13 +38,13 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text left>
                             <a href="{{route('clientBanks.show',[$row->id])}}">
                                 {{ $row->bank }}
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text left>
                             <a href="{{route('clientBanks.show',[$row->id])}}">
                                 {{ $row->acno }}
                             </a>
@@ -56,9 +56,9 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text left>
                             <a href="{{route('clientBanks.show',[$row->id])}}">
-                                {{$row->active_id == '1' ? 'Active' : 'Not Active'}}
+                                {{$row->branch}}
                             </a>
                         </x-table.cell-text>
 
@@ -91,23 +91,23 @@
                         @endforeach
                     </x-input.model-select>
 
-                    <x-input.model-text wire:model="vname" :label="'company'"/>
+                    <x-input.model-text wire:model="vname" :label="'Name'"/>
                     <x-input.model-text wire:model="acno" :label="'Ac No'"/>
                     <x-input.model-text wire:model="ifsc" :label="'IFSC Code'"/>
                     <x-input.model-text wire:model="bank" :label="'Bank'"/>
                     <x-input.model-text wire:model="branch" :label="'Branch'"/>
-                    <x-input.model-text wire:model="customer_id" :label="'Customer Id'"/>
+                    <x-input.model-text wire:model="dvcatm" :label="'dvcatm'"/>
                 </div>
 
 
                 <div class="lg:px-8 w-1/2">
+                    <x-input.model-text wire:model="customer_id" :label="'Cus Id'"/>
                     <x-input.model-text wire:model="customer_id2" :label="'User Id'"/>
                     <x-input.model-text wire:model="pks" :label="'Pks'"/>
                     <x-input.model-text wire:model="trs" :label="'Trs'"/>
                     <x-input.model-text wire:model="profileps" :label="'Profile'"/>
                     <x-input.model-text wire:model="mobile" :label="'Mobile'"/>
                     <x-input.model-text wire:model="email" :label="'Email'"/>
-                    <x-input.model-text wire:model="dvcatm" :label="'dvcatm'"/>
                 </div>
             </div>
         </x-forms.create-new>

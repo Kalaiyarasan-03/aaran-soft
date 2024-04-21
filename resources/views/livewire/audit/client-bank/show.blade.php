@@ -27,7 +27,7 @@
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
-                                        Company Name
+                                        Name
                                     </p>
                                 </div>
                             </x-table.cell>
