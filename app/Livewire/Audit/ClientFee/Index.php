@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Audit\old;
+namespace App\Livewire\Audit\ClientFee;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Audit\Models\ClientFee;
@@ -10,11 +10,11 @@ use App\Livewire\Trait\CommonTrait;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class Fee extends Component
+class Index extends Component
 {
     use CommonTrait;
 
-    #region[Fee properties]
+    #region[properties]
     public string $month;
     public string $year;
     public mixed $client_id;
@@ -86,15 +86,12 @@ class Fee extends Component
 
             $obj->receipt_ref = $this->receipt_ref;
             $obj->active_id = $this->active_id ?: '0';
-            $obj->company_id = session()->get('company_id');
+//            $obj->company_id = session()->get('company_id');
             $obj->user_id = Auth::id();
             $obj->save();
         }
 
         $this->gst = '';
-        $this->username = '';
-        $this->password = '';
-        $this->client = '';
         return 'Updated';
     }
     #endregion
@@ -103,13 +100,13 @@ class Fee extends Component
     public function generate(): void
     {
         $gstClient = Client::where('payable', '=', '1')
-            ->where('company_id', '=', session()->get('company_id'))
+//            ->where('company_id', '=', session()->get('company_id'))
             ->where('active_id', '=', '1')->get();
 
         foreach ($gstClient as $obj) {
 
             $v = ClientFee::where('client_id', '=', $obj->id)
-                ->where('company_id', '=', session()->get('company_id'))
+//                ->where('company_id', '=', session()->get('company_id'))
                 ->Where('month', '=', $this->month)
                 ->Where('year', '=', $this->year)
                 ->get();
@@ -129,7 +126,7 @@ class Fee extends Component
                     'receipt_ref' => '',
                     'active_id' => '1',
                     'status_id' => '1',
-                    'company_id' => session()->get('company_id'),
+//                    'company_id' => session()->get('company_id'),
                     'user_id' => Auth::id()
                 ]);
             }
@@ -144,7 +141,7 @@ class Fee extends Component
 
         return ClientFee::search($this->searches)
             ->where('active_id', '=', $this->activeRecord)
-            ->where('company_id', '=', session()->get('company_id'))
+//            ->where('company_id', '=', session()->get('company_id'))
             ->where('month', '=', $this->month)
             ->where('year', '=', $this->year)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
@@ -160,7 +157,7 @@ class Fee extends Component
 
     public function render()
     {
-        return view('livewire.audit.client.fee')->with([
+        return view('livewire.audit.client-fee.index')->with([
             'list' => $this->getList()
         ]);
     }

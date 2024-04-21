@@ -43,53 +43,54 @@ class ConvertTo
         return "₹ $thecash.$des"; // writes the final format where $currency is the currency symbol.
     }
 
-    public static function decimal2($v):string
+    public static function decimal2($v): string
     {
         $arg = floatval($v);
-        $arg = round($arg,2);
-        return number_format($arg,2,'.','');
+        $arg = round($arg, 2);
+        return number_format($arg, 2, '.', '');
     }
 
-    public static function decimal3($v):string
+    public static function decimal3($v): string
     {
         $arg = floatval($v);
-        $arg = round($arg,3);
-        return number_format($arg,3,'.','');
+        $arg = round($arg, 3);
+        return number_format($arg, 3, '.', '');
     }
 
-    public static function thousandsSeparator($v):string
+    public static function thousandsSeparator($v): string
     {
         $arg = floatval($v);
-        $arg = round($arg,2);
-        return number_format($arg,2,'.',',');
+        $arg = round($arg, 2);
+        return number_format($arg, 2, '.', ',');
     }
 
-    public static function dateTime($v):string
+    public static function dateTime($v): string
     {
         return date('d-m-Y h:i:s a', strtotime($v));
     }
 
-    public static function dateString($v):string
+    public static function dateString($v): string
     {
         return date('d-m-Y', strtotime($v));
     }
 
-    public static function   moneyFormatIndia($num) {
-        $explrestunits = "" ;
-        if(strlen($num)>3) {
-            $lastthree = substr($num, strlen($num)-3, strlen($num));
-            $restunits = substr($num, 0, strlen($num)-3); // extracts the last three digits
-            $restunits = (strlen($restunits)%2 == 1)?"0".$restunits:$restunits; // explodes the remaining digits in 2's formats, adds a zero in the beginning to maintain the 2's grouping.
+    public static function moneyFormatIndia($num)
+    {
+        $explrestunits = "";
+        if (strlen($num) > 3) {
+            $lastthree = substr($num, strlen($num) - 3, strlen($num));
+            $restunits = substr($num, 0, strlen($num) - 3); // extracts the last three digits
+            $restunits = (strlen($restunits) % 2 == 1) ? "0" . $restunits : $restunits; // explodes the remaining digits in 2's formats, adds a zero in the beginning to maintain the 2's grouping.
             $expunit = str_split($restunits, 2);
-            for($i=0; $i<sizeof($expunit); $i++) {
+            for ($i = 0; $i < sizeof($expunit); $i++) {
                 // creates each of the 2's group and adds a comma to the end
-                if($i==0) {
-                    $explrestunits .= (int)$expunit[$i].","; // if is first value , convert into integer
+                if ($i == 0) {
+                    $explrestunits .= (int)$expunit[$i] . ","; // if is first value , convert into integer
                 } else {
-                    $explrestunits .= $expunit[$i].",";
+                    $explrestunits .= $expunit[$i] . ",";
                 }
             }
-            $thecash = $explrestunits.$lastthree;
+            $thecash = $explrestunits . $lastthree;
         } else {
             $thecash = $num;
         }
@@ -112,8 +113,8 @@ class ConvertTo
             19 => 'Nineteen', 20 => 'Twenty', 30 => 'Thirty',
             40 => 'Forty', 50 => 'Fifty', 60 => 'Sixty',
             70 => 'Seventy', 80 => 'Eighty', 90 => 'Ninety');
-        $digits = array('', 'Hundred','Thousand','Lakh', 'Crore');
-        while( $i < $digits_length ) {
+        $digits = array('', 'Hundred', 'Thousand', 'Lakh', 'Crore');
+        while ($i < $digits_length) {
             $divider = ($i == 2) ? 10 : 100;
             $number = floor($no % $divider);
             $no = floor($no / $divider);
@@ -121,7 +122,7 @@ class ConvertTo
             if ($number) {
                 $plural = (($counter = count($str)) && $number > 9) ? 's' : null;
                 $hundred = ($counter == 1 && $str[0]) ? ' And ' : null;
-                $str [] = ($number < 21) ? $words[$number].' '. $digits[$counter]. $plural.' '.$hundred:$words[floor($number / 10) * 10].' '.$words[$number % 10]. ' '.$digits[$counter].$plural.' '.$hundred;
+                $str [] = ($number < 21) ? $words[$number] . ' ' . $digits[$counter] . $plural . ' ' . $hundred : $words[floor($number / 10) * 10] . ' ' . $words[$number % 10] . ' ' . $digits[$counter] . $plural . ' ' . $hundred;
             } else $str[] = null;
         }
         $Rupees = implode('', array_reverse($str));

@@ -10,16 +10,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('gstFilings', App\Livewire\Audit\GstFiling\Index::class)->name('gstFilings');
 
-//    Route::get('clientFee', \App\Livewire\Audit\old\Fee::class)->name('clientFee');
-//
+    Route::get('clientFees', App\Livewire\Audit\ClientFee\Index::class)->name('clientFees');
+
     Route::get('clientBanks', App\Livewire\Audit\ClientBank\Index::class)->name('clientBanks');
-    Route::get('clientBanks/{id}/show', App\Livewire\Audit\ClientBank\show::class)->name('clientBanks.show');
-//
-//
-//    Route::get('clientBankBalance', \App\Livewire\Audit\old\Balance::class)->name('clientBankBalance');
-//    Route::get('clientGstCredits', App\Livewire\Audit\Gstcredit\Index::class)->name('clientGstCredits');
+    Route::get('clientBanks/{id}/show', App\Livewire\Audit\ClientBank\Show::class)->name('clientBanks.show');
 
-
-
-
+    Route::get('clientBankBalances', App\Livewire\Audit\ClientBank\Balance::class)->name('clientBankBalances');
 });

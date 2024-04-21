@@ -28,14 +28,14 @@
 
         <x-forms.table :list="$list">
             <x-slot name="table_header">
-                <x-table.ths-slno wire:click.prevent="sortBy('client_id')">SL.NO</x-table.ths-slno>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">Client</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">Invoice</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">Amount</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">Receipt</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">Reference</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">Status</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('client_id')">Action</x-table.ths>
+                <x-table.header-serial/>
+                <x-table.header-text left wire:click.prevent="sortBy('client_id')">Client</x-table.header-text>
+                <x-table.header-text center>Invoice</x-table.header-text>
+                <x-table.header-text right>Amount</x-table.header-text>
+                <x-table.header-text right>Receipt</x-table.header-text>
+                <x-table.header-text center>Reference</x-table.header-text>
+                <x-table.header-text center>Status</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
             <x-slot name="table_body">
 
@@ -47,28 +47,19 @@
                 @forelse ($list as $index =>  $row)
                     <x-table.row>
 
-                        <x-table.cell>
-                            <a href="{{route('clients.show',[$row->id])}}"
-                               class="flex px-3 text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text>
                                 {{ $index + 1 }}
-                            </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <div class="flex px-3 text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text>
                                     {{ $row->client->vname }}
-                            </div>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <div class="flex flex-col px-3">
-                                <div class="text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text>
                                     {{ $row->invoice_no }} -{{$row->invoice_date ?  date('d-m-Y',strtotime($row->invoice_date )) : '' }}
-                                </div>
-                            </div>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
+                        <x-table.cell-text>
                             <div class="flex px-3 justify-between gap-3">
                                 <p class="text-gray-600 truncate text-xl text-left">
                                     {{ $row->amount }}
@@ -77,9 +68,9 @@
                                     {{ $row->taxable }} - {{ $row->gst }}
                                 </p>
                             </div>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
+                        <x-table.cell-text>
                             <div class="flex px-3 justify-between gap-3">
                                 <p class="text-gray-600 truncate text-xl text-left">
                                     {{ $row->receipt }}
@@ -88,25 +79,20 @@
                                     {{$row->receipt_date ?  date('d-m-Y',strtotime($row->receipt_date)) : '' }}
                                 </p>
                             </div>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <p class="text-gray-400 truncate text-sm flex items-center  px-3 text-left">
+                        <x-table.cell-text>
                                 {{$row->receipt_ref}}
-                            </p>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
                         <x-table.cell>
-                            <div
-                                class="flex w-full items-center justify-center  text-center {{  \App\Enums\Status::tryFrom($row->status_id)->getStyle()}}">
-                                <p class="flex w-full text-xl text-center  items-center justify-center p-1">
+                            <div class="flex w-full text-xl text-center  items-center justify-center p-1 {{  \App\Enums\Status::tryFrom($row->status_id)->getStyle()}}">
                                     {{ \App\Enums\Status::tryFrom($row->status_id)->getName()}}
-                                </p>
                             </div>
                         </x-table.cell>
 
 
-                        <x-table.action :id="$row->id"/>
+                        <x-table.cell-action :id="$row->id"/>
                     </x-table.row>
 
                     @php

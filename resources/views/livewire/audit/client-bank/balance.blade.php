@@ -1,5 +1,5 @@
 <div>
-    <x-slot name="header">Balance</x-slot>
+    <x-slot name="header">Bank Account Balance</x-slot>
 
     <x-forms.m-panel>
 
@@ -30,10 +30,10 @@
 
         <x-forms.table :list="$list">
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('invoice_no')"/>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Company Name</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Balance</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-serial />
+                <x-table.header-text  left>Name</x-table.header-text>
+                <x-table.header-text  center>Balance</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
@@ -58,15 +58,13 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text right>
                             <a href="{{route('clients.show',[$row->id])}}">
                                 {{ \App\Helper\ConvertTo::rupeesFormat($row->balance) }}
                             </a>
                         </x-table.cell-text>
 
-                        {{--                        <x-table.cell-action id="{{$row->id}}"/>--}}
-
-                        <x-table.action :id="$row->id"/>
+                        <x-table.cell-action :id="$row->id"/>
                     </x-table.row>
 
                     @php

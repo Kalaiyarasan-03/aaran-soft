@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('bank_balances', function (Blueprint $table) {
+        Schema::create('client_bank_balances', function (Blueprint $table) {
             $table->id();
             $table->foreignId('client_bank_id')->references('id')->on('client_banks')->onDelete('cascade');;
             $table->date('cdate');
@@ -21,6 +21,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('bank_balances');
+        Schema::dropIfExists('client_bank_balances');
     }
 };
