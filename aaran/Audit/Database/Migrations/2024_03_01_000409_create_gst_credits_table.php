@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('gstcredits', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->references('id')->on('clients');
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');;
             $table->string('month');
             $table->string('year');
             $table->decimal('opening_igst',13,2)->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->decimal('purchase_cgst',13,2)->nullable();
             $table->decimal('purchase_sgst',13,2)->nullable();
             $table->string('remarks')->nullable();
-            $table->foreignId('company_id')->references('id')->on('companies');
+//            $table->foreignId('company_id')->references('id')->on('companies');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });

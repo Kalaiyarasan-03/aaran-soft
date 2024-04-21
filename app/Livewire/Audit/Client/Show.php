@@ -14,6 +14,7 @@ class Show extends Component
 
     #region[Show properties]
     public Client $client;
+
     public string $mobile = '';
     public string $whatsapp = '';
     public string $email = '';
@@ -54,7 +55,7 @@ class Show extends Component
     public function mount($id)
     {
 
-        $this->clients = Client::all()->where('company_id','=',session()->get('company_id'));
+        $this->clients = Client::where('active_id','=', Active::ACTIVE)->get();
 
         if ($id) {
             $this->client_id = $id;
@@ -178,14 +179,6 @@ class Show extends Component
     {
         $this->billPlanModal = true;
     }
-
-    public function delete()
-    {
-        $obj = ClientDetail::find( $this->vid);
-        $obj->delete();
-        $this->redirectTo();
-    }
-
 
     public function redirectTo(): void
     {

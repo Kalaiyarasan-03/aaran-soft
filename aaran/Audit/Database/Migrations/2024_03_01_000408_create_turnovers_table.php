@@ -9,14 +9,14 @@ return new class extends Migration {
     {
         Schema::create('turnovers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->references('id')->on('clients');
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');;
             $table->string('month');
             $table->string('year');
             $table->decimal('target',13,2)->nullable();
             $table->decimal('achieved',13,2)->nullable();
             $table->string('remarks')->nullable();
             $table->string('status_id', 3)->nullable();
-            $table->foreignId('company_id')->references('id')->on('companies');
+//            $table->foreignId('company_id')->references('id')->on('companies');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });

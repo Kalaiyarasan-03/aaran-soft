@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('client_gst_filings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->references('id')->on('clients');
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');;
             $table->string('month');
             $table->string('year');
             $table->string('gstr1_arn')->nullable();
@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('gstr3b_arn')->nullable();
             $table->string('gstr3b_date')->nullable();
             $table->string('status_id', 3)->nullable();
-            $table->foreignId('company_id')->references('id')->on('companies');
+//            $table->foreignId('company_id')->references('id')->on('companies');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });

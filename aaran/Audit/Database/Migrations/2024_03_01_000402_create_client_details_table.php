@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('client_details', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('client_id')->references('id')->on('clients');
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');;
 
             $table->string('vname')->nullable();
             $table->string('mobile')->nullable();

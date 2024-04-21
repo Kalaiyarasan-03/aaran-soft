@@ -7,9 +7,9 @@
             <div class="flex flex-row gap-2 justify-between">
 
                 <div class="flex  flex-row gap-3">
-                <div class="text-xl text-gray-500 py-2">Client Id:</div>
-                <div
-                    class="text-2xl bg-amber-200 rounded-full px-4 py-1 flex items-center justify-center">{{$client->id}}</div>
+                    <div class="text-xl text-gray-500 py-2">Client Id:</div>
+                    <div
+                        class="text-2xl bg-amber-200 rounded-full px-4 py-1 flex items-center justify-center">{{$client->id}}</div>
                 </div>
 
 
@@ -50,17 +50,19 @@
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
-                                        Gstin
+                                        Address
                                     </p>
                                 </div>
                             </x-table.cell>
                             <x-table.cell>
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left tracking-wider">
-                                        {{$gstin}}
+                                        {{$address_1}}
                                     </p>
                                 </div>
                             </x-table.cell>
+
+
                         </x-table.row>
                         <x-table.row>
                             <x-table.cell class="w-36">
@@ -74,36 +76,6 @@
                                 <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 text-xl text-left tracking-wider">
                                         {{$mobile}}
-                                    </p>
-                                </div>
-                            </x-table.cell>
-                            <x-table.cell class="w-36">
-                                <div class="flex px-3">
-                                    <p class="text-gray-400 truncate text-xl text-left">
-                                        Address
-                                    </p>
-                                </div>
-                            </x-table.cell>
-                            <x-table.cell>
-                                <div class="flex px-3">
-                                    <p class="text-gray-600 truncate text-xl text-left tracking-wider">
-                                        {{$address_1}}
-                                    </p>
-                                </div>
-                            </x-table.cell>
-                        </x-table.row>
-                        <x-table.row>
-                            <x-table.cell class="w-36">
-                                <div class="flex px-3">
-                                    <p class="text-gray-400 truncate text-xl text-left">
-                                        Whatsapp
-                                    </p>
-                                </div>
-                            </x-table.cell>
-                            <x-table.cell>
-                                <div class="flex px-3 justify-between gap-3">
-                                    <p class="text-gray-600 text-xl text-left tracking-wider">
-                                        {{$whatsapp}}
                                     </p>
                                 </div>
                             </x-table.cell>
@@ -126,14 +98,14 @@
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
-                                        Email
+                                        Whatsapp
                                     </p>
                                 </div>
                             </x-table.cell>
                             <x-table.cell>
                                 <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 text-xl text-left tracking-wider">
-                                        {{$email}}
+                                        {{$whatsapp}}
                                     </p>
                                 </div>
                             </x-table.cell>
@@ -156,28 +128,59 @@
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
-                                        &nbsp;
+                                        Email
                                     </p>
                                 </div>
                             </x-table.cell>
                             <x-table.cell>
                                 <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 text-xl text-left tracking-wider">
-                                        &nbsp;
+                                        {{$email}}
                                     </p>
                                 </div>
                             </x-table.cell>
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
-                                        State & Pincode
+                                       State
                                     </p>
                                 </div>
                             </x-table.cell>
                             <x-table.cell>
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left tracking-wider">
-                                        {{$state}}&nbsp;-&nbsp;{{$pincode}}
+                                        {{$state}}
+                                    </p>
+                                </div>
+                            </x-table.cell>
+                        </x-table.row>
+                        <x-table.row>
+
+                            <x-table.cell class="w-36">
+                                <div class="flex px-3">
+                                    <p class="text-gray-400 truncate text-xl text-left">
+                                        Gstin
+                                    </p>
+                                </div>
+                            </x-table.cell>
+                            <x-table.cell>
+                                <div class="flex px-3">
+                                    <p class="text-gray-600 truncate text-xl text-left tracking-wider">
+                                        {{$gstin}}
+                                    </p>
+                                </div>
+                            </x-table.cell>
+                            <x-table.cell class="w-36">
+                                <div class="flex px-3">
+                                    <p class="text-gray-400 truncate text-xl text-left">
+                                        Pincode
+                                    </p>
+                                </div>
+                            </x-table.cell>
+                            <x-table.cell>
+                                <div class="flex px-3">
+                                    <p class="text-gray-600 truncate text-xl text-left tracking-wider">
+                                       {{$pincode}}
                                     </p>
                                 </div>
                             </x-table.cell>
@@ -202,7 +205,17 @@
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
                                         <button class="text-gray-300 hover:text-blue-600" value="copy"
-                                                onclick="copyToClipboard('{{'Name-'.$vname.',Mobile-'.$mobile.',Email-'.$email.',Gst-'.$gstin.',Address-'.$address_1.$address_2}}')">
+                                                onclick="copyToClipboard('{{
+                                                $client->vname.
+                                                '   Address :'.$address_1.
+                                                '        :'.$address_2.
+                                                ' Gst     :'.$gstin.
+                                                '          '.
+                                                ' Contact   :'.$vname.
+                                                ' Mobile    :'.$mobile.
+                                                ' Email     :'.$email
+
+                                                }}')">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -287,7 +300,7 @@
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
                                     <button class="text-gray-300 hover:text-blue-600" value="copy"
-                                            onclick="copyToClipboard('{{ 'gst_user id:'.$gst_user.'-'.'gst_pass:'.$gst_pass  }}')">
+                                            onclick="copyToClipboard('{{ 'Gst user: '.$gst_user.' - '.'Pass: '.$gst_pass  }}')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -357,7 +370,7 @@
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
                                     <button class="text-gray-300 hover:text-blue-600" value="copy"
-                                            onclick="copyToClipboard(' {{'einvoice_user:'.$einvoice_user.'-'.'einvoice_pass:'.$einvoice_pass}}')">
+                                            onclick="copyToClipboard(' {{'Einvoice user :'.$einvoice_user.' - '.'Pass:'.$einvoice_pass}}')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -428,7 +441,7 @@
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
                                     <button class="text-gray-300 hover:text-blue-600" value="copy"
-                                            onclick="copyToClipboard(' {{'eway_user:'.$eway_user.'-'.'eway_pass:'.$eway_pass}}')">
+                                            onclick="copyToClipboard(' {{'Eway user:'.$eway_user.' - '.'Pass:'.$eway_pass}}')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -501,7 +514,7 @@
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
                                     <button class="text-gray-300 hover:text-blue-600" value="copy"
-                                            onclick="copyToClipboard('{{ 'einvoice_api:'.$einvoice_api.'-'.'einvoice_api_pass:'.$einvoice_api_pass }}')">
+                                            onclick="copyToClipboard('{{ 'Einvoice_api:'.$einvoice_api.' - '.'api_pass:'.$einvoice_api_pass }}')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -571,7 +584,7 @@
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
                                     <button class="text-gray-300 hover:text-blue-600" value="copy"
-                                            onclick="copyToClipboard('{{ 'eway_api:'.$eway_api.'-'.'eway_api_pass'. $eway_api_pass }}')">
+                                            onclick="copyToClipboard('{{ 'Eway_api:'.$eway_api.' - '.'api_pass'. $eway_api_pass }}')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -641,7 +654,7 @@
                             <x-table.cell>
                                 <div class="w-full flex justify-center gap-3">
                                     <button class="text-gray-300 hover:text-blue-600" value="copy"
-                                            onclick="copyToClipboard('{{ 'acc_email:'.$acc_email.'-'.'acc_email_pass:'.$acc_email_pass }}')">
+                                            onclick="copyToClipboard('{{ 'Acc_email:'.$acc_email.' - '.'email_pass:'.$acc_email_pass }}')">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -662,7 +675,8 @@
                 </div>
             </div>
 
-            <!-- Table -->
+            <!-- Back Button ------------------------------------------------------------------------------------------>
+
             <div class="pt-6 flex gap-3">
                 <div class="mt-5">
                     <a href="{{route('clients')}}" class="mt-5 bg-gray-400 text-white tracking-wider px-4 py-1
@@ -670,13 +684,6 @@
                         <x-icons.icon :icon="'chevrons-left'" class="h-8 w-auto inline-block items-center"/>
                         Back
                     </a>
-                </div>
-                <div class="mt-5">
-                    <button class="mt-5 bg-red-400 text-white tracking-wider px-2 py-1
-                rounded-md flex items-center w-24 hover:bg-red-500" wire:click="delete" wire:confirm="Are you want to delete">
-                        <x-icons.icon :icon="'trash'" class="h-8 w-auto inline-block items-center"/>
-                        Delete
-                    </button>
                 </div>
             </div>
         </div>

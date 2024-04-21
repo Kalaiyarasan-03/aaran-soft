@@ -10,11 +10,11 @@ return new class extends Migration
     {
         Schema::create('bank_balances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_bank_id')->references('id')->on('client_banks');
+            $table->foreignId('client_bank_id')->references('id')->on('client_banks')->onDelete('cascade');;
             $table->date('cdate');
             $table->decimal('balance');
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignId('company_id')->references('id')->on('companies');
+//            $table->foreignId('company_id')->references('id')->on('companies');
             $table->timestamps();
         });
     }

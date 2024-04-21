@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Audit\Client;
+namespace App\Livewire\Audit\old;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Audit\Models\ClientBank;

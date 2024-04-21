@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Livewire\Audit\Client;
+namespace App\Livewire\Audit\old;
 
-use Aaran\Audit\Models\ClientBankBalance;
 use Aaran\Audit\Models\ClientBank;
+use Aaran\Audit\Models\ClientBankBalance;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
