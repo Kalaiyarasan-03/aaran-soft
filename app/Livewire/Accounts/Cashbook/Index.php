@@ -34,7 +34,7 @@ class Index extends Component
     public Collection $orders;
     public $showEditModal = false;
     public $showEditModal_1 = false;
-    public $openingbalance = 0;
+    public $openingBalance = 0;
     public $approved;
     public $status_id;
     public $acyear;
@@ -70,10 +70,10 @@ class Index extends Component
     {
         $obj = Cashbook::find($id);
         if ($obj->vmode == 'Receipt') {
-            $obj = $this->getobj($id);
+            $this->getobj($id);
             $this->create_receipt();
         } else {
-            $obj = $this->getobj($id);
+            $this->getobj($id);
             $this->create();
         }
     }
@@ -102,7 +102,7 @@ class Index extends Component
         $obj->paidby = $this->paidby;
         $obj->receipt = $this->receipt;
         $obj->payment = $this->payment;
-        $obj->balance = ($this->openingbalance + $this->receipt) - $this->payment;
+        $obj->balance = ($this->openingBalance + $this->receipt) - $this->payment;
         $obj->approved = $this->approved;
         $obj->remarks = $this->remarks;
         $obj->company_id = session()->get('company_id');
@@ -114,7 +114,7 @@ class Index extends Component
     #endregion
 
     #region[get Obj]
-    public function getobj($id)
+    public function getobj($id): void
     {
         if ($id) {
             $obj = Cashbook::find($id);
@@ -151,7 +151,7 @@ class Index extends Component
     }
     #endregion
 
-    #region[Retotal]
+    #region[Re total]
     public function reTotal()
     {
         $count = Cashbook::count();
@@ -314,7 +314,8 @@ class Index extends Component
         }
 
         Cashbook::create([
-            'acyear' => '1',
+            'acyear' => config('aadmin.current_acyear'),
+            'company_id' => session()->get('company_id'),
             'vmode' => $this->vmode,
             'order_id' => $this->order_id,
             'vdate' => $this->vdate,
@@ -325,7 +326,6 @@ class Index extends Component
             'balance' => ($this->balance + $this->receipt) - $this->payment,
             'approved' => "0",
             'remarks' => $this->remarks,
-            'company_id' => session()->get('company_id'),
             'status_id' => '1',
         ]);
 

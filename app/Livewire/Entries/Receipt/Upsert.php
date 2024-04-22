@@ -107,7 +107,7 @@ class Upsert extends Component
     {
 
         $this->contactCollection = $this->contact_name ? Contact::search(trim($this->contact_name))->where('company_id', '=',
-            session()->get('company_id'))->get() : Contact::all()->where('company_id','=',session()->get('company_id'));
+            session()->get('company_id'))->get() : Contact::all()->where('company_id', '=', session()->get('company_id'));
 
     }
     #endregion
@@ -225,20 +225,20 @@ class Upsert extends Component
     {
         $this->vdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
 
-        if ($id!= 0) {
-                $obj = Receipt::find($id);
-                $this->vid = $obj->id;
-                $this->vdate = $obj->vdate;
-                $this->contact_id = $obj->contact_id;
-                $this->contact_name = $obj->contact->vname;
-                $this->receipttype_id = $obj->receipttype_id;
-                $this->receipttype_name = $obj->receipttype->vname;
-                $this->chq_no = $obj->chq_no;
-                $this->chq_date = $obj->chq_date;
-                $this->bank_id = $obj->bank_id;
-                $this->bank_name= $obj->bank->vname;
-                $this->receipt_amount = $obj->receipt_amount;
-                $this->active_id=$obj->active_id;
+        if ($id != 0) {
+            $obj = Receipt::find($id);
+            $this->vid = $obj->id;
+            $this->vdate = $obj->vdate;
+            $this->contact_id = $obj->contact_id;
+            $this->contact_name = $obj->contact->vname;
+            $this->receipttype_id = $obj->receipttype_id;
+            $this->receipttype_name = $obj->receipttype->vname;
+            $this->chq_no = $obj->chq_no;
+            $this->chq_date = $obj->chq_date;
+            $this->bank_id = $obj->bank_id;
+            $this->bank_name = $obj->bank->vname;
+            $this->receipt_amount = $obj->receipt_amount;
+            $this->active_id = $obj->active_id;
 
 //                $data = DB::table('receiptitems')->where('receipt_id', '=', $obj->id)
 //                    ->get()
@@ -255,8 +255,8 @@ class Upsert extends Component
 //                $this->itemList = $data;
 //
 //                $this->calculateTotal();
-        }else{
-            $this->active_id=true;
+        } else {
+            $this->active_id = true;
         }
     }
     #endregion
@@ -309,13 +309,13 @@ class Upsert extends Component
         if ($this->vid == "") {
             $obj = Receipt::create([
                 'company_id' => session()->get('company_id'),
-                'acyear' => '1',
+                'acyear' => config('aadmin.current_acyear'),
                 'vdate' => $this->vdate,
                 'contact_id' => $this->contact_id,
                 'receipttype_id' => $this->receipttype_id,
-                'chq_no' => $this->chq_no?:'-',
+                'chq_no' => $this->chq_no ?: '-',
                 'chq_date' => $this->chq_date,
-                'bank_id' => $this->bank_id?:'1',
+                'bank_id' => $this->bank_id ?: '1',
                 'receipt_amount' => $this->receipt_amount,
                 'active_id' => $this->active_id,
 
@@ -326,7 +326,7 @@ class Upsert extends Component
         } else {
             $obj = Receipt::find($this->vid);
             $obj->company_id = session()->get('company_id');
-            $obj->acyear = 1;
+            $obj->acyear = config('aadmin.current_acyear');
             $obj->vdate = $this->vdate;
             $obj->contact_id = $this->contact_id;
             $obj->receipttype_id = $this->receipttype_id;

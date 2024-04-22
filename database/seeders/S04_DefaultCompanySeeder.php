@@ -11,7 +11,7 @@ class S04_DefaultCompanySeeder extends Seeder
     {
         DefaultCompany::create([
             'company_id' => '1',
-            'acyear' => '1'
+            'acyear' => config('aadmin.current_acyear'),
         ]);
     }
 }

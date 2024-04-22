@@ -63,7 +63,7 @@ class Index extends Component
             DefaultCompany::create([
                 'company_id' => $id,
                 'tenant_id' => session()->get('tenant_id'),
-                'acyear' => '1'
+                'acyear' => config('aadmin.current_acyear')
             ]);
         }
         $this->showEditModal=false;
