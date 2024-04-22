@@ -13,14 +13,12 @@ return [
     Aaran\Developer\Providers\DeveloperServiceProvider::class,
     Aaran\Accounts\Providers\AccountsServiceProvider::class,
 
-
     Aaran\Audit\Providers\AuditServiceProvider::class,
     Aaran\Taskmanager\Providers\TaskmanagerServiceProvider::class,
     Aaran\Erp\Providers\ErpServiceProvider::class,
     Aaran\Attendance\Providers\AttendanceServiceProvider::class,
     Aaran\Sundar\Providers\AdminServiceProvider::class,
-//    Aaran\Magalir\Providers\MagalirServiceProvider::class,
     Aaran\Accounts\Providers\AccountsServiceProvider::class,
-//    Aaran\Offset\Providers\OffsetServiceProvider::class,
+//  Aaran\Magalir\Providers\MagalirServiceProvider::class,
 
 ];
