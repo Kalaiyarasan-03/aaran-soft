@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->date('cdate');
             $table->text('vname');
             $table->string('client_id')->nullable();
@@ -19,7 +19,6 @@ return new class extends Migration
             $table->text('remarks')->nullable();
             $table->string('verified')->nullable();
             $table->string('verified_on')->nullable();
-            $table->foreignId('company_id')->references('id')->on('companies');
             $table->string('active_id',3)->nullable();
             $table->timestamps();
         });

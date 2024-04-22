@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('client_banks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');;
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->string('vname')->nullable();//display name
             $table->string('acno')->nullable();
             $table->string('ifsc')->nullable();

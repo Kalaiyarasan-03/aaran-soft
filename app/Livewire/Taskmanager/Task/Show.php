@@ -39,10 +39,8 @@ class Show extends Component
     {
         $this->getObj($id);
 
-
-        $this->replies = Reply::where('task_id', $id)->where('company_id', '=', session()->get('company_id'))->get();
-        $this->commentsCount = Reply::where('task_id', $id)->where('company_id', '=',
-            session()->get('company_id'))->count();
+        $this->replies = Reply::where('task_id', $id)->get();
+        $this->commentsCount = Reply::where('task_id', $id)->count();
     }
 
     public function getSave(): string
@@ -55,7 +53,6 @@ class Show extends Component
                     'vname' => $this->reply,
                     'verified' => $this->verified,
                     'verified_on' => $this->verified_on,
-                    'company_id' => session()->get('company_id'),
                     'user_id' => Auth::user()->id,
                 ]);
 
@@ -64,7 +61,7 @@ class Show extends Component
                 $this->verified = '';
             }
         }
-        redirect()->to(route('tasks.replies', [$this->task_id]));
+        redirect()->to(route('tasks.show', [$this->task_id]));
 
         return '';
     }
@@ -98,7 +95,7 @@ class Show extends Component
         $obj = Task::find($this->task_id);
         $obj->status = $this->changeStatus;
         $obj->save();
-        redirect()->to(route('tasks.replies', [$this->task_id]));
+        redirect()->to(route('tasks.show', [$this->task_id]));
     }
 
     public function adminCloseTask(): void

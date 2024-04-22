@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('client_gst_filings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');;
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->string('month');
             $table->string('year');
             $table->string('gstr1_arn')->nullable();

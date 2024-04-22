@@ -10,7 +10,7 @@
             <div class="flex flex-col gap-3">
                 <div class="flex border border-gray-300">
                     <div class="w-[8rem] border flex flex-col justify-between">
-                        <a href="{{ route('tasks.replies',[$row->id]) }}"
+                        <a href="{{ route('tasks.show',[$row->id]) }}"
                            class="cursor-pointer text-2xl h-3/4 flex items-center justify-center">
                             {{ $index+1 }}
                         </a>
@@ -22,9 +22,9 @@
 
                     <div class="w-full">
                         <div class="flex justify-between w-full py-1">
-                            <a href="{{ route('tasks.replies',[$row->id]) }}"
+                            <a href="{{ route('tasks.show',[$row->id]) }}"
                                class="cursor-pointer w-full text-2xl text-left px-3 hover:underline underline-offset-8">
-{{--                                {{ $row->title }}&nbsp;&nbsp;-&nbsp;&nbsp;{{ $row->client->vname }}--}}
+                                {{ $row->title }}&nbsp;&nbsp;-&nbsp;&nbsp;{{ $row->client->vname }}
                             </a>
                             <div class="p-1">
                                 <a
@@ -53,7 +53,7 @@
                                 </div>
 
 
-                                <a href="{{ route('tasks.replies',[$row->id]) }}"
+                                <a href="{{ route('tasks.show',[$row->id]) }}"
                                    class="cursor-pointer flex flex-row px-20">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -98,11 +98,9 @@
 
             <x-input.model-select wire:model="client_id" :label="'Client'">
                 <option class="text-gray-400"> choose ..</option>
-                @if(isset($clients))
                 @foreach($clients as $client)
                     <option value="{{$client->id}}">{{$client->vname}}</option>
                 @endforeach
-                @endif
             </x-input.model-select>
 
             <x-input.model-text wire:model="vname" :label="'Title'"/>

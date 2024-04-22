@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('verified_on')->nullable();
             $table->string('active_id',3)->nullable();
             $table->string('priority')->nullable();
-            $table->foreignId('company_id')->references('id')->on('companies');
             $table->foreignId('user_id')->references('id')->on('users');
             $table->timestamps();
         });

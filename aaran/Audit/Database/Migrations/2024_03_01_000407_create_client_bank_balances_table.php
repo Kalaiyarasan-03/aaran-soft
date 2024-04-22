@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('client_bank_balances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_bank_id')->references('id')->on('client_banks')->onDelete('cascade');;
+            $table->foreignId('client_bank_id')->references('id')->on('client_banks')->onDelete('cascade');
             $table->date('cdate');
             $table->decimal('balance');
             $table->foreignId('user_id')->references('id')->on('users');

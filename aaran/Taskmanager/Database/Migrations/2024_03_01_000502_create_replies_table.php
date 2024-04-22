@@ -10,12 +10,11 @@ return new class extends Migration {
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('task_id')->references('id')->on('tasks');
+            $table->foreignId('task_id')->references('id')->on('tasks')->onDelete('cascade');
             $table->text('vname');
             $table->string('verified')->nullable();
             $table->string('verified_on')->nullable();
-            $table->foreignId('company_id')->references('id')->on('companies');
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
