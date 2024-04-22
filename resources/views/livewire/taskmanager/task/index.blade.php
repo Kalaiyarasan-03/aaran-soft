@@ -125,8 +125,10 @@
                     <option value="{{$user->id}}">{{$user->name}}</option>
                 @endforeach
             </x-input.model-select>
+            @admin
             <x-input.model-text wire:model="verified" :label="'Verified'"/>
             <x-input.model-date wire:model="verified_on" :label="'Verified On'"/>
+            @endadmin
 
         </x-forms.create>
 

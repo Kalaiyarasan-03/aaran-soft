@@ -112,9 +112,7 @@
                         <span class="text-red-500">{{  'Choose any one and update' }}</span>
                         @enderror
 
-                        @editor
                         <button wire:click.prevent="updateStatus" class="text-sm text-gray-400">Update</button>
-                        @endeditor
 
                         @admin
                         <button wire:click.prevent="adminCloseTask" class="text-sm text-red-500">Close</button>
