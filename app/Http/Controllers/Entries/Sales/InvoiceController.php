@@ -112,7 +112,7 @@ class InvoiceController extends Controller
     private function getPdfViewPath()
     {
         return match (config('aadmin.app_type')) {
-            config('clients.VIJAY_GARMENTS') =>  'pdf.entries.sales.vijay_garments1',
+            config('clients.VIJAY_GARMENTS') =>  'pdf.garments.vijay_garments1',
             config('clients.SK_PRINTERS') =>  'pdf.sundar.sk_printers',
             config('clients.SARA_SCREENS') =>  'pdf.offset.sara_screens',
             default =>'pdf.garments.letterpad_withoutbank' ,
