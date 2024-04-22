@@ -15,7 +15,7 @@ class Index extends Component
     use CommonTrait;
 
     #region[Properties]
-    public $sortField_1='purchase_no';
+    public $sortField_1 = 'purchase_no';
     public Collection $contacts;
     public Collection $orders;
     #endregion
@@ -32,19 +32,19 @@ class Index extends Component
     {
         return Purchase::search($this->searches)
             ->where('active_id', '=', $this->activeRecord)
-            ->when($this->filter,function ($query,$filter){
-                return $query->where('contact_id',$filter);
+            ->when($this->filter, function ($query, $filter) {
+                return $query->where('contact_id', $filter);
             })
-            ->when($this->byOrder,function ($query,$byOrder){
-                return $query->where('order_id',$byOrder);
+            ->when($this->byOrder, function ($query, $byOrder) {
+                return $query->where('order_id', $byOrder);
             })
-            ->when($this->start_date,function ($query,$start_date){
-                return $query->whereDate('purchase_date','>=',$start_date);
+            ->when($this->start_date, function ($query, $start_date) {
+                return $query->whereDate('purchase_date', '>=', $start_date);
             })
-            ->when($this->end_date,function ($query,$end_date){
-                return $query->whereDate('purchase_date','<=',$end_date);
+            ->when($this->end_date, function ($query, $end_date) {
+                return $query->whereDate('purchase_date', '<=', $end_date);
             })
-            ->where('company_id', '=',  session()->get('company_id'))
+            ->where('company_id', '=', session()->get('company_id'))
             ->orderBy($this->sortField_1, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
@@ -53,21 +53,21 @@ class Index extends Component
     #region[Contact]
     public function getContact()
     {
-        $this->contacts=Contact::where('company_id','=',session()->get('company_id'))->get();
+        $this->contacts = Contact::where('company_id', '=', session()->get('company_id'))->get();
     }
     #endregion
 
     #region[Order]
     public function getOrder()
     {
-        $this->orders=Order::where('company_id','=',session()->get('company_id'))->get();
+        $this->orders = Order::where('company_id', '=', session()->get('company_id'))->get();
     }
     #endregion
 
     #region[Sort]
     public function sortBy($field): void
     {
-        if ($this->sortField_1=== $field) {
+        if ($this->sortField_1 === $field) {
             $this->sortAsc = !$this->sortAsc;
         } else {
             $this->sortAsc = true;
@@ -98,8 +98,8 @@ class Index extends Component
             $this->transport_name = $obj->transport->vname;
             $this->bundle = $obj->bundle;
             $this->total_qty = $obj->total_qty;
-            $this->total_taxable= $obj->total_taxable;
-            $this->total_gst=$obj->total_gst;
+            $this->total_taxable = $obj->total_taxable;
+            $this->total_gst = $obj->total_gst;
             $this->ledger_id = $obj->ledger_id;
             $this->ledger_name = $obj->ledger->vname;
             $this->additional = $obj->additional;
@@ -114,11 +114,13 @@ class Index extends Component
     #endregion
 
     #region[Delete]
-        public function set_delete($id): void
+    public function delete(): void
     {
-        $obj=$this->getObj($id);
+        $obj = $this->getObj($this->vid);
         DB::table('purchaseitems')->where('purchase_id', '=', $this->vid)->delete();
         $obj->delete();
+        $this->showDeleteModal = false;
+        $this->clearFields();
     }
     #endregion
 

@@ -11,6 +11,13 @@ class SaleEntry
             config('clients.NEETHU_INDUSTRIES') => in_array($feature, config('neethuIndustries.customise', [])),
             config('clients.SK_PRINTERS') => in_array($feature, config('sk_printers.customise', [])),
             config('clients.AARAN_ASSOCIATES') => in_array($feature, config('aaran_associates.customise', [])),
+
+            config('clients.SARA_SCREENS') => in_array($feature, config('sara_screens.customise', [])),
+            config('clients.COLOURS_PRINTING') => in_array($feature, config('colours_printers.customise', [])),
+            config('clients.NEW_AMMAN_PRINTERS') => in_array($feature, config('new_amman_printers.customise', [])),
+            config('clients.KGS_PRINTERS') => in_array($feature, config('kgs_printers.customise', [])),
+            config('clients.THIRUMURUGAN_PRINTERS') => in_array($feature, config('thirumurugan_printing.customise', [])),
+            config('clients.SAIRF_SOURCING') => in_array($feature, config('sairf_sourcing.customise', [])),
         };
     }
 
