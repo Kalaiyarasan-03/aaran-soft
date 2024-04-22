@@ -40,7 +40,7 @@ class AadminServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../Client/offset/kathir_printers.php', 'kathir_printers');
         $this->mergeConfigFrom(__DIR__ . '/../Client/offset/kgs_printers.php', 'kgs_printers');
         $this->mergeConfigFrom(__DIR__ . '/../Client/offset/new_amman_printers.php', 'new_amman_printers');
-        $this->mergeConfigFrom(__DIR__ . '/../Client/offset/sairf_sourcing.php.php', 'sairf_sourcing');
+        $this->mergeConfigFrom(__DIR__ . '/../Client/offset/sairf_sourcing.php', 'sairf_sourcing');
         $this->mergeConfigFrom(__DIR__ . '/../Client/offset/sara_screens.php', 'sara_screens');
         $this->mergeConfigFrom(__DIR__ . '/../Client/offset/thirumurugan_printing.php', 'thirumurugan_printing');
 
