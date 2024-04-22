@@ -7,6 +7,9 @@
         <x-forms.top-controls :show-filters="$showFilters"/>
 
         <x-forms.table :list="$list">
+
+            <!-- Table Header ----------------------------------------------------------------------------------------->
+
             <x-slot name="table_header">
                 <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" left>Client Name</x-table.header-text>

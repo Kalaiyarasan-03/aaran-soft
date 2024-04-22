@@ -18,7 +18,7 @@
         <!-- Header --------------------------------------------------------------------------------------------------->
         <x-forms.table :list="$list">
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('id')"/>
+                <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Date</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Order No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Purpose</x-table.header-text>
@@ -205,6 +205,7 @@
         </div>
     </x-jet.modal>
 
+    <!-- Re-total ------------------------------------------------------------------------------------------------------>
 
     <div class="px-5 py-3">
         <button wire:click.prevent="reTotal"

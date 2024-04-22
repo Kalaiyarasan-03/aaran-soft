@@ -197,6 +197,9 @@
                 <x-icons.utilities :icon="'upload'"/>
                 <x-icons.utilities :icon="'download'"/>
                 <x-icons.utilities :icon="'heart'"/>
+                <x-icons.utilities :icon="'clipboard-document-list'"/>
+                <x-icons.utilities :icon="'clip-board'"/>
+                <x-icons.utilities :icon="'thumbs-up'"/>
 
                 </div>
             </div>

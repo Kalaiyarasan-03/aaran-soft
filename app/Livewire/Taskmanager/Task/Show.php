@@ -14,6 +14,7 @@ class Show extends Component
 {
     use CommonTrait;
 
+    #region[properties]
     public string $client_id;
     public string $body;
     public string $reply;
@@ -33,8 +34,9 @@ class Show extends Component
     public $commentsCount;
     public $verified;
     public $verified_on;
+    #endregion
 
-
+    #region[Mount]
     public function mount($id): void
     {
         $this->getObj($id);
@@ -42,7 +44,9 @@ class Show extends Component
         $this->replies = Reply::where('task_id', $id)->get();
         $this->commentsCount = Reply::where('task_id', $id)->count();
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->reply) {
@@ -65,7 +69,9 @@ class Show extends Component
 
         return '';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -88,7 +94,9 @@ class Show extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[Update]
     public function updateStatus(): void
     {
         $this->validate(['changeStatus' => 'required']);
@@ -97,7 +105,9 @@ class Show extends Component
         $obj->save();
         redirect()->to(route('tasks.show', [$this->task_id]));
     }
+    #endregion
 
+    #region[Admin]
     public function adminCloseTask(): void
     {
         $obj = Task::find($this->task_id);
@@ -106,9 +116,12 @@ class Show extends Component
         $obj->save();
         redirect()->to(route('tasks'));
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         return view('livewire.taskmanager.task.show');
     }
+    #endregion
 }

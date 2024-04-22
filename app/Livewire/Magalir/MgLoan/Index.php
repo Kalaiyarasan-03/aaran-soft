@@ -15,6 +15,7 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[properties]
     public string $ac_no = '';
     public string $open_date = '';
     public mixed $loan = '';
@@ -25,7 +26,9 @@ class Index extends Component
     public mixed $clubs;
     public MgMember $member;
     public MgLoan $mgLoan;
+    #endregion
 
+    #region[Mount]
     public function mount($id)
     {
         if ($id) {
@@ -36,8 +39,9 @@ class Index extends Component
         $this->open_date = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->due_date = (Carbon::parse(Carbon::now())->format('Y-m-d'));
     }
+    #endregion
 
-
+    #region[Save]
     public function getSave(): string
     {
         if ($this->ac_no != '') {
@@ -79,7 +83,9 @@ class Index extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[Generate]
     public function generateDues(): void
     {
         $time = strtotime($this->mgLoan->due_date);
@@ -103,8 +109,9 @@ class Index extends Component
             }
         }
     }
+    #endregion
 
-
+    #region[Clear]
     public function clearFields(): void
     {
         $this->ac_no = '';
@@ -116,7 +123,9 @@ class Index extends Component
         $this->due_date = '';
         $this->searches = '';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -133,7 +142,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'id';
@@ -143,11 +154,14 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         return view('livewire.magalir.mg-loan.index')->with([
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }
