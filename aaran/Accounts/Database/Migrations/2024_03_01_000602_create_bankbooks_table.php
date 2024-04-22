@@ -8,10 +8,10 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('cashbooks', function (Blueprint $table) {
+        Schema::create('bankbooks', function (Blueprint $table) {
             $table->id();
             $table->string('acyear')->nullable();
-            $table->foreignId('company_id')->references('id')->on('companies');
+            $table->foreignId('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->date('vdate');
             $table->string('vmode');
             $table->foreignId('order_id')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('approved')->nullable();
             $table->string('remarks')->nullable();
             $table->string('status_id')->nullable();
-
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('active_id',10)->nullable();
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('cashbooks');
+        Schema::dropIfExists('bankbooks');
     }
 };

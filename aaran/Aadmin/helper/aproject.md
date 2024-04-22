@@ -85,17 +85,20 @@
 - 
 
 ## Aadmin - 900
-- Config
+- customise
 
 
 ## Sundar - 1000
 -
 
-## Demo - 1100
+## Developer - 1100
 - DemoRequest
 
 
 ## Blog - 1200
+- 
+
+## Attendance - 1300
 - 
 
 
