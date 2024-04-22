@@ -1,5 +1,5 @@
-<div>
-    <div class="border border-gray-300 max-w-screen-md rounded  overflow-scroll shadow-lg bg-white">
+<div class="relative h-72">
+    <div class="border border-gray-300 max-w-screen-md rounded-t-md  overflow-scroll shadow-lg bg-white h-full border-b-0">
 
         <div>
             <div class="flex items-center gap-3 p-2 border-b border-gray-300">
@@ -77,18 +77,16 @@
                 @endforeach
             </div>
 
-            <div class="p-0.5 bg-purple-100">
+        </div>
+    </div>
+            <div class=" border border-gray-300 max-w-screen-md rounded-b-md shadow-lg">
                 <label>
                     <input type="text" wire:model="vname" wire:change="saveTodo" placeholder="Ink your ideas..."
                            class="border-transparent appearance-none border ring-1 ring-gray-200
                                   border-gray-200 bg-gray-100 py-2 px-3 text-zinc-800 font-semibold
                                   placeholder-gray-400 text-base focus:outline-none
-                                  focus:ring-1 focus:ring-gray-300 focus:border-transparent w-full">
+                                  focus:ring-1 focus:ring-gray-300 focus:border-transparent w-full rounded-b-md">
                 </label>
-{{--                <x-input.model-text wire:model="verified" :label="'Verified'"/>--}}
-{{--                <x-input.model-date wire:model="verified_on" :label="'Verified On'"/>--}}
             </div>
-        </div>
-    </div>
 </div>
 

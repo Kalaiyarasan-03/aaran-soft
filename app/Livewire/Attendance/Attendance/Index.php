@@ -4,6 +4,7 @@ namespace App\Livewire\Attendance\Attendance;
 
 use Aaran\Attendance\Models\Attendance;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
@@ -23,6 +24,7 @@ class Index extends Component
     public mixed $total_amount = 307.69;
     public $user_name = '';
     public $user_id = '';
+    public Collection $data;
     #endregion
 
     #region[Save]
@@ -57,6 +59,13 @@ class Index extends Component
             Carbon::now()->startOfMonth()->format('Y-m-d'),
             Carbon::now()->endOfMonth()->format('Y-m-d')
         ])->where('company_id', '=', session()->get('company_id'))->where('user_id', Auth::id());
+    }
+    public function getlist_1()
+    {
+        $this->data=Attendance::all()->whereBetween('vdate', [
+            Carbon::now()->startOfMonth()->format('Y-m-d'),
+            Carbon::now()->endOfMonth()->format('Y-m-d')
+        ])->where('company_id', '=', session()->get('company_id'));
     }
     #endregion
 
@@ -102,8 +111,9 @@ class Index extends Component
     #region[Render]
     public function render()
     {
+        $this->getlist_1();
         return view('livewire.attendance.attendance.index')->with([
-            'list' => $this->getList()
+            'list' => $this->getList(),
         ]);
     }
     #endregion
