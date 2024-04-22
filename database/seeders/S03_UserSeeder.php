@@ -60,5 +60,35 @@ class S03_UserSeeder extends Seeder
             'tenant_id' => '1',
             'role_id' => '1'
         ]);
+
+        User::create([
+            'name' => 'kapinjal',
+            'email' => 'kapi@aaran.org',
+            'password' => bcrypt('123456789'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'tenant_id' => '1',
+            'role_id' => '1'
+        ]);
+
+        User::create([
+            'name' => 'SATHISHKUMAR',
+            'email' => 'sathish@aaran.org',
+            'password' => bcrypt('123456789'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'tenant_id' => '1',
+            'role_id' => '1'
+        ]);
+
+        User::create([
+            'name' => 'KALARANI',
+            'email' => 'kalarani@aaran.org',
+            'password' => bcrypt('123456789'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+            'tenant_id' => '1',
+            'role_id' => '1'
+        ]);
     }
 }
