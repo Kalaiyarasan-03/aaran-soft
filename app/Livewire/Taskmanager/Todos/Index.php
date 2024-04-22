@@ -19,9 +19,6 @@ class Index extends Component
     public bool $editmode = false;
     public mixed $subjective = false;
     public mixed $active_id = '1';
-    public $verified;
-    public $verified_on;
-
 
     public function mount()
     {
@@ -48,9 +45,6 @@ class Index extends Component
             'vname' => $this->vname,
             'completed' => $this->completed,
             'subjective' => $this->subjective,
-            'verified' => $this->verified,
-            'verified_on' => $this->verified_on,
-            'company_id' => session()->get('company_id'),
             'user_id' => auth()->id(),
             'active_id' => '1'
         ]);
@@ -65,8 +59,6 @@ class Index extends Component
         $this->vdate = Carbon::parse(Carbon::now());
         $this->vname = '';
         $this->ename = '';
-        $this->verified = '';
-        $this->verified_on = '';
         $this->completed = false;
         $this->active_id = '1';
 
@@ -82,8 +74,6 @@ class Index extends Component
         $todo = Todos::find($id);
         $todo->slno = $this->slno;
         $todo->vname = $this->ename;
-        $todo->verified = $this->verified;
-        $todo->verified_on = $this->verified_on;
         $todo->save();
         $this->clearFields();
         $this->refreshComponent();
@@ -110,8 +100,7 @@ class Index extends Component
 
     public function getList()
     {
-        return Todos::where('company_id','=',session()->get('company_id'))
-            ->Where('user_id','=', auth()->id())
+        return Todos::Where('user_id','=', auth()->id())
             ->orwhere('subjective','=', true)
             ->get();
 
