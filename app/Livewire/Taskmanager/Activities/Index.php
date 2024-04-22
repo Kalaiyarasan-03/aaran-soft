@@ -4,6 +4,7 @@ namespace App\Livewire\Taskmanager\Activities;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Taskmanager\Models\Activities;
+use App\Enums\Active;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -29,8 +30,9 @@ class Index extends Component
     public function mount()
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
-        $this->dates = DB::table('activities')->select('cdate','created_at')->distinct('cdate')->limit(3)->orderBy('created_at', 'desc')->get();
-        $this->clients = Client::all()->where('company_id', '=', session()->get('company_id')) ;
+        $this->dates = DB::table('activities')->select('cdate', 'created_at')->distinct('cdate')
+            ->limit(3)->orderBy('created_at', 'desc')->get();
+        $this->clients = Client::where('active_id', '=', Active::ACTIVE)->get();
     }
 
     public function getSave(): string
@@ -44,10 +46,9 @@ class Index extends Component
                     'client_id' => $this->client_id,
                     'duration' => $this->duration,
                     'channel' => $this->channel,
-                    'verified' => $this->verified,
-                    'verified_on' => $this->verified_on,
+                    'verified' => $this->verified ?: '-',
+                    'verified_on' => $this->verified_on ?: '-',
                     'remarks' => $this->remarks,
-                    'company_id' => session()->get('company_id'),
                     'active_id' => $this->active_id,
                 ]);
                 $message = "Saved";
@@ -61,14 +62,13 @@ class Index extends Component
                 $obj->duration = $this->duration;
                 $obj->channel = $this->channel;
                 $obj->remarks = $this->remarks;
-                $obj->verified = $this->verified;
-                $obj->verified_on = $this->verified_on;
-                $obj->company_id = session()->get('company_id');
+                $obj->verified = $this->verified ?: '-';
+                $obj->verified_on = $this->verified_on ?: '-';
                 $obj->active_id = $this->active_id;
                 $obj->save();
                 $message = "Updated";
             }
-            $this->cdate =(Carbon::parse(Carbon::now())->format('Y-m-d'));
+            $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
             $this->client_id = '';
             $this->remarks = '';
             $this->duration = '';
@@ -106,7 +106,6 @@ class Index extends Component
 
         return Activities::search($this->searches)
             ->whereDate('cdate', '=', $this->cdate)
-            ->where('company_id', '=', session()->get('company_id'))
             ->where('user_id', '=', Auth::id())
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);

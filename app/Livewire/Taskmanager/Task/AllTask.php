@@ -4,6 +4,7 @@ namespace App\Livewire\Taskmanager\Task;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Taskmanager\Models\Task;
+use App\Enums\Active;
 use App\Livewire\Trait\CommonTrait;
 use App\Models\User;
 use Carbon\Carbon;
@@ -32,7 +33,7 @@ class AllTask extends Component
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->users = User::all();
-        $this->clients = Client::all() ->where('company_id', '=', session()->get('company_id'));
+        $this->clients = Client::where('active_id','=',Active::ACTIVE )->get();
     }
 
     public function getSave(): string
@@ -46,11 +47,10 @@ class AllTask extends Component
                     'body' => $this->body,
                     'channel' => $this->channel,
                     'allocated' => $this->allocated,
+                    'status' => 1,
                     'verified' => $this->verified,
                     'verified_on' => $this->verified_on,
                     'user_id' => Auth::user()->id,
-                    'status' => 1,
-                    'company_id' => session()->get('company_id'),
                     'active_id' => $this->active_id ? 1 : 0
                 ]);
                 $message = "Saved";
@@ -62,11 +62,10 @@ class AllTask extends Component
                 $obj->body = $this->body;
                 $obj->channel = $this->channel;
                 $obj->allocated = $this->allocated;
+                $obj->status = $this->status;
                 $obj->verified = $this->verified;
                 $obj->verified_on = $this->verified_on;
-                $obj->status = $this->status;
                 $obj->active_id = $this->active_id;
-                $obj->company_id = session()->get('company_id');
                 $obj->save();
                 $message = "Updated";
             }
@@ -95,9 +94,9 @@ class AllTask extends Component
             $this->body = $obj->body;
             $this->channel = $obj->channel;
             $this->allocated = $obj->allocated;
+            $this->status = $obj->status;
             $this->verified = $obj->verified;
             $this->verified_on = $obj->verified_on;
-            $this->status = $obj->status;
             $this->active_id = $obj->active_id;
 
             return $obj;
@@ -112,7 +111,6 @@ class AllTask extends Component
 
         return Task::search($this->searches)
             ->where('active_id', '=', $this->activeRecord)
-            ->where('company_id', '=', session()->get('company_id'))
             ->where('status', '!=', 100)
             ->with('user',)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')

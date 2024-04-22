@@ -4,6 +4,7 @@ namespace App\Livewire\Taskmanager\Activities;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Taskmanager\Models\Activities;
+use App\Enums\Active;
 use App\Livewire\Trait\CommonTrait;
 use App\Models\User;
 use Carbon\Carbon;
@@ -33,8 +34,8 @@ class Admin extends Component
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->dates = DB::table('activities')->select('cdate','created_at')->distinct('cdate')->limit(3)->orderBy('created_at', 'desc')->get();
-        $this->clients = Client::all() ->where('company_id', '=', session()->get('company_id'));
-        $this->users = User::all() ->where('tenant_id', '=', session()->get('tenant_id'));
+        $this->clients = Client::where('active_id', '=',Active::ACTIVE )->get();
+        $this->users = User::all();
     }
 
     public function getSave(): string
@@ -51,7 +52,6 @@ class Admin extends Component
                     'remarks' => $this->remarks,
                     'verified' => $this->verified,
                     'verified_on' => $this->verified_on,
-                    'company_id' => session()->get('company_id'),
                     'active_id' => $this->active_id,
                 ]);
                 $message = "Saved";
@@ -67,7 +67,6 @@ class Admin extends Component
                 $obj->remarks = $this->remarks;
                 $obj->verified = $this->verified;
                 $obj->verified_on = $this->verified_on;
-                $obj->company_id = session()->get('company_id');
                 $obj->active_id = $this->active_id;
                 $obj->save();
                 $message = "Updated";
@@ -110,14 +109,12 @@ class Admin extends Component
 
         if ($this->user_id) {
             return Activities::search($this->searches)
-                ->where('company_id', '=', session()->get('company_id'))
                 ->whereDate('cdate', '=', $this->cdate)
                 ->where('user_id', '=', $this->user_id)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->paginate($this->perPage);
         } else {
             return Activities::search($this->searches)
-                ->where('company_id', '=', session()->get('company_id'))
                 ->whereDate('cdate', '=', $this->cdate)
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->paginate($this->perPage);

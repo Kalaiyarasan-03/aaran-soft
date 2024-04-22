@@ -4,6 +4,7 @@ namespace App\Livewire\Taskmanager\NoticeBoard;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Taskmanager\Models\NoticeBoard;
+use App\Enums\Active;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
@@ -26,8 +27,9 @@ class Index extends Component
 
     public function mount()
     {
-        $this->dates = DB::table('notice_boards')->select('cdate','created_at')->distinct('cdate')->limit(3)->orderBy('created_at', 'desc')->get();
-        $this->clients = Client::all();
+        $this->dates = DB::table('notice_boards')->select('cdate','created_at')
+            ->distinct('cdate')->limit(3)->orderBy('created_at', 'desc')->get();
+        $this->clients = Client::where('active_id','=', Active::ACTIVE)->get();
     }
 
     public function getSave(): string
@@ -43,7 +45,6 @@ class Index extends Component
                     'verified_on' => $this->verified_on,
                     'active_id' => $this->active_id ?: '0',
                     'user_id' => Auth::id(),
-                    'company_id' => session()->get('company_id'),
                     'priority' => $this->priority
                 ]);
                 $message = "Saved";
@@ -58,7 +59,6 @@ class Index extends Component
                 $obj->verified_on = $this->verified_on;
                 $obj->active_id = $this->active_id ?: '0';
                 $obj->user_id = Auth::id();
-                $obj->company_id = session()->get('company_id');
                 $obj->priority = $this->priority;
                 $obj->save();
                 $message = "Updated";
@@ -100,7 +100,6 @@ class Index extends Component
         if ($this->cdate) {
             return NoticeBoard::search($this->searches)
                 ->whereDate('cdate', '=', $this->cdate)
-                ->where('company_id', '=', session()->get('company_id'))
                 ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
                 ->paginate($this->perPage);
         } else {

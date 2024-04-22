@@ -4,6 +4,7 @@ namespace App\Livewire\Taskmanager\Task;
 
 use Aaran\Audit\Models\Client;
 use Aaran\Taskmanager\Models\Task;
+use App\Enums\Active;
 use App\Livewire\Trait\CommonTrait;
 use App\Models\User;
 use Carbon\Carbon;
@@ -31,8 +32,8 @@ class Index extends Component
     public function mount()
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
-        $this->users = User::all()->where('tenant_id','=',session()->get('tenant_id'));
-//        $this->clients = Client::all()->where('company_id','=',session()->get('company_id'));
+        $this->users = User::all();
+        $this->clients = Client::where('active_id','=',Active::ACTIVE )->get();
     }
 
     public function getSave(): string
@@ -46,11 +47,10 @@ class Index extends Component
                     'body' => $this->body,
                     'channel' => $this->channel,
                     'allocated' => $this->allocated,
+                    'status' => 1,
                     'verified' => $this->verified,
                     'verified_on' => $this->verified_on,
                     'user_id' => Auth::user()->id,
-                    'status' => 1,
-                    'company_id' => session()->get('company_id'),
                     'active_id' => $this->active_id ? 1 : 0
                 ]);
                 $message = "Saved";
@@ -62,10 +62,9 @@ class Index extends Component
                 $obj->body = $this->body;
                 $obj->channel = $this->channel;
                 $obj->allocated = $this->allocated;
+                $obj->status = $this->status;
                 $obj->verified = $this->verified;
                 $obj->verified_on = $this->verified_on;
-                $obj->status = $this->status;
-                $obj->company_id = session()->get('company_id');
                 $obj->active_id = $this->active_id;
                 $obj->save();
                 $message = "Updated";
@@ -95,9 +94,9 @@ class Index extends Component
             $this->body = $obj->body;
             $this->channel = $obj->channel;
             $this->allocated = $obj->allocated;
+            $this->status = $obj->status;
             $this->verified = $obj->verified;
             $this->verified_on = $obj->verified_on;
-            $this->status = $obj->status;
             $this->active_id = $obj->active_id;
 
             return $obj;
@@ -112,7 +111,6 @@ class Index extends Component
 
         return Task::search($this->searches)
             ->where('active_id', '=', $this->activeRecord)
-            ->where('company_id', '=', session()->get('company_id'))
             ->where('user_id', '=', Auth::id())
             ->orWhere('allocated', '=', Auth::id())
             ->where('status', '!=', 100)
