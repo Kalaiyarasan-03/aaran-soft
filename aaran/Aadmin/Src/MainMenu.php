@@ -17,7 +17,7 @@ class MainMenu
             config('clients.NEW_AMMAN_PRINTERS') => in_array($feature, config('new_amman_printers.menus', [])),
             config('clients.KGS_PRINTERS') => in_array($feature, config('kgs_printers.menus', [])),
             config('clients.THIRUMURUGAN_PRINTERS') => in_array($feature, config('thirumurugan_printing.menus', [])),
-            config('clients.SAIRF_SOURCING') => in_array($feature, config('sairf_sourcing.menus', [])),
+//            config('clients.SAIRF_SOURCING') => in_array($feature, config('sairf_sourcing.menus', [])),
         };
     }
 
