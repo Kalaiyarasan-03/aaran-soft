@@ -131,10 +131,9 @@
 
             @admin
             <x-input.model-text wire:model="remarks" :label="'Remarks'"/>
-            @endadmin
             <x-input.model-text wire:model="verified" :label="'Verified'"/>
             <x-input.model-date wire:model="verified_on" :label="'Verified On'"/>
-
+            @endadmin
         </x-forms.create>
 
     </x-forms.m-panel>

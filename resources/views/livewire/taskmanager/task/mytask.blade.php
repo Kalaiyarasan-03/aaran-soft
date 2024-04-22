@@ -15,7 +15,7 @@
                             {{ $index+1 }}
                         </a>
                         <div
-                                class="h-1/4 flex items-center justify-center bg-blue-300  {{ \App\Enums\Status::tryFrom($row->status)->getStyle() }}">
+                            class="h-1/4 flex items-center justify-center bg-blue-300  {{ \App\Enums\Status::tryFrom($row->status)->getStyle() }}">
                             {{ \App\Enums\Status::tryFrom($row->status)->getName() }}
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                             </a>
                             <div class="p-1">
                                 <a
-                                        class="cursor-pointer px-3 text-center rounded-full outline outline-1 outline-green-600 bg-green-100  flex flex-shrink-0">{{ \App\Enums\Channels::tryFrom($row->channel)->getName() }}</a>
+                                    class="cursor-pointer px-3 text-center rounded-full outline outline-1 outline-green-600 bg-green-100  flex flex-shrink-0">{{ \App\Enums\Channels::tryFrom($row->channel)->getName() }}</a>
                             </div>
                             <div class="w-[15rem] text-lg text-right px-5">
                                 <a class="cursor-pointer">By : {{ $row->user->name }}</a>
@@ -46,7 +46,7 @@
                                 <div class="flex flex-row gap-2">
                                     <span class=" text-sm py-0.5 text-gray-500">Assign To :</span>
                                     <span
-                                            class=" text-md text-gray-600">
+                                        class=" text-md text-gray-600">
 {{--                                        {{\Aaran\Crm\Models\Task::allocate($row->allocated) }}--}}
                                     </span>
 
@@ -72,7 +72,7 @@
                             <div class="px-3 py-1 flex flex-row gap-3 items-center">
                                 {{ \App\Helper\ConvertTo::dateTime($row->updated_at)}}
                                 <div
-                                        class="text-center flex items-center w-4 h-4 mr-2 text-sm rounded-full {{\App\Enums\Active::tryFrom($row->active_id)->getStyle()}}">
+                                    class="text-center flex items-center w-4 h-4 mr-2 text-sm rounded-full {{\App\Enums\Active::tryFrom($row->active_id)->getStyle()}}">
                                     &nbsp;
                                 </div>
                             </div>
@@ -123,9 +123,10 @@
                     <option value="{{$user->id}}">{{$user->name}}</option>
                 @endforeach
             </x-input.model-select>
+            @admin
             <x-input.model-text wire:model="verified" :label="'Verified'"/>
             <x-input.model-date wire:model="verified_on" :label="'Verified On'"/>
-
+            @endadmin
         </x-forms.create>
 
     </x-forms.m-panel>
