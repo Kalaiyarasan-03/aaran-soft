@@ -23,19 +23,32 @@ class Customise
         };
     }
 
+    /**
+     * has todos
+     * @return bool
+     */
     public static function hasTodoList(): bool
     {
         return static::enabled(static::todoList());
     }
 
-
-    /**
-     * Enable Todos features.
-     * @return string
-     */
     public static function todoList(): string
     {
         return 'todos';
+    }
+
+    /**
+     * has attendance
+     * @return bool
+     */
+    public static function hasAttendance(): bool
+    {
+        return static::enabled(static::attendance());
+    }
+
+    public static function attendance(): string
+    {
+        return 'attendance';
     }
 
 }
