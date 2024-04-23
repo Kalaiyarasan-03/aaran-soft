@@ -67,7 +67,6 @@ class Index extends Component
         DB::table('saleitems')->where('sale_id', '=', $this->vid)->delete();
         $obj->delete();
         $this->showDeleteModal = false;
-        $this->clearFields();
     }
     #endregion
 

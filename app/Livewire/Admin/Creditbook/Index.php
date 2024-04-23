@@ -45,6 +45,13 @@ class Index extends Component
         }
         return '';
     }
+
+    public function clearFields(): void
+    {
+        $this->vname='';
+        $this->closing = '';
+
+    }
     #endregion
 
     #region[get Obj]
