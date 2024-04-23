@@ -19,13 +19,13 @@
         <x-forms.table :list="$list">
             <x-slot name="table_header">
                 <x-table.header-serial/>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Date</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Order No</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Purpose</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Person</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Receipt</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Payment</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Balance</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Date</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Order No</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Purpose</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Person</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Receipt</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Payment</x-table.header-text>
+                <x-table.header-text center>Balance</x-table.header-text>
                 <x-table.header-action/>
             </x-slot>
 
