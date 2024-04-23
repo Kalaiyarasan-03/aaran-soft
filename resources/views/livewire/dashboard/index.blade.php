@@ -1,8 +1,8 @@
 <div>
     <x-slot name="header">Dashboard</x-slot>
     <div class="w-full h-screen">
-        <div class="flex justify-between gap-3 py-5 xl:pl-12 h-2/5 ">
-            <div class="w-1/4 ">
+        <div class="lg:flex justify-between gap-3 py-5 xl:pl-12 h-2/5 ">
+            <div class="lg:w-1/4 ">
                 @if(Aaran\Aadmin\Src\Customise::hasTodoList())
                     <livewire:taskmanager.todos.index/>
                 @endif
