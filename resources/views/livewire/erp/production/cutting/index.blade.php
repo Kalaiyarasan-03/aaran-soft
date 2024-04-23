@@ -9,16 +9,17 @@
 
         <!-- Header --------------------------------------------------------------------------------------------------->
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('vno')"/>
+                <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Order No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Job No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Date</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Cutting Master</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Cutting Qty</x-table.header-text>
+                <x-table.header-text center>Cutting Qty</x-table.header-text>
                 <x-table.header-text center>Action</x-table.header-text>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
+
             <x-slot name="table_body">
                 @forelse ($list as $index =>  $row)
 
@@ -82,7 +83,7 @@
                 @endforelse
             </x-slot>
 
-            <!-- Table Footer ----------------------------------------------------------------------------------------->
+            <!-- Pagination ------------------------------------------------------------------------------------------->
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>
