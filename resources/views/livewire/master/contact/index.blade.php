@@ -55,8 +55,7 @@
                                     </x-button.link>
                                 </a>
 
-                                <x-button.link wire:click="set_delete({{$row->id}})"
-                                               wire:confirm="Are you sure you want to delete this ?">&nbsp;
+                                <x-button.link wire:click="getDelete({{$row->id}})">&nbsp;
                                     <x-icons.icon :icon="'trash'"
                                                   class="text-red-600 h-5 w-auto block"/>
                                 </x-button.link>
@@ -74,6 +73,7 @@
                 {{ $list->links() }}
             </x-slot>
         </x-forms.table>
+        <x-modal.delete/>
 
     </x-forms.m-panel>
 </div>

@@ -61,6 +61,7 @@ class Index extends Component
     {
         $this->vname = '';
         $this->vid = '';
+        $this->active_id = '1';
         $this->group = '';
         $this->payable = '';
     }

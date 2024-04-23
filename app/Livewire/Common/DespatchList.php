@@ -35,9 +35,18 @@ class DespatchList extends Component
                 $obj->save();
                 $message = "Updated";
             }
+            $this->clearFields();
             return $message;
         }
         return '';
+    }
+    #endregion
+    #region[obj]
+    public function clearFields()
+    {
+        $this->vname='';
+        $this->vdate='';
+        $this->active_id = '1';
     }
     #endregion
 
