@@ -155,6 +155,8 @@
             <div style="height: 65px;" class="bg-blue-400 ">
                 <div style="text-align: center; width: 100%;" class="address1">{{$cmp->get('address_1')}}</div>
                 <div style="text-align: center; width: 100%;" class="address2">{{$cmp->get('address_2')}}</div>
+                <div style="text-align: center; width: 100%;" class="address1">&nbsp;{{$cmp->get('state')}}</div>
+                <div style="text-align: center; width: 100%;" class="address1">Email:&nbsp;{{$cmp->get('email')}}&nbsp;/&nbsp;{{$cmp->get('gstin')}}</div>
             </div>
         </td>
     </tr>
