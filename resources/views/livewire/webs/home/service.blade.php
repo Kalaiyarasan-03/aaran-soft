@@ -82,7 +82,8 @@
                 <div class="card relative block rounded  w-80 h-auto md:grid-cols-4 gap-3 flex-col mr-auto mb-6 ml-auto mx-auto shadow-md">
                     <div class="card-body p-8 bg-gray-50 animate__animated wow animate__zoomIn">
                         <div class="card-title mb-1.5 text-blue-500 font-bold text-center">STANDARD</div>
-                        <div class="price"><span class="currency mr-1.5 text-amber-800 font-light ">$</span><span class="value text-gray-700 font-medium h-5 text-center">13999</span></div>
+                        <div class="price flex justify-center"><span class="currency font-light"><x-icons.icon :icon="'rupee'" class="text-gray-900 w-5 h-5 text-center block"/></span>
+                            <span class="value text-gray-700 font-bold h-7 text-center ">2499</span></div>
                         <div class="frequency mb-1.5 font-semibold text-center">monthly</div>
                         <p class="mb-1.5 text-left">This basic package covers the marketing needs of small startups</p>
                         <ul class="list mb-7 space-y-2 text-left">
@@ -126,7 +127,8 @@
                 <div class="card relative block w-80 h-auto md:grid-cols-5 gap-3 mr-auto mx-auto mb-6 ml-auto border rounded shadow-md">
                     <div class="card-body p-8 bg-gray-50 animate__animated wow animate__zoomIn">
                         <div class="card-title mb-1.5 text-blue-500 font-bold text-center">ADVANCED</div>
-                        <div class="price"><span class="currency mr-1.5 text-amber-800 font-light">$</span><span class="value text-gray-700 font-medium h-5 text-center">25999</span></div>
+                        <div class="price flex justify-center"><span class="currency font-light"><x-icons.icon :icon="'rupee'" class="text-gray-900 w-5 h-5 text-center block"/></span>
+                            <span class="value text-gray-700 font-bold h-7 text-center ">4499</span></div>
                         <div class="frequency mb-1.5 font-semibold text-center">monthly</div>
                         <p class="mb-1.5 text-left">This is a more advanced package suited for medium companies</p>
                         <ul class="list mb-7 space-y-2 text-left">
@@ -170,8 +172,8 @@
                 <div class=" relative block   w-80 h-auto mr-auto grid-cols-6 gap-3 mb-6 ml-auto mx-auto border rounded shadow-md">
                     <div id="progress" class="card-body p-8 bg-gray-50 animate__animated wow animate__zoomIn">
                         <div class="card-title mb-1.5 text-blue-500 font-bold text-center">PREMIUM</div>
-                        <div class="price"><span class="currency mr-1.5 text-amber-800 font-light">$</span><span class="value text-gray-700 font-medium h-5 text-center">35999</span></div>
-                        <div class="frequency mb-1.5 font-semibold text-center">monthly</div>
+                        <div class="price flex justify-center"><span class="currency font-light"><x-icons.icon :icon="'rupee'" class="text-gray-900 w-5 h-5 text-center block"/></span>
+                            <span class="value text-gray-700 font-bold h-7 text-center ">6499</span></div>                        <div class="frequency mb-1.5 font-semibold text-center">monthly</div>
                         <p class="mb-3 text-left">This is a comprehensive package designed for big organizations</p>
                         <ul class="list mb-7 text-left space-y-2">
                             <li class="flex">
@@ -213,6 +215,7 @@
             </div>
         </div>
     </section>
+
 <script
     src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
 </script>
@@ -221,3 +224,4 @@
     new WOW().init();
 </script>
 </div>
+

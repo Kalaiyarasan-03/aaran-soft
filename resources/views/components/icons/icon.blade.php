@@ -762,6 +762,10 @@
              11.0314L15.1677 16.1374C13.1589 17.8336 12 20.329 12 22.9582C12 20.329 10.8411 17.8336 8.8323 16.1374L2.7844 11.0314C1.5093 9.9492 0.7744 8.3612 0.7745 6.6888C0.7745 3.5884 3.2869 1.0418 6.3873 1.0418S12 3.5542 12 6.6545Z" stroke-width="1"></path>
             @break
 
+        @case('rupee')
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#2d1d58" d="M0 64C0 46.3 14.3 32 32 32H96h16H288c17.7 0 32 14.3 32 32s-14.3 32-32 32H231.8c9.6 14.4 16.7 30.6 20.7 48H288c17.7 0 32 14.3 32 32s-14.3 32-32 32H252.4c-13.2 58.3-61.9 103.2-122.2 110.9L274.6 422c14.4 10.3 17.7 30.3 7.4 44.6s-30.3 17.7-44.6 7.4L13.4 314C2.1 306-2.7 291.5 1.5 278.2S18.1 256 32 256h80c32.8 0 61-19.7 73.3-48H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H185.3C173 115.7 144.8 96 112 96H96 32C14.3 96 0 81.7 0 64z"/></svg>            Default case...
+
+
         @case('clip-board')
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
@@ -775,6 +779,7 @@
 
         @default
             Default case...
+
     @endswitch
 
 </svg>
