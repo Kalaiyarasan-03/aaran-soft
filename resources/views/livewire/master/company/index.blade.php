@@ -35,7 +35,7 @@
                 <x-table.header-text center>Pan</x-table.header-text>
                 <x-table.header-text center>Email</x-table.header-text>
                 <x-table.header-text center>Website</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->

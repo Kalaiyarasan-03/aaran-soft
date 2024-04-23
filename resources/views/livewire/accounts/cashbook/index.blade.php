@@ -26,7 +26,7 @@
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Receipt</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Payment</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Balance</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
