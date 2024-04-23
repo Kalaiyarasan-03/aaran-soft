@@ -25,12 +25,12 @@
             src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js">
         </script>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pure/3.0.0/pure-min.css"></script>
+{{--        <script src="https://cdnjs.cloudflare.com/ajax/libs/pure/3.0.0/pure-min.css"></script>--}}
 
-        <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>
-        <script>
-            new PureCounter();
-        </script>
+{{--        <script src="https://cdn.jsdelivr.net/npm/@srexi/purecounterjs/dist/purecounter_vanilla.js"></script>--}}
+{{--        <script>--}}
+{{--            new PureCounter();--}}
+{{--        </script>--}}
 
         <script>
             new WOW().init();

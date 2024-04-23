@@ -214,7 +214,7 @@
                 </div>
 
                 <div class="footer-top">
-                    <div class="container mx-auto justify-items-center">
+                    <div class="container mx-auto justify-items-center bg-gray-300 ">
                         <div class="row grid grid-cols-4 ">
 
                             <div class="grid-cols-1 footer-contact">

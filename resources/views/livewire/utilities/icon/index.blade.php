@@ -197,6 +197,8 @@
                 <x-icons.utilities :icon="'upload'"/>
                 <x-icons.utilities :icon="'download'"/>
                 <x-icons.utilities :icon="'heart'"/>
+                <x-icons.utilities :icon="'rupee'"/>
+
 
                 </div>
             </div>
