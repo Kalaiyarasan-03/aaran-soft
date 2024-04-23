@@ -13,6 +13,7 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[properties]
     public string $vdate = '';
     public string $purpose = '';
     public mixed $credit = 0;
@@ -20,12 +21,16 @@ class Index extends Component
     public mixed $interest = 0;
     public mixed $closing = 0;
     public CreditBook $creditBook;
+    #endregion
 
+    #region[Mount]
     public function mount($id)
     {
         $this->creditBook = CreditBook::find($id);
     }
+    #endregion
 
+    #region[Clear field]
     public function clearFields(): void
     {
         $this->vdate = '';
@@ -34,7 +39,9 @@ class Index extends Component
         $this->debit = '';
         $this->interest = '';
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
 
@@ -81,6 +88,7 @@ class Index extends Component
 //        $this->updateMaster();
         return $message;
     }
+    #endregion
 
 //    public function updateMaster()
 //    {
@@ -94,6 +102,7 @@ class Index extends Component
 //        $this->creditBook->save();
 //    }
 
+#region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -108,7 +117,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'id';
@@ -119,7 +130,9 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function reRender(): void
     {
         $this->render();
@@ -130,4 +143,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

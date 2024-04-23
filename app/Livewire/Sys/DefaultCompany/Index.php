@@ -9,28 +9,34 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    #region[properties]
     public $showEditModal=false;
     public Collection $companies;
     public $tenant_id;
 
     public company $company;
     public string $company_1 = '';
+    #endregion
 
+    #region[Create]
     public function create(): void
     {
         $this->showEditModal = true;
     }
+    #endregion
 
+    #region[Mount]
     public function mount()
     {
 //        $this->switchCompany();
         $this->setDefault(session()->get('tenant_id'));
     }
+    #endregion
 
+    #region[get Default]
     public function getDefaultCompany(): void
     {
         $defaultCompany = DefaultCompany::find(1);
-
 
         if ($defaultCompany != null) {
             if ($defaultCompany->company_id != 0) {
@@ -45,12 +51,16 @@ class Index extends Component
             $this->getAllCompanies();
         }
     }
+    #endregion
 
+    #region[get All]
     public function getAllCompanies(): void
     {
         $this->companies = Company::where('tenant_id', '=', session()->get('tenant_id'))->get();
     }
+    #endregion
 
+    #region[set Default]
     public function setDefault(
         $id
     ): void {
@@ -70,7 +80,9 @@ class Index extends Component
 
         session()->put('company_id', $id);
     }
+    #endregion
 
+    #region[Switch]
     public
     function switchCompany($id): void
     {
@@ -82,11 +94,14 @@ class Index extends Component
 
         $this->showEditModal = false;
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         $this->getAllCompanies();
         $this->getDefaultCompany();
         return view('livewire.sys.default-company.index');
     }
+    #endregion
 }

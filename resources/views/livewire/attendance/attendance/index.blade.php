@@ -14,7 +14,6 @@
                             class="flex px-2 py-2 text-white font-bold tracking-wider text-sm bg-lime-500 rounded-lg mt-2 mr-2">
                         I am In
                     </button>
-
                 </div>
             </td>
         </table>

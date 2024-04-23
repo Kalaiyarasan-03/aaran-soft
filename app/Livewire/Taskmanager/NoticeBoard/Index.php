@@ -16,6 +16,7 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[properties]
     public mixed $cdate = '';
     public mixed $client_id = '';
     public string $remarks = '';
@@ -24,14 +25,18 @@ class Index extends Component
     public Collection $clients;
     public $verified;
     public $verified_on;
+    #endregion
 
+    #region[Mount]
     public function mount()
     {
         $this->dates = DB::table('notice_boards')->select('cdate','created_at')
             ->distinct('cdate')->limit(3)->orderBy('created_at', 'desc')->get();
         $this->clients = Client::where('active_id','=', Active::ACTIVE)->get();
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vname != '') {
@@ -74,7 +79,9 @@ class Index extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -92,7 +99,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'priority';
@@ -109,7 +118,9 @@ class Index extends Component
                 ->paginate($this->perPage);
         }
     }
+    #endregion
 
+    #region[Render]
     public function reRender(): void
     {
         $this->render();
@@ -121,4 +132,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }
