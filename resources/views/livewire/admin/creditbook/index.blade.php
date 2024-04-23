@@ -2,15 +2,23 @@
     <x-slot name="header">Credit Book</x-slot>
 
     <x-forms.m-panel>
-        <x-forms.top-controls :show-filters="$showFilters"/>
 
+        <!-- Top Controls --------------------------------------------------------------------------------------------->
+
+        <x-forms.top-controls :show-filters="$showFilters"/>
         <x-forms.table :list="$list">
+
+            <!-- Table Header ----------------------------------------------------------------------------------------->
+
             <x-slot name="table_header">
-                <x-table.ths-slno wire:click.prevent="sortBy('vname')">Sl.no</x-table.ths-slno>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Name</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Closing</x-table.ths>
-                <x-table.ths wire:click.prevent="sortBy('vname')">Action</x-table.ths>
+                <x-table.header-serial/>
+                <x-table.header-text center>Name</x-table.header-text>
+                <x-table.header-text center>Closing</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
+
+            <!-- Table Body ------------------------------------------------------------------------------------------->
+
             <x-slot name="table_body">
                 @php
                     $totalBalance = 0;
@@ -19,30 +27,26 @@
                 @forelse ($list as $index =>  $row)
                     <x-table.row>
 
-                        <x-table.cell>
-                            <a href="{{route('creditbooks.items',[$row->id])}}"
-                               class="flex px-3 text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text>
+                            <a href="{{route('creditbooks.items',[$row->id])}}">
                                 {{ $index + 1 }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('creditbooks.items',[$row->id])}}"
-                               class="flex flex-col px-3">
-                                <div class="text-gray-600 truncate text-xl text-left">
+                        <x-table.cell-text>
+                            <a href="{{route('creditbooks.items',[$row->id])}}">
                                     {{ $row->vname }}
-                                </div>
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.cell>
-                            <a href="{{route('creditbooks.items',[$row->id])}}"
-                               class="flex flex-col px-1 text-gray-600 truncate text-xl text-right">
+                        <x-table.cell-text right>
+                            <a href="{{route('creditbooks.items',[$row->id])}}">
                                 {{ $row->closing }}
                             </a>
-                        </x-table.cell>
+                        </x-table.cell-text>
 
-                        <x-table.action :id="$row->id"/>
+                        <x-table.cell-action id="{{$row->id}}"/>
+
                     </x-table.row>
 
                     @php
@@ -61,12 +65,17 @@
                 </x-table.row>
 
             </x-slot>
+
+            <!-- Table Footer ----------------------------------------------------------------------------------------->
+
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>
         </x-forms.table>
 
         <x-modal.delete/>
+
+        <!-- Create --------------------------------------------------------------------------------------------------->
 
         <x-forms.create :id="$vid">
             <x-input.model-text wire:model="vname" :label="'Name'"/>

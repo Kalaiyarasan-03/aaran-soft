@@ -3,6 +3,7 @@
     <div class="w-full border-t-2 border-purple-400 rounded-md shadow-lg bg-opacity-5">
         <div class="p-6 pt-12 pb-6 bg-white rounded-md">
 
+            <!-- Client Bank-details ---------------------------------------------------------------------------------->
 
             <div class="flex flex-row gap-2">
                 <div class="w-28 text-xl text-gray-500 py-2">Client Id:</div>
@@ -18,11 +19,12 @@
                 </div>
             </div>
 
-            <!-- Table -->
+            <!-- Bank-details Table ----------------------------------------------------------------------------------->
             <div class="flex-col space-y-4 mt-10">
                 <div class="align-middle min-w-full overflow-x-auto shadow overflow-hidden sm:rounded-lg">
                     <table class="min-w-full divide-y divide-cool-gray-200">
                         <tbody class="border-none">
+
                         <x-table.row>
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
@@ -31,6 +33,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
@@ -38,6 +41,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
@@ -45,6 +49,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left tracking-wider">
@@ -53,6 +58,7 @@
                                 </div>
                             </x-table.cell>
                         </x-table.row>
+
                         <x-table.row>
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
@@ -61,6 +67,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 text-xl text-left tracking-wider">
@@ -68,6 +75,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
@@ -83,6 +91,7 @@
                                 </div>
                             </x-table.cell>
                         </x-table.row>
+
                         <x-table.row>
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
@@ -91,6 +100,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 text-xl text-left tracking-wider">
@@ -98,6 +108,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
@@ -105,6 +116,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left tracking-wider">
@@ -113,6 +125,7 @@
                                 </div>
                             </x-table.cell>
                         </x-table.row>
+
                         <x-table.row>
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
@@ -121,6 +134,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 text-xl text-left tracking-wider">
@@ -128,6 +142,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
@@ -135,6 +150,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left tracking-wider">
@@ -143,6 +159,7 @@
                                 </div>
                             </x-table.cell>
                         </x-table.row>
+
                         <x-table.row>
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
@@ -151,6 +168,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3 justify-between gap-3">
                                     <p class="text-gray-600 text-xl text-left tracking-wider">
@@ -158,6 +176,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
@@ -165,6 +184,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left tracking-wider">
@@ -173,6 +193,7 @@
                                 </div>
                             </x-table.cell>
                         </x-table.row>
+
                         <x-table.row>
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
@@ -181,6 +202,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
@@ -188,6 +210,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
                                     <p class="text-gray-400 truncate text-xl text-left">
@@ -195,6 +218,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell>
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
@@ -204,7 +228,6 @@
                             </x-table.cell>
                         </x-table.row>
 
-
                         <x-table.row>
                             <x-table.cell class="w-36">
                                 <div class="flex px-3">
@@ -213,6 +236,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell colspan="3">
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
@@ -230,6 +254,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell colspan="3">
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
@@ -247,6 +272,7 @@
                                     </p>
                                 </div>
                             </x-table.cell>
+
                             <x-table.cell colspan="3">
                                 <div class="flex px-3">
                                     <p class="text-gray-600 truncate text-xl text-left">
@@ -261,6 +287,9 @@
                     </table>
                 </div>
             </div>
+
+            <!-- Footer ----------------------------------------------------------------------------------------------->
+
             <div class="mt-5">
                 <a href="{{route('clientBanks')}}" class="mt-5 bg-gray-400 text-white tracking-wider px-4 py-1
                 rounded-md flex items-center w-24 hover:bg-gray-500" >
@@ -268,7 +297,6 @@
                     Back
                 </a>
             </div>
-
         </div>
     </div>
 </div>

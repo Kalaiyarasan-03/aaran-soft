@@ -5,11 +5,11 @@
         <section>
             <div class="grid grid-cols-2 gap-12">
 
-                <!-- Top Left Area ------------------------------------------------------------------------------------------->
+                <!-- Top Left Area ------------------------------------------------------------------------------------>
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col gap-2">
 
-                        <!-- Order No --------------------------------------------------------------------------------------->
+                        <!-- Order No --------------------------------------------------------------------------------->
                         <label for="order_no" class="gray-label">Order No</label>
                         <div x-data="{isTyped: @entangle('orderTyped')}" @click.away="isTyped = false">
                             <div class="relative">
@@ -118,10 +118,10 @@
                     </div>
                 </div>
 
-                <!-- Top Right ------------------------------------------------------------------------------------------->
+                <!-- Top Right ---------------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col gap-2">
-                        <!-- Challan No --------------------------------------------------------------------------------------->
+                        <!-- Challan No ------------------------------------------------------------------------------->
                         <label for="vno" class="gray-label">Challan No</label>
                         <input id="vno" wire:model="vno" class="purple-textbox">
                     </div>
@@ -138,7 +138,7 @@
                     &nbsp;
                 </div>
 
-                <!-- Cutting Master -------------------------------------------------------------------------------------->
+                <!-- Cutting Master ----------------------------------------------------------------------------------->
                 <div class="flex flex-col gap-3">
                     <div class="flex flex-col gap-2">
                         <label for="cutting_master" class="gray-label">Cutting Master</label>
@@ -149,7 +149,7 @@
             </div>
         </section>
 
-        <!-- Add Items --------------------------------------------------------------------------------------------------->
+        <!-- Add Items ------------------------------------------------------------------------------------------------>
         <section>
             Add Items
         </section>
@@ -157,7 +157,7 @@
         <form wire:submit="addItems">
             <section class="flex flex-row w-full gap-0.5">
 
-                <!--Jobcard Item ----------------------------------------------------------------------------------------->
+                <!--Jobcard Item -------------------------------------------------------------------------------------->
                 <div class="w-full">
                     <label for="jobcard_item_id"></label>
                     <div x-data="{isTyped: @entangle('jobcardItemTyped')}" @click.away="isTyped = false">
@@ -238,7 +238,7 @@
                     </div>
                 </div>
 
-                <!--Quantity --------------------------------------------------------------------------------------------->
+                <!--Quantity ------------------------------------------------------------------------------------------>
                 <div class="w-full">
                     <label for="qty"></label>
                     <input x-data x-ref="qty" id="qty" wire:model="qty" class="block w-full purple-textbox-no-rounded"
@@ -249,11 +249,15 @@
             </section>
         </form>
 
+        <!--Display Table --------------------------------------------------------------------------------------------->
+
         <section>
-            <!--Display Table -------------------------------------------------------------------------------------------->
             <div class="py-2 mt-5">
 
                 <table class="w-full">
+
+                    <!--Table Header ---------------------------------------------------------------------------------->
+
                     <thead>
                     <tr class="h-8 text-xs bg-gray-100 border border-gray-300">
                         <th class="w-12 px-2 text-center border border-gray-300">#</th>
@@ -265,6 +269,8 @@
                     </tr>
 
                     </thead>
+
+                    <!--Table Items ----------------------------------------------------------------------------------->
 
                     <tbody>
                     @php
@@ -280,7 +286,6 @@
                                 </button>
                             </td>
 
-                            <!--Display Table Items --------------------------------------------------------------------------------------->
                             <td class="px-2 text-left border border-gray-300"
                                 wire:click.prevent="changeItems({{$index}})">{{$row['fabric_lot_no']}}</td>
                             <td class="px-2 text-center border border-gray-300"
@@ -296,14 +301,14 @@
                                 </button>
                             </td>
                         </tr>
+
                         @php
                             $totalQty += $row['qty']+0
                         @endphp
-
                     @endforeach
                     </tbody>
 
-                    <!--Table Footer --------------------------------------------------------------------------------------->
+                    <!--Table Footer ---------------------------------------------------------------------------------->
                     <tfoot class="mt-2">
                     <tr class="h-8 text-sm border border-gray-400 bg-gray-50">
                         <td colspan="4" class="px-2 text-xs text-right border border-gray-300">&nbsp;TOTALS&nbsp;&nbsp;&nbsp;</td>
@@ -318,7 +323,7 @@
         </section>
     </x-forms.m-panel>
 
-    <!--Save Button -------------------------------------------------------------------------------------------------------->
+    <!--Save Button --------------------------------------------------------------------------------------------------->
     <section>
         <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
             <div class="flex flex-col md:flex-row justify-between gap-3">

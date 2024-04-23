@@ -9,16 +9,17 @@
 
         <!-- Header --------------------------------------------------------------------------------------------------->
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('vno')"/>
+                <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Order No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Job No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Date</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Cutting Master</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Cutting Qty</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-text center>Cutting Qty</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
+
             <x-slot name="table_body">
                 @forelse ($list as $index =>  $row)
 
@@ -62,7 +63,7 @@
                         <x-table.cell>
                             <div class="w-full flex justify-center gap-3">
                                 <a href="{{route('cuttings.upsert',[$row->id])}}"
-                                   class="flex flex-col px-3 text-gray-600 truncate text-xl text-center">
+                                   class="flex text-gray-600 truncate text-xl text-center">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
                                                       class="text-blue-500 h-5 w-auto block"/>
@@ -82,7 +83,7 @@
                 @endforelse
             </x-slot>
 
-            <!-- Table Footer ----------------------------------------------------------------------------------------->
+            <!-- Pagination ------------------------------------------------------------------------------------------->
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>

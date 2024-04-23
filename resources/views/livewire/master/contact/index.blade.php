@@ -3,17 +3,17 @@
 
     <x-forms.m-panel>
 
-        <!-- Top Controls --------------------------------------------------------------------------------------------------->
+        <!-- Top Controls --------------------------------------------------------------------------------------------->
         <x-forms.top-controls :show-filters="$showFilters"/>
-
-        <!-- Header --------------------------------------------------------------------------------------------------->
         <x-forms.table>
+
+        <!-- Table Header --------------------------------------------------------------------------------------------->
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('vname')"/>
+                <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>Contact Name</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>Mobile</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>Whatsapp</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
@@ -48,12 +48,13 @@
                         <x-table.cell>
                             <div class="w-full flex justify-center gap-3">
                                 <a href="{{route('contacts.upsert',[$row->id])}}"
-                                   class="flex flex-col px-3 text-gray-600 truncate text-xl text-center">
+                                   class="flex text-gray-600 truncate text-xl text-center">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
                                                       class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </a>
+
                                 <x-button.link wire:click="set_delete({{$row->id}})"
                                                wire:confirm="Are you sure you want to delete this ?">&nbsp;
                                     <x-icons.icon :icon="'trash'"
@@ -68,7 +69,7 @@
                 @endforelse
             </x-slot>
 
-            <!-- Table Footer ----------------------------------------------------------------------------------------->
+            <!-- Pagination ------------------------------------------------------------------------------------------->
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>

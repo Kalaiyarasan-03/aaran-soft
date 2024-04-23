@@ -9,11 +9,14 @@ use Livewire\Component;
 class Index extends Component
 {
     use CommonTrait;
+
+    #region[Cashbook properties]
     public $category;
     public $email_id;
     public $password;
+    #endregion
 
-
+    #region[Save]
     public function getSave(): string
     {
         if ($this->category != '') {
@@ -41,7 +44,9 @@ class Index extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[Clear]
     public function clearFields(): void
     {
         $this->vid = '';
@@ -52,7 +57,9 @@ class Index extends Component
         $this->password='';
         $this->active_id = '1';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -67,18 +74,22 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
-    public function reRender(): void
-    {
-        $this->render()->render();
-    }
-
+    #region[List]
     public function getList()
     {
         return Mailid::search($this->searches)
             ->where('active_id', '=', $this->activeRecord)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
+    }
+    #endregion
+
+    #region[Render]
+    public function reRender(): void
+    {
+        $this->render()->render();
     }
 
     public function render()
@@ -87,4 +98,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

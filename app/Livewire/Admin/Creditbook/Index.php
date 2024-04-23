@@ -14,6 +14,7 @@ class Index extends Component
 
     public string $closing = '';
 
+    #region[Save]
     public function getSave(): string
     {
         $this->validate(['closing'=>'required|numeric']);
@@ -45,6 +46,15 @@ class Index extends Component
         return '';
     }
 
+    public function clearFields(): void
+    {
+        $this->vname='';
+        $this->closing = '';
+
+    }
+    #endregion
+
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -57,7 +67,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'id';
@@ -68,7 +80,9 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function reRender(): void
     {
         $this->render();
@@ -80,4 +94,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+        #endregion
 }

@@ -12,26 +12,32 @@ use Livewire\Component;
 class Report extends Component
 {
     use CommonTrait;
+
+    #region[properties]
     public Collection $contact;
     public Collection $orders;
     public $by_company;
     public $byOrder;
     public $start_date;
     public $end_date;
+    #endregion
 
-
-
+    #region[Contact]
     public function getContact()
     {
         $this->contact=Contact::where('company_id','=',session()->get('company_id'))->get();
     }
+    #endregion
 
+    #region[Order]
     public function getOrder()
     {
         $this->orders=Order::where('company_id','=',session()->get('company_id'))->get();
 
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
 
@@ -51,8 +57,9 @@ class Report extends Component
             ->where('company_id', '=',  session()->get('company_id'))
             ->paginate($this->perPage);
     }
+    #endregion
 
-
+    #region[Render]
     public function render()
     {
         $this->getContact();
@@ -61,4 +68,5 @@ class Report extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

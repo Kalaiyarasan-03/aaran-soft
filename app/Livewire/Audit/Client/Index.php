@@ -16,6 +16,7 @@ class Index extends Component
     #region[properties]
     public string $group = '';
     public string $payable = '';
+    public $sortField_1 = 'vname';
     #endregion
 
     #region[Save]
@@ -24,7 +25,7 @@ class Index extends Component
         if ($this->vname != '' or $this->group != '') {
 
             if ($this->vid == "") {
-              $client =  Client::create([
+                $client = Client::create([
                     'vname' => Str::upper($this->vname),
                     'group' => Str::ucfirst($this->group),
                     'payable' => $this->payable,
@@ -34,7 +35,7 @@ class Index extends Component
                 ]);
 
                 $this->createClientDetails($client->id);
-                $this->payable='';
+                $this->payable = '';
 
                 $message = "Saved";
 
@@ -49,11 +50,19 @@ class Index extends Component
                 $obj->save();
                 $message = "Updated";
             }
-
-            $this->group = '';
+            $this->clearFields();
             return $message;
         }
         return '';
+    }
+    #endregion
+    #region[clear field]
+    public function clearFields()
+    {
+        $this->vname = '';
+        $this->vid = '';
+        $this->group = '';
+        $this->payable = '';
     }
     #endregion
 
@@ -104,6 +113,18 @@ class Index extends Component
     }
     #endregion
 
+    #region[sort]
+    public function sortBy($field): void
+    {
+        if ($this->sortField_1 === $field) {
+            $this->sortAsc = !$this->sortAsc;
+        } else {
+            $this->sortAsc = true;
+        }
+        $this->sortField = $field;
+    }
+    #endregion
+
     #region[List]
     public function getList()
     {
@@ -112,15 +133,16 @@ class Index extends Component
         $this->perPage = '100';
 
         return Client::search($this->searches)
-            ->where('active_id','=',$this->activeRecord)
+            ->where('active_id', '=', $this->activeRecord)
 //            ->where('company_id', '=', session()->get('company_id'))
-            ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+            ->orderBy($this->sortField_1, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
     #endregion
 
     #region[Render]
-    public function reRender(){
+    public function reRender()
+    {
         $this->render();
     }
 

@@ -110,6 +110,7 @@ trait CommonTrait
 
     public function delete(): void
     {
+
         if ($this->vid) {
             $obj = $this->getObj($this->vid);
             $obj->delete();

@@ -314,6 +314,9 @@
             <div class="py-2 mt-5">
 
                 <table class="w-full">
+
+                    <!--Table Header ---------------------------------------------------------------------------------->
+
                     <thead>
                     <tr class="h-8 text-xs bg-gray-100 border border-gray-300">
                         <th class="w-12 px-2 text-center border border-gray-300">#</th>
@@ -324,8 +327,9 @@
                         <th class="w-12 px-1 text-center border border-gray-300">ACTION</th>
                     </tr>
                     </thead>
-                    <tbody>
 
+                    <!--Table Items ----------------------------------------------------------------------------------->
+                    <tbody>
                     @php
                         $totalQty = 0;
                     @endphp
@@ -339,7 +343,6 @@
                                 </button>
                             </td>
 
-                            <!--Table Items --------------------------------------------------------------------------->
                             <td class="px-2 text-left border border-gray-300"
                                 wire:click.prevent="changeItems({{$index}})">{{$row['fabric_lot_name']}}</td>
                             <td class="px-2 text-center border border-gray-300"
@@ -363,6 +366,7 @@
                     </tbody>
 
                     <!--Table Footer ---------------------------------------------------------------------------------->
+
                     <tfoot class="mt-2">
                     <tr class="h-8 text-sm border border-gray-400 bg-gray-50">
                         <td colspan="4" class="px-2 text-xs text-right border border-gray-300">&nbsp;TOTALS&nbsp;&nbsp;&nbsp;</td>
@@ -375,7 +379,7 @@
         </section>
     </x-forms.m-panel>
 
-    <!-- Footer ------------------------------------------------------------------------------------------------------->
+    <!-- Save & Back -------------------------------------------------------------------------------------------------->
     <section>
         <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
             <div class="flex flex-col md:flex-row justify-between gap-3">

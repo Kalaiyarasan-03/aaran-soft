@@ -3,7 +3,7 @@
 
     <x-forms.m-panel>
 
-        <!-- Top Controls --------------------------------------------------------------------------------------------------->
+        <!-- Top Controls --------------------------------------------------------------------------------------------->
         <div class="flex justify-between pb-5">
             <div class="w-2/4 flex space-x-2">
 
@@ -19,22 +19,23 @@
             </div>
         </div>
 
-        <!-- Header --------------------------------------------------------------------------------------------------->
         <x-input.advance-search :show-filters="$showFilters"/>
-
         <x-forms.table>
+
+        <!-- Table Header --------------------------------------------------------------------------------------------->
+
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('vname')"/>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Company Name</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Address-1</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Address-2</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Mobile</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Landline</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Gst</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Pan</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Email</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Website</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-serial/>
+                <x-table.header-text center>Company Name</x-table.header-text>
+                <x-table.header-text center>Address-1</x-table.header-text>
+                <x-table.header-text center>Address-2</x-table.header-text>
+                <x-table.header-text center>Mobile</x-table.header-text>
+                <x-table.header-text center>Landline</x-table.header-text>
+                <x-table.header-text center>Gst</x-table.header-text>
+                <x-table.header-text center>Pan</x-table.header-text>
+                <x-table.header-text center>Email</x-table.header-text>
+                <x-table.header-text center>Website</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
@@ -133,7 +134,7 @@
                 @endforelse
             </x-slot>
 
-            <!-- Table Footer ----------------------------------------------------------------------------------------->
+            <!-- Pagination ------------------------------------------------------------------------------------------->
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>

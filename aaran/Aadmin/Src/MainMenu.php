@@ -11,6 +11,13 @@ class MainMenu
             config('clients.NEETHU_INDUSTRIES') => in_array($feature, config('neethuIndustries.menus', [])),
             config('clients.SK_PRINTERS') => in_array($feature, config('sk_printers.menus', [])),
             config('clients.AARAN_ASSOCIATES') => in_array($feature, config('aaran_associates.menus', [])),
+
+            config('clients.SARA_SCREENS') => in_array($feature, config('sara_screens.menus', [])),
+            config('clients.COLOURS_PRINTING') => in_array($feature, config('colours_printers.menus', [])),
+            config('clients.NEW_AMMAN_PRINTERS') => in_array($feature, config('new_amman_printers.menus', [])),
+            config('clients.KGS_PRINTERS') => in_array($feature, config('kgs_printers.menus', [])),
+            config('clients.THIRUMURUGAN_PRINTERS') => in_array($feature, config('thirumurugan_printing.menus', [])),
+//            config('clients.SAIRF_SOURCING') => in_array($feature, config('sairf_sourcing.menus', [])),
         };
     }
 

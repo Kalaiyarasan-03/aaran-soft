@@ -61,7 +61,7 @@ class Index extends Component
                     'mobile' => $this->mobile,
                     'email' => $this->email,
                     'dvcatm' => $this->dvcatm,
-                    'active_id' => $this->active_id,
+                    'active_id' => 1,
 //                    'company_id' => session()->get('company_id'),
                     'user_id' => \Auth::id(),
                 ]);
@@ -89,21 +89,30 @@ class Index extends Component
                 $obj->save();
                 $message = "Updated";
             }
-            $this->acno = '';
-            $this->ifsc = '';
-            $this->bank = '';
-            $this->branch = '';
-            $this->customer_id = '';
-            $this->customer_id2 = '';
-            $this->pks = '';
-            $this->trs = '';
-            $this->profileps = '';
-            $this->mobile = '';
-            $this->email = '';
-            $this->dvcatm = '';
+            $this->clearfields();
             return $message;
         }
         return '';
+    }
+    #endregion
+    #region[clear field]
+    public function clearFields()
+    {
+        $this->client_id='';
+        $this->vid='';
+        $this->acno = '';
+        $this->ifsc = '';
+        $this->bank = '';
+        $this->branch = '';
+        $this->vname='';
+        $this->customer_id = '';
+        $this->customer_id2 = '';
+        $this->pks = '';
+        $this->trs = '';
+        $this->profileps = '';
+        $this->mobile = '';
+        $this->email = '';
+        $this->dvcatm = '';
     }
     #endregion
 

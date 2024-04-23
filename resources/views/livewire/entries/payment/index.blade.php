@@ -24,7 +24,7 @@
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Party Name</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Model</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Amount</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
@@ -65,14 +65,13 @@
                         <x-table.cell-text center>
                             <div class="w-full flex justify-center gap-3">
                                 <a href="{{route('payments.upsert',[$row->id])}}"
-                                   class="flex flex-col px-3 text-gray-600 truncate text-xl text-center">
+                                   class="flex text-gray-600 truncate text-xl text-center">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
                                                       class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </a>
-                                <x-button.link wire:click="set_delete({{$row->id}})"
-                                               wire:confirm="Are you sure you want to delete this ?">&nbsp;
+                                <x-button.link wire:click="getDelete({{$row->id}})">&nbsp;
                                     <x-icons.icon :icon="'trash'"
                                                   class="text-red-600 h-5 w-auto block"/>
                                 </x-button.link>
@@ -90,6 +89,7 @@
             </x-slot>
         </x-forms.table>
 
+        <x-modal.delete/>
         <x-modal.delete/>
     </x-forms.m-panel>
 </div>

@@ -15,7 +15,7 @@ return [
     'SARA_SCREENS' => '201',
     'COLOURS_PRINTING' => '202',
     'NEW_AMMAN_PRINTERS' => '203',
-    'JJ_PRINTERS' => '204',
+    'KGS_PRINTERS' => '204',
     'THIRUMURUGAN_PRINTERS' => '205',
     'KATHIR_PRINTERS' => '206',
     'AJ_PRINTING' => '207',

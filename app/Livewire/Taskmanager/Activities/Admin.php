@@ -17,6 +17,7 @@ class Admin extends Component
 {
     use CommonTrait;
 
+    #region[properties]
     public mixed $cdate = '';
     public mixed $client_id = '';
     public mixed $duration = '';
@@ -28,8 +29,9 @@ class Admin extends Component
     public mixed $user_id = '';
     public $verified;
     public $verified_on;
+    #endregion
 
-
+    #region[Mount]
     public function mount()
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
@@ -37,7 +39,9 @@ class Admin extends Component
         $this->clients = Client::where('active_id', '=',Active::ACTIVE )->get();
         $this->users = User::all();
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vname != '') {
@@ -83,7 +87,9 @@ class Admin extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -102,7 +108,9 @@ class Admin extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'created_at';
@@ -120,7 +128,9 @@ class Admin extends Component
                 ->paginate($this->perPage);
         }
     }
+    #endregion
 
+    #region[Render]
     public function reRender(): void
     {
         $this->render();
@@ -132,4 +142,5 @@ class Admin extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }
