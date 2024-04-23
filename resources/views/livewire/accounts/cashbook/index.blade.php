@@ -81,8 +81,7 @@
                                                   class="text-blue-500 h-5 w-auto block"/>
                                 </x-button.link>
 
-                                <x-button.link wire:click="getDelete({{$row->id}})"
-                                               wire:confirm="Are you sure you want to delete this ?">&nbsp;
+                                <x-button.link wire:click="getDelete({{$row->id}})">&nbsp;
                                     <x-icons.icon :icon="'trash'"
                                                   class="text-red-600 h-5 w-auto block"/>
                                 </x-button.link>
@@ -105,6 +104,19 @@
 
         </x-forms.table>
     </x-forms.m-panel>
+    <!-- Delete Model -------------------------------------------------------------------------------------------->
+    <x-modal.confirmation wire:model.defer="showDeleteModal">
+        <x-slot name="title">Delete Entry</x-slot>
+        <x-slot name="content">
+            <div class="py-8 text-cool-gray-700">Are you sure you? This action is irreversible.</div>
+        </x-slot>
+        <x-slot name="footer">
+            <x-button.secondary wire:click.prevent="$set('showDeleteModal', false)">Cancel</x-button.secondary>
+            @if($list->count()!=null)
+            <x-button.primary wire:click.prevent="delete({{$row->id}})">Delete</x-button.primary>
+            @endif
+        </x-slot>
+    </x-modal.confirmation>
 
     <!-- Payment & Receipt -------------------------------------------------------------------------------------------->
 
