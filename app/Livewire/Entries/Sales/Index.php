@@ -61,11 +61,25 @@ class Index extends Component
     #endregion
 
     #region[delete]
-    public function set_delete($id): void
+    public function delete(): void
     {
-        $obj=Sale::find($id);
+        $obj=$this->getObj($this->vid);
         DB::table('saleitems')->where('sale_id', '=', $this->vid)->delete();
         $obj->delete();
+        $this->showDeleteModal = false;
+        $this->clearFields();
+    }
+    #endregion
+
+    #region[get Obj]
+    public function getObj($id)
+    {
+        if ($id) {
+            $obj = Sale::find($id);
+            $this->vid = $obj->id;
+            return $obj;
+        }
+        return null;
     }
     #endregion
 
