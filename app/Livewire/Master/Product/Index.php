@@ -46,10 +46,11 @@ class Index extends Component
     #endregion
 
     #region[delete]
-    public function set_delete($id): void
+    public function delete(): void
     {
-        $obj=$this->getObj($id);
+        $obj=$this->getObj($this->vid);
         $obj->delete();
+        $this->showDeleteModal = false;
     }
     #endregion
 
