@@ -68,16 +68,22 @@ class Index extends Component
                 $obj->save();
                 $message = "Updated";
             }
-            $this->cdate = '';
-            $this->client_id = '';
-            $this->vname = '';
-            $this->verified = '';
-            $this->verified_on = '';
-            $this->remarks = '';
-            $this->priority = '';
+            $this->clearFields();
             return $message;
         }
         return '';
+    }
+    #endregion
+    #region[clear field]
+    public function clearFields()
+    {
+        $this->cdate = '';
+        $this->client_id = '';
+        $this->vname = '';
+        $this->verified = '';
+        $this->verified_on = '';
+        $this->remarks = '';
+        $this->priority = '';
     }
     #endregion
 
