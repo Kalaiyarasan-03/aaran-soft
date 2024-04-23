@@ -8,15 +8,15 @@
         <x-forms.table>
 
 
-        <!-- Header --------------------------------------------------------------------------------------------------->
+        <!-- Table Header --------------------------------------------------------------------------------------------->
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('vno')"/>
+                <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('vno')" center>Order No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vno')" center>Job No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vno')" center>Date</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vno')" center>Ironing Master</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vno')" center>Qty</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
@@ -81,7 +81,7 @@
                 @endforelse
             </x-slot>
 
-            <!-- Table Footer------------------------------------------------------------------------------------------>
+            <!-- Pagination ------------------------------------------------------------------------------------------->
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>

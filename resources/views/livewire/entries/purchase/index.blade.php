@@ -4,21 +4,21 @@
     <x-forms.m-panel>
 
         <!-- Top Controls --------------------------------------------------------------------------------------------->
-        <x-forms.top-controls-filter :orders="$orders" />
+        <x-forms.top-controls-filter :orders="$orders"/>
         <x-input.advance-search-filter :show-filters="$showFilters" :contacts="$contacts" :orders="''"/>
-
-        <!-- Header --------------------------------------------------------------------------------------------------->
         <x-forms.table>
+
+        <!-- Table Header --------------------------------------------------------------------------------------------->
             <x-slot name="table_header">
                 <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Order No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Purchase No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Purchase Date</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Party Name</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Total Qty</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Total Taxable</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Total Gst</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Grand Total</x-table.header-text>
+                <x-table.header-text center>Total Qty</x-table.header-text>
+                <x-table.header-text center>Total Taxable</x-table.header-text>
+                <x-table.header-text center>Total Gst</x-table.header-text>
+                <x-table.header-text center>Grand Total</x-table.header-text>
                 <x-table.header-action/>
             </x-slot>
 
@@ -91,7 +91,7 @@
                 @endforelse
             </x-slot>
 
-            <!-- Table Footer ----------------------------------------------------------------------------------------->
+            <!-- Pagination ----------------------------------------------------------------------------------------->
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>

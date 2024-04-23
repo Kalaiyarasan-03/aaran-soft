@@ -1,24 +1,26 @@
 <div>
     <x-slot name="header">Product</x-slot>
 
-    <!-- Top Controls --------------------------------------------------------------------------------------------------->
+    <!-- Top Controls ------------------------------------------------------------------------------------------------->
     <x-forms.m-panel>
-        <x-forms.top-controls :show-filters="$showFilters"/>
 
-        <!-- Header --------------------------------------------------------------------------------------------------->
+        <x-forms.top-controls :show-filters="$showFilters"/>
         <x-forms.table>
+
+            <!--Table Header ------------------------------------------------------------------------------------------>
+
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('vname')"/>
+                <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>Product Name</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('product_type')" center>Product Type
-                </x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Hsn Code</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('units')" center>Unit of Measure</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('units')" center>Gst Percent</x-table.header-text>
-                <x-table.header-action/>
+                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Product Type</x-table.header-text>
+                <x-table.header-text center>Hsn Code</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Unit of Measure</x-table.header-text>
+                <x-table.header-text center>Gst Percent</x-table.header-text>
+                <x-table.header-text center>Action</x-table.header-text>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
+
             <x-slot name="table_body">
                 @forelse ($list as $index =>  $row)
 
@@ -83,8 +85,7 @@
                 @endforelse
             </x-slot>
 
-
-            <!-- Table Footer ------------------------------------------------------------------------------------------->
+            <!-- Pagination ------------------------------------------------------------------------------------------->
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>

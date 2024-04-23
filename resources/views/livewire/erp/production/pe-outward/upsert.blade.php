@@ -4,7 +4,7 @@
     <x-forms.m-panel>
         <section class="grid grid-cols-2 gap-12">
 
-        <!-- Top Left Area -------------------------------------------------------------------------------------------->
+            <!-- Top Left Area ---------------------------------------------------------------------------------------->
             <div class="flex flex-col gap-3">
 
                 <!-- Party Name --------------------------------------------------------------------------------------->
@@ -305,6 +305,9 @@
             <div class="py-2 mt-5">
 
                 <table class="w-full">
+
+                    <!--Table Header ---------------------------------------------------------------------------------->
+
                     <thead>
                     <tr class="h-8 text-xs bg-gray-100 border border-gray-300">
                         <th class="w-12 px-2 text-center border border-gray-300">#</th>
@@ -314,9 +317,9 @@
                         <th class="px-2 text-center border border-gray-300">QTY</th>
                         <th class="w-12 px-1 text-center border border-gray-300">ACTION</th>
                     </tr>
-
                     </thead>
 
+                    <!-- Table Items ---------------------------------------------------------------------------------->
                     <tbody>
 
                     @php
@@ -332,7 +335,6 @@
                                 </button>
                             </td>
 
-                            <!-- Table Items -------------------------------------------------------------------------->
                             <td class="px-2 text-left border border-gray-300"
                                 wire:click.prevent="changeItems({{$index}})">{{$row['cutting_no']}}</td>
                             <td class="px-2 text-center border border-gray-300"
@@ -376,7 +378,7 @@
         </section>
     </x-forms.m-panel>
 
-    <!-- Footer -------------------------------------------------------------------------0----------------------------->
+    <!--Save & Back --------------------------------------------------------------------------------------------------->
     <section>
         <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
             <div class="flex flex-col md:flex-row justify-between gap-3">
