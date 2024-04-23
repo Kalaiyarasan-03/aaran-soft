@@ -1,5 +1,6 @@
-<div>
-    <div class="border border-gray-300 rounded-t-md  shadow-lg bg-white border-b-0 overflow-hidden scroll-auto">
+<div class="relative h-72">
+    <div class="border border-gray-300 max-w-screen-md rounded-t-md  overflow-scroll shadow-lg bg-white h-full border-b-0">
+
         <div>
             <div class="flex items-center gap-3 p-2 border-b border-gray-300">
                 <x-icons.icon :icon="'clipboard-document-list'" class="block h-8 w-auto text-blue-600"/>
@@ -20,7 +21,7 @@
                             </label>
 
                             @if($row->vname === $ename)
-                                <label class="flex flex-row">
+                                <label class="flex flex-row w-full">
                                     <input class="w-10 purple-textbox" wire:change.prevent="updateTodo({{$row->id}})"
                                            wire:model="slno">
                                     <input class="purple-textbox w-full" wire:change.prevent="updateTodo({{$row->id}})"
@@ -75,17 +76,15 @@
                 @endforeach
             </div>
         </div>
-        <div class=" border border-gray-300 max-w-screen-md rounded-b-md shadow-lg">
-            <label>
-                <input type="text" wire:model="vname" wire:change="saveTodo" placeholder="Ink your ideas..."
-                       class="border-transparent appearance-none border ring-1 ring-gray-200
+    </div>
+    <div class=" border border-gray-300 max-w-screen-md rounded-b-md shadow-lg">
+        <label>
+            <input type="text" wire:model="vname" wire:change="saveTodo" placeholder="Ink your ideas..."
+                   class="border-transparent appearance-none border ring-1 ring-gray-200
                                   border-gray-200 bg-gray-100 py-2 px-3 text-zinc-800 font-semibold
                                   placeholder-gray-400 text-base focus:outline-none
                                   focus:ring-1 focus:ring-gray-300 focus:border-transparent w-full rounded-b-md">
-            </label>
-        </div>
+        </label>
     </div>
 </div>
-
-
 
