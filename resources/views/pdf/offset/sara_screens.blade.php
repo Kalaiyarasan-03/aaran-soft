@@ -142,23 +142,19 @@
 
 <table width="100%" class="print:*">
     <thead>
+    <tr><td colspan="2" style="margin-top: 2px; margin-bottom: 2px;border-bottom: none;text-align: center;">
+            <img style="height: 40px;width: auto;"
+                 src="{{ public_path('images/sara_screen.png')}}"/>
+        </td></tr>
     <tr>
-        <td colspan="2" style="padding-top: 10px">
+        <td colspan="2" style="padding-top: 10px;border-top: none;">
             <div class="logoLeft">
-                <img style="position: fixed;margin-left: 20px;padding-top: 5px;height: 70px;width: auto;"
+                <img style="position: fixed;margin-left: 20px;padding-top: 5px;height: 100px;width: auto;"
                      src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
             </div>
             <div style="height: 65px;" class="bg-blue-400 ">
-
-                <div style="text-align: center; width: 100%; font-weight: bolder; font-size: 36px;  font-family: '!Cooper Black BT',fantasy">
-                    {{$cmp->get('company_name')}}
-                </div>
-
                 <div style="text-align: center; width: 100%;" class="address1">{{$cmp->get('address_1')}}</div>
                 <div style="text-align: center; width: 100%;" class="address2">{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">&nbsp;</div>
-                <div style="text-align: center; width: 100%;" class="address1">&nbsp;</div>
-                <div style="text-align: center; width: 100%; margin-bottom: 6px;" class="address1">&nbsp;</div>
             </div>
         </td>
     </tr>
