@@ -99,6 +99,7 @@ class Index extends Component
     public function clearFields()
     {
         $this->client_id='';
+        $this->vid='';
         $this->acno = '';
         $this->ifsc = '';
         $this->bank = '';

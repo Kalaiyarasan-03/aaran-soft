@@ -19,6 +19,7 @@
                 </x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Total Gst</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Grand Total</x-table.header-text>
+                <x-table.header-text center>print</x-table.header-text>
                 <x-table.header-action/>
             </x-slot>
 
@@ -77,22 +78,20 @@
                         </x-table.cell-text>
 
                         <!-- Button Action ---------------------------------------------------------------------------->
+                        <x-table.cell-text center>
+                            <x-icons.icon :icon="'printer'" wire:click="print({{$row->id}})" class="h-5 w-auto block"/>
+                        </x-table.cell-text>
 
                         <x-table.cell-text center>
                             <div class="w-full flex justify-center gap-3">
-                                <x-icons.icon :icon="'printer'" wire:click="print({{$row->id}})"
-                                              class="h-5 w-auto block px-1.5"/>
-                                <a href="{{route('sales.upsert',[$row->id])}}"
-                                   class="flex text-gray-600 truncate text-xl text-center">
+
+                                <a href="{{route('sales.upsert',[$row->id])}}">
                                     <x-button.link>&nbsp;
-                                        <x-icons.icon :icon="'pencil'"
-                                                      class="text-blue-500 h-5 w-auto block"/>
+                                        <x-icons.icon :icon="'pencil'" class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </a>
-
                                 <x-button.link wire:click="getDelete({{$row->id}})">&nbsp;
-                                    <x-icons.icon :icon="'trash'"
-                                                  class="text-red-600 h-5 w-auto block"/>
+                                    <x-icons.icon :icon="'trash'" class="text-red-600 h-5 w-auto block"/>
                                 </x-button.link>
                             </div>
                         </x-table.cell-text>
