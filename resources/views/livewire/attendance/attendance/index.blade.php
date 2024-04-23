@@ -1,5 +1,5 @@
 <div class="relative h-72">
-    <div class="mt-2 bg-white rounded-lg mr-3 shadow-2xl h-full">
+    <div class="mt-2 bg-white rounded-lg mr-3 h-full">
         <table class="w-full">
 
             <!-- Top Controls ----------------------------------------------------------------------------------------->
@@ -15,6 +15,9 @@
                         I am In
                     </button>
                 </div>
+                    @error('uniqueno')
+                    <span class="text-red-500">{{  'You are already IN' }}</span>
+                    @enderror
             </td>
         </table>
 
@@ -66,6 +69,20 @@
 
                 </x-slot>
             </x-forms.table>
+            @admin
+            <div class="ml-3">
+                <x-input.model-select wire:model.live="days" :label="'Name'">
+                    <option value="">choose</option>
+                    @foreach($data as $i)
+                        <option value="{{$i->id}}">   {{$i->name}}</option>
+                    @endforeach
+                </x-input.model-select>
+            </div>
+
+            <div>
+                {{ 'No of Days Present : '.$present->count() }}
+            </div>
+            @endadmin
 
         </div>
     </div>
