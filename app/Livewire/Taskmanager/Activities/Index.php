@@ -87,6 +87,7 @@ class Index extends Component
         $this->vname = '';
         $this->remarks = '';
         $this->duration = '';
+        $this->vid='';
         $this->verified = '';
         $this->verified_on = '';
         $this->channel = '';
