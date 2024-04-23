@@ -73,16 +73,23 @@ class Index extends Component
                 $message = "Updated";
             }
             $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
-            $this->client_id = '';
-            $this->remarks = '';
-            $this->duration = '';
-            $this->verified = '';
-            $this->verified_on = '';
-            $this->channel = '';
+           $this->clearFields();
             $this->reRender();
             return $message;
         }
         return '';
+    }
+    #endregion
+    #region[clear field]
+    public function clearFields()
+    {
+        $this->client_id = '';
+        $this->vname = '';
+        $this->remarks = '';
+        $this->duration = '';
+        $this->verified = '';
+        $this->verified_on = '';
+        $this->channel = '';
     }
     #endregion
 

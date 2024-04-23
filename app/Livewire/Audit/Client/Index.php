@@ -16,6 +16,7 @@ class Index extends Component
     #region[properties]
     public string $group = '';
     public string $payable = '';
+    public $sortField_1='vname';
     #endregion
 
     #region[Save]
@@ -104,6 +105,18 @@ class Index extends Component
     }
     #endregion
 
+    #region[sort]
+    public function sortBy($field): void
+    {
+        if ($this->sortField_1=== $field) {
+            $this->sortAsc = !$this->sortAsc;
+        } else {
+            $this->sortAsc = true;
+        }
+        $this->sortField = $field;
+    }
+    #endregion
+
     #region[List]
     public function getList()
     {
@@ -114,7 +127,7 @@ class Index extends Component
         return Client::search($this->searches)
             ->where('active_id','=',$this->activeRecord)
 //            ->where('company_id', '=', session()->get('company_id'))
-            ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
+            ->orderBy($this->sortField_1, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
     #endregion
