@@ -1,13 +1,13 @@
 <div>
     <button type="button" wire:click="create"
             class="text-gray-600 bg-white focus:outline-none hover:bg-gray-100 font-semibold px-2 py-2 rounded-lg">
-        {{$company_1?:'Select Company' }}
+        {{$company_1?:'Select Company' }}&nbsp;-&nbsp;{{$acyear?:'' }}
     </button>
 
     <x-jet.modal wire:model.defer="showEditModal">
 
         <div
-            class=" flex flex-row justify-between px-6 pt-4 text-xl font-semibold text-blue-600/100 dark:text-blue-500/100 ">
+                class=" flex flex-row justify-between px-6 pt-4 text-xl font-semibold text-blue-600/100 dark:text-blue-500/100 ">
             <div>Choose Company</div>
             <div>
                 <livewire:controls.select.acyear-select/>

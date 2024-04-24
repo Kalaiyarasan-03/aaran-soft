@@ -3,6 +3,8 @@
 namespace App\Livewire\Sys\DefaultCompany;
 
 use Aaran\Master\Models\Company;
+use AllowDynamicProperties;
+use App\Enums\AcYear;
 use App\Models\DefaultCompany;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
@@ -16,6 +18,7 @@ class Index extends Component
 
     public company $company;
     public string $company_1 = '';
+    public string $acyear = '';
     #endregion
 
     #region[Create]
@@ -42,6 +45,8 @@ class Index extends Component
             if ($defaultCompany->company_id != 0) {
                 $this->company = Company::find($defaultCompany->company_id);
                 $this->company_1 = $this->company->vname;
+                $this->acyear = AcYear::tryFrom($defaultCompany->acyear)->getName();
+
                 session()->put('company_id', $defaultCompany->company_id);
                 session()->put('acyear', $defaultCompany->acyear);
             } else {
