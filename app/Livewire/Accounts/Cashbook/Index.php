@@ -330,7 +330,7 @@ class Index extends Component
         }
 
         Cashbook::create([
-            'acyear' => config('aadmin.current_acyear'),
+            'acyear' => session()->get('acyear'),
             'company_id' => session()->get('company_id'),
             'vmode' => $this->vmode,
             'order_id' => $this->order_id,

@@ -14,7 +14,7 @@ class SaleSeeder extends Seeder
     {
         Sale::create([
             'uniqueno' => '1',
-            'acyear' => config('aadmin.current_acyear'),
+            'acyear' => session()->get('acyear'),
             'company_id' => '1',
             'contact_id' => '1',
             'order_id' => '1',

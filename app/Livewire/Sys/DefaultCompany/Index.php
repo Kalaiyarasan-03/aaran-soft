@@ -43,6 +43,7 @@ class Index extends Component
                 $this->company = Company::find($defaultCompany->company_id);
                 $this->company_1 = $this->company->vname;
                 session()->put('company_id', $defaultCompany->company_id);
+                session()->put('acyear', $defaultCompany->acyear);
             } else {
                 $this->company_1 = '';
                 $this->getAllCompanies();
@@ -73,7 +74,7 @@ class Index extends Component
             DefaultCompany::create([
                 'company_id' => $id,
                 'tenant_id' => session()->get('tenant_id'),
-                'acyear' => config('aadmin.current_acyear')
+                'acyear' => session()->get('acyear')
             ]);
         }
         $this->showEditModal=false;

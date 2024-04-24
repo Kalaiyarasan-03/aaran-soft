@@ -6,8 +6,12 @@
 
     <x-jet.modal wire:model.defer="showEditModal">
 
-        <div class=" px-6 pt-4 text-xl font-semibold text-blue-600/100 dark:text-blue-500/100 ">
-            Choose Company
+        <div
+            class=" flex flex-row justify-between px-6 pt-4 text-xl font-semibold text-blue-600/100 dark:text-blue-500/100 ">
+            <div>Choose Company</div>
+            <div>
+                <livewire:controls.select.acyear-select/>
+            </div>
         </div>
 
         <x-forms.section-border class="py-2"/>
@@ -17,7 +21,7 @@
                     <x-table.row>
                         <x-table.cell>
                             <button wire:click.prevent="switchCompany({{$row->id}})"
-                             class="flex px-3 text-gray-600 truncate text-xl text-left w-full">
+                                    class="flex px-3 text-gray-600 truncate text-xl text-left w-full">
                                 {{ $row->vname}}
                             </button>
                         </x-table.cell>

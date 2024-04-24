@@ -267,7 +267,7 @@ class Upsert extends Component
         if ($this->vid == "") {
             $obj = Payment::create([
                 'company_id' => session()->get('company_id'),
-               'acyear' => config('aadmin.current_acyear'),
+               'acyear' => session()->get('acyear'),
                 'vdate' => $this->vdate,
                 'contact_id' => $this->contact_id,
                 'receipttype_id' => $this->receipttype_id,
@@ -284,7 +284,7 @@ class Upsert extends Component
         } else {
             $obj = Payment::find($this->vid);
             $obj->company_id = session()->get('company_id');
-            $obj->acyear = config('aadmin.current_acyear');
+            $obj->acyear = session()->get('acyear');
             $obj->vdate = $this->vdate;
             $obj->contact_id = $this->contact_id;
             $obj->receipttype_id = $this->receipttype_id;

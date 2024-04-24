@@ -491,8 +491,8 @@ class Upsert extends Component
         if ($this->uniqueno != '') {
             if ($this->vid == "") {
                 $obj = Purchase::create([
-                    'uniqueno' => session()->get('company_id') . '~' . $this->purchase_no . '~' . $this->purchase_date,
-                   'acyear' => config('aadmin.current_acyear'),
+                    'uniqueno' => session()->get('company_id') . '~'. session()->get('acyear'). '~' . $this->purchase_no,
+                   'acyear' => session()->get('acyear'),
                     'company_id' => session()->get('company_id'),
                     'contact_id' => $this->contact_id,
                     'purchase_no' => $this->purchase_no,
@@ -517,8 +517,8 @@ class Upsert extends Component
 
             } else {
                 $obj = Purchase::find($this->vid);
-                $obj->uniqueno = session()->get('company_id') . '~' . $this->purchase_no . '~' . $this->purchase_date;
-                $obj->acyear = config('aadmin.current_acyear');
+                $obj->uniqueno = session()->get('company_id') . '~'. session()->get('acyear'). '~' .$this->purchase_no;
+                $obj->acyear = session()->get('acyear');
                 $obj->company_id = session()->get('company_id');
                 $obj->contact_id = $this->contact_id;
                 $obj->purchase_no = $this->purchase_no;

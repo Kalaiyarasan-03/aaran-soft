@@ -767,8 +767,8 @@ class Upsert extends Component
         if ($this->uniqueno != '') {
             if ($this->vid == "") {
                 $obj = Sale::create([
-                    'uniqueno' => "{$this->contact_id}~{$this->invoice_no}~{$this->invoice_date}",
-                    'acyear' => config('aadmin.current_acyear'),
+                    'uniqueno' => session()->get('company_id') . '~'. session()->get('acyear'). '~' . $this->invoice_no,
+                    'acyear' => session()->get('acyear'),
                     'company_id' => session()->get('company_id'),
                     'contact_id' => $this->contact_id,
                     'invoice_no' => $this->invoice_no,
@@ -797,8 +797,8 @@ class Upsert extends Component
 
             } else {
                 $obj = Sale::find($this->vid);
-                $obj->uniqueno = session()->get('company_id').'~'.$this->invoice_no.'~'.$this->invoice_date;
-                $obj->acyear = config('aadmin.current_acyear');
+                $obj->uniqueno = session()->get('company_id') . '~'. session()->get('acyear'). '~' . $this->invoice_no;
+                $obj->acyear = session()->get('acyear');
                 $obj->company_id = session()->get('company_id');
                 if ($obj->contact_id == $this->contact_id) {
                     $obj->billing_id = $this->billing_id;
