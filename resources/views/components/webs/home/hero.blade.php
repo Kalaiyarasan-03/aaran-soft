@@ -42,10 +42,10 @@
     <!-- Tab Buttons -->
     <div class="p-2 mt-4 text-center text-gray-500 bg-gray-100 rounded-full mx-auto w-full">
         <div class="flex justify-center space-x-4 w-full gap-4">
-            <button class="px-4 w-52 rounded-full text-gray-600 py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab1')">Billing</button>
+            <button class="px-4 w-52 rounded-full bg-white text-gray-600 py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab1')">Billing</button>
             <button class="px-4 w-72 rounded-full bg-white shadow hover:text-indigo-900 py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab2')">Inventory Management</button>
-            <button class="px-4 w-72 rounded-full py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab3')">Business Management</button>
-            <button class="px-4 w-72 rounded-full py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab4')">Bonus Features</button>
+            <button class="px-4 w-72 rounded-full bg-white py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab3')">Business Management</button>
+            <button class="px-4 w-72 rounded-full bg-white py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab4')">Bonus Features</button>
         </div>
     </div>
 
@@ -104,8 +104,8 @@
     </div>
     <div id="tab3" class="p-4 tab-content bg-white shadow-md rounded-lg hidden grid grid-rows-2 grid-cols-3">
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/multiple-device.webp" alt="Access myBillBook on multiple devices" src="../../../../images/Sign up-bro.png">
-            <div class="border-gray-400 bg-white p-2 font-bold font-serif">Multiple Device Login</div>
+            <img class="feature h-52 mx-auto" height="256" data-src="/static-assets/images/landing-page-v2/multiple-device.webp" alt="Access myBillBook on multiple devices" src="../../../../images/Sign up-1.png">
+            <div class="border-gray-400 bg-white p-2 mt-10 font-bold font-serif">Multiple Device Login</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4 h-72">
             <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/multiple-business.webp" alt="Manage Multiple Businesses with one Invoicing Software" src="../../../../images/multiple-business.webp">
@@ -160,35 +160,36 @@
 </div>
 
 <div class="w-full mt-20  mx-auto">
-    <h2 class="text-4xl font-extrabold font-serif text-center">
+    <h2 class="text-5xl font-extrabold font-serif text-center">
         Experience Effortless GST Compliance
     </h2>
-    <h2 class="text-4xl font-extrabold font-serif text-center mt-2">
+    <h2 class="text-5xl font-extrabold font-serif text-center mt-3">
         with Invoicing Software
     </h2>
     <!-- Tab Buttons -->
-    <div class="bg-gray-200 p-2 mt-3 rounded-t-lg  grid-rows-4 w-3/4 mx-auto">
-        <div class="flex w-72 space-x-4 grid grid-rows-4 gap-5 mt-3">
-            <button class="px-4 py-4 grid-rows-1 ml-2 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-blue-500 tab-button" onclick="showTab('tab1')">
+    <div class="flex w-full grid grid-cols-2 mt-8">
+    <div class="bg-gray-100 p-2 mt-3 rounded-t-lg  grid-rows-4 w-1/2 ml-60 grid-cols-1">
+        <div class="flex w-72 space-x-4 grid grid-rows-4 gap-5 mt-3 ">
+            <button class="px-4 py-4 grid-rows-1 ml-2 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-purple-200 card-button" onclick="showCard('card1')">
                 <div class="flex ">
                     <img  data-src="/static-assets/icons/gstr-filing.svg" alt="GSTR Filing" src="../../../../images/gstr-filing.svg">
-                    <h3 class="text-2xl ml-3">GSTS Filing</h3>
+                    <h3 class="text-2xl ml-3">GST Filing</h3>
                 </div>
 
             </button>
-            <button class="px-4 py-4 grid-rows-2 rounded-xl text-gray-900 font-semibold border-b-4 b hover:bg-blue-500 bg-white tab-button" onclick="showTab('tab2')">
+            <button class="px-4 py-4 grid-rows-2 rounded-xl text-gray-900 font-semibold border-b-4 b hover:bg-purple-200 bg-white card-button" onclick="showCard('card2')">
                 <div class="flex">
                     <img data-src="/static-assets/icons/e-invoicing.svg" alt="E-Invoicing" src="../../../../images/e-invoicing.svg">
                     <h3 class="text-2xl ml-3">E-Invoicing</h3>
                 </div>
             </button>
-            <button class="px-4 py-4 grid-rows-3 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-blue-500 tab-button" onclick="showTab('tab3')">
+            <button class="px-4 py-4 grid-rows-3 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-purple-200 card-button" onclick="showCard('card3')">
                 <div class="flex">
                     <img data-src="/static-assets/icons/e-way-billing.svg" alt="E-way Billing" src="../../../../images/e-way-billing.svg">
                     <h3 class="text-2xl ml-3">E-way Billing</h3>
                 </div>
             </button>
-            <button class="px-4 py-4 grid-rows-4 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-blue-500 tab-button" onclick="showTab('tab4')">
+            <button class="px-4 py-4 grid-rows-4 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-purple-200 card-button" onclick="showCard('card4')">
                 <div class="flex">
                     <img data-src="/static-assets/icons/data-export.svg" alt="Easily Export Billing Data to Tally" src="../../../../images/data-export.svg">
                     <h3 class="text-2xl ml-2">Data Export to Tally</h3>
@@ -198,62 +199,93 @@
     </div>
 
     <!-- Tab Content -->
-    <div id="card1" class="p-4 tab-content bg-blue-500 shadow-md rounded-lg w-3/4 grid grid-cols-2">
-        <div id="gstr-filing" class="gst-feature-description active grid-cols-2 ">
-            <img data-src="/static-assets/images/landing-page-v2/gst-filing.webp" alt="Easy GST Return Filing" class="gst-imgage" src="/static-assets/images/landing-page-v2/gst-filing.webp">
-            <div class="gst-feature-description-text grid-cols-2">
+        <div class=" mt-2 mr-52 rounded-xl ">
+            <div id="card1" class="card-content active border border-gray-300 rounded-xl shadow-2xl shadow-blue-900">
+            <img data-src="/static-assets/images/landing-page-v2/gst-filing.webp" alt="Easy GST Return Filing" class="gst-imgage border border-gray-300 rounded-t-lg" src="../../../../images/gst-filing.webp">
+            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center font-bold font-sans ">
                 Export your GSTR1 data in a simple format (JSON) and easily file your GST returns. Also, get GSTR-2 and GSTR-3B reports that would help you/your CAs in easy GST tax filing.
-                <button id="get-started-gst-feature-cta" class="get-started-btn" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
+            </div>
+                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
                     Get Started Now
-                    <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" alt="Arrow Right" src="/static-assets/icons/ic-arrow-narrow-right.svg">
+                    <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" class="ml-1" alt="Arrow Right" src="../../../../images/ic-arrow-narrow-right.svg">
                 </button>
             </div>
+
+        <div id="card2" class="card-content hidden border border-gray-300 rounded-xl">
+            <img data-src="/static-assets/images/landing-page-v2/gst-filing.webp" alt="Easy GST Return Filing" class="gst-imgage border border-gray-400 rounded-t-lg" src="../../../../images/e-invoicing.webp">
+            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center font-bold font-sans">
+                Effortlessly generate e-Invoices in a single click, with automatic GSTR1 reconciliation, and conveniently cancel e-Invoices directly through e-invoicing software.
+            </div>
+                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
+                    Get Started Now
+                    <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" class="ml-1" alt="Arrow Right" src="../../../../images/ic-arrow-narrow-right.svg">
+                </button>
+
+            </div>
+        <div id="card3" class="card-content hidden border border-gray-300 rounded-xl">
+            <img data-src="/static-assets/images/landing-page-v2/gst-filing.webp" alt="Easy GST Return Filing" class="gst-imgage border border-gray-400 rounded-t-lg" src="../../../../images/e-way-billing.webp">
+            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center font-bold font-sans">
+                Easily generate and download e-way bills in less than 30 seconds. 25+ smart error validations for error-free e-way billing. Generate e-invoices and e-way bills simultaneously.
+            </div>
+                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
+                    Get Started Now
+                    <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" class="ml-1" alt="Arrow Right" src="../../../../images/ic-arrow-narrow-right.svg">
+                </button>
+        </div>
+        <div id="card4" class="card-content hidden border border-gray-300 rounded-xl">
+            <img data-src="/static-assets/images/landing-page-v2/gst-filing.webp" alt="Easy GST Return Filing" class="gst-imgage border border-gray-400 rounded-t-lg" src="../../../../images/data-export.webp">
+            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center font-bold font-sans">
+                Export your business data to Tally with our free billing software. No more manual entries for your CA. Save your time, ensure accuracy and streamline your accounting process.
+            </div>
+                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex mb-4" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
+                    Get Started Now
+                    <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" class="ml-1" alt="Arrow Right" src="../../../../images/ic-arrow-narrow-right.svg">
+                </button>
         </div>
     </div>
-    <div id="card2" class="p-4 tab-content bg-white shadow-md rounded-lg hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-blue-700">Tab 2 Content</h2>
-        <p>Phasellus eget euismod libero, nec ullamcorper justo. Phasellus eget euismod libero, nec ullamcorper justo.
-            Phasellus eget euismod libero, nec ullamcorper justo. Etiam eget augue in ante gravida facilisis.</p>
-    </div>
-    <div id="card3" class="p-4 tab-content bg-white shadow-md rounded-lg hidden">
-        <h2 class="text-2xl font-semibold mb-2 text-blue-700">Tab 3 Content</h2>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Sed ut
-            perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Sed ut perspiciatis
-            unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-    </div>
-
+        <div class="mt-10">
+{{--            <div class="justify-items-center mx-auto">--}}
+{{--                <div class="section-header  justify-items-center animate__animated wow animate__fadeInTopLeft">--}}
+{{--                    <h3 class="text-center font-sans font-bold text-3xl">Contact Us</h3>--}}
+{{--                    <p class="text-center font-medium p-3">--}}
+{{--                        Making your business vision come true with our deep operational & implementation expertise.--}}
+{{--                        We've got the solutions to take your business to the next level.            </p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+        </div>
 </div>
 
-{{--<script>--}}
-{{--    function showCard(cardId) {--}}
-{{--        // Hide all tab content--}}
-{{--        const tabContents = document.querySelectorAll('.tab-content');--}}
-{{--        tabContents.forEach((content) => {--}}
-{{--            content.classList.add('hidden');--}}
-{{--        });--}}
 
-{{--        // Show the selected tab content--}}
-{{--        const selectedCard = document.getElementById(cardId);--}}
-{{--        if (selectedCard) {--}}
-{{--            selectedCard.classList.remove('hidden');--}}
-{{--        }--}}
+<script>
+    function showCard(cardId) {
 
-{{--        // Remove the 'active' class from all tab buttons--}}
-{{--        const cardButtons = document.querySelectorAll('.tab-button');--}}
-{{--        cardButtons.forEach((button) => {--}}
-{{--            button.classList.remove('active');--}}
-{{--        });--}}
+        const cardContents = document.querySelectorAll('.card-content');
+        cardContents.forEach((content) => {
+            content.classList.add('hidden');
+        });
 
-{{--        // Add the 'active' class to the clicked tab button--}}
-{{--        const clickedButton = document.querySelector(`[onclick="showCard('${cardId}')"]`);--}}
-{{--        if (clickedButton) {--}}
-{{--            clickedButton.classList.add('active');--}}
-{{--        }--}}
-{{--    }--}}
 
-{{--    // Initialize the first tab--}}
-{{--    showTab('card1');--}}
-{{--</script>--}}
+        const selectedCard = document.getElementById(cardId);
+        if (selectedCard) {
+            selectedCard.classList.remove('hidden');
+        }
+
+
+        const cardButtons = document.querySelectorAll('.card-button');
+        cardButtons.forEach((button) => {
+            button.classList.remove('active');
+        });
+
+
+        const clickedButton = document.querySelector(`[onclick="showCard('${cardId}')"]`);
+        if (clickedButton) {
+            clickedButton.classList.add('active');
+        }
+    }
+
+    //  the first card
+    showTab('card1');
+</script>
 
 <style>
     .tab-button.active {
@@ -262,34 +294,39 @@
         color: #4299e1;
     }
 </style>
+    <style>
+    .card-button.active {
+        background-color: #fff;
+        border-color: #4299e1;
+        color: #4299e1;
+    }
+</style>
 
 <script>
     function showTab(tabId) {
-        // Hide all tab content
+
         const tabContents = document.querySelectorAll('.tab-content');
         tabContents.forEach((content) => {
             content.classList.add('hidden');
         });
 
-        // Show the selected tab content
         const selectedTab = document.getElementById(tabId);
         if (selectedTab) {
             selectedTab.classList.remove('hidden');
         }
 
-        // Remove the 'active' class from all tab buttons
+
         const tabButtons = document.querySelectorAll('.tab-button');
         tabButtons.forEach((button) => {
             button.classList.remove('active');
         });
 
-        // Add the 'active' class to the clicked tab button
         const clickedButton = document.querySelector(`[onclick="showTab('${tabId}')"]`);
         if (clickedButton) {
             clickedButton.classList.add('active');
         }
     }
 
-    // Initialize the first tab
     showTab('tab1');
 </script>
+</div>
