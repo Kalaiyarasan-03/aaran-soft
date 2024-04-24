@@ -104,8 +104,8 @@
     </div>
     <div id="tab3" class="p-4 tab-content bg-white shadow-md rounded-lg hidden grid grid-rows-2 grid-cols-3">
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/multiple-device.webp" alt="Access myBillBook on multiple devices" src="../../../../images/Sign up-bro.png">
-            <div class="border-gray-400 bg-white p-2 font-bold font-serif">Multiple Device Login</div>
+            <img class="feature h-52 mx-auto" height="256" data-src="/static-assets/images/landing-page-v2/multiple-device.webp" alt="Access myBillBook on multiple devices" src="../../../../images/Sign up-1.png">
+            <div class="border-gray-400 bg-white p-2 mt-10 font-bold font-serif">Multiple Device Login</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4 h-72">
             <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/multiple-business.webp" alt="Manage Multiple Businesses with one Invoicing Software" src="../../../../images/multiple-business.webp">
@@ -237,12 +237,22 @@
             <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center font-bold font-sans">
                 Export your business data to Tally with our free billing software. No more manual entries for your CA. Save your time, ensure accuracy and streamline your accounting process.
             </div>
-                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
+                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex mb-4" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
                     Get Started Now
                     <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" class="ml-1" alt="Arrow Right" src="../../../../images/ic-arrow-narrow-right.svg">
                 </button>
         </div>
     </div>
+        <div class="mt-10">
+{{--            <div class="justify-items-center mx-auto">--}}
+{{--                <div class="section-header  justify-items-center animate__animated wow animate__fadeInTopLeft">--}}
+{{--                    <h3 class="text-center font-sans font-bold text-3xl">Contact Us</h3>--}}
+{{--                    <p class="text-center font-medium p-3">--}}
+{{--                        Making your business vision come true with our deep operational & implementation expertise.--}}
+{{--                        We've got the solutions to take your business to the next level.            </p>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+        </div>
 </div>
 
 
