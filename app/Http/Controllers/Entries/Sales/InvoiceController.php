@@ -22,7 +22,7 @@ class InvoiceController extends Controller
 
             $sale = $this->getSales($vid);
 
-            Pdf::setOption(['dpi' => 150, 'defaultPaperSize' => 'a4', 'defaultFont' => 'sans-serif','fontDir', public_path('\fonts')]);
+            Pdf::setOption(['dpi' => 150, 'defaultPaperSize' => 'a4', 'defaultFont' => 'sans-serif','fontDir']);
 
             $pdf = PDF::loadView($this->getPdfViewPath()
                 , [
