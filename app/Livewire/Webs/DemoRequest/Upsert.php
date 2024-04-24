@@ -8,12 +8,14 @@ use Livewire\Component;
 
 class Upsert extends Component
 {
+    #region[properties]
     public $company_name;
     public $contact_person;
     public $email;
     public $mobile;
+    #endregion
 
-
+    #region[Save]
     public function getSave()
     {
         $this->validate([
@@ -35,9 +37,12 @@ class Upsert extends Component
 
         }
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         return view('livewire.webs.demo-request.upsert')->layout('layouts.guest');
     }
+    #endregion
 }

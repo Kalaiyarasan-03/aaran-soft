@@ -15,6 +15,7 @@ class Item extends Component
 {
     use CommonTrait;
 
+    #region[Cashbook properties]
     public string $vdate = '';
     public string $purpose = '';
     public mixed $credit = 0;
@@ -22,12 +23,16 @@ class Item extends Component
     public mixed $interest = 0;
     public mixed $closing = 0;
     public CreditBook $creditBook;
+    #endregion
 
+    #region[Mount]
     public function mount($id)
     {
         $this->creditBook = CreditBook::find($id);
     }
+    #endregion
 
+    #region[Clear]
     public function clearFields(): void
     {
         $this->vid = '';
@@ -37,7 +42,9 @@ class Item extends Component
         $this->debit = '';
         $this->interest = '';
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
 
@@ -84,7 +91,9 @@ class Item extends Component
         $this->updateMaster();
         return $message;
     }
+    #endregion
 
+    #region[Update]
     public function updateMaster()
     {
         $XCredit = DB::table('credit_book_items')
@@ -96,7 +105,9 @@ class Item extends Component
         $this->creditBook->closing = $XCredit - $XDebit;
         $this->creditBook->save();
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -112,7 +123,9 @@ class Item extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'id';
@@ -122,7 +135,9 @@ class Item extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function reRender(): void
     {
         $this->render();
@@ -134,4 +149,5 @@ class Item extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

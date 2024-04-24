@@ -1,24 +1,26 @@
 <div>
     <x-slot name="header">Product</x-slot>
 
-    <!-- Top Controls --------------------------------------------------------------------------------------------------->
+    <!-- Top Controls ------------------------------------------------------------------------------------------------->
     <x-forms.m-panel>
-        <x-forms.top-controls :show-filters="$showFilters"/>
 
-        <!-- Header --------------------------------------------------------------------------------------------------->
+        <x-forms.top-controls :show-filters="$showFilters"/>
         <x-forms.table>
+
+            <!--Table Header ------------------------------------------------------------------------------------------>
+
             <x-slot name="table_header">
-                <x-table.header-serial wire:click.prevent="sortBy('vname')"/>
+                <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>Product Name</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('product_type')" center>Product Type
-                </x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Hsn Code</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('units')" center>Unit of Measure</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('units')" center>Gst Percent</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Product Type</x-table.header-text>
+                <x-table.header-text center>Hsn Code</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vname')" center>Unit of Measure</x-table.header-text>
+                <x-table.header-text center>Gst Percent</x-table.header-text>
                 <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
+
             <x-slot name="table_body">
                 @forelse ($list as $index =>  $row)
 
@@ -63,14 +65,14 @@
                         <x-table.cell-text>
                             <div class="w-full flex justify-center gap-3">
                                 <a href="{{route('products.upsert',[$row->id])}}"
-                                   class="flex flex-col px-3 text-gray-600 truncate text-xl text-center">
+                                   class="flex flex-col text-gray-600 text-xl text-center">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
                                                       class="text-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </a>
-                                <x-button.link wire:click="set_delete({{$row->id}})"
-                                               wire:confirm="Are you sure you want to delete this ?">&nbsp;
+                                <x-button.link wire:click="getDelete({{$row->id}})"
+                                               >&nbsp;
                                     <x-icons.icon :icon="'trash'"
                                                   class="text-red-600 h-5 w-auto block"/>
                                 </x-button.link>
@@ -83,12 +85,12 @@
                 @endforelse
             </x-slot>
 
-
-            <!-- Table Footer ------------------------------------------------------------------------------------------->
+            <!-- Pagination ------------------------------------------------------------------------------------------->
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>
         </x-forms.table>
+        <x-modal.delete/>
 
     </x-forms.m-panel>
 </div>

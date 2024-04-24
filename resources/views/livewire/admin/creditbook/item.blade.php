@@ -9,9 +9,7 @@
             <div class="px-5">Closing : {{$creditBook->closing}}</div>
         </div>
 
-        @editor
         <x-button.new/>
-        @endeditor
 
         <x-forms.table :list="$list">
             <x-slot name="table_header">

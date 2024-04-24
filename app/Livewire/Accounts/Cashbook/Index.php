@@ -6,6 +6,7 @@ use Aaran\Accounts\Models\Cashbook;
 use Aaran\Master\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -23,6 +24,7 @@ class Index extends Component
 
     public $vdate = '';
     public $vid = '';
+    public $showDeleteModal = false;
     public $vmode = '';
     public string $remarks = '';
     public $cashbill_id = null;
@@ -37,6 +39,8 @@ class Index extends Component
     public $openingBalance = 0;
     public $approved;
     public $status_id;
+    public $user_id;
+    public $active_id;
     public $acyear;
 
     public $order_id = '';
@@ -107,14 +111,16 @@ class Index extends Component
         $obj->remarks = $this->remarks;
         $obj->company_id = session()->get('company_id');
         $obj->status_id = $this->status_id;
+        $obj->user_id = Auth::id();
+        $obj->active_id = $this->active_id;
         $obj->save();
         $this->reTotal();
-        session()->flash('success', '"' . $this->vmode . '"  has been updated.');
+        session()->flash('success', '"'.$this->vmode.'"  has been updated.');
     }
     #endregion
 
     #region[get Obj]
-    public function getobj($id): void
+    public  function getObj($id)
     {
         if ($id) {
             $obj = Cashbook::find($id);
@@ -245,10 +251,20 @@ class Index extends Component
     #endregion
 
     #region[Delete]
+
     public function getDelete($id)
+    {
+        if ($id) {
+            $this->getObj($id);
+            $this->showDeleteModal = true;
+        }
+    }
+
+    public function delete($id)
     {
         $obj = Cashbook::find($id);
         $obj->delete();
+        $this->showDeleteModal = false;
         return redirect()->to(route('cashbooks'));
     }
     #endregion
@@ -327,13 +343,15 @@ class Index extends Component
             'approved' => "0",
             'remarks' => $this->remarks,
             'status_id' => '1',
+            'user_id' => Auth::id(),
+            'active_id' => '1',
         ]);
 
         if ($this->cashbill_id) {
             $this->setStatus();
         }
 
-        session()->flash('success', '"' . $this->vmode . '"  has been Saved.');
+        session()->flash('success', '"'.$this->vmode.'"  has been Saved.');
     }
     #endregion
 

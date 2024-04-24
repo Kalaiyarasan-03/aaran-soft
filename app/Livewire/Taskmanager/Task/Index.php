@@ -15,6 +15,7 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[properties]
     public string $client_id;
     public string $body;
     public mixed $cdate;
@@ -28,14 +29,18 @@ class Index extends Component
     public $commentsCount;
     public $verified;
     public $verified_on;
+    #endregion
 
+    #region[Mount]
     public function mount()
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->users = User::all();
         $this->clients = Client::where('active_id','=',Active::ACTIVE )->get();
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vname) {
@@ -83,7 +88,9 @@ class Index extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -103,7 +110,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'id';
@@ -118,7 +127,9 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function reRender(): void
     {
         $this->render();
@@ -129,4 +140,5 @@ class Index extends Component
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

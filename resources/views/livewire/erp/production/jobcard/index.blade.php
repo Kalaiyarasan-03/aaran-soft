@@ -13,7 +13,7 @@
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>Job card No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>Date</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vname')" center>Qty</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-action/>
               </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
@@ -54,7 +54,7 @@
                         <x-table.cell>
                             <div class="w-full flex justify-center gap-3">
                                 <a href="{{route('jobcards.upsert',[$row->id])}}"
-                                   class="flex flex-col px-3 text-gray-600 truncate text-xl text-center">
+                                   class="flex text-gray-600 truncate text-xl text-center">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
                                                       class="text-blue-500 h-5 w-auto block"/>

@@ -3,6 +3,8 @@
 
     <x-forms.m-panel>
 
+        <!-- Top Controls --------------------------------------------------------------------------------------------->
+
         <div class="flex flex-row gap-3 py-3">
 
             <div class="flex flex-row gap-3 py-3 w-full">
@@ -26,6 +28,8 @@
             </div>
         </div>
 
+        <!-- Table Header --------------------------------------------------------------------------------------------->
+
         <x-forms.table :list="$list">
             <x-slot name="table_header">
                 <x-table.header-serial/>
@@ -37,26 +41,30 @@
                 <x-table.header-text center>Status</x-table.header-text>
                 <x-table.header-action/>
             </x-slot>
+
+            <!-- Table Body ------------------------------------------------------------------------------------------->
+
             <x-slot name="table_body">
 
                 @php
-                $invoice_total = 0;
-                $received_total = 0;
+                    $invoice_total = 0;
+                    $received_total = 0;
                 @endphp
 
                 @forelse ($list as $index =>  $row)
                     <x-table.row>
 
                         <x-table.cell-text>
-                                {{ $index + 1 }}
+                            {{ $index + 1 }}
                         </x-table.cell-text>
 
                         <x-table.cell-text>
-                                    {{ $row->client->vname }}
+                            {{ $row->client->vname }}
                         </x-table.cell-text>
 
                         <x-table.cell-text>
-                                    {{ $row->invoice_no }} -{{$row->invoice_date ?  date('d-m-Y',strtotime($row->invoice_date )) : '' }}
+                            {{ $row->invoice_no }}
+                            -{{$row->invoice_date ?  date('d-m-Y',strtotime($row->invoice_date )) : '' }}
                         </x-table.cell-text>
 
                         <x-table.cell-text>
@@ -82,23 +90,23 @@
                         </x-table.cell-text>
 
                         <x-table.cell-text>
-                                {{$row->receipt_ref}}
+                            {{$row->receipt_ref}}
                         </x-table.cell-text>
 
                         <x-table.cell>
-                            <div class="flex w-full text-xl text-center  items-center justify-center p-1 {{  \App\Enums\Status::tryFrom($row->status_id)->getStyle()}}">
-                                    {{ \App\Enums\Status::tryFrom($row->status_id)->getName()}}
+                            <div
+                                class="flex w-full text-xl text-center  items-center justify-center p-1 {{  \App\Enums\Status::tryFrom($row->status_id)->getStyle()}}">
+                                {{ \App\Enums\Status::tryFrom($row->status_id)->getName()}}
                             </div>
                         </x-table.cell>
-
 
                         <x-table.cell-action :id="$row->id"/>
                     </x-table.row>
 
                     @php
-                    $invoice_total += floatval($row->amount);
-                    $received_total += floatval($row->receipt);
-                    $diff = $invoice_total - $received_total;
+                        $invoice_total += floatval($row->amount);
+                        $received_total += floatval($row->receipt);
+                        $diff = $invoice_total - $received_total;
                     @endphp
 
                 @empty
@@ -112,15 +120,16 @@
                     <td class="px-2 text-right  text-xl border  {{$diff ==  0 ? 'text-green-500' : 'text-red-500'}} border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($diff)}}</td>
                     <td class="px-2 text-center font-semibold border {{$diff ==  0 ? 'text-green-500' : 'text-red-500'}} border-gray-300">{{$diff ==  0 ? 'collected' : 'not Completed'}}</td>
                 </x-table.row>
-
-
             </x-slot>
+
             <x-slot name="table_pagination">
                 {{ $list->links() }}
             </x-slot>
         </x-forms.table>
 
         <x-modal.delete/>
+
+        <!-- Create Form ---------------------------------------------------------------------------------------------->
 
         <x-forms.create :id="$vid">
             <x-input.model-text wire:model="invoice_no" autofocus :label="'invoice_no'"/>
@@ -132,7 +141,7 @@
             <x-input.model-text wire:model="receipt_ref" :label="'receipt_ref'"/>
         </x-forms.create>
 
-        <x-button.primary wire:click="generate" >Generate</x-button.primary>
+        <x-button.primary wire:click="generate">Generate</x-button.primary>
 
     </x-forms.m-panel>
 </div>

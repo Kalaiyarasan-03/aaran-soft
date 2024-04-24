@@ -298,12 +298,15 @@
             </button>
         </section>
 
-            <!-- Display Table ---------------------------------------------------------------------------------------->
+        <!-- Display Table -------------------------------------------------------------------------------------------->
         <section>
 
             <div class="py-2 mt-5">
 
                 <table class="w-full">
+
+                    <!-- Table Header --------------------------------------------------------------------------------->
+
                     <thead>
                     <tr class="h-8 text-xs bg-gray-100 border border-gray-300">
                         <th class="w-12 px-2 text-center border border-gray-300">#</th>
@@ -314,8 +317,10 @@
                         <th class="w-12 px-1 text-center border border-gray-300">ACTION</th>
                     </tr>
                     </thead>
-                    <tbody>
 
+                    <!-- Table Items ---------------------------------------------------------------------------------->
+
+                    <tbody>
                     @php
                         $totalQty =0;
                     @endphp
@@ -344,10 +349,10 @@
                                 </button>
                             </td>
                         </tr>
+
                         @php
                             $totalQty += $row['qty']+0
                         @endphp
-
                     @endforeach
                     </tbody>
 
@@ -370,7 +375,7 @@
         </section>
     </x-forms.m-panel>
 
-    <!-- Footer ------------------------------------------------------------------------------------------------------->
+    <!-- Save & Back -------------------------------------------------------------------------------------------------->
     <section>
         <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md shadow-lg w-full ">
             <div class="flex flex-col md:flex-row justify-between gap-3">

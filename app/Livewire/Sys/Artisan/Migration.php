@@ -29,6 +29,11 @@ class Migration extends Component
         Artisan::call('migrate:fresh --seed');
     }
 
+    public function storageLink(): void
+    {
+        Artisan::call('storage:link');
+    }
+
     public function render()
     {
         return view('livewire.sys.artisan.migration');

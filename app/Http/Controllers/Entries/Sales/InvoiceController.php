@@ -22,7 +22,7 @@ class InvoiceController extends Controller
 
             $sale = $this->getSales($vid);
 
-            Pdf::setOption(['dpi' => 150, 'defaultPaperSize' => 'a4', 'defaultFont' => 'sans-serif']);
+            Pdf::setOption(['dpi' => 150, 'defaultPaperSize' => 'a4', 'defaultFont' => 'sans-serif','fontDir']);
 
             $pdf = PDF::loadView($this->getPdfViewPath()
                 , [
@@ -112,10 +112,12 @@ class InvoiceController extends Controller
     private function getPdfViewPath()
     {
         return match (config('aadmin.app_type')) {
-            config('clients.VIJAY_GARMENTS') =>  'pdf.entries.sales.vijay_garments1',
+            config('clients.VIJAY_GARMENTS') =>  'pdf.garments.vijay_garments1',
             config('clients.SK_PRINTERS') =>  'pdf.sundar.sk_printers',
+            config('clients.SARA_SCREENS') =>  'pdf.offset.sara_screens',
             default =>'pdf.garments.letterpad_withoutbank' ,
-
         };
+
+//        view('pdf.offset.sara_screens')
     }
 }

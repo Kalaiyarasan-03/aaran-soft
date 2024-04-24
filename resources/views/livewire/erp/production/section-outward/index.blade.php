@@ -15,7 +15,7 @@
                 <x-table.header-text wire:click.prevent="sortBy('vno')" center>Job No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vno')" center>Party Name</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vno')" center>Inward Qty</x-table.header-text>
-                <x-table.header-text center>Action</x-table.header-text>
+                <x-table.header-action/>
             </x-slot>
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
@@ -69,7 +69,7 @@
                             <div class="w-full flex justify-center gap-3">
                                 <x-icons.icon :icon="'printer'" wire:click="print({{$row->id}})" class="h-5 w-auto block px-1.5"/>
                                 <a href="{{route('sectionoutwards.upsert',[$row->id])}}"
-                                   class="flex flex-col px-3 text-gray-600 truncate text-xl text-center">
+                                   class="flex text-gray-600 truncate text-xl text-center">
                                     <x-button.link >&nbsp;
                                         <x-icons.icon :icon="'pencil'"
                                                       class="text-blue-500 h-5 w-auto block"/>

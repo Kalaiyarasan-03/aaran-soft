@@ -10,6 +10,8 @@
 
             <button wire:click.prevent="clearView" class="px-2 py-1 bg-gray-400">Run view:clear</button>
 
+            <button wire:click.prevent="storageLink" class="px-2 py-1 bg-gray-400">Storage Link</button>
+
             <button wire:click.prevent="runMigrationFreshSeed" class="px-2 py-1 bg-gray-400">Run Migration:fresh --seed</button>
 
             <div wire:loading>

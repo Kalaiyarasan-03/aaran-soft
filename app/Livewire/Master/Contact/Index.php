@@ -5,6 +5,7 @@ namespace App\Livewire\Master\Contact;
 
 use Aaran\Master\Models\Contact;
 use App\Livewire\Trait\CommonTrait;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Index extends Component
@@ -30,12 +31,24 @@ class Index extends Component
     #endregion
 
     #region[delete]
-    public function set_delete($id): void
+    public function delete(): void
     {
-        $obj= Contact::find($id);
+        $obj= $this->getObj($this->vid);
+        DB::table('contact_details')->where('contact_id', '=', $this->vid)->delete();
         $obj->delete();
+        $this->showDeleteModal = false;
     }
     #endregion
+    #region[get Obj]
+    public function getObj($id)
+    {
+        if ($id) {
+            $obj = Contact::find($id);
+            $this->vid = $obj->id;
+            return $obj;
+        }
+        return null;
+    }
 
     #region[render]
     public function reRender(): void

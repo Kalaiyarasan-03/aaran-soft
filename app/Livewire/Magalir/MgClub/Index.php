@@ -12,9 +12,12 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[properties]
     public string $vno = '';
     public string $desc = '';
+    #endregion
 
+    #region[Clear]
     public function clearFields(): void
     {
         $this->vid = '';
@@ -24,7 +27,9 @@ class Index extends Component
         $this->active_id = '1';
         $this->searches = '';
     }
+    #endregion
 
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vno != '') {
@@ -59,7 +64,9 @@ class Index extends Component
         }
         return '';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -73,7 +80,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'id';
@@ -83,11 +92,14 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         return view('livewire.magalir.mg-club.index')->with([
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }

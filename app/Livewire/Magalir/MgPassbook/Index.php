@@ -14,6 +14,7 @@ class Index extends Component
 {
     use CommonTrait;
 
+    #region[properties]
     public mixed $due_date = '';
     public mixed $due_amount = '';
 
@@ -22,7 +23,9 @@ class Index extends Component
     public string $remarks = '';
     public MgMember $member;
     public MgLoan $loan;
+    #endregion
 
+    #region[Mount]
     public function mount($id)
     {
         if ($id) {
@@ -32,8 +35,9 @@ class Index extends Component
         $this->received_date = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->due_date = (Carbon::parse(Carbon::now())->format('Y-m-d'));
     }
+    #endregion
 
-
+    #region[Save]
     public function getSave(): string
     {
         if ($this->vid == "") {
@@ -69,7 +73,9 @@ class Index extends Component
         $this->clearFields();
         return $message;
     }
+    #endregion
 
+    #region[Clear]
     public function clearFields(): void
     {
         $this->vid = '';
@@ -80,7 +86,9 @@ class Index extends Component
         $this->remarks = '';
         $this->searches = '';
     }
+    #endregion
 
+    #region[get Obj]
     public function getObj($id)
     {
         if ($id) {
@@ -95,7 +103,9 @@ class Index extends Component
         }
         return null;
     }
+    #endregion
 
+    #region[List]
     public function getList()
     {
         $this->sortField = 'id';
@@ -105,11 +115,14 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
+    #endregion
 
+    #region[Render]
     public function render()
     {
         return view('livewire.magalir.mg-passbook.index')->with([
             'list' => $this->getList()
         ]);
     }
+    #endregion
 }
