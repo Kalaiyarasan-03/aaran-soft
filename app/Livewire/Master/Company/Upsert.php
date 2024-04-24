@@ -25,6 +25,8 @@ class Upsert extends Component
     public string $mobile = '';
     public string $email = '';
     public string $gstin = '';
+    public mixed $msme_no= '';
+    public mixed $msme_type= '';
     public string $address_1 = '';
     public string $address_2 = '';
     public string $display_name = '';
@@ -237,6 +239,8 @@ class Upsert extends Component
                     'mobile' => $this->mobile,
                     'landline' => $this->landline,
                     'gstin' => $this->gstin,
+                    'msme_no' => $this->msme_no,
+                    'msme_type' => $this->msme_type,
                     'pan' => $this->pan,
                     'email' => $this->email,
                     'website' => $this->website,
@@ -264,6 +268,8 @@ class Upsert extends Component
                 $obj->mobile = $this->mobile;
                 $obj->landline = $this->landline;
                 $obj->gstin = $this->gstin;
+                $obj->msme_no = $this->msme_no;
+                $obj->msme_type = $this->msme_type;
                 $obj->pan = $this->pan;
                 $obj->email = $this->email;
                 $obj->website = $this->website;
@@ -306,6 +312,8 @@ class Upsert extends Component
             $this->mobile = $obj->mobile;
             $this->landline = $obj->landline;
             $this->gstin = $obj->gstin;
+            $this->msme_no = $obj->msme_no;
+            $this->msme_type = $obj->msme_type;
             $this->pan = $obj->pan;
             $this->email = $obj->email;
             $this->website = $obj->website;
@@ -340,6 +348,8 @@ class Upsert extends Component
             $this->mobile = $obj->mobile;
             $this->landline = $obj->landline;
             $this->gstin = $obj->gstin;
+            $this->msme_no = $obj->msme_no;
+            $this->msme_type = $obj->msme_type;
             $this->pan = $obj->pan;
             $this->email = $obj->email;
             $this->website = $obj->website;
