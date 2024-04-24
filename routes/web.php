@@ -22,12 +22,13 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
 
     Route::get('/icons', App\Livewire\Utilities\Icon\Index::class)->name('icons');
+    //sys
+    Route::get('sys', App\Livewire\Sys\Artisan\Migration::class)->name('sys');
 
 });
 
 
-//sys
-Route::get('sys', App\Livewire\Sys\Artisan\Migration::class)->name('sys');
+
 
 
 
