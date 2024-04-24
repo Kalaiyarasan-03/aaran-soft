@@ -22,6 +22,15 @@ class S03_UserSeeder extends Seeder
         ]);
 
         User::create([
+            'name' => 'Developer',
+            'email' => 'developer@aaran.com',
+            'password' => bcrypt('kalarani'),
+            'email_verified_at' => now(),
+            'remember_token' => Str::random(10),
+
+        ]);
+
+        User::create([
             'name' => 'Jagadeesh',
             'email' => 'Jagadeesh@aaran.org',
             'password' => bcrypt('123456789'),
