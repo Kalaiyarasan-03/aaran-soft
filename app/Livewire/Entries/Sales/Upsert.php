@@ -129,7 +129,7 @@ class Upsert extends Component
     #endregion
 
     #region[Billing Address]
-    public $billing_id = '';
+    public mixed $billing_id = '';
 
     public $billing_address = '';
     public Collection $billing_addressCollection;
@@ -195,7 +195,7 @@ class Upsert extends Component
 
     #region[Shipping Address]
 
-    public $shipping_id = '';
+    public mixed $shipping_id = '';
 
     public $shipping_address = '';
     public Collection $shipping_addressCollection;
@@ -379,7 +379,8 @@ class Upsert extends Component
 
     public function getStyleList(): void
     {
-        $this->styleCollection = $this->style_name ? Style::search(trim($this->style_name))->where('company_id', '=', session()->get('company_id'))
+        $this->styleCollection = $this->style_name ? Style::search(trim($this->style_name))->where('company_id', '=',
+            session()->get('company_id'))
             ->get() : Style::all()->where('company_id', '=', session()->get('company_id'));
     }
 
@@ -796,15 +797,20 @@ class Upsert extends Component
 
             } else {
                 $obj = Sale::find($this->vid);
-                $obj->uniqueno = session()->get('company_id') . '~' . $this->invoice_no . '~' . $this->invoice_date;
+                $obj->uniqueno = session()->get('company_id').'~'.$this->invoice_no.'~'.$this->invoice_date;
                 $obj->acyear = config('aadmin.current_acyear');
                 $obj->company_id = session()->get('company_id');
+                if ($obj->contact_id == $this->contact_id) {
+                    $obj->billing_id = $this->billing_id;
+                    $obj->shipping_id = $this->shipping_id;
+                } else {
+                    $obj->billing_id = Contact_detail::getId($this->contact_id);
+                    $obj->shipping_id = $this->shipping_id;
+                }
                 $obj->contact_id = $this->contact_id;
                 $obj->invoice_no = $this->invoice_no;
                 $obj->invoice_date = $this->invoice_date;
                 $obj->order_id = $this->order_id;
-                $obj->billing_id = $this->billing_id;
-                $obj->shipping_id = $this->shipping_id;
                 $obj->style_id = $this->style_id;
                 $obj->despatch_id = $this->despatch_id;
                 $obj->sales_type = $this->sales_type;
@@ -894,7 +900,8 @@ class Upsert extends Component
                 'colours.vname as colour_name',
                 'sizes.vname as size_name',)->join('products', 'products.id', '=', 'saleitems.product_id')
                 ->join('colours', 'colours.id', '=', 'saleitems.colour_id')
-                ->join('sizes', 'sizes.id', '=', 'saleitems.size_id')->where('sale_id', '=', $id)->get()->transform(function ($data) {
+                ->join('sizes', 'sizes.id', '=', 'saleitems.size_id')->where('sale_id', '=',
+                    $id)->get()->transform(function ($data) {
                     return [
                         'saleitem_id' => $data->id,
                         'po_no' => $data->po_no,

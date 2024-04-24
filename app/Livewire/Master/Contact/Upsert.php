@@ -304,7 +304,7 @@ class Upsert extends Component
                     'contact_type' => $this->contact_type ?: '1',
                     'msme_no' => $this->msme_no,
                     'msme_type' => $this->msme_type,
-                    'opening_balance' => $this->opening_balance,
+                    'opening_balance' => $this->opening_balance?:0,
                     'effective_from' => $this->effective_from,
                     'active_id' => $this->active_id,
                     'user_id' => Auth::id(),
@@ -324,7 +324,7 @@ class Upsert extends Component
                 $obj->contact_type = $this->contact_type ?: '1';
                 $obj->msme_no = $this->msme_no;
                 $obj->msme_type = $this->msme_type;
-                $obj->opening_balance = $this->opening_balance;
+                $obj->opening_balance = $this->opening_balance?:0;
                 $obj->effective_from = $this->effective_from;
                 $obj->active_id = $this->active_id;
                 $obj->user_id = Auth::id();

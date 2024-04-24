@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use App\Listeners\SetSoftwareIdInSession;
 use App\Listeners\SetTenantIdInSession;
-use App\Listeners\SetUsertypeIdInSession;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
