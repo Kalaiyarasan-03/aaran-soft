@@ -20,18 +20,17 @@ class Migration extends Component
 
     public function getUser()
     {
-        $this->user = User::all();
+        $this->user = \DB::table('users')->get();
     }
 
     public function getTenants()
     {
-        $this->tenants = Tenant::all();
+        $this->tenants = \DB::table('tenants')->get();
 
     }
     public function getRoles()
     {
-        $this->roles = Role::all();
-
+        $this->roles = \DB::table('roles')->get();
     }
 
     public function getObj($no)
