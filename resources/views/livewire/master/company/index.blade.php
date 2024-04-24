@@ -112,9 +112,9 @@
                         </x-table.cell-text>
 
                         <x-table.cell-text center>
-                            <div class="w-full  justify-center gap-3">
+                            <div class="w-full flex justify-center gap-3">
                                 <a href="{{route('companies.upsert',[$row->id])}}"
-                                   class="px-3 text-gray-600 truncate text-xl text-center">
+                                   class="text-gray-600 truncate text-xl text-center">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
                                                       class="text-blue-500 h-5 w-auto block"/>
