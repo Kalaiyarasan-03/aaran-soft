@@ -21,7 +21,7 @@
         }
 
         th, td {
-            font-size: xx-small;
+            font-size:9px;
             border: solid 1px rgba(161, 161, 161, 0.9);
             border-collapse: collapse;
             padding: 2px;
@@ -315,13 +315,13 @@
             <div>ACCOUNT NO</div>
             <div>IFSC CODE</div>
         </td>
-        <td  align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none">
+        <td colspan="3"  align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none">
             <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
             <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
         </td>
-        <td  colspan="3" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
+        <td  colspan="1" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
         @if($obj->additional!=0)
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;Shipping Charges</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}</td>
             <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
         @else
             <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;</td>
@@ -447,7 +447,7 @@
             </td>
             <td  colspan="3" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
             @if($obj->additional!=0)
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;Shipping Charges</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}</td>
             <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
             @else
                 <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;</td>
@@ -680,13 +680,13 @@
                 <div>ACCOUNT NO</div>
                 <div>IFSC CODE</div>
             </td>
-            <td  align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none">
+            <td colspan="3"  align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none">
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td  colspan="3" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
+            <td  colspan="1" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
             @if($obj->additional!=0)
-                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;Shipping Charges</td>
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}</td>
                 <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
             @else
                 <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;</td>
@@ -812,7 +812,7 @@
             </td>
             <td  colspan="3" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;border-left: none;"></td>
             @if($obj->additional!=0)
-                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;Shipping Charges</td>
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}</td>
                 <td align="right" style="border-bottom: none; border-left: none;">&nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
             @else
                 <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;</td>
