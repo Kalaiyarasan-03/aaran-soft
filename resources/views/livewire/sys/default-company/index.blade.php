@@ -1,7 +1,7 @@
 <div>
     <button type="button" wire:click="create"
             class="text-gray-600 bg-white focus:outline-none hover:bg-gray-100 font-semibold px-2 py-2 rounded-lg">
-        {{$company_1?:'Select Company' }}&nbsp;-&nbsp;{{$acyear?:'' }}
+        {{$defaultCompany->company->vname ?:'Select Company' }}&nbsp;-&nbsp;{{$acyear?:'' }}
     </button>
 
     <x-jet.modal wire:model.defer="showEditModal">
@@ -29,7 +29,7 @@
                         <x-table.cell>
                             <button wire:click.prevent="switchCompany({{$row->id}})"
                                     class="flex px-2 text-gray-600 text-xl justify-end w-full">
-                                {{  $row->vname === $company_1 ?'Default': '-'  }}
+                                {{  $row->vname === $defaultCompany->company->vname ?'Default': '-'  }}
 
                             </button>
                         </x-table.cell>
