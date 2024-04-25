@@ -8,7 +8,7 @@
         <x-input.advance-search-filter :show-filters="$showFilters" :contacts="$contacts" :orders="$orders"/>
         <x-forms.table>
 
-        <!--Table Header ---------------------------------------------------------------------------------------------->
+            <!--Table Header ---------------------------------------------------------------------------------------------->
             <x-slot name="table_header">
                 <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Invoice NO</x-table.header-text>
@@ -34,7 +34,8 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+
+                        <x-table.cell-text center >
                             <a href="{{route('sales.upsert',[$row->id])}}">
                                 {{ $row->invoice_no}}
                             </a>
@@ -54,7 +55,7 @@
 
                         <x-table.cell-text center>
                             <a href="{{route('sales.upsert',[$row->id])}}">
-                                {{ $row->total_qty}}
+                                {{ $row->total_qty+0}}
                             </a>
                         </x-table.cell-text>
 
