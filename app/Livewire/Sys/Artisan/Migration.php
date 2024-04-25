@@ -72,12 +72,10 @@ class Migration extends Component
 
     public function updateVersion()
     {
-        \DB::table('users')
-            ->where('id', '=', $this->user_id)
-            ->update([
-                'tenant_id' => $this->tenant_id,
-                'role_id' => $this->role_id,
-            ]);
+       SoftVersion::create([
+          'soft_version' => $this->soft_v,
+          'db_version' => $this->db_v,
+       ]);
 
         $this->soft_v = '';
         $this->db_v = '';

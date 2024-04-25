@@ -27,9 +27,11 @@
             </div>
 
             <div class="w-1/4 border-2 p-3">
+
                 <div class="text-gray-500 text-sm">
                     Tenant in user
                 </div>
+
                 <div>
                     <x-input.model-select wire:model="user_id" :label="'Name'">
                         <option value="">choose</option>
@@ -44,7 +46,7 @@
                         <option>Choose...</option>
                         @foreach($tenants as $tenant)
                             <option
-                                    value="{{ $tenant->id }}">{{ $tenant->t_name.' - Tenant Id : '.$tenant->id }}</option>
+                                value="{{ $tenant->id }}">{{ $tenant->t_name.' - Tenant Id : '.$tenant->id }}</option>
                         @endforeach
                     </x-input.model-select>
                     <x-input.model-select wire:model="role_id" :label="'Role Id'">
@@ -54,7 +56,8 @@
                         @endforeach
                     </x-input.model-select>
                 </div>
-                <button type="submit" wire:click.prevent="update"
+
+                <button type="submit" wire:click.prevent="updateUser"
                         class="inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs text-white uppercase tracking-widest
                                         transition-all shadow-xs
                                         bg-gradient-to-r from-blue-600 to-blue-500 hover:bg-gradient-to-b dark:shadow-blue-900
@@ -62,14 +65,19 @@
                     <x-icons.icon :icon="'save'" class="h-5 w-auto block px-1.5"/>
                     SAVE
                 </button>
+
             </div>
 
-            <div class="w-1/4 border-2 p-3">
+            <div class="w-1/4 border-2 p-3 flex flex-col gap-3">
+
                 <div class="text-gray-500 text-sm">
                     Database Version
                 </div>
-                <div>
-                    Software :{{$soft_v}} Database :{{$db_v}}
+                <div class="flex gap-3">
+                    <span>Software :</span>
+                    <span class="text-2xl">&nbsp;&nbsp;{{$soft_v}}&nbsp;&nbsp;</span>
+                    <span>Database :</span>
+                    <span class="text-2xl">&nbsp;&nbsp;{{$db_v}}&nbsp;&nbsp;</span>
                 </div>
 
                 <div>
