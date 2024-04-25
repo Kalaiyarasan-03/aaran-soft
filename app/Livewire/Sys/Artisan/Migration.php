@@ -11,16 +11,18 @@ use Livewire\Component;
 
 class Migration extends Component
 {
-    public Collection $user;
-    public $no;
-    public $tenant_id;
-    public $role_id;
+    public Collection $users;
     public Collection $tenants;
     public Collection $roles;
 
+
+    public string $user_id = '';
+    public string $tenant_id = '';
+    public string $role_id = '';
+
     public function getUser()
     {
-        $this->user = \DB::table('users')->get();
+        $this->users = \DB::table('users')->get();
     }
 
     public function getTenants()
@@ -28,6 +30,7 @@ class Migration extends Component
         $this->tenants = \DB::table('tenants')->get();
 
     }
+
     public function getRoles()
     {
         $this->roles = \DB::table('roles')->get();
@@ -36,21 +39,24 @@ class Migration extends Component
     public function getObj($no)
     {
         $obj = User::find($no);
-        $this->tenant_id=$obj->tenant_id;
-        $this->role_id=$obj->role_id;
+        $this->tenant_id = $obj->tenant_id;
+        $this->role_id = $obj->role_id;
         dd($this->tenant_id);
 
     }
 
     public function update()
     {
-        $obj = User::find($this->no);
-        $obj->tenant_id = $this->tenant_id;
-        $obj->role_id = $this->role_id;
-        $obj->save();
-        $this->role_id='';
-        $this->tenant_id='';
-        $this->no='';
+        \DB::table('users')
+            ->where('id', '=', $this->user_id)
+            ->update([
+                'tenant_id' => $this->tenant_id,
+                'role_id' => $this->role_id,
+            ]);
+
+        $this->role_id = '';
+        $this->tenant_id = '';
+        $this->user_id = '';
     }
 
 
@@ -80,6 +86,7 @@ class Migration extends Component
     {
         Artisan::call('storage:link');
     }
+
     #endregion
 
     public function render()

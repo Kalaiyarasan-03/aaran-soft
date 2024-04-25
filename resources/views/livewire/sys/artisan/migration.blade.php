@@ -3,7 +3,8 @@
 
     <x-forms.m-panel>
 
-        <div class="flex flex-col gap-3">
+        @admin
+        <div class="flex flex-col gap-3 w-1/4">
             <button wire:click.prevent="runMigration" class="px-2 py-1 bg-gray-400">Run Migration</button>
 
             <button wire:click.prevent="runMigrationRollBack" class="px-2 py-1 bg-gray-400">Run Migration:rollback
@@ -22,28 +23,32 @@
                 Work is on progress...
             </div>
         </div>
-        @admin
-        <div class="w-1/4">
+
+
+        <div class="w-1/4 border-2 p-3">
+            <div class="text-gray-500 text-sm">
+                Tenant in user
+            </div>
             <div>
-                <x-input.model-select wire:model.live="no" :label="'Name'">
+                <x-input.model-select wire:model="user_id" :label="'Name'">
                     <option value="">choose</option>
-                    @foreach($user as $i)
-                        <option value="{{$i->id}}">   {{$i->name.' - Tenant Id : '.$i->tenant_id}}</option>
+                    @foreach($users as $user)
+                        <option value="{{$user->id}}">   {{$user->name.' - Tenant Id : '.$user->tenant_id}}</option>
                     @endforeach
                 </x-input.model-select>
             </div>
 
             <div>
-                <x-input.model-select wire:model.live="tenant_id" :label="'Tenant Id'">
+                <x-input.model-select wire:model="tenant_id" :label="'Tenant Id'">
                     <option>Choose...</option>
-                    @foreach($tenants as $i)
-                        <option value="{{ $i->id }}">{{ $i->t_name.' - Tenant Id : '.$i->id }}</option>
+                    @foreach($tenants as $tenant)
+                        <option value="{{ $tenant->id }}">{{ $tenant->t_name.' - Tenant Id : '.$tenant->id }}</option>
                     @endforeach
                 </x-input.model-select>
-                <x-input.model-select wire:model.live="role_id" :label="'Role Id'">
+                <x-input.model-select wire:model="role_id" :label="'Role Id'">
                     <option>Choose...</option>
-                    @foreach($roles as $i)
-                        <option value="{{ $i->id }}">{{ $i->vname }}</option>
+                    @foreach($roles as $role)
+                        <option value="{{ $role->id }}">{{ $role->vname }}</option>
                     @endforeach
                 </x-input.model-select>
             </div>
