@@ -3,6 +3,7 @@
 namespace App\Livewire\Sys\Artisan;
 
 use App\Models\Role;
+use App\Models\SoftVersion;
 use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Support\Collection;
@@ -13,12 +14,15 @@ class Migration extends Component
 {
     public Collection $users;
     public Collection $tenants;
-    public Collection $roles;
+    public mixed $roles;
 
+    public Collection $versions;
 
     public string $user_id = '';
     public string $tenant_id = '';
     public string $role_id = '';
+    public string $soft_v = '';
+    public string $db_v = '';
 
     public function getUser()
     {
@@ -36,6 +40,13 @@ class Migration extends Component
         $this->roles = \DB::table('roles')->get();
     }
 
+    public function getVersions()
+    {
+        $obj = SoftVersion::latest()->first();
+        $this->soft_v = $obj->soft_version;
+        $this->db_v = $obj->db_version;
+    }
+
     public function getObj($no)
     {
         $obj = User::find($no);
@@ -45,7 +56,7 @@ class Migration extends Component
 
     }
 
-    public function update()
+    public function updateUser()
     {
         \DB::table('users')
             ->where('id', '=', $this->user_id)
@@ -57,6 +68,19 @@ class Migration extends Component
         $this->role_id = '';
         $this->tenant_id = '';
         $this->user_id = '';
+    }
+
+    public function updateVersion()
+    {
+        \DB::table('users')
+            ->where('id', '=', $this->user_id)
+            ->update([
+                'tenant_id' => $this->tenant_id,
+                'role_id' => $this->role_id,
+            ]);
+
+        $this->soft_v = '';
+        $this->db_v = '';
     }
 
 
@@ -94,6 +118,7 @@ class Migration extends Component
         $this->getUser();
         $this->getRoles();
         $this->getTenants();
+        $this->getVersions();
         return view('livewire.sys.artisan.migration');
     }
 }
