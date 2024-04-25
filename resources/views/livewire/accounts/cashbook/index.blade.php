@@ -121,14 +121,14 @@
     <!-- Payment & Receipt -------------------------------------------------------------------------------------------->
 
     <x-jet.modal wire:model.defer="showEditModal">
-        <div class="px-6  pt-4">
+        <div class="px-6 pt-4">
             <label class="text-lg font-extrabold">{{$vmode}}</label>
             <x-forms.section-border class="py-2"/>
             <x-input.model-date wire:model="vdate" :label="'Date'"/>
             @if($vmode=='Payment')
-                <div class="flex flex-col mb-2">
-                    <div class="flex ">
-                        <label for="order_no" class="gray-label flex">Order No</label>
+                <div class="md:flex md:flex-col mb-2">
+                    <div class="md:flex">
+                        <label for="order_no" class="gray-label mr-5 md:flex">Order No</label>
                         <div x-data="{isTyped: @entangle('orderTyped')}" @click.away="isTyped = false" class="w-3/4">
                             <div class="relative">
                                 <input
@@ -144,7 +144,7 @@
                                     wire:keydown.arrow-up="decrementOrder"
                                     wire:keydown.arrow-down="incrementOrder"
                                     wire:keydown.enter="enterOrder"
-                                    class="ml-16 block w-full purple-textbox"
+                                    class="md:ml-5 block w-96 purple-textbox"
                                 />
 
                                 <div x-show="isTyped"

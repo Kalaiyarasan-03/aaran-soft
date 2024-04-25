@@ -51,13 +51,13 @@
                                    class="flex text-gray-600 truncate text-xl text-center">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
-                                                      class="text-blue-500 h-5 w-auto block"/>
+                                                      class="text-blue-500 hover:text-white  hover:rounded-sm hover:bg-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </a>
 
                                 <x-button.link wire:click="getDelete({{$row->id}})">&nbsp;
                                     <x-icons.icon :icon="'trash'"
-                                                  class="text-red-600 h-5 w-auto block"/>
+                                                  class="text-red-600 h-5 hover:bg-red-500 hover:text-white hover:rounded-sm hover:font-bold w-auto block"/>
                                 </x-button.link>
                             </div>
                         </x-table.cell>
