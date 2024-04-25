@@ -130,11 +130,11 @@
                 <!-- Billing Address -------------------------------------------------------------------------------------->
 
                 @if(\Aaran\Aadmin\Src\SaleEntry::hasBillingAddress())
-                    <div class="xl:flex gap-2 w-full pt-6">
+                    <div class="xl:flex gap-2 md:w-full pt-6">
                         <label for="billing_address" class="w-[10rem] text-zinc-500 tracking-wide py-2">Billing
                             Address</label>
                         <div x-data="{isTyped: @entangle('billing_addressTyped')}" @click.away="isTyped = false"
-                             class="w-full">
+                             class="md:w-full">
                             <div class="relative ">
                                 <input
                                     id="billing_address"
@@ -161,7 +161,7 @@
                                         <div class="block py-1 shadow-md w-full
                 rounded-lg border-transparent flex-1 appearance-none border
                                  bg-white text-gray-800 ring-1 ring-purple-600">
-                                            <ul class="overflow-y-scroll h-96">
+                                            <ul class=" overflow-y-scroll h-96">
                                                 @if($billing_addressCollection)
                                                     @forelse ($billing_addressCollection as $i => $billing_address)
                                                         <li class="cursor-pointer px-3 py-1 hover:font-bold hover:bg-yellow-100 border-b border-gray-300 h-8
@@ -176,9 +176,9 @@
                                                         </li>
 
                                                     @empty
-                                                        <a href="{{route('contacts.upsert',[$contact_id])}}"
+                                                        <a  href="{{route('contacts.upsert',[$contact_id])}}"
                                                            role="button"
-                                                           class="flex items-center justify-center bg-green-500 w-full h-8 text-white text-center">
+                                                           class="flex items-center  justify-center bg-green-500 w-full h-8 text-white text-center">
                                                             Not found , Want to create new
                                                         </a>
                                                     @endforelse
@@ -395,7 +395,7 @@
             Sales Item
         </section>
 
-        <section class="flex flex-row w-full gap-0.5">
+        <section class="md:flex md:flex-row w-full gap-0.5">
 
             <!--PO/DC  -------------------------------------------------------------------------------------------------------->
 
@@ -411,7 +411,7 @@
             @if(\Aaran\Aadmin\Src\SaleEntry::hasDc_no())
                 <div class="w-full">
                     <label for="qty"></label>
-                    <input id="qty" wire:model.live="dc_no" class="block w-full purple-textbox-no-rounded"
+                    <input id="qty" wire:model.live="dc_no" class="block w-full md:w-full purple-textbox-no-rounded"
                            autocomplete="false"
                            placeholder="DC No..">
                 </div>
@@ -613,15 +613,15 @@
                        autocomplete="false"
                        placeholder="price">
             </div>
-            <button wire:click="addItems" class="px-3 bg-green-500 text-white font-semibold tracking-wider ">Add
+            <button wire:click="addItems" class="px-3 justify-items-center py-1.5 md:px-3 bg-green-500 text-white font-semibold tracking-wider ">Add
             </button>
         </section>
 
         <!-- Display Items ----------------------------------------------------------------------------------------------->
         <section>
-            <div class="py-2 mt-5">
+            <div class="py-2 mt-5 overflow-x-auto">
 
-                <table class="w-full">
+                <table class="overflow-x-auto md:w-full ">
                     <thead>
                     <tr class="h-8 text-xs bg-gray-100 border border-gray-300">
 
@@ -885,13 +885,13 @@
                 <div class="w-3/4 mr-3 ml-auto ">
 
                     <x-input.model-text wire:model="additional" wire:change.debounce="calculateTotal"
-                                        class="text-right purple-textbox w-full ml-20" :label="'Additional'"/>
+                                        class="md:text-right purple-textbox w-full md:ml-20" :label="'Additional'"/>
 
 
                     <div class="grid w-full grid-cols-2 pt-6">
                         <label
                             class="px-3 pb-2 text-left text-gray-600 text-md">Taxable&nbsp;Amount&nbsp;:&nbsp;&nbsp;</label>
-                        <label class="px-3 pb-2 text-right text-gray-800 text-md">{{  $total_taxable }}</label>
+                        <label class="md:px-3 md:pb-2 text-right text-gray-800 text-md">{{  $total_taxable }}</label>
                     </div>
 
 

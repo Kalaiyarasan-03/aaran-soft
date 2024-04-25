@@ -2,15 +2,15 @@
 'showFilters'=>false
 ])
 
-<div class="flex justify-between pb-5">
-    <div class="w-2/4 flex space-x-2">
+<div class="md:flex md:justify-between md:pb-5">
+    <div class="w-full h-20 md:w-2/4 flex md:space-x-2">
 
         <x-input.search-box/>
         <x-input.toggle-filter :show-filters="$showFilters"/>
 
     </div>
 
-    <div class="space-x-2 flex items-center">
+    <div class="flex justify-between md:mb-5 md:space-x-2 md:flex md:items-center">
         <x-forms.per-page/>
         <x-button.new/>
     </div>
