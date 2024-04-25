@@ -14,7 +14,7 @@
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Order No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Purchase No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Purchase Date</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Party Name</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('purchase_no')" left>Party Name</x-table.header-text>
                 <x-table.header-text center>Total Qty</x-table.header-text>
                 <x-table.header-text center>Total Taxable</x-table.header-text>
                 <x-table.header-text center>Total Gst</x-table.header-text>
@@ -33,13 +33,13 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text>
+                        <x-table.cell-text center>
                             <a href="{{route('purchases.upsert',[$row->id])}}">
                                 {{ $row->order->vname}}
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text>
+                        <x-table.cell-text center>
                             <a href="{{route('purchases.upsert',[$row->id])}}">
                                 {{ $row->purchase_no}}
                             </a>
@@ -51,7 +51,7 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text left>
                             <a href="{{route('purchases.upsert',[$row->id])}}">
                                 {{ $row->contact->vname}}
                             </a>
@@ -63,19 +63,19 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text right>
                             <a href="{{route('purchases.upsert',[$row->id])}}">
                                 {{ $row->total_taxable }}
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text right>
                             <a href="{{route('purchases.upsert',[$row->id])}}">
                                 {{ $row->total_gst }}
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text right>
                             <a href="{{route('purchases.upsert',[$row->id])}}">
                                 {{ $row->grand_total }}
                             </a>
