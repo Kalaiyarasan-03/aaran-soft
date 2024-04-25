@@ -21,6 +21,8 @@
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Grand Total</x-table.header-text>
                 <x-table.header-text center>Print</x-table.header-text>
 
+
+
                 <x-table.header-action/>
             </x-slot>
 
