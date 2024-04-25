@@ -21,7 +21,7 @@
             <x-slot name="table_header">
                 <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Date</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Party Name</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" left>Party Name</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Model</x-table.header-text>
                 <x-table.header-text center>Amount</x-table.header-text>
                 <x-table.header-action/>
@@ -44,7 +44,7 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text left>
                             <a href="{{route('receipts.upsert',[$row->id])}}">
                                 {{ $row->contact->vname }}
                             </a>
@@ -56,7 +56,7 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text right>
                             <a href="{{route('receipts.upsert',[$row->id])}}">
                                 {{ $row->receipt_amount}}
                             </a>

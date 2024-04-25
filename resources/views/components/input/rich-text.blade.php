@@ -16,8 +16,12 @@
     {{ $attributes->whereDoesntStartWith('wire:model') }}
 
 >
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>
+{{--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.css"/>--}}
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.min.js"></script>--}}
+
+    <link rel="stylesheet" href="https://unpkg.com/trix@2.0.0-alpha.1/dist/trix.css"></link>
+    <script src="https://unpkg.com/trix@2.0.0-alpha.1/dist/trix.umd.js"></script>
+    <style>[data-trix-button-group="file-tools"] { display: none !important; }</style>
     <input id="x" class="hidden">
     <trix-editor x-ref="trix" input="x" placeholder="{{$placeholder}}"
                  class="overflow-auto text-ellipsis form-textarea block w-full text
