@@ -115,10 +115,10 @@ class InvoiceController extends Controller
             config('clients.VIJAY_GARMENTS') =>  'pdf.garments.vijay_garments1',
             config('clients.SK_PRINTERS') =>  'pdf.offset.sales.sk_printers',
             config('clients.SARA_SCREENS') =>  'pdf.offset.sales.sara_screens',
-//            config('clients.SK_PRINTERS') =>  'pdf.suresh.neethu_industries',
+            config('clients.BEST_PRINT') =>  'pdf.offset.sales.best_print',
             default =>'pdf.garments.letterpad_withoutbank' ,
         };
 
-//        view('pdf.suresh.neethu_industries')
+//        view('pdf.offset.sales.best_print')
     }
 }

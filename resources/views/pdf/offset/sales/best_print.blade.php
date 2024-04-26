@@ -144,15 +144,11 @@
     <thead>
     <tr>
         <td colspan="2" style="justify-items: center;">
-            <div>
-                <img style="position: fixed;margin-left: 20px;padding-top: 5px;height: 99px;width: auto;padding-left: 60px;"
-                     src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
-            </div>
-            <div style="height: 110px;padding-left: 60px;" class="bg-blue-400 ">
+            <div style="height: 120px;" class="bg-blue-400 ">
                 <div style="text-align: center;">
-                    <div style="font-family:Times,serif;text-align: center; width: 100%;color: #3b82f6;font-size: 55px;" class="companyname">{{$cmp->get('company_name')}}</div>
-                </div>
-                <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
+                <img style="height: 40px;width: 55%;padding-top: 10px;"
+                     src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
+                <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
                 <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
@@ -539,21 +535,18 @@
     </tbody>
 </table>
 <div style="text-align: center;font-size:10px; padding-top: 5px; ">This is a Computer Generated Invoice</div>
+
 <div class="page-break"></div>
 
 <table width="100%" class="print:*">
     <thead>
     <tr>
         <td colspan="2" style="justify-items: center;">
-            <div>
-                <img style="position: fixed;margin-left: 20px;padding-top: 5px;height: 99px;width: auto;padding-left: 60px;"
-                     src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
-            </div>
-            <div style="height: 110px;padding-left: 60px;" class="bg-blue-400 ">
+            <div style="height: 120px;" class="bg-blue-400 ">
                 <div style="text-align: center;">
-                    <div style="font-family:Times,serif;text-align: center; width: 100%;color: #3b82f6;font-size: 55px;" class="companyname">{{$cmp->get('company_name')}}</div>
-                </div>
-                <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
+                    <img style="height: 40px;width: 55%;padding-top: 10px;"
+                         src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
+                <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
                 <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
@@ -940,21 +933,18 @@
     </tbody>
 </table>
 <div style="text-align: center;font-size:10px; padding-top: 5px; ">This is a Computer Generated Invoice</div>
-<div class="page-break"></div>
 
+
+<div class="page-break"></div>
 <table width="100%" class="print:*">
     <thead>
     <tr>
         <td colspan="2" style="justify-items: center;">
-            <div>
-                <img style="position: fixed;margin-left: 20px;padding-top: 5px;height: 99px;width: auto;padding-left: 60px;"
-                     src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
-            </div>
-            <div style="height: 110px;padding-left: 60px;" class="bg-blue-400 ">
+            <div style="height: 120px;" class="bg-blue-400 ">
                 <div style="text-align: center;">
-                    <div style="font-family:Times,serif;text-align: center; width: 100%;color: #3b82f6;font-size: 55px;" class="companyname">{{$cmp->get('company_name')}}</div>
-                </div>
-                <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
+                    <img style="height: 40px;width: 55%;padding-top: 10px;"
+                         src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
+                <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
                 <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>

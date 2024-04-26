@@ -269,7 +269,7 @@
 
         @endforeach
 
-        @for($i = 0; $i < 12-$list->count(); $i++)
+        @for($i = 0; $i < 20-($list->count()*2); $i++)
 
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -412,7 +412,7 @@
 
         @endforeach
 
-        @for($i = 0; $i < 28-($list->count()*2); $i++)
+        @for($i = 0; $i < 20-($list->count()*2); $i++)
 
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -671,7 +671,7 @@
 
         @endforeach
 
-        @for($i = 0; $i < 12-$list->count(); $i++)
+        @for($i = 0; $i < 20-($list->count()*2); $i++)
 
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -814,7 +814,7 @@
 
         @endforeach
 
-        @for($i = 0; $i < 28-($list->count()*2); $i++)
+        @for($i = 0; $i < 20-($list->count()*2); $i++)
 
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1073,7 +1073,7 @@
 
         @endforeach
 
-        @for($i = 0; $i < 12-$list->count(); $i++)
+        @for($i = 0; $i < 20-($list->count()*2); $i++)
 
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1216,7 +1216,7 @@
 
         @endforeach
 
-        @for($i = 0; $i < 28-($list->count()*2); $i++)
+        @for($i = 0; $i < 20-($list->count()*2); $i++)
 
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
