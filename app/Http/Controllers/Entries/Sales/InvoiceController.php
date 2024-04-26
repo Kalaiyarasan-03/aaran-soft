@@ -113,11 +113,12 @@ class InvoiceController extends Controller
     {
         return match (config('aadmin.app_type')) {
             config('clients.VIJAY_GARMENTS') =>  'pdf.garments.vijay_garments1',
-            config('clients.SK_PRINTERS') =>  'pdf.sundar.sk_printers',
+            config('clients.SK_PRINTERS') =>  'pdf.offset.sales.sk_printers',
             config('clients.SARA_SCREENS') =>  'pdf.offset.sales.sara_screens',
+//            config('clients.SK_PRINTERS') =>  'pdf.suresh.neethu_industries',
             default =>'pdf.garments.letterpad_withoutbank' ,
         };
 
-//        view('pdf.offset.sales.sara_screens')
+//        view('pdf.suresh.neethu_industries')
     }
 }

@@ -154,7 +154,7 @@
                      src="{{ public_path('images/sara_screen.png')}}"/></div>
                 <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
                 <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
-                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}</div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
     </tr>
@@ -554,7 +554,7 @@
                          src="{{ public_path('images/sara_screen.png')}}"/></div>
                 <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
                 <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
-                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}</div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
     </tr>
@@ -954,7 +954,7 @@
                          src="{{ public_path('images/sara_screen.png')}}"/></div>
                 <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
                 <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
-                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}</div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
     </tr>
