@@ -6,18 +6,18 @@ use Aaran\Master\Models\Company;
 use AllowDynamicProperties;
 use App\Enums\AcYear;
 use App\Models\DefaultCompany;
+use App\Models\SoftVersion;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Index extends Component
 {
     #region[properties]
-    public $showEditModal=false;
+    public mixed $defaultCompany;
+    public $showEditModal = false;
     public Collection $companies;
     public $tenant_id;
 
-    public company $company;
-    public string $company_1 = '';
     public string $acyear = '';
     #endregion
 
@@ -28,33 +28,17 @@ class Index extends Component
     }
     #endregion
 
-    #region[Mount]
-    public function mount()
-    {
-//        $this->switchCompany();
-        $this->setDefault(session()->get('tenant_id'));
-    }
-    #endregion
 
     #region[get Default]
     public function getDefaultCompany(): void
     {
-        $defaultCompany = DefaultCompany::find(1);
+        $this->defaultCompany = DefaultCompany::find(1);
+        $soft_version = SoftVersion::latest()->first();
 
-        if ($defaultCompany != null) {
-            if ($defaultCompany->company_id != 0) {
-                $this->company = Company::find($defaultCompany->company_id);
-                $this->company_1 = $this->company->vname;
-                $this->acyear = AcYear::tryFrom($defaultCompany->acyear)->getName();
-
-                session()->put('company_id', $defaultCompany->company_id);
-                session()->put('acyear', $defaultCompany->acyear);
-            } else {
-                $this->company_1 = '';
-                $this->getAllCompanies();
-            }
-        } else {
-            $this->getAllCompanies();
+        if ($this->defaultCompany) {
+            session()->put('company_id', $this->defaultCompany->company_id);
+            session()->put('acyear', $this->defaultCompany->acyear);
+            session()->put('soft_version', $soft_version->soft_version);
         }
     }
     #endregion
@@ -63,28 +47,6 @@ class Index extends Component
     public function getAllCompanies(): void
     {
         $this->companies = Company::where('tenant_id', '=', session()->get('tenant_id'))->get();
-    }
-    #endregion
-
-    #region[set Default]
-    public function setDefault(
-        $id
-    ): void {
-        $obj = DefaultCompany::find(1);
-        if ($obj) {
-            $obj->company_id = $id;
-            $obj->tenant_id = session()->get('tenant_id');
-            $obj->save();
-        } else {
-            DefaultCompany::create([
-                'company_id' => $id,
-                'tenant_id' => session()->get('tenant_id'),
-                'acyear' => session()->get('acyear')
-            ]);
-        }
-        $this->showEditModal=false;
-
-        session()->put('company_id', $id);
     }
     #endregion
 

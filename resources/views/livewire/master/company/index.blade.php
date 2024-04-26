@@ -4,14 +4,14 @@
     <x-forms.m-panel>
 
         <!-- Top Controls --------------------------------------------------------------------------------------------->
-        <div class="flex justify-between pb-5">
-            <div class="w-2/4 flex space-x-2">
+        <div class="md:flex md:justify-between md:pb-5">
+            <div class="w-full h-20 md:w-2/4 flex md:space-x-2">
 
                 <x-input.search-box/>
                 <x-input.toggle-filter :show-filters="$showFilters"/>
             </div>
 
-            <div class="space-x-2 flex items-center">
+            <div class="flex justify-between md:mb-5 md:space-x-2 md:flex md:items-center">
                 <x-forms.per-page/>
                 @admin
                 <x-button.new/>
@@ -113,17 +113,16 @@
 
                         <x-table.cell-text center>
                             <div class="w-full flex justify-center gap-3">
-                                <a href="{{route('companies.upsert',[$row->id])}}"
-                                   class="text-gray-600 truncate text-xl text-center">
+                                <a href="{{route('companies.upsert',[$row->id])}}">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
-                                                      class="text-blue-500 h-5 w-auto block"/>
+                                                      class="text-blue-500 hover:text-white  hover:rounded-sm hover:bg-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </a>
                                 <x-button.link wire:click="set_delete({{$row->id}})"
                                                wire:confirm="Are you sure you want to delete this ?">&nbsp;
                                     <x-icons.icon :icon="'trash'"
-                                                  class="text-red-600 h-5 w-auto block"/>
+                                                  class="text-red-600 h-5 hover:bg-red-500 hover:text-white hover:rounded-sm hover:font-bold w-auto block"/>
                                 </x-button.link>
                             </div>
                         </x-table.cell-text>

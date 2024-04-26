@@ -21,9 +21,9 @@
             <x-slot name="table_header">
                 <x-table.header-serial wire:click.prevent="sortBy('vdate')"/>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Date</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Party Name</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('vdate')" left>Party Name</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Model</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('vdate')" center>Amount</x-table.header-text>
+                <x-table.header-text center>Amount</x-table.header-text>
                 <x-table.header-action/>
             </x-slot>
 
@@ -44,7 +44,7 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text left>
                             <a href="{{route('payments.upsert',[$row->id])}}">
                                 {{ $row->contact->vname }}
                             </a>
@@ -56,7 +56,7 @@
                             </a>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center>
+                        <x-table.cell-text right>
                             <a href="{{route('payments.upsert',[$row->id])}}">
                                 {{ $row->payment_amount}}
                             </a>
@@ -68,12 +68,12 @@
                                    class="flex text-gray-600 truncate text-xl text-center">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
-                                                      class="text-blue-500 h-5 w-auto block"/>
+                                                      class="text-blue-500 hover:text-white  hover:rounded-sm hover:bg-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </a>
                                 <x-button.link wire:click="getDelete({{$row->id}})">&nbsp;
                                     <x-icons.icon :icon="'trash'"
-                                                  class="text-red-600 h-5 w-auto block"/>
+                                                  class="text-red-600 h-5 hover:bg-red-500 hover:text-white hover:rounded-sm hover:font-bold w-auto block"/>
                                 </x-button.link>
                             </div>
                         </x-table.cell-text>

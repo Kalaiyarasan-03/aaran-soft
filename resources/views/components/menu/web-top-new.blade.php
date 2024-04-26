@@ -1,4 +1,4 @@
-<nav class="z-10 bg-gray-50 border-b" x-data="{ open: false }">
+<nav class="z-10 bg-gray-50" x-data="{ open: false }">
     <div class="container mx-auto px-6">
         <div class="flex items-center justify-between">
             <div class="text-zinc-600 font-bold text-xl">

@@ -157,7 +157,7 @@
         </section>
 
         <!-- Product Name ------------------------------------------------------------------------------------------------>
-        <section class="flex flex-row w-full gap-0.5">
+        <section class="md:flex md:flex-row w-full gap-0.5">
             <div class="w-full">
                 <label for="product_name"></label>
                 <div x-data="{isTyped: @entangle('productTyped')}" @click.away="isTyped = false">
@@ -338,8 +338,8 @@
 
         <!-- Displaying Purchase Items ----------------------------------------------------------------------------------->
         <section>
-            <div class="py-2 mt-5">
-                <table class="w-full">
+            <div class="py-2 mt-5 overflow-x-auto">
+                <table class="overflow-x-auto md:w-full">
                     <thead>
                     <tr class="h-8 text-xs bg-gray-100 border border-gray-300">
                         <th class="w-12 px-2 text-center border border-gray-300">#</th>

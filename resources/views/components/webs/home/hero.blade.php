@@ -1,4 +1,4 @@
-<div class="flex flex-col sm:flex-row justify-between items-center p-5 bg-gradient-to-r from-cyan-100 to-blue-300">
+<div class="flex flex-col sm:flex-row justify-between items-center p-5 bg-white">
 
     <x-storyset.programer/>
 
@@ -32,7 +32,7 @@
 
     </div>
 </div>
-<div class="mt-16  mx-auto w-3/4">
+<div class="p-3 md:mt-16  mx-auto md:w-3/4">
     <h2 class="text-5xl text-center font-serif font-bold">
         All-in-one billing software to help grow
     </h2>
@@ -40,126 +40,125 @@
         your business
     </h2>
     <!-- Tab Buttons -->
-    <div class="p-2 mt-4 text-center text-gray-500 bg-gray-100 rounded-full mx-auto w-full">
-        <div class="flex justify-center space-x-4 w-full gap-4">
-            <button class="px-4 w-52 rounded-full bg-white text-gray-600 py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab1')">Billing</button>
-            <button class="px-4 w-72 rounded-full bg-white shadow hover:text-indigo-900 py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab2')">Inventory Management</button>
-            <button class="px-4 w-72 rounded-full bg-white py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab3')">Business Management</button>
-            <button class="px-4 w-72 rounded-full bg-white py-4 font-semibold border-b-4 border-blue-700 hover:bg-[#4299e1] focus:outline-none tab-button" onclick="showTab('tab4')">Bonus Features</button>
+    <div class="p-4 mt-4 text-center text-gray-500 bg-gray-100 rounded-full mx-auto w-full">
+        <div class="flex md:flex justify-center space-x-4 md:w-full md:gap-4">
+            <button class="p-2 px-1.5 py-1.5 md:px-4 md:w-52 rounded-full bg-gray-100 text-gray-600 md:py-4 font-semibold hover:text-indigo-900 focus:outline-none tab-button md:text-2xl" onclick="showTab('tab1')">Billing</button>
+            <button class="px-1.5 py-1.5 md:md:px-4 md:w-72 rounded-full bg-gray-100 md:py-4 font-semibold hover:text-indigo-900 focus:outline-none tab-button md:text-2xl" onclick="showTab('tab2')">Inventory Management</button>
+            <button class="px-1.5 py-1.5 md:px-4 md:w-72 rounded-full bg-gray-100 md:py-4 font-semibold hover:text-indigo-900 focus:outline-none tab-button md:text-2xl" onclick="showTab('tab3')">Business Management</button>
+            <button class="px-1.5 py-1.5 md:px-4 md:w-72 rounded-full bg-gray-100 md:py-4 font-semibold hover:text-indigo-900 focus:outline-none tab-button md:text-2xl" onclick="showTab('tab4')">Bonus Features</button>
         </div>
     </div>
 
     <!-- Tab Content -->
-    <div id="tab1" class="p-4 tab-content bg-white shadow-md rounded-lg grid grid-rows-2 grid-cols-3 mx-auto justify-items-center">
-        <div class="grid-cols-1 border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" data-src="/static-assets/images/landing-page-v2/automatic-invoice.webp" alt="Automatic GST Bill Sharing on Whatsapp/SMS" src="../../../../images/automatic-invoice.webp">
+    <div id="tab1" class="p-4 tab-content bg-white shadow-md rounded-lg grid md:grid-rows-2 md:grid-cols-3 mx-auto justify-items-center">
+        <div class="grid-cols-1  border border-b-gray-500 bg-gray-200 rounded-xl md:mt-10 md:m-4 ">
+            <img class="feature  md:p-2 md:justify-items-center md:mx-auto" alt="Automatic GST Bill Sharing on Whatsapp/SMS" src="../../../../images/automatic-invoice.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Automatic invoice sharing on SMS &amp; Whatsapp</div>
         </div>
         <div class="grid-cols-2 border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" data-src="/static-assets/images/landing-page-v2/sales-purchase.webp" alt="Sales &amp; Purchase Invoices, Expense Tracking" src="../../../../images/sales-purchase.webp">
+            <img class="feature p-2" alt="Sales &amp; Purchase Invoices, Expense Tracking" src="../../../../images/sales-purchase.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Sales Purchase and Expenses</div>
         </div>
         <div class="grid-cols-3 border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature"  data-src="/static-assets/images/landing-page-v2/quotation-proforma.webp" alt="Create Quotations/Estimates &amp; Proforma Invoices" src="../../../../images/quotation-proforma.webp">
+            <img class="feature p-2 "  alt="Create Quotations/Estimates &amp; Proforma Invoices" src="../../../../images/quotation-proforma.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Quotations Estimates &amp; Proforma Invoices</div>
         </div>
-        <div class=" border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/online-offline.webp" alt="Billing Software that works with/without internet" src="../../../../images/online-offline.webp">
-            <div class="border-gray-400 bg-white p-2 font-bold font-serif">Online &amp; Offline Billing</div>
+        <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
+            <img class="feature p-2" height="256"  alt="Track Invoice Edit History" src="../../../../images/audit.webp">
+            <div class="border-gray-400 bg-white p-2 font-bold font-serif">Audit Trail</div>
         </div>
         <div class=" border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/pos-billing.webp" alt="POS Billing Software Free" src="../../../../images/pos-billing.webp">
-                <div class="border-gray-400 bg-white p-2 font-bold font-serif">POS Billing</div>
+            <img class="feature w-96 h-60 p-2" height="256" alt="POS Billing Software Free" src="../../../../images/Receipt-amico.svg">
+                <div class="border-gray-400 bg-white p-3 mt-1 font-bold font-serif">POS Billing</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/delivery-challan.webp" alt="Create Delivery Challan" src="../../../../images/delivery-challan.webp">
+            <img class="feature p-2 " height="256" alt="Create Delivery Challan" src="../../../../images/delivery-challan.webp">
                 <div class="border-gray-400 bg-white p-2 font-bold font-serif">Delivery Challan</div>
         </div>
     </div>
-    <div id="tab2" class="p-4 tab-content bg-white shadow-md rounded-lg hidden grid grid-rows-2 grid-cols-3">
+    <div id="tab2" class="p-4 tab-content bg-white shadow-md rounded-lg hidden grid md:grid-rows-2 md:grid-cols-3">
         <div class="grid-cols-1 border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/manage-stocks.webp" alt="Inventory Management Software" src="../../../../images/manage-stocks.webp">
+            <img class="feature p-2 mr-2" alt="Inventory Management Software" src="../../../../images/manage-stocks.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Manage Stock Items</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/godown.webp" alt="Godown Management Billing Software" src="../../../../images/godown.webp">
+            <img class="feature p-2"  alt="Godown Management Billing Software" src="../../../../images/godown.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Godown Management</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/batching.webp" alt="Product Batching Feature" src="../../../../images/batching.webp">
+            <img class="feature p-2"  alt="Product Batching Feature" src="../../../../images/batching.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Batching</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/serialisation.webp" alt="Add Serial Number for easy product tracking" src="../../../../images/serialisation.webp">
+            <img class="feature p-2"  alt="Add Serial Number for easy product tracking" src="../../../../images/serialisation.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Serialisation</div>
         </div>
         <div class=" border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/barcodes.webp" alt="Create and Print Barcodes" src="../../../../images/barcodes.webp">
+            <img class="feature p-2"  alt="Create and Print Barcodes" src="../../../../images/barcodes.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Generate and Print Barcodes</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/custom-fields.webp" alt="Add custom fields for easy inventory management" src="../../../../images/custom-fields.webp">
+            <img class="feature p-2"  alt="Add custom fields for easy inventory management" src="../../../../images/custom-fields.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Inventory Custom Fields</div>
         </div>
     </div>
-    <div id="tab3" class="p-4 tab-content bg-white shadow-md rounded-lg hidden grid grid-rows-2 grid-cols-3">
+    <div id="tab3" class="p-4 tab-content bg-white shadow-md rounded-lg hidden grid md:grid-rows-2 md:grid-cols-3">
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature h-52 mx-auto" height="256" data-src="/static-assets/images/landing-page-v2/multiple-device.webp" alt="Access myBillBook on multiple devices" src="../../../../images/Sign up-1.png">
+            <img class="feature h-52 mx-auto"  alt="Access myBillBook on multiple devices" src="../../../../images/Sign up-1.png">
             <div class="border-gray-400 bg-white p-2 mt-10 font-bold font-serif">Multiple Device Login</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4 h-72">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/multiple-business.webp" alt="Manage Multiple Businesses with one Invoicing Software" src="../../../../images/multiple-business.webp">
+            <img class="feature p-2"  alt="Manage Multiple Businesses with one Invoicing Software" src="../../../../images/multiple-business.webp">
             <div class="border-gray-400 bg-white p-1 font-bold font-serif">Multiple Businesses</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4 h-72">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/multiple-users.webp" alt="Provide access to multiple users" src="../../../../images/multiple-users.webp">
+            <img class="feature p-2"  alt="Provide access to multiple users" src="../../../../images/multiple-users.webp">
             <div class="border-gray-400 bg-white p-1 font-bold font-serif">Multiple Users</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4 h-72">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/user-role.webp" alt="Create different user roles" src="../../../../images/user-role.webp">
+            <img class="feature p-2"  alt="Create different user roles" src="../../../../images/user-role.webp">
             <div class="border-gray-400 bg-white p-1 font-bold font-serif">User Role Settings</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4 h-72">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/staff-attendance.webp" alt="Staff Attendance and Payroll Management" src="../../../../images/staff-attendance.webp">
+            <img class="feature p-2"  alt="Staff Attendance and Payroll Management" src="../../../../images/staff-attendance.webp">
             <div class="border-gray-400 bg-white p-1 font-bold font-serif">Staff Attendance and Payroll</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4 h-72">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/business-reports.webp" alt="Billing Software that Generates Business Reports for free" src="../../../../images/business-reports.webp">
+            <img class="feature p-2"  alt="Billing Software that Generates Business Reports for free" src="../../../../images/business-reports.webp">
             <div class="border-gray-400 bg-white p-1 font-bold font-serif">Business Reports</div>
         </div>
     </div>
-    <div id="tab4" class="p-4 tab-content bg-white shadow-md rounded-lg hidden grid grid-rows-2 grid-cols-3">
+    <div id="tab4" class="p-4 tab-content bg-white shadow-md rounded-lg hidden grid md:grid-rows-2 md:grid-cols-3">
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-                <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/multiple-bank-accounts.webp" alt="Multiple Bank Account Management" src="../../../../images/multiple-bank-accounts.webp">
+                <img class="feature p-2"  alt="Multiple Bank Account Management" src="../../../../images/multiple-bank-accounts.webp">
                 <div class="border-gray-400 bg-white p-2 font-bold font-serif">Multiple Bank Account</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/recover-deleted-invoices.webp" alt="Recover Deleted Invoices for better Invoice Management" src="../../../../images/recover-deleted-invoices.webp">
+            <img class="feature p-2"  alt="Recover Deleted Invoices for better Invoice Management" src="../../../../images/recover-deleted-invoices.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Recover Deleted Invoices</div>
         </div>
 
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/bulk-upload.webp" alt="Bulk Upload/ Edit Invoices" src="../../../../images/bulk-upload.webp">
+            <img class="feature p-2"  alt="Bulk Upload/ Edit Invoices" src="../../../../images/bulk-upload.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Bulk Upload/ Edit</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-                <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/automated-billing.webp" alt="Automated Billing for recurring invoices" src="../../../../images/automated-billing.webp">
+                <img class="feature p-2"  alt="Automated Billing for recurring invoices" src="../../../../images/automated-billing.webp">
                 <div class="border-gray-400 bg-white p-2 font-bold font-serif">Automated Billing</div>
         </div>
         <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/foreign-currency.webp" alt="Create Invoices in Foreign Currency" src="../../../../images/foreign-currency.webp">
+            <img class="feature p-2"  alt="Create Invoices in Foreign Currency" src="../../../../images/foreign-currency.webp">
             <div class="border-gray-400 bg-white p-2 font-bold font-serif">Foreign Currency</div>
         </div>
-
-        <div class="border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
-            <img class="feature" height="256" data-src="/static-assets/images/landing-page-v2/audit.webp" alt="Track Invoice Edit History" src="../../../../images/audit.webp">
-            <div class="border-gray-400 bg-white p-2 font-bold font-serif">Audit Trail</div>
+        <div class=" border border-b-gray-500 bg-gray-200 rounded-xl mt-10 m-4">
+            <img class="feature p-2"  alt="Billing Software that works with/without internet" src="../../../../images/online-offline.webp">
+            <div class="border-gray-400 bg-white p-2 font-bold font-serif">Online &amp; Offline Billing</div>
         </div>
     </div>
 
 </div>
 
-<div class="w-full mt-20  mx-auto">
+<div class="w-full mt-4 md:w-full md:mt-20 mx-auto">
     <h2 class="text-5xl font-extrabold font-serif text-center">
         Experience Effortless GST Compliance
     </h2>
@@ -167,31 +166,31 @@
         with Invoicing Software
     </h2>
     <!-- Tab Buttons -->
-    <div class="flex w-full grid grid-cols-2 mt-8">
-    <div class="bg-gray-100 p-2 mt-3 rounded-t-lg  grid-rows-4 w-1/2 ml-60 grid-cols-1">
-        <div class="flex w-72 space-x-4 grid grid-rows-4 gap-5 mt-3 ">
+    <div class="ml-2 flex md:w-full grid grid-cols-2 md:grid-cols-2 mt-8">
+    <div class="bg-gray-100 w-52 p-2 mt-3 rounded-t-lg  grid-rows-4 md:w-1/2 md:ml-60 md:grid-cols-1">
+        <div class="flex md:w-72 space-x-4 grid grid-rows-4 gap-5 mt-3 ">
             <button class="px-4 py-4 grid-rows-1 ml-2 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-purple-200 card-button" onclick="showCard('card1')">
                 <div class="flex ">
-                    <img  data-src="/static-assets/icons/gstr-filing.svg" alt="GSTR Filing" src="../../../../images/gstr-filing.svg">
+                    <img alt="GSTR Filing" src="../../../../images/gstr-filing.svg">
                     <h3 class="text-2xl ml-3">GST Filing</h3>
                 </div>
 
             </button>
             <button class="px-4 py-4 grid-rows-2 rounded-xl text-gray-900 font-semibold border-b-4 b hover:bg-purple-200 bg-white card-button" onclick="showCard('card2')">
                 <div class="flex">
-                    <img data-src="/static-assets/icons/e-invoicing.svg" alt="E-Invoicing" src="../../../../images/e-invoicing.svg">
+                    <img alt="E-Invoicing" src="../../../../images/e-invoicing.svg">
                     <h3 class="text-2xl ml-3">E-Invoicing</h3>
                 </div>
             </button>
             <button class="px-4 py-4 grid-rows-3 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-purple-200 card-button" onclick="showCard('card3')">
                 <div class="flex">
-                    <img data-src="/static-assets/icons/e-way-billing.svg" alt="E-way Billing" src="../../../../images/e-way-billing.svg">
+                    <img alt="E-way Billing" src="../../../../images/e-way-billing.svg">
                     <h3 class="text-2xl ml-3">E-way Billing</h3>
                 </div>
             </button>
             <button class="px-4 py-4 grid-rows-4 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-purple-200 card-button" onclick="showCard('card4')">
                 <div class="flex">
-                    <img data-src="/static-assets/icons/data-export.svg" alt="Easily Export Billing Data to Tally" src="../../../../images/data-export.svg">
+                    <img alt="Easily Export Billing Data to Tally" src="../../../../images/data-export.svg">
                     <h3 class="text-2xl ml-2">Data Export to Tally</h3>
                 </div>
             </button>
@@ -199,59 +198,108 @@
     </div>
 
     <!-- Tab Content -->
-        <div class=" mt-2 mr-52 rounded-xl ">
-            <div id="card1" class="card-content active border border-gray-300 rounded-xl shadow-2xl shadow-blue-900">
-            <img data-src="/static-assets/images/landing-page-v2/gst-filing.webp" alt="Easy GST Return Filing" class="gst-imgage border border-gray-300 rounded-t-lg" src="../../../../images/gst-filing.webp">
-            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center font-bold font-sans ">
-                Export your GSTR1 data in a simple format (JSON) and easily file your GST returns. Also, get GSTR-2 and GSTR-3B reports that would help you/your CAs in easy GST tax filing.
+        <div class="grid-cols-2 mt-3 md:mt-2 md:mr-64 rounded-xl">
+            <div id="card1" class="card-content active border border-gray-300 rounded-xl shadow-2xl shadow-blue-900 md:mx-auto md:justify-items-center">
+            <img alt="Easy GST Return Filing" class="gst-imgage border border-gray-300 rounded-t-lg justify-items-center mx-auto" src="../../../../images/gst-filing.webp">
+            <div class="gst-feature-description-text grid-cols-2 bg-white text-black md:pt-10 md:pb-4 rounded-b-lg text-center text-2xl justify-items-center font-medium p-2 font-sans ">
+                Export your GSTR1 data in a simple format (JSON) and easily file your GST returns.
+                Also, get GSTR-2 and GSTR-3B reports that would help you/your CAs in easy GST tax filing.
             </div>
-                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
-                    Get Started Now
-                    <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" class="ml-1" alt="Arrow Right" src="../../../../images/ic-arrow-narrow-right.svg">
+                <button type="submit" wire:click.prevent="save" class="ml-10 p-2 mb-2">
+                    <div
+                        class="w-full relative inline-flex items-center px-10 py-1.5 overflow-hidden text-md font-medium text-indigo-600
+                                border-2 border-indigo-600 rounded-full hover:text-white group ">
+                    <span
+                        class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100
+                        group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+                        <span
+                            class="absolute right-0 flex items-center justify-start w-8 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                      xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round"
+                                                                               stroke-linejoin="round"
+                                                                               stroke-width="2"
+                                                                               d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
+                        <span class="relative">Get Started Now </span>
+                    </div>
                 </button>
             </div>
 
-        <div id="card2" class="card-content hidden border border-gray-300 rounded-xl">
-            <img data-src="/static-assets/images/landing-page-v2/gst-filing.webp" alt="Easy GST Return Filing" class="gst-imgage border border-gray-400 rounded-t-lg" src="../../../../images/e-invoicing.webp">
-            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center font-bold font-sans">
+        <div id="card2" class="card-content hidden border border-gray-300 rounded-xl ">
+            <img alt="Easy GST Return Filing" class="gst-imgage border  border-gray-400 rounded-t-lg pb-3" src="../../../../images/e-invoicing.webp">
+            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center text-2xl font-medium justify-items-center p-2 font-sans">
                 Effortlessly generate e-Invoices in a single click, with automatic GSTR1 reconciliation, and conveniently cancel e-Invoices directly through e-invoicing software.
             </div>
-                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
-                    Get Started Now
-                    <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" class="ml-1" alt="Arrow Right" src="../../../../images/ic-arrow-narrow-right.svg">
-                </button>
-
-            </div>
+            <button type="submit" wire:click.prevent="save" class="mt-5 ml-10 p-2 mb-2">
+                <div
+                    class="w-full relative inline-flex items-center px-10 py-1.5 overflow-hidden text-md font-medium text-indigo-600
+                                border-2 border-indigo-600 rounded-full hover:text-white group ">
+                    <span
+                        class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100
+                        group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+                    <span
+                        class="absolute right-0 flex items-center justify-start w-8 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                      xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round"
+                                                                               stroke-linejoin="round"
+                                                                               stroke-width="2"
+                                                                               d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
+                    <span class="relative">Get Started Now </span>
+                </div>
+            </button>
+        </div>
         <div id="card3" class="card-content hidden border border-gray-300 rounded-xl">
-            <img data-src="/static-assets/images/landing-page-v2/gst-filing.webp" alt="Easy GST Return Filing" class="gst-imgage border border-gray-400 rounded-t-lg" src="../../../../images/e-way-billing.webp">
-            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center font-bold font-sans">
+            <img alt="Easy GST Return Filing" class="gst-imgage border border-gray-400 rounded-t-lg" src="../../../../images/e-way-billing.webp">
+            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center text-2xl font-medium justify-items-center p-2 font-sans">
                 Easily generate and download e-way bills in less than 30 seconds. 25+ smart error validations for error-free e-way billing. Generate e-invoices and e-way bills simultaneously.
             </div>
-                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
-                    Get Started Now
-                    <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" class="ml-1" alt="Arrow Right" src="../../../../images/ic-arrow-narrow-right.svg">
-                </button>
+            <button type="submit" wire:click.prevent="save" class="mt-5 ml-10 p-2 mb-2">
+                <div
+                    class="w-full relative inline-flex items-center px-10 py-1.5 overflow-hidden text-md font-medium text-indigo-600
+                                border-2 border-indigo-600 rounded-full hover:text-white group ">
+                    <span
+                        class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100
+                        group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+                    <span
+                        class="absolute right-0 flex items-center justify-start w-8 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                      xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round"
+                                                                               stroke-linejoin="round"
+                                                                               stroke-width="2"
+                                                                               d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
+                    <span class="relative">Get Started Now </span>
+                </div>
+            </button>
         </div>
         <div id="card4" class="card-content hidden border border-gray-300 rounded-xl">
             <img data-src="/static-assets/images/landing-page-v2/gst-filing.webp" alt="Easy GST Return Filing" class="gst-imgage border border-gray-400 rounded-t-lg" src="../../../../images/data-export.webp">
-            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center font-bold font-sans">
+            <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center text-2xl font-medium justify-items-center p-2 font-sans">
                 Export your business data to Tally with our free billing software. No more manual entries for your CA. Save your time, ensure accuracy and streamline your accounting process.
             </div>
-                <button id="get-started-gst-feature-cta" class="get-started-btn bg-violet-400 rounded-xl ml-10 p-2.5 flex mb-4" onclick="showLogin(false); showLoginEvent('Login/Register', 'GSTR Filing', trackingEventAttributeType, 'gst_features')">
-                    Get Started Now
-                    <img data-src="/static-assets/icons/ic-arrow-narrow-right.svg" width="20" height="20" class="ml-1" alt="Arrow Right" src="../../../../images/ic-arrow-narrow-right.svg">
-                </button>
+            <button type="submit" wire:click.prevent="save" class="mt-5 ml-10 p-2 mb-2">
+                <div
+                    class="w-full relative inline-flex items-center px-10 py-1.5 overflow-hidden text-md font-medium text-indigo-600
+                                border-2 border-indigo-600 rounded-full hover:text-white group ">
+                    <span
+                        class="absolute left-0 block w-full h-0 transition-all bg-indigo-600 opacity-100
+                        group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+                    <span
+                        class="absolute right-0 flex items-center justify-start w-8 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                      xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round"
+                                                                               stroke-linejoin="round"
+                                                                               stroke-width="2"
+                                                                               d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </span>
+                    <span class="relative">Get Started Now </span>
+                </div>
+            </button>
         </div>
     </div>
         <div class="mt-10">
-{{--            <div class="justify-items-center mx-auto">--}}
-{{--                <div class="section-header  justify-items-center animate__animated wow animate__fadeInTopLeft">--}}
-{{--                    <h3 class="text-center font-sans font-bold text-3xl">Contact Us</h3>--}}
-{{--                    <p class="text-center font-medium p-3">--}}
-{{--                        Making your business vision come true with our deep operational & implementation expertise.--}}
-{{--                        We've got the solutions to take your business to the next level.            </p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+
         </div>
 </div>
 

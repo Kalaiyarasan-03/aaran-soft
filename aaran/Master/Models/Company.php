@@ -32,10 +32,9 @@ class Company extends Model
         return collect([
             'company_name' => $obj->display_name,
             'address_1' => $obj->address_1  ,
-            'address_2' => $obj->address_2 . ' , ' . $obj->city->vname . ' - ' . $obj->pincode->vname . ' , ',
-            'state'=>$obj->state->vname.' . ' . ' Contact : ' . $obj->mobile . ' . ',
-            'email'=>$obj->email,
-            'gstin'=> 'GST : ' . $obj->gstin ,
+            'address_2' => $obj->address_2 . ' , ' . $obj->city->vname . ' - ' . $obj->pincode->vname . ' . ',
+            'contact'=> ' Contact : ' . $obj->mobile . ' , '.'Email :'.$obj->email,
+            'gstin'=> 'GST : ' . $obj->gstin.' - '.'MSME :'.$obj->msme_no ,
             'logo'=>$obj->logo,
             'bank'=>$obj->bank,
             'acc_no'=>$obj->acc_no,

@@ -545,8 +545,13 @@ class Upsert extends Component
 
     public function removeItems($index): void
     {
+        $items = $this->itemList[$index];
         unset($this->itemList[$index]);
         $this->itemList = collect($this->itemList);
+        if($items['contact_detail_id']!=0){
+           $obj=Contact_detail::find( $items['contact_detail_id']);
+           $obj->delete();
+        }
     }
 
     #endregion
