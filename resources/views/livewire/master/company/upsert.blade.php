@@ -10,9 +10,9 @@
         <x-input.model-text wire:model="mobile" :label="'Mobile'"/>
         <x-input.model-text wire:model="landline" :label="'Landline'"/>
         <x-input.model-text wire:model="gstin" :label="'GSTin'"/>
+        <x-input.model-text wire:model="pan" :label="'Pan'"/>
         <x-input.model-text wire:model="msme_no" :label="'MSME No'"/>
         <x-input.model-text wire:model="msme_type" :label="'MSME Type'"/>
-        <x-input.model-text wire:model="pan" :label="'Pan'"/>
         <x-input.model-text wire:model="email" :label="'Email'"/>
         <x-input.model-text wire:model="website" :label="'Website'"/>
 
@@ -192,9 +192,9 @@
         @endadmin
 
         <!-- Bank Details --------------------------------------------------------------------------------------------->
-        <x-input.model-text wire:model="bank" :label="'Bank'"/>
         <x-input.model-text wire:model="acc_no" :label="'Account No'"/>
         <x-input.model-text wire:model="ifsc_code" :label="'IFSC Code'"/>
+        <x-input.model-text wire:model="bank" :label="'Bank'"/>
         <x-input.model-text wire:model="branch" :label="'Branch'"/>
 
         <!-- Image ---------------------------------------------------------------------------------------------------->

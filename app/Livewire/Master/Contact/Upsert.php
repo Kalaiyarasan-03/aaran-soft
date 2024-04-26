@@ -32,6 +32,7 @@ class Upsert extends Component
     public string $msme_type = '';
     public mixed $opening_balance = 0;
     public string $effective_from = '';
+    public mixed $route;
 
     #endregion
 
@@ -392,6 +393,7 @@ class Upsert extends Component
     #region[Mount]
     public function mount($id): void
     {
+        $this->route = url()->previous();
         if ($id != 0) {
 
             $obj = Contact::find($id);
@@ -582,7 +584,7 @@ class Upsert extends Component
     #region[render]
     public function getRoute(): void
     {
-        $this->redirect(route('contacts'));
+        $this->redirect($this->route);
     }
 
     public function render()

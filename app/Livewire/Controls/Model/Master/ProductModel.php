@@ -22,6 +22,9 @@ class ProductModel extends Component
     public function mount($name): void
     {
         $this->vname = $name;
+        $this->product_type = 0;
+        $this->units = 3;
+        $this->gst_percent = 18;
     }
 
     public function save(): void
@@ -30,7 +33,7 @@ class ProductModel extends Component
             $obj = Product::create([
                 'vname' => Str::ucfirst($this->vname),
                 'product_type' => $this->product_type,
-                'hsncode_id' => $this->hsncode_id,
+                'hsncode_id' => $this->hsncode_id?:1,
                 'units' => $this->units,
                 'gst_percent' => $this->gst_percent,
                 'user_id' => Auth::id(),
