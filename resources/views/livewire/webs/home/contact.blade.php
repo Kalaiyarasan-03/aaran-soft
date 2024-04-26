@@ -213,8 +213,8 @@
                     </div>
                 </div>
 
-                <div class="footer-top">
-                    <div class="container mx-auto justify-items-center bg-gray-300 ">
+                <div class="footer-top bg-gray-50">
+                    <div class="container mx-auto justify-items-center  ">
                         <div class="row grid grid-cols-4 ">
 
                             <div class="grid-cols-1 footer-contact">

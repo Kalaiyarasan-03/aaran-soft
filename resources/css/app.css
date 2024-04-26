@@ -463,12 +463,12 @@
 }
 
 .footer-newsletter form input[type=submit]:hover {
-    background: #209dd8;
+    background: #444444;
 }
 
 .footer-top {
     padding: 60px 0 30px 0;
-    background: #fff;
+    /*background: #444444;*/
 }
 
 .footer-top .footer-contact {
@@ -482,7 +482,7 @@
     line-height: 1;
     text-transform: uppercase;
     font-weight: 600;
-    color: white;
+    color: #37517e;
 }
 
 .footer-top .footer-contact p {
@@ -490,13 +490,13 @@
     line-height: 24px;
     margin-bottom: 0;
     font-family: "Jost", sans-serif;
-    color: white;
+    color: #37517e;
 }
 
 .footer-top h4 {
     font-size: 16px;
     font-weight: bold;
-    color: white;
+    color: #37517e;
     position: relative;
     padding-bottom: 12px;
 }
@@ -512,7 +512,7 @@
 }
 .footer-top .footer-links ul svg {
     padding-right: 2px;
-    color: white;
+    color: black;
     font-size: 18px;
     line-height: 1;
 }
@@ -528,7 +528,7 @@
 }
 
 .footer-top .footer-links ul a {
-    color: white;
+    color: #37517e;
     transition: 0.3s;
     display: inline-block;
     line-height: 1;
@@ -536,7 +536,7 @@
 
 .footer-top .footer-links ul a:hover {
     text-decoration: none;
-    color: white;
+    color: #37517e;
 }
 
 .footer-top .social-links a {

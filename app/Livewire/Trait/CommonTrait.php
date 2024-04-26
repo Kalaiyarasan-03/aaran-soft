@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Trait;
 
+use Illuminate\Support\Carbon;
 use Livewire\Attributes\Rule;
 use Livewire\WithPagination;
 
