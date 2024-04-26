@@ -43,6 +43,7 @@ class AadminServiceProvider extends ServiceProvider
 //        $this->mergeConfigFrom(__DIR__ . '/../Client/offset/sairf_sourcing.php', 'sairf_sourcing');
         $this->mergeConfigFrom(__DIR__ . '/../Client/offset/sara_screens.php', 'sara_screens');
         $this->mergeConfigFrom(__DIR__ . '/../Client/offset/thirumurugan_printing.php', 'thirumurugan_printing');
+        $this->mergeConfigFrom(__DIR__ . '/../Client/offset/best_print.php', 'best_print');
 
 
         $this->app->register(AadminServiceProvider::class);

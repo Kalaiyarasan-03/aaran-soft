@@ -17,7 +17,7 @@ class SaleEntry
             config('clients.NEW_AMMAN_PRINTERS') => in_array($feature, config('new_amman_printers.customise', [])),
             config('clients.KGS_PRINTERS') => in_array($feature, config('kgs_printers.customise', [])),
             config('clients.THIRUMURUGAN_PRINTERS') => in_array($feature, config('thirumurugan_printing.customise', [])),
-//            config('clients.SAIRF_SOURCING') => in_array($feature, config('sairf_sourcing.customise', [])),
+            config('clients.BEST_PRINT') => in_array($feature, config('best_print.customise', [])),
         };
     }
 
