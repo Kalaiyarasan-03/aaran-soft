@@ -540,6 +540,8 @@
 </table>
 <div style="text-align: center;font-size:10px; padding-top: 5px; ">This is a Computer Generated Invoice</div>
 
+<div class="page-break"></div>
+
 <table width="100%" class="print:*">
     <thead>
     <tr>
@@ -940,6 +942,8 @@
 </table>
 <div style="text-align: center;font-size:10px; padding-top: 5px; ">This is a Computer Generated Invoice</div>
 
+
+<div class="page-break"></div>
 <table width="100%" class="print:*">
     <thead>
     <tr>
