@@ -12,3 +12,4 @@
 <x-menu.base.li-menuitem :routes="'transports'" :label="'Transport'"/>
 <x-menu.base.li-menuitem :routes="'banks'" :label="'Bank'"/>
 <x-menu.base.li-menuitem :routes="'receipttypes'" :label="'Receipt Type'"/>
+<x-menu.base.li-menuitem :routes="'software-details'" :label="'Software Details'"/>

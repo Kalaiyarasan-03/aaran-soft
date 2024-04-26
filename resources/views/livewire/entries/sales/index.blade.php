@@ -86,7 +86,7 @@
                             <x-icons.icon :icon="'printer'" wire:click="print({{$row->id}})" class="mt-1 hover:rounded-sm hover:bg-purple-500 hover:text-white h-5 w-auto block"/>
                         </x-table.cell-text>
 
-                        <x-table.cell-text center class="mb-2">
+                        <x-table.cell-text center class="mb-3 md:mt-2">
                             <div class="w-full flex justify-center gap-3">
 
                                 <a href="{{route('sales.upsert',[$row->id])}}">
