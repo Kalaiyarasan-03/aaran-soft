@@ -137,8 +137,8 @@
                 <div style="text-align: center; width: 100%;color: #3b82f6;font-size: 20px;" class="companyname">{{$cmp->get('company_name')}}</div>
                 <div style="text-align: center; width: 100%;" class="address1">{{$cmp->get('address_1')}}</div>
                 <div style="text-align: center; width: 100%;" class="address1">{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">&nbsp;{{$cmp->get('state')}}</div>
-                <div style="text-align: center; width: 100%;" class="address1">Email:&nbsp;{{$cmp->get('email')}}&nbsp;{{$cmp->get('gstin')}}</div>
+                <div style="text-align: center; width: 100%;" class="address1">&nbsp;{{$cmp->get('contact')}}</div>
+                <div style="text-align: center; width: 100%;" class="address1">{{$cmp->get('gstin')}}</div>
             </div>
             <div>&nbsp;</div>
         </td>
@@ -290,8 +290,9 @@
                 has been effected by us in the regular
                 course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
             </div>
+            <div>&nbsp;</div>
         </td>
-{{--        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;CGST&nbsp;{{ $row['gst_percent']}}&nbsp;%</td>--}}
+        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;CGST&nbsp;{{ $row['gst_percent']}}&nbsp;%</td>
         <td align="right" style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
     </tr>
     <tr>
@@ -299,7 +300,7 @@
         <div>* Goods once sold cannot be return back or exchanged</div>
         <div>* Seller cannot be responsible for any damage/mistakes.</div>
         </td>
-{{--        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;SGST&nbsp;{{ $row['gst_percent']}}&nbsp;%</td>--}}
+        <td colspan="5" align="left" style="border-bottom: none;border-right: none;">Add&nbsp;SGST&nbsp;{{ $row['gst_percent']}}&nbsp;%</td>
         <td align="right" style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
     </tr>
     <tr>
