@@ -17,6 +17,7 @@ class SoftwareDetails extends Component
     public string $sub_domain = '';
     public string $database = '';
     public string $git = '';
+    public string $webhook = '';
     public string $copy_build_folder = '';
     public string $copy_env = '';
     public string $db_migrate = '';
@@ -47,6 +48,7 @@ class SoftwareDetails extends Component
                     'sub_domain' => $this->sub_domain,
                     'database' => $this->database,
                     'git' => $this->git,
+                    'webhook' => $this->webhook,
                     'copy_build_folder' => $this->copy_build_folder,
                     'copy_env' => $this->copy_env,
                     'db_migrate' => $this->db_migrate,
@@ -65,6 +67,7 @@ class SoftwareDetails extends Component
                 $obj->sub_domain = $this->sub_domain;
                 $obj->database = $this->database;
                 $obj->git = $this->git;
+                $obj->webhook = $this->webhook;
                 $obj->copy_build_folder = $this->copy_build_folder;
                 $obj->copy_env = $this->copy_env;
                 $obj->db_migrate = $this->db_migrate;
@@ -90,6 +93,7 @@ class SoftwareDetails extends Component
         $this->sub_domain = '';
         $this->database = '';
         $this->git = '';
+        $this->webhook = '';
         $this->copy_build_folder = '';
         $this->copy_env = '';
         $this->db_migrate = '';
@@ -112,6 +116,7 @@ class SoftwareDetails extends Component
             $this->sub_domain = $obj->sub_domain;
             $this->database = $obj->database;
             $this->git = $obj->git;
+            $this->webhook = $obj->webhook;
             $this->copy_build_folder = $obj->copy_build_folder;
             $this->copy_env = $obj->copy_env;
             $this->db_migrate = $obj->db_migrate;
