@@ -112,11 +112,11 @@
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ $row->soft_version}}
+                                {{ App\Enums\Version::tryFrom($row->soft_version)->value}}
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ $row->Db_version}}
+                                {{ App\Enums\Version::tryFrom($row->db_version)->value}}
                             </x-table.cell-text>
 
                             <x-table.cell-action id="{{$row->id}}"/>
@@ -152,23 +152,22 @@
                         <x-input.checkbox wire:model="user_tenant_id" :label="'User Tenant Id'"/>
                         <x-input.model-date wire:model="installed_on" :label="'Installed on'"/>
 
-
                         <x-input.model-select wire:model="soft_version" :label="'Soft Version'">
-                            <option class="text-gray-400" disabled> choose ..</option>
+                            <option class="text-gray-400"> choose ..</option>
                             @foreach(\App\Enums\Version::cases() as $v)
                                 <option class="text-gray-700" value="{{$v->name}}">{{$v->value}}</option>
                             @endforeach
                         </x-input.model-select>
 
-                        <x-input.model-select wire:model="Db_version" :label="'DB Version'">
-                            <option class="text-gray-400" disabled> choose ..</option>
+                        <x-input.model-select wire:model="db_version" :label="'DB Version'">
+                            <option class="text-gray-400"> choose ..</option>
                             @foreach(\App\Enums\Version::cases() as $db)
                                 <option class="text-gray-700" value="{{$db->name}}">{{$db->value}}</option>
                             @endforeach
                         </x-input.model-select>
 
                         <x-input.model-select wire:model="verify" :label="'Verify by'">
-                            <option class="text-gray-400" disabled> choose ..</option>
+                            <option class="text-gray-400"> choose ..</option>
                             @foreach(\App\Models\User::all() as $user)
                                 <option class="text-gray-700" value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
