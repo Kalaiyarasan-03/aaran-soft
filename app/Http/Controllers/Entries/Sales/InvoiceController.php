@@ -112,13 +112,13 @@ class InvoiceController extends Controller
     private function getPdfViewPath()
     {
         return match (config('aadmin.app_type')) {
-            config('clients.VIJAY_GARMENTS') =>  'pdf.garments.vijay_garments1',
+            config('clients.VIJAY_GARMENTS') =>  'pdf.garments.sales.vijay_garments',
             config('clients.SK_PRINTERS') =>  'pdf.offset.sales.sk_printers',
             config('clients.SARA_SCREENS') =>  'pdf.offset.sales.sara_screens',
             config('clients.BEST_PRINT') =>  'pdf.offset.sales.best_print',
             default =>'pdf.garments.letterpad_withoutbank' ,
         };
 
-//        view('pdf.offset.sales.best_print')
+//        view('pdf.garments.sales.vijay_garments')
     }
 }
