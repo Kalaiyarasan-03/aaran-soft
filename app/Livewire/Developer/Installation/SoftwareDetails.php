@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Sys\Installation;
+namespace App\Livewire\Developer\Installation;
 
 use Aaran\Common\Models\Software_details;
 use App\Livewire\Trait\CommonTrait;
@@ -146,7 +146,7 @@ class SoftwareDetails extends Component
 
     public function render()
     {
-        return view('livewire.sys.installation.software-details')->with([
+        return view('livewire.developer.installation.software-details')->with([
             'list' => $this->getList()
         ]);
     }
