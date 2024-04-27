@@ -57,6 +57,7 @@ class Upsert extends Component
     public string $product;
     public string $colour;
     public string $size;
+    public mixed $job_no='';
     public $po_no;
     public $grandtotalBeforeRound;
     public $dc_no;
@@ -778,6 +779,7 @@ class Upsert extends Component
                     'shipping_id' => $this->shipping_id ?: Contact_detail::getId($this->contact_id),
                     'style_id' => $this->style_id ?: 1,
                     'despatch_id' => $this->despatch_id ?: 1,
+                    'job_no' => $this->job_no,
                     'sales_type' => $this->sales_type,
                     'transport_id' => $this->transport_id ?: 1,
                     'destination' => $this->destination,
@@ -813,6 +815,7 @@ class Upsert extends Component
                 $obj->order_id = $this->order_id;
                 $obj->style_id = $this->style_id;
                 $obj->despatch_id = $this->despatch_id;
+                $obj->job_no = $this->job_no;
                 $obj->sales_type = $this->sales_type;
                 $obj->transport_id = $this->transport_id;
                 $obj->destination = $this->destination;
@@ -880,6 +883,7 @@ class Upsert extends Component
             $this->style_name = $obj->style->vname;
             $this->despatch_id = $obj->despatch_id;
             $this->despatch_name = $obj->despatch->vname;
+            $this->job_no = $obj->job_no;
             $this->sales_type = $obj->sales_type;
             $this->transport_id = $obj->transport_id;
             $this->transport_name = $obj->transport->vname;
@@ -1096,6 +1100,7 @@ class Upsert extends Component
             $this->style_name = $obj->style->vname;
             $this->despatch_id = $obj->despatch_id;
             $this->despatch_name = $obj->despatch->vname;
+            $this->job_no = $obj->job_no;
             $this->sales_type = $obj->sales_type;
             $this->transport_id = $obj->transport_id;
             $this->transport_name = $obj->transport->vname;

@@ -369,7 +369,7 @@ class Upsert extends Component
                     'state_id' => $sub['state_id'],
                     'pincode_id' => $sub['pincode_id'],
                     'country_id' => $sub['country_id'],
-                    'gstin' => $sub['gstin'],
+                    'gstin' => Str::upper($sub['gstin']),
                     'email' => $sub['email'],
                 ]);
             } else {
