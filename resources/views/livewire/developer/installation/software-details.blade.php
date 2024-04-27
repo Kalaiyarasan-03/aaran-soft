@@ -112,11 +112,13 @@
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ App\Enums\Version::tryFrom($row->soft_version)->value}}
+                                {{$row->soft_version}}
+                                {{--                                {{ App\Enums\Version::tryFrom($row->soft_version)}}--}}
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ App\Enums\Version::tryFrom($row->db_version)->value}}
+                                {{$row->db_version}}
+                                {{--                                {{ App\Enums\Version::tryFrom($row->db_version)}}--}}
                             </x-table.cell-text>
 
                             <x-table.cell-action id="{{$row->id}}"/>
