@@ -274,6 +274,10 @@
                     @endforeach
                 </x-input.model-select>
 
+                @if(\Aaran\Aadmin\Src\SaleEntry::hasJob_no())
+                <x-input.model-text wire:model="job_no" :label="'Job No'"/>
+                @endif
+
                 <!-- Style ------------------------------------------------------------------------------------------------>
 
                 @if(\Aaran\Aadmin\Src\SaleEntry::hasStyle())
