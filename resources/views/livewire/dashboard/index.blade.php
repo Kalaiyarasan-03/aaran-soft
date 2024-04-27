@@ -13,6 +13,8 @@
                     <livewire:attendance.attendance.index/>
                 @endif
 
+            best printers
+
         </div>
         <div class="fixed right-0 px-2 py-2 text-gray-400 bottom-0">
             v-{{config('aadmin.soft_version')}}-DB-{{config('aadmin.soft_version')}}-{{\Livewire\str()->ucfirst(config('aadmin.app_type'))}}
