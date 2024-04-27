@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('user_tenant_id')->nullable();
             $table->date('installed_on')->nullable();
             $table->string('soft_version')->nullable();
-            $table->string('Db_version')->nullable();
+            $table->string('db_version')->nullable();
             $table->smallInteger('active_id')->nullable();
         });
     }
