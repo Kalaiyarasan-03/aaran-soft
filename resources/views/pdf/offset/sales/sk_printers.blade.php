@@ -153,7 +153,7 @@
                     <div style="font-family:Times,serif;text-align: center; width: 100%;color: #3b82f6;font-size: 55px;" class="companyname">{{$cmp->get('company_name')}}</div>
                 </div>
                 <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{$cmp->get('email')}}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
@@ -554,7 +554,7 @@
                     <div style="font-family:Times,serif;text-align: center; width: 100%;color: #3b82f6;font-size: 55px;" class="companyname">{{$cmp->get('company_name')}}</div>
                 </div>
                 <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{$cmp->get('email')}}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
@@ -955,7 +955,7 @@
                     <div style="font-family:Times,serif;text-align: center; width: 100%;color: #3b82f6;font-size: 55px;" class="companyname">{{$cmp->get('company_name')}}</div>
                 </div>
                 <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{$cmp->get('email')}}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
