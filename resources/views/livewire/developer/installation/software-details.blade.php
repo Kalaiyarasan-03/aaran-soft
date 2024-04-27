@@ -14,7 +14,7 @@
 
                 <x-slot name="table_header">
                     <x-table.header-serial/>
-                    <x-table.header-text center>Sub Domain</x-table.header-text>
+                    <x-table.header-text center>Domain</x-table.header-text>
                     <x-table.header-text center>Database</x-table.header-text>
                     <x-table.header-text center>Git</x-table.header-text>
                     <x-table.header-text center>Copy Build Folder</x-table.header-text>
@@ -22,11 +22,10 @@
                     <x-table.header-text center>Db Migrate</x-table.header-text>
                     <x-table.header-text center>Storage Link</x-table.header-text>
                     <x-table.header-text center>User Created</x-table.header-text>
-                    <x-table.header-text center>User Tenant Id</x-table.header-text>
+                    <x-table.header-text center>Set User Tenant Id</x-table.header-text>
                     <x-table.header-text center>Installed on</x-table.header-text>
                     <x-table.header-text center>Soft Version</x-table.header-text>
                     <x-table.header-text center>Db Version</x-table.header-text>
-                    <x-table.header-text center>verified</x-table.header-text>
                     <x-table.header-action/>
                 </x-slot>
 
@@ -89,9 +88,6 @@
                             <x-table.cell-text center>
                                 {{ $row->Db_version}}
                             </x-table.cell-text>
-                            <x-table.cell-text center>
-                                {{ $row->verify}}
-                            </x-table.cell-text>
 
                             <x-table.cell-action id="{{$row->id}}"/>
 
@@ -121,12 +117,14 @@
                         <x-input.model-text wire:model="db_migrate" :label="'Db Migrate'"/>
                     </div>
                     <div class="w-full pl-5">
-                        <x-input.model-text wire:model="storage_link" :label="'Storage Link'"/>
+                        <x-input.checkbox wire:model="storage_link" :label="'Storage Link'"/>
                         <x-input.model-text wire:model="user_created" :label="'User Created'"/>
                         <x-input.model-text wire:model="user_tenant_id" :label="'User Tenant Id'"/>
                         <x-input.model-date wire:model="installed_on" :label="'Installed on'"/>
                         <x-input.model-text wire:model="soft_version" :label="'Soft Version'"/>
                         <x-input.model-text wire:model="Db_version" :label="'Db Version'"/>
+
+
                         <x-input.model-select wire:model="verify" :label="'verify'">
                             <option class="text-gray-400"> choose ..</option>
                             <option value="verified">kalai
@@ -140,6 +138,8 @@
                             </option>
                             <option value="Third">Third</option>
                         </x-input.model-select>
+
+
                     </div>
                 </div>
             </x-forms.create-new>
