@@ -57,14 +57,6 @@
                                 {{ $row->webhook}}
                             </x-table.cell-text>
 
-{{--                            <x-table.cell-text center>--}}
-{{--                                <label>--}}
-{{--                                    <input type="checkbox" onclick="return false"--}}
-{{--                                           @if($row->webhook) checked @endif--}}
-{{--                                           class="h-4 w-4 bg-gray-100 border-gray-300 rounded focus:animate-none focus:outline-none--}}
-{{--                                                   {{ $row->webhook ? 'text-green-400 focus:ring-green-500': 'focus:ring-gray-500 text-gray-700'}}">--}}
-{{--                                </label>--}}
-{{--                            </x-table.cell-text>--}}
 
 
                             <x-table.cell-text center>
@@ -156,11 +148,46 @@
             <x-forms.create-new :id="$vid">
                 <div class="lg:flex w-full">
                     <div class="w-full">
+                        <div class="flex items-center gap-2">
                         <x-input.model-text wire:model="sub_domain" :label="'Sub Domain'"/>
+                        <span>
+                           <button class="border p-2 border-gray-400 bg-gray-200 hover:bg-green-300 rounded-xl"
+                                   onclick="copyToClipboard('{{$sub_domain}}')">
+                                        <x-icons.icon :icon="'document-duplicate'" class="block w-6 h-auto "/>
+                           </button>
+                        </span>
+                        </div>
+                        <div class="flex items-center gap-2">
                         <x-input.model-text wire:model="database" :label="'Database'"/>
+                            <span>
+                           <button class="border p-2 border-gray-400 bg-gray-200 hover:bg-green-300 rounded-xl"
+                                   onclick="copyToClipboard('{{$database}}')">
+                                        <x-icons.icon :icon="'document-duplicate'" class="block w-6 h-auto "/>
+
+                           </button>
+                        </span>
+                        </div>
+                        <div class="flex items-center gap-2">
                         <x-input.model-text wire:model="git" :label="'Git'"/>
+                            <span>
+                           <button class="border p-2 border-gray-400 bg-gray-200 hover:bg-green-300 rounded-xl"
+                                   onclick="copyToClipboard('{{$git}}')">
+                                        <x-icons.icon :icon="'document-duplicate'" class="block w-6 h-auto "/>
+
+                           </button>
+                        </span>
+                        </div>
+                        <div class="flex items-center gap-2">
                         <x-input.model-text wire:model="webhook" :label="'webhook'"/>
-{{--                        <x-input.checkbox wire:model="webhook" :label="'Webhook'"/>--}}
+                            <span>
+                           <button class="border p-2 border-gray-400 bg-gray-200 hover:bg-green-300 rounded-xl"
+                                   onclick="copyToClipboard('{{$webhook}}')">
+                                        <x-icons.icon :icon="'document-duplicate'" class="block w-6 h-auto "/>
+
+                           </button>
+                        </span>
+                        </div>
+                     <x-input.checkbox wire:model="webhook" :label="'Webhook'"/>--}}
                         <x-input.checkbox wire:model="copy_build_folder" :label="'Copy Build Folder'"/>
                         <x-input.checkbox wire:model="copy_env" :label="'Copy Env'"/>
                         <x-input.checkbox wire:model="db_migrate" :label="'Db Migrate'"/>
