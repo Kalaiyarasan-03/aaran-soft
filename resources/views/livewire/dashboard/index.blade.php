@@ -13,7 +13,7 @@
                     <livewire:attendance.attendance.index/>
                 @endif
 
-            sundar
+            sundar asdfsdfsdfsdf
 
         </div>
         <div class="fixed right-0 px-2 py-2 text-gray-400 bottom-0">
