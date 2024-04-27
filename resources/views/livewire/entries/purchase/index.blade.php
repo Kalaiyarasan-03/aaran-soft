@@ -47,7 +47,7 @@
 
                         <x-table.cell-text center>
                             <a href="{{route('purchases.upsert',[$row->id])}}">
-                                {{ $row->purchase_date}}
+                                {{date('d-m-Y', strtotime($row->purchase_date))}}
                             </a>
                         </x-table.cell-text>
 

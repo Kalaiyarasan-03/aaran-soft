@@ -4,6 +4,7 @@ namespace App\Livewire\Developer\Installation;
 
 use Aaran\Common\Models\Software_details;
 use App\Livewire\Trait\CommonTrait;
+use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -21,10 +22,10 @@ class SoftwareDetails extends Component
     public string $storage_link = '';
     public string $user_created = '';
     public string $user_tenant_id = '';
-    public  $installed_on = '';
+    public $installed_on = '';
     public string $soft_version = '';
     public string $Db_version = '';
-    public $sortField_1='sub_domain';
+
 
 
     #region[save]
@@ -33,36 +34,36 @@ class SoftwareDetails extends Component
         if ($this->sub_domain != '') {
             if ($this->vid == "") {
                 Software_details::create([
-                    'sub_domain' => Str::ucfirst($this->sub_domain),
-                    'database' => Str::upper($this->database),
-                    'git' => Str::upper($this->git),
-                    'copy_build_folder' => Str::upper($this->copy_build_folder),
-                    'copy_env' => Str::upper($this->copy_env),
-                    'db_migrate' => Str::upper($this->db_migrate),
-                    'storage_link' => Str::upper($this->storage_link),
-                    'user_created' => Str::upper($this->user_created),
-                    'user_tenant_id' => Str::upper($this->user_tenant_id),
-                    'installed_on' => Str::upper($this->installed_on),
-                    'soft_version' => Str::upper($this->soft_version),
-                    'Db_version' => Str::upper($this->Db_version),
+                    'sub_domain' => $this->sub_domain,
+                    'database' => $this->database,
+                    'git' => $this->git,
+                    'copy_build_folder' => $this->copy_build_folder,
+                    'copy_env' => $this->copy_env,
+                    'db_migrate' => $this->db_migrate,
+                    'storage_link' => $this->storage_link,
+                    'user_created' => $this->user_created,
+                    'user_tenant_id' => $this->user_tenant_id,
+                    'installed_on' => $this->installed_on,
+                    'soft_version' => $this->soft_version,
+                    'Db_version' => $this->Db_version,
                     'active_id' => $this->active_id,
                 ]);
                 $message = "Saved";
 
             } else {
                 $obj = Software_details::find($this->vid);
-                $obj->sub_domain = Str::ucfirst($this->sub_domain);
-                $obj->database = Str::upper($this->database);
-                $obj->git = Str::upper($this->git);
-                $obj->copy_build_folder = Str::upper($this->copy_build_folder);
-                $obj->copy_env = Str::upper($this->copy_env);
-                $obj->db_migrate = Str::upper($this->db_migrate);
-                $obj->storage_link = Str::upper($this->storage_link);
-                $obj->user_created = Str::upper($this->user_created);
-                $obj->user_tenant_id = Str::upper($this->user_tenant_id);
-                $obj->installed_on = Str::upper($this->installed_on);
-                $obj->soft_version = Str::upper($this->soft_version);
-                $obj->Db_version = Str::upper($this->Db_version);
+                $obj->sub_domain = $this->sub_domain;
+                $obj->database = $this->database;
+                $obj->git = $this->git;
+                $obj->copy_build_folder = $this->copy_build_folder;
+                $obj->copy_env = $this->copy_env;
+                $obj->db_migrate = $this->db_migrate;
+                $obj->storage_link = $this->storage_link;
+                $obj->user_created = $this->user_created;
+                $obj->user_tenant_id = $this->user_tenant_id;
+                $obj->installed_on = $this->installed_on;
+                $obj->soft_version = $this->soft_version;
+                $obj->Db_version = $this->Db_version;
                 $obj->active_id = $this->active_id;
                 $obj->save();
                 $message = "Updated";
@@ -120,16 +121,18 @@ class SoftwareDetails extends Component
     #region[list]
     public function getList()
     {
+        $this->sortField = 'sub_domain';
+
         return Software_details::search($this->searches)
             ->where('active_id', '=', $this->activeRecord)
-            ->orderBy($this->sortField_1, $this->sortAsc ? 'asc' : 'desc')
+            ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
     #endregion
     #region[sort]
     public function sortBy($field): void
     {
-        if ($this->sortField_1=== $field) {
+        if ($this->sortField_1 === $field) {
             $this->sortAsc = !$this->sortAsc;
         } else {
             $this->sortAsc = true;
@@ -146,6 +149,8 @@ class SoftwareDetails extends Component
 
     public function render()
     {
+        $this->installed_on =Carbon::now()->format('Y-m-d');
+
         return view('livewire.developer.installation.software-details')->with([
             'list' => $this->getList()
         ]);

@@ -53,32 +53,62 @@
 
 
                             <x-table.cell-text center>
-                                {{ $row->copy_build_folder}}
+                                <label>
+                                    <input type="checkbox" onclick="return false"
+                                           @if($row->copy_build_folder) checked @endif
+                                           class="h-4 w-4 bg-gray-100 border-gray-300 rounded focus:animate-none focus:outline-none
+                                                   {{ $row->copy_build_folder ? 'text-green-400 focus:ring-green-500': 'focus:ring-gray-500 text-gray-700'}}">
+                                </label>
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ $row->copy_env}}
+                                <label>
+                                    <input type="checkbox" onclick="return false"
+                                           @if($row->copy_env) checked @endif
+                                           class="h-4 w-4 bg-gray-100 border-gray-300 rounded focus:animate-none focus:outline-none
+                                                   {{ $row->copy_env ? 'text-green-400 focus:ring-green-500': 'focus:ring-gray-500 text-gray-700'}}">
+                                </label>
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ $row->db_migrate}}
+                                <label>
+                                    <input type="checkbox" onclick="return false"
+                                           @if($row->db_migrate) checked @endif
+                                           class="h-4 w-4 bg-gray-100 border-gray-300 rounded focus:animate-none focus:outline-none
+                                                   {{ $row->db_migrate ? 'text-green-400 focus:ring-green-500': 'focus:ring-gray-500 text-gray-700'}}">
+                                </label>
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ $row->storage_link}}
+                                <label>
+                                    <input type="checkbox" onclick="return false"
+                                           @if($row->storage_link) checked @endif
+                                           class="h-4 w-4 bg-gray-100 border-gray-300 rounded focus:animate-none focus:outline-none
+                                                   {{ $row->storage_link ? 'text-green-400 focus:ring-green-500': 'focus:ring-gray-500 text-gray-700'}}">
+                                </label>
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ $row->user_created}}
+                                <label>
+                                    <input type="checkbox" onclick="return false"
+                                           @if($row->user_created) checked @endif
+                                           class="h-4 w-4 bg-gray-100 border-gray-300 rounded focus:animate-none focus:outline-none
+                                                   {{ $row->user_created ? 'text-green-400 focus:ring-green-500': 'focus:ring-gray-500 text-gray-700'}}">
+                                </label>
                             </x-table.cell-text>
 
 
                             <x-table.cell-text center>
-                                {{ $row->user_tenant_id}}
+                                <label>
+                                    <input type="checkbox" onclick="return false"
+                                           @if($row->user_tenant_id) checked @endif
+                                           class="h-4 w-4 bg-gray-100 border-gray-300 rounded focus:animate-none focus:outline-none
+                                                   {{ $row->user_tenant_id ? 'text-green-400 focus:ring-green-500': 'focus:ring-gray-500 text-gray-700'}}">
+                                </label>
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ $row->installed_on}}
+                                {{date('d-m-Y', strtotime($row->installed_on))}}
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
@@ -112,31 +142,36 @@
                         <x-input.model-text wire:model="sub_domain" :label="'Sub Domain'"/>
                         <x-input.model-text wire:model="database" :label="'Database'"/>
                         <x-input.model-text wire:model="git" :label="'Git'"/>
-                        <x-input.model-text wire:model="copy_build_folder" :label="'Copy Build Folder'"/>
-                        <x-input.model-text wire:model="copy_env" :label="'Copy Env'"/>
-                        <x-input.model-text wire:model="db_migrate" :label="'Db Migrate'"/>
+                        <x-input.checkbox wire:model="copy_build_folder" :label="'Copy Build Folder'"/>
+                        <x-input.checkbox wire:model="copy_env" :label="'Copy Env'"/>
+                        <x-input.checkbox wire:model="db_migrate" :label="'Db Migrate'"/>
                     </div>
                     <div class="w-full pl-5">
                         <x-input.checkbox wire:model="storage_link" :label="'Storage Link'"/>
-                        <x-input.model-text wire:model="user_created" :label="'User Created'"/>
-                        <x-input.model-text wire:model="user_tenant_id" :label="'User Tenant Id'"/>
+                        <x-input.checkbox wire:model="user_created" :label="'User Created'"/>
+                        <x-input.checkbox wire:model="user_tenant_id" :label="'User Tenant Id'"/>
                         <x-input.model-date wire:model="installed_on" :label="'Installed on'"/>
-                        <x-input.model-text wire:model="soft_version" :label="'Soft Version'"/>
-                        <x-input.model-text wire:model="Db_version" :label="'Db Version'"/>
 
 
-                        <x-input.model-select wire:model="verify" :label="'verify'">
-                            <option class="text-gray-400"> choose ..</option>
-                            <option value="verified">kalai
-                                <x-icons.icon :icon="'Check'"
-                                              class="text-black h-5 w-auto block"/>
-                            </option>
-                            <option value="not verified">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
-                            </option>
-                            <option value="Third">Third</option>
+                        <x-input.model-select wire:model="soft_version" :label="'Soft Version'">
+                            <option class="text-gray-400" disabled> choose ..</option>
+                            @foreach(\App\Enums\Version::cases() as $v)
+                                <option class="text-gray-700" value="{{$v->name}}">{{$v->value}}</option>
+                            @endforeach
+                        </x-input.model-select>
+
+                        <x-input.model-select wire:model="Db_version" :label="'DB Version'">
+                            <option class="text-gray-400" disabled> choose ..</option>
+                            @foreach(\App\Enums\Version::cases() as $db)
+                                <option class="text-gray-700" value="{{$db->name}}">{{$db->value}}</option>
+                            @endforeach
+                        </x-input.model-select>
+
+                        <x-input.model-select wire:model="verify" :label="'Verify by'">
+                            <option class="text-gray-400" disabled> choose ..</option>
+                            @foreach(\App\Models\User::all() as $user)
+                                <option class="text-gray-700" value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
                         </x-input.model-select>
 
 
