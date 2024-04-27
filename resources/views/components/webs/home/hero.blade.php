@@ -170,7 +170,7 @@
     <div class="bg-gray-100 w-52 p-2 mt-3 rounded-t-lg  grid-rows-4 md:w-1/2 md:ml-60 md:grid-cols-1">
         <div class="flex md:w-72 space-x-4 grid grid-rows-4 gap-5 mt-3 ">
             <button class="px-4 py-4 grid-rows-1 ml-2 rounded-xl text-gray-900 font-semibold border-b-4 bg-white hover:bg-purple-200 card-button" onclick="showCard('card1')">
-                <div class="flex ">
+                <div class="flex">
                     <img alt="GSTR Filing" src="../../../../images/gstr-filing.svg">
                     <h3 class="text-2xl ml-3">GST Filing</h3>
                 </div>
@@ -199,8 +199,8 @@
 
     <!-- Tab Content -->
         <div class="grid-cols-2 mt-3 md:mt-2 md:mr-64 rounded-xl">
-            <div id="card1" class="card-content active border border-gray-300 rounded-xl shadow-2xl shadow-blue-900 md:mx-auto md:justify-items-center">
-            <img alt="Easy GST Return Filing" class="gst-imgage border border-gray-300 rounded-t-lg justify-items-center mx-auto" src="../../../../images/gst-filing.webp">
+            <div id="card1" class="card-content active border border-gray-300 rounded-xl bg-[#EFF1F3] shadow-2xl shadow-blue-900 md:mx-auto md:justify-items-center">
+            <img alt="Easy GST Return Filing" class="gst-imgage  rounded-t-lg justify-items-center mx-auto p-12 pl-6" src="../../../../images/gst-filing.webp">
             <div class="gst-feature-description-text grid-cols-2 bg-white text-black md:pt-10 md:pb-4 rounded-b-lg text-center text-2xl justify-items-center font-medium p-2 font-sans ">
                 Export your GSTR1 data in a simple format (JSON) and easily file your GST returns.
                 Also, get GSTR-2 and GSTR-3B reports that would help you/your CAs in easy GST tax filing.
@@ -225,7 +225,7 @@
                 </button>
             </div>
 
-        <div id="card2" class="card-content hidden border border-gray-300 rounded-xl ">
+        <div id="card2" class="card-content hidden bg-[#EFF1F3] border  border-gray-300 rounded-xl ">
             <img alt="Easy GST Return Filing" class="gst-imgage border  border-gray-400 rounded-t-lg pb-3" src="../../../../images/e-invoicing.webp">
             <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center text-2xl font-medium justify-items-center p-2 font-sans">
                 Effortlessly generate e-Invoices in a single click, with automatic GSTR1 reconciliation, and conveniently cancel e-Invoices directly through e-invoicing software.
@@ -249,8 +249,8 @@
                 </div>
             </button>
         </div>
-        <div id="card3" class="card-content hidden border border-gray-300 rounded-xl">
-            <img alt="Easy GST Return Filing" class="gst-imgage border border-gray-400 rounded-t-lg" src="../../../../images/e-way-billing.webp">
+        <div id="card3" class="card-content hidden border border-gray-300 bg-[#EFF1F3] rounded-xl">
+            <img alt="Easy GST Return Filing" class="gst-imgage border border-gray-400 rounded-t-lg p-10 " src="../../../../images/e-way-billing.jpg">
             <div class="gst-feature-description-text grid-cols-2 bg-white text-black pt-10 pb-4 rounded-b-lg text-center text-2xl font-medium justify-items-center p-2 font-sans">
                 Easily generate and download e-way bills in less than 30 seconds. 25+ smart error validations for error-free e-way billing. Generate e-invoices and e-way bills simultaneously.
             </div>
