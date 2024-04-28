@@ -75,6 +75,20 @@ class SaleEntry
     }
 
     /**
+     * jon_no
+     * @return bool
+     */
+    public static function hasJob_no(): bool
+    {
+        return static::enabled(static::job_no());
+    }
+
+    public static function job_no(): string
+    {
+        return 'job_no';
+    }
+
+    /**
      * despatch
      * @return bool
      */

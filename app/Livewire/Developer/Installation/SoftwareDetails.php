@@ -3,6 +3,7 @@
 namespace App\Livewire\Developer\Installation;
 
 use Aaran\Common\Models\Software_details;
+use App\Enums\Version;
 use App\Livewire\Trait\CommonTrait;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -16,6 +17,7 @@ class SoftwareDetails extends Component
     public string $sub_domain = '';
     public string $database = '';
     public string $git = '';
+    public string $webhook = '';
     public string $copy_build_folder = '';
     public string $copy_env = '';
     public string $db_migrate = '';
@@ -23,20 +25,30 @@ class SoftwareDetails extends Component
     public string $user_created = '';
     public string $user_tenant_id = '';
     public $installed_on = '';
-    public string $soft_version = '';
-    public string $Db_version = '';
+    public mixed $soft_version;
+    public mixed $db_version;
 
 
+    #region[mount]
+    public function mount()
+    {
+        $this->installed_on = Carbon::now()->format('Y-m-d');
+        $this->soft_version = Version::v_1_0_2->name;
+        $this->db_version = Version::v_1_0_2->name;
+    }
+    #endregion[]
 
     #region[save]
     public function getSave(): string
     {
+
         if ($this->sub_domain != '') {
             if ($this->vid == "") {
                 Software_details::create([
                     'sub_domain' => $this->sub_domain,
                     'database' => $this->database,
                     'git' => $this->git,
+                    'webhook' => $this->webhook,
                     'copy_build_folder' => $this->copy_build_folder,
                     'copy_env' => $this->copy_env,
                     'db_migrate' => $this->db_migrate,
@@ -45,7 +57,7 @@ class SoftwareDetails extends Component
                     'user_tenant_id' => $this->user_tenant_id,
                     'installed_on' => $this->installed_on,
                     'soft_version' => $this->soft_version,
-                    'Db_version' => $this->Db_version,
+                    'db_version' => $this->db_version,
                     'active_id' => $this->active_id,
                 ]);
                 $message = "Saved";
@@ -55,6 +67,7 @@ class SoftwareDetails extends Component
                 $obj->sub_domain = $this->sub_domain;
                 $obj->database = $this->database;
                 $obj->git = $this->git;
+                $obj->webhook = $this->webhook;
                 $obj->copy_build_folder = $this->copy_build_folder;
                 $obj->copy_env = $this->copy_env;
                 $obj->db_migrate = $this->db_migrate;
@@ -63,7 +76,7 @@ class SoftwareDetails extends Component
                 $obj->user_tenant_id = $this->user_tenant_id;
                 $obj->installed_on = $this->installed_on;
                 $obj->soft_version = $this->soft_version;
-                $obj->Db_version = $this->Db_version;
+                $obj->db_version = $this->db_version;
                 $obj->active_id = $this->active_id;
                 $obj->save();
                 $message = "Updated";
@@ -80,6 +93,7 @@ class SoftwareDetails extends Component
         $this->sub_domain = '';
         $this->database = '';
         $this->git = '';
+        $this->webhook = '';
         $this->copy_build_folder = '';
         $this->copy_env = '';
         $this->db_migrate = '';
@@ -87,8 +101,8 @@ class SoftwareDetails extends Component
         $this->user_created = '';
         $this->user_tenant_id = '';
         $this->installed_on = '';
-        $this->soft_version = '';
-        $this->Db_version = '';
+        $this->soft_version = Version::v_1_0_2->name;
+        $this->db_version = Version::v_1_0_2->name;
         $this->active_id = true;
     }
     #endregion
@@ -102,6 +116,7 @@ class SoftwareDetails extends Component
             $this->sub_domain = $obj->sub_domain;
             $this->database = $obj->database;
             $this->git = $obj->git;
+            $this->webhook = $obj->webhook;
             $this->copy_build_folder = $obj->copy_build_folder;
             $this->copy_env = $obj->copy_env;
             $this->db_migrate = $obj->db_migrate;
@@ -110,7 +125,7 @@ class SoftwareDetails extends Component
             $this->user_tenant_id = $obj->user_tenant_id;
             $this->installed_on = $obj->installed_on;
             $this->soft_version = $obj->soft_version;
-            $this->Db_version = $obj->Db_version;
+            $this->db_version = $obj->db_version;
             $this->active_id = $obj->active_id;
             return $obj;
         }
@@ -147,10 +162,9 @@ class SoftwareDetails extends Component
         $this->render()->render();
     }
 
+
     public function render()
     {
-        $this->installed_on =Carbon::now()->format('Y-m-d');
-
         return view('livewire.developer.installation.software-details')->with([
             'list' => $this->getList()
         ]);

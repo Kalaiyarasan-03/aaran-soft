@@ -274,6 +274,10 @@
                     @endforeach
                 </x-input.model-select>
 
+                @if(\Aaran\Aadmin\Src\SaleEntry::hasJob_no())
+                <x-input.model-text wire:model="job_no" :label="'Job No'"/>
+                @endif
+
                 <!-- Style ------------------------------------------------------------------------------------------------>
 
                 @if(\Aaran\Aadmin\Src\SaleEntry::hasStyle())
@@ -888,10 +892,10 @@
                                         class="md:text-right purple-textbox w-full md:ml-20" :label="'Additional'"/>
 
 
-                    <div class="grid w-full grid-cols-2 pt-6">
+                    <div class="grid w-full md:grid-cols-2 pt-6">
                         <label
-                            class="px-3 pb-2 text-left text-gray-600 text-md">Taxable&nbsp;Amount&nbsp;:&nbsp;&nbsp;</label>
-                        <label class="md:px-3 md:pb-2 text-right text-gray-800 text-md">{{  $total_taxable }}</label>
+                            class="md:px-3 md:pb-2 text-left text-gray-600 text-md">Taxable&nbsp;Amount&nbsp;:&nbsp;&nbsp;</label>
+                        <label class="ml-8 md:px-3 md:pb-2 text-right text-gray-800 text-md">{{  $total_taxable }}</label>
                     </div>
 
 
@@ -911,9 +915,9 @@
 
                     <div class="grid w-full grid-cols-2 pt-6">
                         <label
-                            class="px-3 pb-2 text-xl text-left text-gray-600">Grand&nbsp;Total&nbsp;:&nbsp;&nbsp;</label>
+                            class="mr-3 md:px-3 md:pb-2 text-xl text-left  text-gray-600">Grand&nbsp;Total&nbsp;:&nbsp;&nbsp;</label>
                         <label
-                            class="px-3 pb-2 text-xl font-extrabold text-right text-gray-800">{{$grand_total}}</label>
+                            class="ml-8  px-3 pb-2  md:px-3 md:pb-2 text-xl font-extrabold text-right text-gray-800">{{$grand_total}}</label>
                     </div>
                 </div>
             </section>

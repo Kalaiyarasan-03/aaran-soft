@@ -149,7 +149,7 @@
                 <img style="height: 40px;width: 55%;padding-top: 10px;"
                      src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
                 <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
+                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
@@ -547,7 +547,7 @@
                     <img style="height: 40px;width: 55%;padding-top: 10px;"
                          src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
                 <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
+                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
@@ -945,7 +945,7 @@
                     <img style="height: 40px;width: 55%;padding-top: 10px;"
                          src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
                 <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}</div>
+                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>

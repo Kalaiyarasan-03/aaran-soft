@@ -10,7 +10,7 @@
 
             <!--Table Header ---------------------------------------------------------------------------------------------->
             <x-slot name="table_header">
-                <x-table.header-serial/>
+{{--                <x-table.header-serial/>--}}
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Invoice NO</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" center>Invoice Date</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('invoice_no')" left>Party Name</x-table.header-text>
@@ -32,11 +32,11 @@
                 @forelse ($list as $index =>  $row)
 
                     <x-table.row>
-                        <x-table.cell-text center>
-                            <a href="">
-                                {{ $index + 1 }}
-                            </a>
-                        </x-table.cell-text>
+{{--                        <x-table.cell-text center>--}}
+{{--                            <a href="">--}}
+{{--                                {{ $index + 1 }}--}}
+{{--                            </a>--}}
+{{--                        </x-table.cell-text>--}}
 
 
                         <x-table.cell-text center >

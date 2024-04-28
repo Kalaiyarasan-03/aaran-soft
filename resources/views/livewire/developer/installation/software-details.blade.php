@@ -17,6 +17,7 @@
                     <x-table.header-text center>Domain</x-table.header-text>
                     <x-table.header-text center>Database</x-table.header-text>
                     <x-table.header-text center>Git</x-table.header-text>
+                    <x-table.header-text center>Webhook</x-table.header-text>
                     <x-table.header-text center>Copy Build Folder</x-table.header-text>
                     <x-table.header-text center>Copy Env</x-table.header-text>
                     <x-table.header-text center>Db Migrate</x-table.header-text>
@@ -50,6 +51,20 @@
                             <x-table.cell-text center>
                                 {{ $row->git}}
                             </x-table.cell-text>
+
+
+                            <x-table.cell-text center>
+                                {{ $row->webhook}}
+                            </x-table.cell-text>
+
+{{--                            <x-table.cell-text center>--}}
+{{--                                <label>--}}
+{{--                                    <input type="checkbox" onclick="return false"--}}
+{{--                                           @if($row->webhook) checked @endif--}}
+{{--                                           class="h-4 w-4 bg-gray-100 border-gray-300 rounded focus:animate-none focus:outline-none--}}
+{{--                                                   {{ $row->webhook ? 'text-green-400 focus:ring-green-500': 'focus:ring-gray-500 text-gray-700'}}">--}}
+{{--                                </label>--}}
+{{--                            </x-table.cell-text>--}}
 
 
                             <x-table.cell-text center>
@@ -112,11 +127,13 @@
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ $row->soft_version}}
+                                {{$row->soft_version}}
+                                {{--                                {{ App\Enums\Version::tryFrom($row->soft_version)}}--}}
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
-                                {{ $row->Db_version}}
+                                {{$row->db_version}}
+                                {{--                                {{ App\Enums\Version::tryFrom($row->db_version)}}--}}
                             </x-table.cell-text>
 
                             <x-table.cell-action id="{{$row->id}}"/>
@@ -142,6 +159,8 @@
                         <x-input.model-text wire:model="sub_domain" :label="'Sub Domain'"/>
                         <x-input.model-text wire:model="database" :label="'Database'"/>
                         <x-input.model-text wire:model="git" :label="'Git'"/>
+                        <x-input.model-text wire:model="webhook" :label="'webhook'"/>
+{{--                        <x-input.checkbox wire:model="webhook" :label="'Webhook'"/>--}}
                         <x-input.checkbox wire:model="copy_build_folder" :label="'Copy Build Folder'"/>
                         <x-input.checkbox wire:model="copy_env" :label="'Copy Env'"/>
                         <x-input.checkbox wire:model="db_migrate" :label="'Db Migrate'"/>
@@ -152,23 +171,22 @@
                         <x-input.checkbox wire:model="user_tenant_id" :label="'User Tenant Id'"/>
                         <x-input.model-date wire:model="installed_on" :label="'Installed on'"/>
 
-
                         <x-input.model-select wire:model="soft_version" :label="'Soft Version'">
-                            <option class="text-gray-400" disabled> choose ..</option>
+                            <option class="text-gray-400"> choose ..</option>
                             @foreach(\App\Enums\Version::cases() as $v)
                                 <option class="text-gray-700" value="{{$v->name}}">{{$v->value}}</option>
                             @endforeach
                         </x-input.model-select>
 
-                        <x-input.model-select wire:model="Db_version" :label="'DB Version'">
-                            <option class="text-gray-400" disabled> choose ..</option>
+                        <x-input.model-select wire:model="db_version" :label="'DB Version'">
+                            <option class="text-gray-400"> choose ..</option>
                             @foreach(\App\Enums\Version::cases() as $db)
                                 <option class="text-gray-700" value="{{$db->name}}">{{$db->value}}</option>
                             @endforeach
                         </x-input.model-select>
 
                         <x-input.model-select wire:model="verify" :label="'Verify by'">
-                            <option class="text-gray-400" disabled> choose ..</option>
+                            <option class="text-gray-400"> choose ..</option>
                             @foreach(\App\Models\User::all() as $user)
                                 <option class="text-gray-700" value="{{$user->id}}">{{$user->name}}</option>
                             @endforeach
