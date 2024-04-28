@@ -118,6 +118,20 @@ class MainMenu
         return 'erp';
     }
 
+    /**
+     * erp
+     * @return bool
+     */
+    public static function hasReport(): bool
+    {
+        return static::enabled(static::report());
+    }
+
+    public static function report(): string
+    {
+        return 'report';
+    }
+
 }
 
 
