@@ -95,7 +95,8 @@ class Upsert extends Component
 
     public function save_image()
     {
-        return $this->image->store('photos','public');
+        $image_name=$this->image->getClientOriginalName();
+        return $this->image->storeAs('photos',$image_name,'public');
     }
     #endregion
 
