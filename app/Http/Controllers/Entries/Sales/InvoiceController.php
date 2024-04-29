@@ -115,11 +115,12 @@ class InvoiceController extends Controller
         return match (config('aadmin.app_type')) {
             config('clients.VIJAY_GARMENTS') =>  'pdf.garments.sales.vijay_garments',
             config('clients.SK_PRINTERS') =>  'pdf.offset.sales.sk_printers',
-            config('clients.SARA_SCREENS') =>  'pdf.Knitting.esha_knittings',
+            config('clients.SARA_SCREENS') =>  'pdf.offset.sales.sara_screens',
+            config('clients.ESSA_KNITTING') =>  'pdf.Knitting.esha_knittings',
             config('clients.BEST_PRINT') =>  'pdf.offset.sales.best_print',
             default =>'pdf.garments.letterpad_withoutbank' ,
         };
 
-//        view('pdf.Knitting.esha_knittings')
+//        view('pdf.offset.sales.sara_screens')
     }
 }
