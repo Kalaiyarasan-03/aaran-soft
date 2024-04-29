@@ -49,3 +49,33 @@ To Create Transaction for multiple table process, no need for single transaction
         }
 
 ```
+
+```php
+        $first = DB::table("receipts")
+            ->select(
+                'receipts.company_id',
+                'receipts.contact_id',
+                DB::raw("'receipt' as mode"),
+                "receipts.id as vno",
+                'receipts.vdate as vdate',
+                DB::raw("'' as grand_total"),
+                'receipts.receipt_amount',
+            );
+
+        $final = DB::table("sales")
+            ->select(
+                'sales.company_id',
+                'sales.contact_id',
+                DB::raw("'invoice' as mode"),
+                "sales.invoice_no as vno",
+                'sales.invoice_date as vdate',
+                'sales.grand_total',
+                DB::raw("'' as receipt_amount"),
+            )
+            ->union($first)
+            ->orderBy('vdate')
+            ->orderBy('mode')
+            ->get();
+
+        return $final;
+```
