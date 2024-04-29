@@ -268,13 +268,13 @@
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['qty']*$row['price'],2,'.','')}}</td>
                 <td align="center"
-                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}
+                    style="border-bottom: none;border-top: none; border-left: none;">&nbsp;{{$row['gst_percent']}}&nbsp;
                 </td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">
-                    {{$row['gst_percent']}}
+                    &nbsp;{{$row['gst_percent']}}&nbsp;
                 </td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['gst_amount'],2,'.','')}}</td>
