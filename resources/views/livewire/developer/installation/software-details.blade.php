@@ -58,7 +58,6 @@
                             </x-table.cell-text>
 
 
-
                             <x-table.cell-text center>
                                 <label>
                                     <input type="checkbox" onclick="return false"
@@ -120,12 +119,12 @@
 
                             <x-table.cell-text center>
                                 {{$row->soft_version}}
-                                                                {{ App\Enums\Version::tryFrom($row->soft_version)}}
+                                {{ App\Enums\Version::tryFrom($row->soft_version)}}
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
                                 {{$row->db_version}}
-                                                                {{ App\Enums\Version::tryFrom($row->db_version)}}
+                                {{ App\Enums\Version::tryFrom($row->db_version)}}
                             </x-table.cell-text>
 
                             <x-table.cell-action id="{{$row->id}}"/>
@@ -149,28 +148,20 @@
                 <div class="lg:flex w-full">
                     <div class="w-full">
                         <div class="flex items-center gap-2">
-                        <x-input.model-text wire:model="sub_domain" :label="'Sub Domain'"/>
-                            <span onclick="copyToClipboard('{{$sub_domain}}')">
-                               <x-button.copy />
-                            </span>
+                            <x-input.model-text wire:model="sub_domain" :label="'Sub Domain'"/>
+                            <x-copyClipboard text="'{{$sub_domain}}'"/>
                         </div>
                         <div class="flex items-center gap-2">
-                        <x-input.model-text wire:model="database" :label="'Database'"/>
-                            <span onclick="copyToClipboard('{{$database}}')">
-                               <x-button.copy />
-                            </span>
+                            <x-input.model-text wire:model="database" :label="'Database'"/>
+                            <x-copyClipboard text="'{{$database}}'"/>
                         </div>
                         <div class="flex items-center gap-2">
-                        <x-input.model-text wire:model="git" :label="'Git'"/>
-                            <span onclick="copyToClipboard('{{$git}}')">
-                               <x-button.copy />
-                            </span>
+                            <x-input.model-text wire:model="git" :label="'Git'"/>
+                            <x-copyClipboard text="'{{$git}}'"/>
                         </div>
                         <div class="flex items-center gap-2">
                             <x-input.model-text wire:model="webhook" :label="'webhook'"/>
-                            <span onclick="copyToClipboard('{{$webhook}}')">
-                               <x-button.copy />
-                            </span>
+                            <x-copyClipboard text="'{{$webhook}}'"/>
                         </div>
                         <x-input.checkbox wire:model="copy_build_folder" :label="'Copy Build Folder'"/>
                         <x-input.checkbox wire:model="copy_env" :label="'Copy Env'"/>
