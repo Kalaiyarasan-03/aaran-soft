@@ -91,6 +91,7 @@ class InvoiceController extends Controller
                     'product_id' => $data->product_id,
                     'po_no' => $data->po_no,
                     'dc_no' => $data->dc_no,
+                    'no_of_roll' => $data->no_of_roll,
                     'product_name' => $data->product_name,
                     'product_unit' => \App\Enums\Units::tryFrom($data->product_unit)->getName(),
                     'hsncode' => $data->hsncode,
@@ -114,11 +115,11 @@ class InvoiceController extends Controller
         return match (config('aadmin.app_type')) {
             config('clients.VIJAY_GARMENTS') =>  'pdf.garments.sales.vijay_garments',
             config('clients.SK_PRINTERS') =>  'pdf.offset.sales.sk_printers',
-            config('clients.SARA_SCREENS') =>  'pdf.offset.sales.sara_screens',
+            config('clients.SARA_SCREENS') =>  'pdf.Knitting.esha_knittings',
             config('clients.BEST_PRINT') =>  'pdf.offset.sales.best_print',
             default =>'pdf.garments.letterpad_withoutbank' ,
         };
 
-//        view('pdf.garments.sales.vijay_garments')
+//        view('pdf.Knitting.esha_knittings')
     }
 }

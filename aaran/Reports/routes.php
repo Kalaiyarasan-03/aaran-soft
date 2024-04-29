@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/receviables', App\Livewire\Reports\Statement\Receivables::class)->name('receviables');
-    Route::get('/receviables/print/{party}/{start_date}/{end_date}', App\Http\Controllers\Entries\SalesReport\ReportController::class)->name('receviables.print');
+    Route::get('/receviables/print/{party}/{start_date?}/{end_date?}', App\Http\Controllers\Entries\SalesReport\ReportController::class)->name('receviables.print');
 
     Route::get('/payables', App\Livewire\Reports\Statement\Payables::class)->name('payables');
 

@@ -216,6 +216,17 @@ class SaleEntry
         return 'dc_no';
     }
 
+
+    public static function hasNo_of_roll(): bool
+    {
+        return static::enabled(static::no_of_roll());
+    }
+
+    public static function no_of_roll(): string
+    {
+        return 'no_of_roll';
+    }
+
 }
 
 

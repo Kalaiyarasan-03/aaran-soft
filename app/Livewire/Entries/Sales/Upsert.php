@@ -61,6 +61,7 @@ class Upsert extends Component
     public $po_no;
     public $grandtotalBeforeRound;
     public $dc_no;
+    public $no_of_roll;
 
     #endregion
 
@@ -853,6 +854,7 @@ class Upsert extends Component
                 'sale_id' => $id,
                 'po_no' => $sub['po_no'],
                 'dc_no' => $sub['dc_no'],
+                'no_of_roll' => $sub['no_of_roll'],
                 'product_id' => $sub['product_id'],
                 'colour_id' => $sub['colour_id'] ?: '1',
                 'size_id' => $sub['size_id'] ?: '1',
@@ -917,6 +919,7 @@ class Upsert extends Component
                         'saleitem_id' => $data->id,
                         'po_no' => $data->po_no,
                         'dc_no' => $data->dc_no,
+                        'no_of_roll' => $data->no_of_roll,
                         'product_name' => $data->product_name,
                         'product_id' => $data->product_id,
                         'colour_name' => $data->colour_name,
@@ -963,6 +966,7 @@ class Upsert extends Component
                 $this->itemList[] = [
                     'po_no' => $this->po_no,
                     'dc_no' => $this->dc_no,
+                    'no_of_roll' => $this->no_of_roll,
                     'product_name' => $this->product_name,
                     'product_id' => $this->product_id,
                     'colour_id' => $this->colour_id,
@@ -982,6 +986,7 @@ class Upsert extends Component
             $this->itemList[$this->itemIndex] = [
                 'po_no' => $this->po_no,
                 'dc_no' => $this->dc_no,
+                'no_of_roll' => $this->no_of_roll,
                 'product_name' => $this->product_name,
                 'product_id' => $this->product_id,
                 'colour_id' => $this->colour_id,
@@ -1008,6 +1013,7 @@ class Upsert extends Component
         $this->itemIndex = '';
         $this->po_no = '';
         $this->dc_no = '';
+        $this->no_of_roll = '';
         $this->product_name = '';
         $this->product_id = '';
         $this->colour_name = '';
@@ -1028,6 +1034,7 @@ class Upsert extends Component
         $items = $this->itemList[$index];
         $this->po_no = $items['po_no'];
         $this->dc_no = $items['dc_no'];
+        $this->no_of_roll = $items['no_of_roll'];
         $this->product_name = $items['product_name'];
         $this->product_id = $items['product_id'];
         $this->colour_name = $items['colour_name'];
