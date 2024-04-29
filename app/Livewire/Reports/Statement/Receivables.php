@@ -23,7 +23,7 @@ class Receivables extends Component
     public $start_date;
     public $end_date;
     public mixed $opening_balance;
-    public mixed $old_balance;
+    public mixed $old_balance=0;
     public mixed $sale_total=0;
     #endregion
 
@@ -59,6 +59,7 @@ class Receivables extends Component
             foreach ($sale as $i) {
                 $this->sale_total += floatval($i->grand_total);
             }
+
             if ($data['invoice_date']!=$this->start_date) {
                 $this->old_balance =floatval($this->opening_balance+ $this->sale_total);
             }else{
