@@ -9,7 +9,6 @@
 
 
     <style>
-
         {{--@font-face {--}}
         {{--    font-family: 'Cooper Blk BT';--}}
         {{--    src: url({{ public_path("fonts/Cooper-Black-BT.ttf") }}) format("truetype");--}}
