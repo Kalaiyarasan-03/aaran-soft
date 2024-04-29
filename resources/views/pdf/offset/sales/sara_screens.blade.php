@@ -155,7 +155,8 @@
                          src="{{ public_path('images/sara_screen.png')}}"/></div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('address_1')}}
                     ,{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{$cmp->get('email')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}
+                    &nbsp;-&nbsp;{{$cmp->get('email')}}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}
                     &nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
@@ -250,6 +251,11 @@
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
         </tr>
+
+        @php
+            $gstPercent = 0;
+        @endphp
+
         @foreach($list as $index => $row)
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
@@ -257,81 +263,87 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
                 <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
+                <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['qty']*$row['price'],2,'.','')}}</td>
                 <td align="center"
-                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
+                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}
+                </td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
-                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
+                    style="border-bottom: none;border-top: none; border-left: none;">
+                    {{$row['gst_percent']}}
+                </td>
+                <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
                     &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
 
+            @php
+                $gstPercent = $row['gst_percent'];
+            @endphp
         @endforeach
 
 
         @if(strlen($row['po_no'])<=7)
-        @if(strlen($row['product_name'])<=29)
-            @for($i = 0; $i < 20-$list->count(); $i++)
+            @if(strlen($row['product_name'])<=29)
+                @for($i = 0; $i < 20-$list->count(); $i++)
 
-                <tr>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                </tr>
-            @endfor
-        @else
-            @for($i = 0; $i < 10-$list->count(); $i++)
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @else
+                @for($i = 0; $i < 10-$list->count(); $i++)
 
-                <tr>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                </tr>
-                <tr>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                </tr>
-            @endfor
-        @endif
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @endif
         @else
             @for($i = 0; $i < 10-$list->count(); $i++)
 
@@ -384,10 +396,10 @@
         <tr>
             <td colspan="7" align="left"
                 style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
-                <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
+                <div>We hereby certify that our registration under the GST Act 2017 is in force on the date on which
 
                 </div>
-                <div>sale of the goods specified in this invoice is made by us and the transcation of sale is covered by
+                <div>sale of the goods specified in this invoice is made by us and the transaction of sale is covered by
 
                 </div>
             </td>
@@ -404,7 +416,9 @@
                     course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
                 </div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">CGST</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                CGST&nbsp;@&nbsp;{{$gstPercent}}%
+            </td>
             <td align="right"
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
         </tr>
@@ -414,7 +428,9 @@
                 <div>* Goods once sold cannot be return back or exchanged</div>
                 <div>* Seller cannot be responsible for any damage/mistakes.</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">SGST</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                SGST&nbsp;@&nbsp;{{$gstPercent}}%
+            </td>
             <td align="right"
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
         </tr>
@@ -450,7 +466,8 @@
                     &nbsp;
                 </td>
                 <td align="right" style="border-bottom: none; border-left: none;">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
             @endif
         </tr>
         <tr>
@@ -606,7 +623,7 @@
                     course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
                 </div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">IGST</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">IGST&nbsp;@&nbsp;{{$gstPercent}}%</td>
             <td align="right"
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst,2,'.','')}}</td>
         </tr>
@@ -651,7 +668,8 @@
                     &nbsp;
                 </td>
                 <td align="right" style="border-bottom: none; border-left: none;">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
             @endif
         </tr>
         <tr>
@@ -714,7 +732,8 @@
                          src="{{ public_path('images/sara_screen.png')}}"/></div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('address_1')}}
                     ,{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{$cmp->get('email')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}
+                    &nbsp;-&nbsp;{{$cmp->get('email')}}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}
                     &nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
@@ -809,6 +828,11 @@
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
         </tr>
+
+        @php
+            $gstPercent = 0;
+        @endphp
+
         @foreach($list as $index => $row)
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
@@ -816,23 +840,29 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
                 <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
+                <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['qty']*$row['price'],2,'.','')}}</td>
                 <td align="center"
-                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
+                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}
+                </td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
-                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
+                    style="border-bottom: none;border-top: none; border-left: none;">
+                    {{$row['gst_percent']}}
+                </td>
+                <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
                     &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
 
+            @php
+                $gstPercent = $row['gst_percent'];
+            @endphp
         @endforeach
 
 
@@ -943,10 +973,10 @@
         <tr>
             <td colspan="7" align="left"
                 style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
-                <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
+                <div>We hereby certify that our registration under the GST Act 2017 is in force on the date on which
 
                 </div>
-                <div>sale of the goods specified in this invoice is made by us and the transcation of sale is covered by
+                <div>sale of the goods specified in this invoice is made by us and the transaction of sale is covered by
 
                 </div>
             </td>
@@ -963,7 +993,9 @@
                     course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
                 </div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">CGST</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                CGST&nbsp;@&nbsp;{{$gstPercent}}%
+            </td>
             <td align="right"
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
         </tr>
@@ -973,7 +1005,9 @@
                 <div>* Goods once sold cannot be return back or exchanged</div>
                 <div>* Seller cannot be responsible for any damage/mistakes.</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">SGST</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                SGST&nbsp;@&nbsp;{{$gstPercent}}%
+            </td>
             <td align="right"
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
         </tr>
@@ -1009,7 +1043,8 @@
                     &nbsp;
                 </td>
                 <td align="right" style="border-bottom: none; border-left: none;">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
             @endif
         </tr>
         <tr>
@@ -1165,7 +1200,7 @@
                     course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
                 </div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">IGST</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">IGST&nbsp;@&nbsp;{{$gstPercent}}%</td>
             <td align="right"
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst,2,'.','')}}</td>
         </tr>
@@ -1210,7 +1245,8 @@
                     &nbsp;
                 </td>
                 <td align="right" style="border-bottom: none; border-left: none;">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
             @endif
         </tr>
         <tr>
@@ -1274,7 +1310,8 @@
                          src="{{ public_path('images/sara_screen.png')}}"/></div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('address_1')}}
                     ,{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{$cmp->get('email')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}
+                    &nbsp;-&nbsp;{{$cmp->get('email')}}</div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}
                     &nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
@@ -1369,6 +1406,11 @@
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
         </tr>
+
+        @php
+            $gstPercent = 0;
+        @endphp
+
         @foreach($list as $index => $row)
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
@@ -1376,23 +1418,29 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
                 <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
+                <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['qty']*$row['price'],2,'.','')}}</td>
                 <td align="center"
-                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
+                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}
+                </td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
-                    style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
+                    style="border-bottom: none;border-top: none; border-left: none;">
+                    {{$row['gst_percent']}}
+                </td>
+                <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
                     &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
 
+            @php
+                $gstPercent = $row['gst_percent'];
+            @endphp
         @endforeach
 
 
@@ -1503,10 +1551,10 @@
         <tr>
             <td colspan="7" align="left"
                 style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
-                <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
+                <div>We hereby certify that our registration under the GST Act 2017 is in force on the date on which
 
                 </div>
-                <div>sale of the goods specified in this invoice is made by us and the transcation of sale is covered by
+                <div>sale of the goods specified in this invoice is made by us and the transaction of sale is covered by
 
                 </div>
             </td>
@@ -1523,7 +1571,9 @@
                     course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
                 </div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">CGST</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                CGST&nbsp;@&nbsp;{{$gstPercent}}%
+            </td>
             <td align="right"
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
         </tr>
@@ -1533,7 +1583,9 @@
                 <div>* Goods once sold cannot be return back or exchanged</div>
                 <div>* Seller cannot be responsible for any damage/mistakes.</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">SGST</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                SGST&nbsp;@&nbsp;{{$gstPercent}}%
+            </td>
             <td align="right"
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
         </tr>
@@ -1569,7 +1621,8 @@
                     &nbsp;
                 </td>
                 <td align="right" style="border-bottom: none; border-left: none;">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
             @endif
         </tr>
         <tr>
@@ -1725,7 +1778,7 @@
                     course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
                 </div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">IGST</td>
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">IGST&nbsp;@&nbsp;{{$gstPercent}}%</td>
             <td align="right"
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst,2,'.','')}}</td>
         </tr>
@@ -1770,7 +1823,8 @@
                     &nbsp;
                 </td>
                 <td align="right" style="border-bottom: none; border-left: none;">
-                    &nbsp;</td>
+                    &nbsp;
+                </td>
             @endif
         </tr>
         <tr>
