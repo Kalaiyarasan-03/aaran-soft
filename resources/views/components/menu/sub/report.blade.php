@@ -7,8 +7,8 @@
                                 text-gray-500 hover:text-gray-200 border-l-4 border-transparent hover:border-blue-500 pr-3">
 
                         <span class="inline-flex justify-center items-center ml-4">
-                            <x-icons.icon :icon="'pencil'" class="w-5 h-auto block"/>
-                             <x-menu.header>Entries</x-menu.header>
+                            <x-icons.icon :icon="'clipboard-document-list'" class="w-5 h-auto block"/>
+                             <x-menu.header>Reports</x-menu.header>
                         </span>
 
         <span class="inline-flex justify-center items-center">
@@ -27,7 +27,7 @@
 
         <ul class="grid-cols-1 grid bg-gray-800">
 
-            @include('components.menu.items.offset-menu')
+            @include('components.menu.items.report-menu')
             <li class="bg-gray-900 mt-0.5"></li>
         </ul>
     </div>

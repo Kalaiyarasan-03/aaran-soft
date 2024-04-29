@@ -45,6 +45,10 @@
                 <x-menu.sub.common/>
             @endif
 
+            @if(Aaran\Aadmin\Src\MainMenu::hasReport())
+                <x-menu.sub.report/>
+            @endif
+
             <x-menu.sub.logout/>
         </ul>
     </div>

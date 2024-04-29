@@ -144,20 +144,26 @@
     <thead>
     <tr>
         <td colspan="2" style="justify-items: center;">
-            <div style="height: 120px;" class="bg-blue-400 ">
+            <div>
+                <img
+                    style="position: fixed;margin-left: 20px;padding-top: 5px;height: 90px;width: auto;padding-left: 60px;"
+                    src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
+            </div>
+            <div style="height: 110px;padding-left: 60px;" class="bg-blue-400 ">
                 <div style="text-align: center;">
-                <img style="height: 40px;width: 55%;padding-top: 10px;"
-                     src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
-                <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
-                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
+                    <div style="font-family:Times,serif;text-align: center; width: 100%;color: #3b82f6;font-size: 50px;" class="companyname">{{$cmp->get('company_name')}}</div>
+                </div>
+                <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{$cmp->get('email')}}</div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}</div>
+{{--                    &nbsp;-&nbsp; {{$cmp->get('msme')}}</div>--}}
             </div>
         </td>
     </tr>
     <tr>
         <td colspan="2" style="  background-color: darkgray;font-size: 15px;">
             <div style=" height: 18px;text-align: center;  vertical-align: middle; color: white; font-size:18px;">
-                INVOICE
+                TAX INVOICE
 
             </div>
             <div style="text-align: right; color: white; margin-top: -20px; margin-bottom: 4px">
@@ -181,10 +187,12 @@
         <td style="padding: 0;margin: 0;" width="40%">
             <div style="text-align: left; width: 100%;">
                 <div><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Invoice no:&nbsp;</span><span
-                        style="font-size: 18px;">&nbsp;&nbsp;{{$obj->invoice_no}}</span></div>
-                <div style=" padding-top: 15px;"><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Date:&nbsp;</span><span
+                        style="font-size: 18px;">&nbsp;&nbsp;{{$obj->invoice_no}} </span></div>
+                <div style=" padding-top: 10px;"><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Date:&nbsp;</span><span
                         style="font-size: 14px;">{{$obj->invoice_date ?date('d-m-Y', strtotime($obj->invoice_date)):''}}</span>
                 </div>
+                <div style=" padding-top: 10px;"><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Job no:&nbsp;</span><span
+                        style="font-size: 18px;">&nbsp;&nbsp;{{$obj->job_no}} </span></div>
             </div>
         </td>
     </tr>
@@ -195,39 +203,40 @@
     @if($obj->sales_type==0)
         <tr>
             <th width="5px" style="padding: 5px;font-size: 9px;">S.No</th>
-            <th width="12px" style="padding: 5px;font-size: 9px; ">Po.No</th>
-            <th width="12px" style="padding: 5px;font-size: 9px;">Dc.No</th>
+            <th colspan="2" width="160px" style="padding: 5px;font-size: 9px;">Particulars</th>
             <th width="15px" style="padding: 5px;font-size: 9px;">HSN Code</th>
-            <th width="160px" style="padding: 5px;font-size: 9px;">Particulars</th>
-            <th width="40px" style="padding: 5px;font-size: 9px;">Quantity</th>
+            <th width="12px" style="padding: 5px;font-size: 9px; ">No of Rolls</th>
+            <th width="40px" style="padding: 5px;font-size: 9px;">Kgs</th>
             <th width="40px" style="padding: 5px;font-size: 9px;">Price</th>
             <th width="40px" style="padding: 5px;font-size: 9px;">Taxable Amt</th>
-            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">%</th>
+            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">
+                %
+            </th>
             <th width="40px" style="padding: 2px; border-left: none; margin-left: 0px;font-size: 9px;">SGST Amt</th>
-            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">%</th>
+            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">
+                %
+            </th>
             <th width="40px" style="padding: 2px; border-left: none; margin-left: 0px;font-size: 9px;">CGST Amt</th>
-            <th width="20px" style="padding: 5px;font-size: 9px;">sub Total</th>
+            <th width="20px" style="padding: 5px;font-size: 9px;">Sub Total</th>
         </tr>
     @else
         <th width="5px" style="padding: 5px;">S.No</th>
-        <th width="12px" style="padding: 5px; ">Po.No</th>
-        <th width="12px" style="padding: 5px;">Dc.No</th>
+        <th colspan="2" width="180px" style="padding: 5px;">Particulars</th>
         <th width="40px" style="padding: 5px;">HSN Code</th>
-        <th width="200px" style="padding: 5px;">Particulars</th>
-        <th width="40px" style="padding: 5px;">Quantity</th>
+        <th width="12px" style="padding: 5px;">No of Rolls</th>
+        <th width="40px" style="padding: 5px;">Kgs</th>
         <th width="40px" style="padding: 5px;">Price</th>
         <th width="40px" style="padding: 5px;">Taxable Amt</th>
         <th width="5px" colspan="2" style="padding: 1px; width: 1px;text-align: center; margin-bottom: 0;">%</th>
         <th colspan="2" width="20px" style="padding: 2px; border-left: none; margin-left: 0px;">IGST Amt</th>
-        <th width="20px" style="padding: 5px;">sub Total</th>
+        <th width="20px" style="padding: 5px;">Sub Total</th>
     @endif
     </thead>
     <tbody>
     @if($obj->sales_type==0)
         <tr>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+            <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -242,10 +251,9 @@
         @foreach($list as $index => $row)
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
+                <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
                 <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
@@ -265,25 +273,94 @@
 
         @endforeach
 
-        @for($i = 0; $i < 20-($list->count()*2); $i++)
 
-            <tr>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            </tr>
+        @if(strlen($row['po_no'])<=7)
+        @if(strlen($row['product_name'])<=29)
+            @for($i = 0; $i < 18-$list->count(); $i++)
 
-        @endfor
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+            @endfor
+        @else
+            @for($i = 0; $i < 10-$list->count(); $i++)
+
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+            @endfor
+        @endif
+        @else
+            @for($i = 0; $i < 10-$list->count(); $i++)
+
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td  colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+            @endfor
+        @endif
+
+
 
         <tr>
             <td colspan=2" align="right" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -297,7 +374,8 @@
             <td colspan="1" align="right">{{number_format($obj->grand_total,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
                 <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
 
                 </div>
@@ -323,7 +401,8 @@
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;font-size: 10px">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none;font-weight: bolder;font-size: 10px">
                 <div>* Goods once sold cannot be return back or exchanged</div>
                 <div>* Seller cannot be responsible for any damage/mistakes.</div>
             </td>
@@ -346,15 +425,25 @@
                 <div>ACCOUNT NO</div>
                 <div>IFSC CODE</div>
             </td>
-            <td colspan="4"  align="left"
+            <td colspan="4" align="left"
                 style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none;font-size: 10px">
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
-            </td>
-            <td align="right" style="border-bottom: none; border-left: none;">
-                &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+            @if($obj->additional!=0)
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+
+            @else
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;</td>
+            @endif
         </tr>
         <tr>
             <td colspan="3" align="left"
@@ -374,25 +463,10 @@
     @else
         @foreach($list as $index => $row)
             <tr>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            </tr>
-
-            <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
+                <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
                 <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
@@ -408,23 +482,81 @@
 
         @endforeach
 
-        @for($i = 0; $i < 20-($list->count()*2); $i++)
+        @if(strlen($row['po_no'])<=7)
+            @if(strlen($row['product_name'])<=30)
+                @for($i = 0; $i < 18-$list->count(); $i++)
 
-            <tr>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            </tr>
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @else
+                @for($i = 0; $i < 10-$list->count(); $i++)
 
-        @endfor
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @endif
+        @else
+            @for($i = 0; $i < 10-$list->count(); $i++)
+
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+            @endfor
+        @endif
 
         <tr>
             <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -438,7 +570,8 @@
             <td colspan="1" align="right">{{number_format($obj->grand_total,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none; margin-bottom: 0px;">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px;">
                 <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which sale
                     of
                 </div>
@@ -453,7 +586,7 @@
                 style="border-bottom: none;border-top: none; border-left: none;">{{number_format($obj->total_taxable,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none;margin-top: 0px;">
+            <td colspan="7" align="left" style="border-bottom: none;border-top: none;margin-top: 0px;font-size: 10px;">
                 <div>
                     has been effected by us in the regular
                     course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
@@ -464,7 +597,8 @@
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none;font-weight: bolder;font-size: 11px;">
                 <div>* Goods once sold cannot be return back or exchanged</div>
                 <div>* Seller cannot be responsible for any damage/mistakes.</div>
             </td>
@@ -491,10 +625,20 @@
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
-            </td>
-            <td align="right" style="border-bottom: none; border-left: none;">
-                &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+            @if($obj->additional!=0)
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+
+            @else
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;</td>
+            @endif
         </tr>
         <tr>
             <td colspan="3" align="left"
@@ -525,10 +669,13 @@
             style="border-bottom: none; border-left: none;font-weight: bold; font-size:medium;">{{number_format($obj->grand_total,2,'.','')}}</td>
     </tr>
     <tr>
-        <td colspan="6" style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver Sign
+        <td colspan="6"
+            style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver
+            Sign
         </td>
-        <td colspan="7" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
-            &nbsp;FOR&nbsp;{{$cmp->get('company_name')}}
+        <td colspan="7"
+            style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
+            &nbsp;FOR&nbsp;<b>{{$cmp->get('company_name')}}</b>
             <div style="padding-top: 34px;  margin-top:16px">Authorized signatory</div>
         </td>
     </tr>
@@ -542,24 +689,30 @@
     <thead>
     <tr>
         <td colspan="2" style="justify-items: center;">
-            <div style="height: 120px;" class="bg-blue-400 ">
+            <div>
+                <img
+                    style="position: fixed;margin-left: 20px;padding-top: 5px;height: 90px;width: auto;padding-left: 60px;"
+                    src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
+            </div>
+            <div style="height: 110px;padding-left: 60px;" class="bg-blue-400 ">
                 <div style="text-align: center;">
-                    <img style="height: 40px;width: 55%;padding-top: 10px;"
-                         src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
-                <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
-                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
+                    <div style="font-family:Times,serif;text-align: center; width: 100%;color: #3b82f6;font-size: 50px;" class="companyname">{{$cmp->get('company_name')}}</div>
+                </div>
+                <div style="text-align: center; width: 100%;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{$cmp->get('email')}}</div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}</div>
+                {{--                    &nbsp;-&nbsp; {{$cmp->get('msme')}}</div>--}}
             </div>
         </td>
     </tr>
     <tr>
         <td colspan="2" style="  background-color: darkgray;font-size: 15px;">
             <div style=" height: 18px;text-align: center;  vertical-align: middle; color: white; font-size:18px;">
-                INVOICE
+                TAX INVOICE
 
             </div>
             <div style="text-align: right; color: white; margin-top: -20px; margin-bottom: 4px">
-                Duplicate copy&nbsp;&nbsp;&nbsp;&nbsp;
+                Original copy&nbsp;&nbsp;&nbsp;&nbsp;
             </div>
         </td>
     </tr>
@@ -579,10 +732,12 @@
         <td style="padding: 0;margin: 0;" width="40%">
             <div style="text-align: left; width: 100%;">
                 <div><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Invoice no:&nbsp;</span><span
-                        style="font-size: 18px;">&nbsp;&nbsp;{{$obj->invoice_no}}</span></div>
-                <div style=" padding-top: 15px;"><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Date:&nbsp;</span><span
+                        style="font-size: 18px;">&nbsp;&nbsp;{{$obj->invoice_no}} </span></div>
+                <div style=" padding-top: 10px;"><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Date:&nbsp;</span><span
                         style="font-size: 14px;">{{$obj->invoice_date ?date('d-m-Y', strtotime($obj->invoice_date)):''}}</span>
                 </div>
+                <div style=" padding-top: 10px;"><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Job no:&nbsp;</span><span
+                        style="font-size: 18px;">&nbsp;&nbsp;{{$obj->job_no}} </span></div>
             </div>
         </td>
     </tr>
@@ -593,39 +748,40 @@
     @if($obj->sales_type==0)
         <tr>
             <th width="5px" style="padding: 5px;font-size: 9px;">S.No</th>
-            <th width="12px" style="padding: 5px;font-size: 9px; ">Po.No</th>
-            <th width="12px" style="padding: 5px;font-size: 9px;">Dc.No</th>
+            <th colspan="2" width="160px" style="padding: 5px;font-size: 9px;">Particulars</th>
             <th width="15px" style="padding: 5px;font-size: 9px;">HSN Code</th>
-            <th width="160px" style="padding: 5px;font-size: 9px;">Particulars</th>
-            <th width="40px" style="padding: 5px;font-size: 9px;">Quantity</th>
+            <th width="12px" style="padding: 5px;font-size: 9px; ">No of Rolls</th>
+            <th width="40px" style="padding: 5px;font-size: 9px;">Kgs</th>
             <th width="40px" style="padding: 5px;font-size: 9px;">Price</th>
             <th width="40px" style="padding: 5px;font-size: 9px;">Taxable Amt</th>
-            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">%</th>
+            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">
+                %
+            </th>
             <th width="40px" style="padding: 2px; border-left: none; margin-left: 0px;font-size: 9px;">SGST Amt</th>
-            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">%</th>
+            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">
+                %
+            </th>
             <th width="40px" style="padding: 2px; border-left: none; margin-left: 0px;font-size: 9px;">CGST Amt</th>
-            <th width="20px" style="padding: 5px;font-size: 9px;">sub Total</th>
+            <th width="20px" style="padding: 5px;font-size: 9px;">Sub Total</th>
         </tr>
     @else
         <th width="5px" style="padding: 5px;">S.No</th>
-        <th width="12px" style="padding: 5px; ">Po.No</th>
-        <th width="12px" style="padding: 5px;">Dc.No</th>
+        <th colspan="2" width="180px" style="padding: 5px;">Particulars</th>
         <th width="40px" style="padding: 5px;">HSN Code</th>
-        <th width="200px" style="padding: 5px;">Particulars</th>
-        <th width="40px" style="padding: 5px;">Quantity</th>
+        <th width="12px" style="padding: 5px;">No of Rolls</th>
+        <th width="40px" style="padding: 5px;">Kgs</th>
         <th width="40px" style="padding: 5px;">Price</th>
         <th width="40px" style="padding: 5px;">Taxable Amt</th>
         <th width="5px" colspan="2" style="padding: 1px; width: 1px;text-align: center; margin-bottom: 0;">%</th>
         <th colspan="2" width="20px" style="padding: 2px; border-left: none; margin-left: 0px;">IGST Amt</th>
-        <th width="20px" style="padding: 5px;">sub Total</th>
+        <th width="20px" style="padding: 5px;">Sub Total</th>
     @endif
     </thead>
     <tbody>
     @if($obj->sales_type==0)
         <tr>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+            <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -640,10 +796,9 @@
         @foreach($list as $index => $row)
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
+                <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
                 <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
@@ -663,25 +818,94 @@
 
         @endforeach
 
-        @for($i = 0; $i < 20-($list->count()*2); $i++)
 
-            <tr>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            </tr>
+        @if(strlen($row['po_no'])<=7)
+            @if(strlen($row['product_name'])<=29)
+                @for($i = 0; $i < 18-$list->count(); $i++)
 
-        @endfor
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @else
+                @for($i = 0; $i < 10-$list->count(); $i++)
+
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @endif
+        @else
+            @for($i = 0; $i < 10-$list->count(); $i++)
+
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td  colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+            @endfor
+        @endif
+
+
 
         <tr>
             <td colspan=2" align="right" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -695,7 +919,8 @@
             <td colspan="1" align="right">{{number_format($obj->grand_total,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
                 <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
 
                 </div>
@@ -721,7 +946,8 @@
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;font-size: 10px">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none;font-weight: bolder;font-size: 10px">
                 <div>* Goods once sold cannot be return back or exchanged</div>
                 <div>* Seller cannot be responsible for any damage/mistakes.</div>
             </td>
@@ -744,15 +970,25 @@
                 <div>ACCOUNT NO</div>
                 <div>IFSC CODE</div>
             </td>
-            <td colspan="4"  align="left"
+            <td colspan="4" align="left"
                 style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none;font-size: 10px">
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
-            </td>
-            <td align="right" style="border-bottom: none; border-left: none;">
-                &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+            @if($obj->additional!=0)
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+
+            @else
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;</td>
+            @endif
         </tr>
         <tr>
             <td colspan="3" align="left"
@@ -772,25 +1008,10 @@
     @else
         @foreach($list as $index => $row)
             <tr>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            </tr>
-
-            <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
+                <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
                 <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
@@ -806,23 +1027,81 @@
 
         @endforeach
 
-        @for($i = 0; $i < 20-($list->count()*2); $i++)
+        @if(strlen($row['po_no'])<=7)
+            @if(strlen($row['product_name'])<=30)
+                @for($i = 0; $i < 18-$list->count(); $i++)
 
-            <tr>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            </tr>
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @else
+                @for($i = 0; $i < 10-$list->count(); $i++)
 
-        @endfor
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @endif
+        @else
+            @for($i = 0; $i < 10-$list->count(); $i++)
+
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+            @endfor
+        @endif
 
         <tr>
             <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -836,7 +1115,8 @@
             <td colspan="1" align="right">{{number_format($obj->grand_total,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none; margin-bottom: 0px;">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px;">
                 <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which sale
                     of
                 </div>
@@ -851,7 +1131,7 @@
                 style="border-bottom: none;border-top: none; border-left: none;">{{number_format($obj->total_taxable,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none;margin-top: 0px;">
+            <td colspan="7" align="left" style="border-bottom: none;border-top: none;margin-top: 0px;font-size: 10px;">
                 <div>
                     has been effected by us in the regular
                     course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
@@ -862,7 +1142,8 @@
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none;font-weight: bolder;font-size: 11px;">
                 <div>* Goods once sold cannot be return back or exchanged</div>
                 <div>* Seller cannot be responsible for any damage/mistakes.</div>
             </td>
@@ -889,10 +1170,20 @@
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
-            </td>
-            <td align="right" style="border-bottom: none; border-left: none;">
-                &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+            @if($obj->additional!=0)
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+
+            @else
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;</td>
+            @endif
         </tr>
         <tr>
             <td colspan="3" align="left"
@@ -923,10 +1214,13 @@
             style="border-bottom: none; border-left: none;font-weight: bold; font-size:medium;">{{number_format($obj->grand_total,2,'.','')}}</td>
     </tr>
     <tr>
-        <td colspan="6" style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver Sign
+        <td colspan="6"
+            style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver
+            Sign
         </td>
-        <td colspan="7" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
-            &nbsp;FOR&nbsp;{{$cmp->get('company_name')}}
+        <td colspan="7"
+            style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
+            &nbsp;FOR&nbsp;<b>{{$cmp->get('company_name')}}</b>
             <div style="padding-top: 34px;  margin-top:16px">Authorized signatory</div>
         </td>
     </tr>
@@ -934,26 +1228,34 @@
 </table>
 <div style="text-align: center;font-size:10px; padding-top: 5px; ">This is a Computer Generated Invoice</div>
 
-
 <div class="page-break"></div>
+
+
 <table width="100%" class="print:*">
     <thead>
     <tr>
         <td colspan="2" style="justify-items: center;">
-            <div style="height: 120px;" class="bg-blue-400 ">
+            <div>
+                <img
+                    style="position: fixed;margin-left: 20px;padding-top: 5px;height: 90px;width: auto;padding-left: 60px;"
+                    src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
+            </div>
+            <div style="height: 100px;padding-left: 60px;" class="bg-blue-400 ">
                 <div style="text-align: center;">
-                    <img style="height: 40px;width: 55%;padding-top: 10px;"
-                         src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
-                <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
-                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
+                    <img style="height: 40px;width: auto;padding-top: 10px;"
+                         src="{{ public_path('images/sara_screen.png')}}"/></div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('address_1')}}
+                    ,{{$cmp->get('address_2')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{$cmp->get('email')}}</div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}
+                    &nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
     </tr>
     <tr>
         <td colspan="2" style="  background-color: darkgray;font-size: 15px;">
             <div style=" height: 18px;text-align: center;  vertical-align: middle; color: white; font-size:18px;">
-                INVOICE
+                TAX INVOICE
 
             </div>
             <div style="text-align: right; color: white; margin-top: -20px; margin-bottom: 4px">
@@ -977,7 +1279,7 @@
         <td style="padding: 0;margin: 0;" width="40%">
             <div style="text-align: left; width: 100%;">
                 <div><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Invoice no:&nbsp;</span><span
-                        style="font-size: 18px;">&nbsp;&nbsp;{{$obj->invoice_no}}</span></div>
+                        style="font-size: 18px;">&nbsp;&nbsp;{{$obj->invoice_no}} </span></div>
                 <div style=" padding-top: 15px;"><span style="vertical-align: middle;font-size: 13px;">&nbsp;&nbsp;Date:&nbsp;</span><span
                         style="font-size: 14px;">{{$obj->invoice_date ?date('d-m-Y', strtotime($obj->invoice_date)):''}}</span>
                 </div>
@@ -998,24 +1300,28 @@
             <th width="40px" style="padding: 5px;font-size: 9px;">Quantity</th>
             <th width="40px" style="padding: 5px;font-size: 9px;">Price</th>
             <th width="40px" style="padding: 5px;font-size: 9px;">Taxable Amt</th>
-            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">%</th>
+            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">
+                %
+            </th>
             <th width="40px" style="padding: 2px; border-left: none; margin-left: 0px;font-size: 9px;">SGST Amt</th>
-            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">%</th>
+            <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">
+                %
+            </th>
             <th width="40px" style="padding: 2px; border-left: none; margin-left: 0px;font-size: 9px;">CGST Amt</th>
-            <th width="20px" style="padding: 5px;font-size: 9px;">sub Total</th>
+            <th width="20px" style="padding: 5px;font-size: 9px;">Sub Total</th>
         </tr>
     @else
         <th width="5px" style="padding: 5px;">S.No</th>
         <th width="12px" style="padding: 5px; ">Po.No</th>
         <th width="12px" style="padding: 5px;">Dc.No</th>
         <th width="40px" style="padding: 5px;">HSN Code</th>
-        <th width="200px" style="padding: 5px;">Particulars</th>
+        <th width="180px" style="padding: 5px;">Particulars</th>
         <th width="40px" style="padding: 5px;">Quantity</th>
         <th width="40px" style="padding: 5px;">Price</th>
         <th width="40px" style="padding: 5px;">Taxable Amt</th>
         <th width="5px" colspan="2" style="padding: 1px; width: 1px;text-align: center; margin-bottom: 0;">%</th>
         <th colspan="2" width="20px" style="padding: 2px; border-left: none; margin-left: 0px;">IGST Amt</th>
-        <th width="20px" style="padding: 5px;">sub Total</th>
+        <th width="20px" style="padding: 5px;">Sub Total</th>
     @endif
     </thead>
     <tbody>
@@ -1061,25 +1367,99 @@
 
         @endforeach
 
-        @for($i = 0; $i < 20-($list->count()*2); $i++)
 
-            <tr>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            </tr>
+        @if(strlen($row['po_no'])<=7)
+            @if(strlen($row['product_name'])<=29)
+                @for($i = 0; $i < 20-$list->count(); $i++)
 
-        @endfor
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @else
+                @for($i = 0; $i < 10-$list->count(); $i++)
+
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @endif
+        @else
+            @for($i = 0; $i < 10-$list->count(); $i++)
+
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+            @endfor
+        @endif
+
+
 
         <tr>
             <td colspan=2" align="right" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -1093,7 +1473,8 @@
             <td colspan="1" align="right">{{number_format($obj->grand_total,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
                 <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
 
                 </div>
@@ -1119,7 +1500,8 @@
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst/2,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;font-size: 10px">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none;font-weight: bolder;font-size: 10px">
                 <div>* Goods once sold cannot be return back or exchanged</div>
                 <div>* Seller cannot be responsible for any damage/mistakes.</div>
             </td>
@@ -1142,15 +1524,25 @@
                 <div>ACCOUNT NO</div>
                 <div>IFSC CODE</div>
             </td>
-            <td colspan="4"  align="left"
+            <td colspan="4" align="left"
                 style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none;font-size: 10px">
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
-            </td>
-            <td align="right" style="border-bottom: none; border-left: none;">
-                &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+            @if($obj->additional!=0)
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+
+            @else
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;</td>
+            @endif
         </tr>
         <tr>
             <td colspan="3" align="left"
@@ -1169,20 +1561,6 @@
         </tr>
     @else
         @foreach($list as $index => $row)
-            <tr>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            </tr>
-
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
@@ -1204,23 +1582,86 @@
 
         @endforeach
 
-        @for($i = 0; $i < 20-($list->count()*2); $i++)
+        @if(strlen($row['po_no'])<=7)
+            @if(strlen($row['product_name'])<=30)
+                @for($i = 0; $i < 20-$list->count(); $i++)
 
-            <tr>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            </tr>
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @else
+                @for($i = 0; $i < 10-$list->count(); $i++)
 
-        @endfor
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    </tr>
+                @endfor
+            @endif
+        @else
+            @for($i = 0; $i < 10-$list->count(); $i++)
+
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                </tr>
+            @endfor
+        @endif
 
         <tr>
             <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
@@ -1234,7 +1675,8 @@
             <td colspan="1" align="right">{{number_format($obj->grand_total,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none; margin-bottom: 0px;">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px;">
                 <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which sale
                     of
                 </div>
@@ -1249,7 +1691,7 @@
                 style="border-bottom: none;border-top: none; border-left: none;">{{number_format($obj->total_taxable,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none;margin-top: 0px;">
+            <td colspan="7" align="left" style="border-bottom: none;border-top: none;margin-top: 0px;font-size: 10px;">
                 <div>
                     has been effected by us in the regular
                     course of our business. All the Disputes are subject to Tirupur Jurisdiction Only.
@@ -1260,7 +1702,8 @@
                 style="border-bottom: none; border-left: none;">{{number_format($obj->total_gst,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none;font-weight: bolder;">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none;font-weight: bolder;font-size: 11px;">
                 <div>* Goods once sold cannot be return back or exchanged</div>
                 <div>* Seller cannot be responsible for any damage/mistakes.</div>
             </td>
@@ -1287,10 +1730,20 @@
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
-            </td>
-            <td align="right" style="border-bottom: none; border-left: none;">
-                &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+            @if($obj->additional!=0)
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
+
+            @else
+                <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                    &nbsp;
+                </td>
+                <td align="right" style="border-bottom: none; border-left: none;">
+                    &nbsp;</td>
+            @endif
         </tr>
         <tr>
             <td colspan="3" align="left"
@@ -1321,10 +1774,13 @@
             style="border-bottom: none; border-left: none;font-weight: bold; font-size:medium;">{{number_format($obj->grand_total,2,'.','')}}</td>
     </tr>
     <tr>
-        <td colspan="6" style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver Sign
+        <td colspan="6"
+            style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver
+            Sign
         </td>
-        <td colspan="7" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
-            &nbsp;FOR&nbsp;{{$cmp->get('company_name')}}
+        <td colspan="7"
+            style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
+            &nbsp;FOR&nbsp;<b>{{$cmp->get('company_name')}}</b>
             <div style="padding-top: 34px;  margin-top:16px">Authorized signatory</div>
         </td>
     </tr>

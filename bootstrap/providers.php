@@ -19,6 +19,7 @@ return [
     Aaran\Attendance\Providers\AttendanceServiceProvider::class,
     Aaran\Sundar\Providers\AdminServiceProvider::class,
     Aaran\Accounts\Providers\AccountsServiceProvider::class,
+    Aaran\Reports\Providers\ReportServiceProvider::class,
 //  Aaran\Magalir\Providers\MagalirServiceProvider::class,
 
 ];

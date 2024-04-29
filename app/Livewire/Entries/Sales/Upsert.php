@@ -57,6 +57,7 @@ class Upsert extends Component
     public string $product;
     public string $colour;
     public string $size;
+    public mixed $job_no = '';
     public $po_no;
     public $grandtotalBeforeRound;
     public $dc_no;
@@ -764,77 +765,86 @@ class Upsert extends Component
     #region[Save]
     public function save(): string
     {
-        if ($this->uniqueno != '') {
-            if ($this->vid == "") {
-                $obj = Sale::create([
-                    'uniqueno' => session()->get('company_id') . '~'. session()->get('acyear'). '~' . $this->invoice_no,
-                    'acyear' => session()->get('acyear'),
-                    'company_id' => session()->get('company_id'),
-                    'contact_id' => $this->contact_id,
-                    'invoice_no' => $this->invoice_no,
-                    'invoice_date' => $this->invoice_date,
-                    'order_id' => $this->order_id ?: 1,
-                    'billing_id' => $this->billing_id ?: Contact_detail::getId($this->contact_id),
-                    'shipping_id' => $this->shipping_id ?: Contact_detail::getId($this->contact_id),
-                    'style_id' => $this->style_id ?: 1,
-                    'despatch_id' => $this->despatch_id ?: 1,
-                    'sales_type' => $this->sales_type,
-                    'transport_id' => $this->transport_id ?: 1,
-                    'destination' => $this->destination,
-                    'bundle' => $this->bundle,
-                    'total_qty' => $this->total_qty,
-                    'total_taxable' => $this->total_taxable,
-                    'total_gst' => $this->total_gst,
-                    'ledger_id' => $this->ledger_id ?: 1,
-                    'additional' => $this->additional,
-                    'round_off' => $this->round_off,
-                    'grand_total' => $this->grand_total,
-                    'active_id' => $this->active_id,
-                ]);
-                $this->saveItem($obj->id);
-                $message = "Saved";
-                $this->getRoute();
 
-            } else {
-                $obj = Sale::find($this->vid);
-                $obj->uniqueno = session()->get('company_id') . '~'. session()->get('acyear'). '~' . $this->invoice_no;
-                $obj->acyear = session()->get('acyear');
-                $obj->company_id = session()->get('company_id');
-                if ($obj->contact_id == $this->contact_id) {
-                    $obj->billing_id = $this->billing_id;
-                    $obj->shipping_id = $this->shipping_id;
+        try {
+            if ($this->uniqueno != '') {
+                if ($this->vid == "") {
+
+                    $obj = Sale::create([
+                        'uniqueno' => session()->get('company_id') . '~' . session()->get('acyear') . '~' . $this->invoice_no,
+                        'acyear' => session()->get('acyear'),
+                        'company_id' => session()->get('company_id'),
+                        'contact_id' => $this->contact_id,
+                        'invoice_no' => $this->invoice_no,
+                        'invoice_date' => $this->invoice_date,
+                        'order_id' => $this->order_id ?: 1,
+                        'billing_id' => $this->billing_id ?: Contact_detail::getId($this->contact_id),
+                        'shipping_id' => $this->shipping_id ?: Contact_detail::getId($this->contact_id),
+                        'style_id' => $this->style_id ?: 1,
+                        'despatch_id' => $this->despatch_id ?: 1,
+                        'job_no' => $this->job_no,
+                        'sales_type' => $this->sales_type,
+                        'transport_id' => $this->transport_id ?: 1,
+                        'destination' => $this->destination,
+                        'bundle' => $this->bundle,
+                        'total_qty' => $this->total_qty,
+                        'total_taxable' => $this->total_taxable,
+                        'total_gst' => $this->total_gst,
+                        'ledger_id' => $this->ledger_id ?: 1,
+                        'additional' => $this->additional,
+                        'round_off' => $this->round_off,
+                        'grand_total' => $this->grand_total,
+                        'active_id' => $this->active_id,
+                    ]);
+                    $this->saveItem($obj->id);
+                    $message = "Saved";
+                    $this->getRoute();
+
                 } else {
-                    $obj->billing_id = Contact_detail::getId($this->contact_id);
-                    $obj->shipping_id = $this->shipping_id;
+                    $obj = Sale::find($this->vid);
+                    $obj->uniqueno = session()->get('company_id') . '~' . session()->get('acyear') . '~' . $this->invoice_no;
+                    $obj->acyear = session()->get('acyear');
+                    $obj->company_id = session()->get('company_id');
+                    if ($obj->contact_id == $this->contact_id) {
+                        $obj->billing_id = $this->billing_id;
+                        $obj->shipping_id = $this->shipping_id;
+                    } else {
+                        $obj->billing_id = Contact_detail::getId($this->contact_id);
+                        $obj->shipping_id = $this->shipping_id;
+                    }
+                    $obj->contact_id = $this->contact_id;
+                    $obj->invoice_no = $this->invoice_no;
+                    $obj->invoice_date = $this->invoice_date;
+                    $obj->order_id = $this->order_id;
+                    $obj->style_id = $this->style_id;
+                    $obj->despatch_id = $this->despatch_id;
+                    $obj->job_no = $this->job_no;
+                    $obj->sales_type = $this->sales_type;
+                    $obj->transport_id = $this->transport_id;
+                    $obj->destination = $this->destination;
+                    $obj->bundle = $this->bundle;
+                    $obj->total_qty = $this->total_qty;
+                    $obj->total_taxable = $this->total_taxable;
+                    $obj->total_gst = $this->total_gst;
+                    $obj->ledger_id = $this->ledger_id;
+                    $obj->additional = $this->additional;
+                    $obj->round_off = $this->round_off;
+                    $obj->grand_total = $this->grand_total;
+                    $obj->active_id = $this->active_id;
+                    $obj->save();
+                    DB::table('saleitems')->where('sale_id', '=', $obj->id)->delete();
+                    $this->saveItem($obj->id);
+                    $message = "Updated";
                 }
-                $obj->contact_id = $this->contact_id;
-                $obj->invoice_no = $this->invoice_no;
-                $obj->invoice_date = $this->invoice_date;
-                $obj->order_id = $this->order_id;
-                $obj->style_id = $this->style_id;
-                $obj->despatch_id = $this->despatch_id;
-                $obj->sales_type = $this->sales_type;
-                $obj->transport_id = $this->transport_id;
-                $obj->destination = $this->destination;
-                $obj->bundle = $this->bundle;
-                $obj->total_qty = $this->total_qty;
-                $obj->total_taxable = $this->total_taxable;
-                $obj->total_gst = $this->total_gst;
-                $obj->ledger_id = $this->ledger_id;
-                $obj->additional = $this->additional;
-                $obj->round_off = $this->round_off;
-                $obj->grand_total = $this->grand_total;
-                $obj->active_id = $this->active_id;
-                $obj->save();
-                DB::table('saleitems')->where('sale_id', '=', $obj->id)->delete();
-                $this->saveItem($obj->id);
-                $message = "Updated";
+                $this->getRoute();
+                return $message;
             }
-            $this->getRoute();
-            return $message;
+        } catch (\Exception $exception)
+        {
+            return $exception->getMessage();
         }
-        return '';
-    }
+            return '';
+        }
 
     public function saveItem($id): void
     {
@@ -880,6 +890,7 @@ class Upsert extends Component
             $this->style_name = $obj->style->vname;
             $this->despatch_id = $obj->despatch_id;
             $this->despatch_name = $obj->despatch->vname;
+            $this->job_no = $obj->job_no;
             $this->sales_type = $obj->sales_type;
             $this->transport_id = $obj->transport_id;
             $this->transport_name = $obj->transport->vname;
@@ -1096,6 +1107,7 @@ class Upsert extends Component
             $this->style_name = $obj->style->vname;
             $this->despatch_id = $obj->despatch_id;
             $this->despatch_name = $obj->despatch->vname;
+            $this->job_no = $obj->job_no;
             $this->sales_type = $obj->sales_type;
             $this->transport_id = $obj->transport_id;
             $this->transport_name = $obj->transport->vname;
