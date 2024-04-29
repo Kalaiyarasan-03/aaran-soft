@@ -57,14 +57,6 @@
                                 {{ $row->webhook}}
                             </x-table.cell-text>
 
-{{--                            <x-table.cell-text center>--}}
-{{--                                <label>--}}
-{{--                                    <input type="checkbox" onclick="return false"--}}
-{{--                                           @if($row->webhook) checked @endif--}}
-{{--                                           class="h-4 w-4 bg-gray-100 border-gray-300 rounded focus:animate-none focus:outline-none--}}
-{{--                                                   {{ $row->webhook ? 'text-green-400 focus:ring-green-500': 'focus:ring-gray-500 text-gray-700'}}">--}}
-{{--                                </label>--}}
-{{--                            </x-table.cell-text>--}}
 
 
                             <x-table.cell-text center>
@@ -128,12 +120,12 @@
 
                             <x-table.cell-text center>
                                 {{$row->soft_version}}
-                                {{--                                {{ App\Enums\Version::tryFrom($row->soft_version)}}--}}
+                                                                {{ App\Enums\Version::tryFrom($row->soft_version)}}
                             </x-table.cell-text>
 
                             <x-table.cell-text center>
                                 {{$row->db_version}}
-                                {{--                                {{ App\Enums\Version::tryFrom($row->db_version)}}--}}
+                                                                {{ App\Enums\Version::tryFrom($row->db_version)}}
                             </x-table.cell-text>
 
                             <x-table.cell-action id="{{$row->id}}"/>
@@ -156,11 +148,30 @@
             <x-forms.create-new :id="$vid">
                 <div class="lg:flex w-full">
                     <div class="w-full">
+                        <div class="flex items-center gap-2">
                         <x-input.model-text wire:model="sub_domain" :label="'Sub Domain'"/>
+                            <span onclick="copyToClipboard('{{$sub_domain}}')">
+                               <x-button.copy />
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
                         <x-input.model-text wire:model="database" :label="'Database'"/>
+                            <span onclick="copyToClipboard('{{$database}}')">
+                               <x-button.copy />
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
                         <x-input.model-text wire:model="git" :label="'Git'"/>
-                        <x-input.model-text wire:model="webhook" :label="'webhook'"/>
-{{--                        <x-input.checkbox wire:model="webhook" :label="'Webhook'"/>--}}
+                            <span onclick="copyToClipboard('{{$git}}')">
+                               <x-button.copy />
+                            </span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <x-input.model-text wire:model="webhook" :label="'webhook'"/>
+                            <span onclick="copyToClipboard('{{$webhook}}')">
+                               <x-button.copy />
+                            </span>
+                        </div>
                         <x-input.checkbox wire:model="copy_build_folder" :label="'Copy Build Folder'"/>
                         <x-input.checkbox wire:model="copy_env" :label="'Copy Env'"/>
                         <x-input.checkbox wire:model="db_migrate" :label="'Db Migrate'"/>
