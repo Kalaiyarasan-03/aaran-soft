@@ -16,6 +16,9 @@
             <x-input.model-date wire:model.live="start_date" :label="'From Date'"/>
 
             <x-input.model-date wire:model.live="end_date" :label="'To Date'"/>
+            <div>
+                <button class="bg-cyan-700 rounded-lg shadow-2xl px-2 py-1 text-white " wire:click="print">Export</button>
+            </div>
 
         </div>
 
@@ -39,7 +42,7 @@
                 @forelse ($list as $index =>  $row)
                     <x-table.row>
                         <x-table.cell-text center>
-                                {{ $index + 1 }}
+                            {{ $index + 1 }}
                         </x-table.cell-text>
 
                         <x-table.cell-text center>
@@ -47,15 +50,15 @@
                         </x-table.cell-text>
 
                         <x-table.cell-text left>
-                                {{ $row->vno}}&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;{{date('d-m-Y', strtotime($row->vdate))}}
+                            {{ $row->vno}}&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;{{date('d-m-Y', strtotime($row->vdate))}}
                         </x-table.cell-text>
 
                         <x-table.cell-text right>
-                                {{ $row->grand_total }}
+                            {{ $row->grand_total }}
                         </x-table.cell-text>
 
                         <x-table.cell-text right>
-                                {{ $row->receipt_amount }}
+                            {{ $row->receipt_amount }}
                         </x-table.cell-text>
                     </x-table.row>
 
@@ -63,8 +66,6 @@
                         $totalSales += floatval($row->grand_total);
                         $totalReceipt += floatval($row->receipt_amount);
                     @endphp
-
-
 
                 @empty
                     <x-table.empty/>
