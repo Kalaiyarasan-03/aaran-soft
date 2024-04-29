@@ -265,13 +265,13 @@
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                    {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                    &nbsp;{{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
-                    &nbsp;{{number_format($row['qty']*$row['price']*$row['gst_percent']/100+$row['qty']*$row['price'],2,'.','')}}</td>
+                    &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
 
         @endforeach
@@ -484,7 +484,7 @@
                 <td colspan="2" align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']*2}}</td>
                 <td colspan="2" align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*($row['gst_percent']*2)/100),2,'.','')}}</td>
+                    &nbsp;{{number_format(($row['gst_amount']*2),2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
                     &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
@@ -824,13 +824,13 @@
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                    {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                    &nbsp;{{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
-                    &nbsp;{{number_format($row['qty']*$row['price']*$row['gst_percent']/100+$row['qty']*$row['price'],2,'.','')}}</td>
+                    &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
 
         @endforeach
@@ -1043,7 +1043,7 @@
                 <td colspan="2" align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']*2}}</td>
                 <td colspan="2" align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*($row['gst_percent']*2)/100),2,'.','')}}</td>
+                    &nbsp;{{number_format(($row['gst_amount']*2),2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
                     &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
@@ -1384,13 +1384,13 @@
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                    {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                    &nbsp;{{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
-                    &nbsp;{{number_format($row['qty']*$row['price']*$row['gst_percent']/100+$row['qty']*$row['price'],2,'.','')}}</td>
+                    &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
 
         @endforeach
@@ -1603,7 +1603,7 @@
                 <td colspan="2" align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']*2}}</td>
                 <td colspan="2" align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*($row['gst_percent']*2)/100),2,'.','')}}</td>
+                    &nbsp;{{number_format(($row['gst_amount']*2),2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
                     &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
