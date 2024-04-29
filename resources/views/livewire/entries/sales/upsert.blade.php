@@ -421,6 +421,15 @@
                 </div>
             @endif
 
+            @if(\Aaran\Aadmin\Src\SaleEntry::hasNo_of_roll())
+                <div class="w-full">
+                    <label for="no_of_roll"></label>
+                    <input id="no_of_roll" wire:model.live="no_of_roll" class="block w-full md:w-full purple-textbox-no-rounded"
+                           autocomplete="false"
+                           placeholder="No of Roll..">
+                </div>
+            @endif
+
             <!--Product Name ---------------------------------------------------------------------------------------------->
             <div class="w-full">
                 <label for="product_name"></label>
@@ -639,6 +648,10 @@
                             <th class="px-2 text-center border border-gray-300">Dc</th>
                         @endif
 
+                        @if(\Aaran\Aadmin\Src\SaleEntry::hasNo_of_roll())
+                            <th class="px-2 text-center border border-gray-300">No of Roll</th>
+                        @endif
+
                         <th class="px-2 text-center border border-gray-300">PRODUCT</th>
 
                         @if(\Aaran\Aadmin\Src\SaleEntry::hasColour())
@@ -685,13 +698,18 @@
                                         wire:click.prevent="changeItems({{$index}})">{{$row['dc_no']}}</td>
                                 @endif
 
+                                @if(\Aaran\Aadmin\Src\SaleEntry::hasNo_of_roll())
+                                    <td class="px-2 text-left border border-gray-300 cursor-pointer"
+                                        wire:click.prevent="changeItems({{$index}})">{{$row['no_of_roll']}}</td>
+                                @endif
+
                                 <td class="px-2 text-left border border-gray-300 cursor-pointer"
                                     wire:click.prevent="changeItems({{$index}})">
-                                    <div>{{$row['product_name']}}</div>
-
+                                    <div>{{$row['product_name']}}
                                     @if(\Aaran\Aadmin\Src\SaleEntry::hasProductDescription())
-                                        <div>{{ $row['description']}}</div>
+                                       {{ $row['description']}}
                                     @endif
+                                    </div>
 
                                 </td>
 

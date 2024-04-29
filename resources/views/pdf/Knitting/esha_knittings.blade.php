@@ -253,22 +253,22 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
                 <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['no_of_roll']}} </td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
+                <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['qty']*$row['price'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                    {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                <td align="right" style="border-bottom: none;border-top: none;">
+                    {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
-                    &nbsp;{{number_format($row['qty']*$row['price']*$row['gst_percent']/100+$row['qty']*$row['price'],2,'.','')}}</td>
+                    &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
 
         @endforeach
@@ -363,10 +363,10 @@
 
 
         <tr>
-            <td colspan=2" align="right" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td colspan="3" align="right" style="border-left: none;">&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td align="right">{{$obj->total_qty+0}}</td>
+            <td align="center">{{$obj->total_qty+0}}</td>
             <td align="right"></td>
             <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
             <td colspan="2" align="right">{{number_format($obj->total_gst/2,2,'.','')}}</td>
@@ -376,10 +376,10 @@
         <tr>
             <td colspan="7" align="left"
                 style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
-                <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
+                <div>We hereby certify that our registration under the GST Act 2017 is in force on the date on which
 
                 </div>
-                <div>sale of the goods specified in this invoice is made by us and the transcation of sale is covered by
+                <div>sale of the goods specified in this invoice is made by us and the translation of sale is covered by
 
                 </div>
             </td>
@@ -466,7 +466,7 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
                 <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['no_of_roll']}} </td>
                 <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
@@ -475,7 +475,7 @@
                 <td colspan="2" align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']*2}}</td>
                 <td colspan="2" align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*($row['gst_percent']*2)/100),2,'.','')}}</td>
+                    &nbsp;{{number_format(($row['gst_amount']*2),2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
                     &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
@@ -798,22 +798,22 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
                 <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['no_of_roll']}} </td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
+                <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['qty']*$row['price'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                    {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                <td align="right" style="border-bottom: none;border-top: none;">
+                    {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
-                    &nbsp;{{number_format($row['qty']*$row['price']*$row['gst_percent']/100+$row['qty']*$row['price'],2,'.','')}}</td>
+                    &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
 
         @endforeach
@@ -908,10 +908,10 @@
 
 
         <tr>
-            <td colspan=2" align="right" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td colspan="3" align="right" style="border-left: none;">&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td align="right">{{$obj->total_qty+0}}</td>
+            <td align="center">{{$obj->total_qty+0}}</td>
             <td align="right"></td>
             <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
             <td colspan="2" align="right">{{number_format($obj->total_gst/2,2,'.','')}}</td>
@@ -921,10 +921,10 @@
         <tr>
             <td colspan="7" align="left"
                 style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
-                <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
+                <div>We hereby certify that our registration under the GST Act 2017 is in force on the date on which
 
                 </div>
-                <div>sale of the goods specified in this invoice is made by us and the transcation of sale is covered by
+                <div>sale of the goods specified in this invoice is made by us and the translation of sale is covered by
 
                 </div>
             </td>
@@ -1011,7 +1011,7 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
                 <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['no_of_roll']}} </td>
                 <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
@@ -1020,7 +1020,7 @@
                 <td colspan="2" align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']*2}}</td>
                 <td colspan="2" align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*($row['gst_percent']*2)/100),2,'.','')}}</td>
+                    &nbsp;{{number_format(($row['gst_amount']*2),2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
                     &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
@@ -1293,11 +1293,10 @@
     @if($obj->sales_type==0)
         <tr>
             <th width="5px" style="padding: 5px;font-size: 9px;">S.No</th>
-            <th width="12px" style="padding: 5px;font-size: 9px; ">Po.No</th>
-            <th width="12px" style="padding: 5px;font-size: 9px;">Dc.No</th>
+            <th colspan="2" width="160px" style="padding: 5px;font-size: 9px;">Particulars</th>
             <th width="15px" style="padding: 5px;font-size: 9px;">HSN Code</th>
-            <th width="160px" style="padding: 5px;font-size: 9px;">Particulars</th>
-            <th width="40px" style="padding: 5px;font-size: 9px;">Quantity</th>
+            <th width="12px" style="padding: 5px;font-size: 9px; ">No of Rolls</th>
+            <th width="40px" style="padding: 5px;font-size: 9px;">Kgs</th>
             <th width="40px" style="padding: 5px;font-size: 9px;">Price</th>
             <th width="40px" style="padding: 5px;font-size: 9px;">Taxable Amt</th>
             <th style="padding: 1px; width: 1px; border-right: none;text-align: left; margin-bottom: 0;font-size: 9px;">
@@ -1312,11 +1311,10 @@
         </tr>
     @else
         <th width="5px" style="padding: 5px;">S.No</th>
-        <th width="12px" style="padding: 5px; ">Po.No</th>
-        <th width="12px" style="padding: 5px;">Dc.No</th>
+        <th colspan="2" width="180px" style="padding: 5px;">Particulars</th>
         <th width="40px" style="padding: 5px;">HSN Code</th>
-        <th width="180px" style="padding: 5px;">Particulars</th>
-        <th width="40px" style="padding: 5px;">Quantity</th>
+        <th width="12px" style="padding: 5px;">No of Rolls</th>
+        <th width="40px" style="padding: 5px;">Kgs</th>
         <th width="40px" style="padding: 5px;">Price</th>
         <th width="40px" style="padding: 5px;">Taxable Amt</th>
         <th width="5px" colspan="2" style="padding: 1px; width: 1px;text-align: center; margin-bottom: 0;">%</th>
@@ -1328,8 +1326,7 @@
     @if($obj->sales_type==0)
         <tr>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-            <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+            <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1344,25 +1341,24 @@
         @foreach($list as $index => $row)
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
+                <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['no_of_roll']}} </td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
+                <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['qty']*$row['price'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                    {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']}}</td>
-                <td align="center" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*$row['gst_percent']/100)/2,2,'.','')}}</td>
+                <td align="right" style="border-bottom: none;border-top: none;">
+                    {{number_format($row['gst_amount'],2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
-                    &nbsp;{{number_format($row['qty']*$row['price']*$row['gst_percent']/100+$row['qty']*$row['price'],2,'.','')}}</td>
+                    &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
 
         @endforeach
@@ -1370,12 +1366,11 @@
 
         @if(strlen($row['po_no'])<=7)
             @if(strlen($row['product_name'])<=29)
-                @for($i = 0; $i < 20-$list->count(); $i++)
+                @for($i = 0; $i < 18-$list->count(); $i++)
 
                     <tr>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1393,8 +1388,7 @@
 
                     <tr>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1408,8 +1402,7 @@
                     </tr>
                     <tr>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1428,8 +1421,7 @@
 
                 <tr>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1443,8 +1435,7 @@
                 </tr>
                 <tr>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td  colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1462,10 +1453,10 @@
 
 
         <tr>
-            <td colspan=2" align="right" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td colspan="3" align="right" style="border-left: none;">&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td align="right">{{$obj->total_qty+0}}</td>
+            <td align="center">{{$obj->total_qty+0}}</td>
             <td align="right"></td>
             <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
             <td colspan="2" align="right">{{number_format($obj->total_gst/2,2,'.','')}}</td>
@@ -1475,10 +1466,10 @@
         <tr>
             <td colspan="7" align="left"
                 style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
-                <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
+                <div>We hereby certify that our registration under the GST Act 2017 is in force on the date on which
 
                 </div>
-                <div>sale of the goods specified in this invoice is made by us and the transcation of sale is covered by
+                <div>sale of the goods specified in this invoice is made by us and the translation of sale is covered by
 
                 </div>
             </td>
@@ -1563,10 +1554,9 @@
         @foreach($list as $index => $row)
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['po_no']}} </td>
-                <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
+                <td colspan="2" align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
-                <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">{{$row['no_of_roll']}} </td>
                 <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
@@ -1575,7 +1565,7 @@
                 <td colspan="2" align="center"
                     style="border-bottom: none;border-top: none; border-left: none;">{{$row['gst_percent']*2}}</td>
                 <td colspan="2" align="right" style="border-bottom: none;border-top: none;">
-                    &nbsp;{{number_format(($row['qty']*$row['price']*($row['gst_percent']*2)/100),2,'.','')}}</td>
+                    &nbsp;{{number_format(($row['gst_amount']*2),2,'.','')}}</td>
                 <td align="right" style="border-bottom: none;border-top: none; ">
                     &nbsp;{{number_format($row['sub_total'],2,'.','')}}</td>
             </tr>
@@ -1584,12 +1574,11 @@
 
         @if(strlen($row['po_no'])<=7)
             @if(strlen($row['product_name'])<=30)
-                @for($i = 0; $i < 20-$list->count(); $i++)
+                @for($i = 0; $i < 18-$list->count(); $i++)
 
                     <tr>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1605,8 +1594,7 @@
 
                     <tr>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1618,8 +1606,7 @@
                     </tr>
                     <tr>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                        <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                        <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                         <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1636,8 +1623,7 @@
 
                 <tr>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -1649,8 +1635,7 @@
                 </tr>
                 <tr>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
-                    <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
+                    <td colspan="2" align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
                     <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>

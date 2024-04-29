@@ -8,16 +8,16 @@
                 <x-input.model-select wire:model.live="by_company" :label="'Party Name'">
                     <option value="">choose</option>
                     @foreach($contact as $i)
-                        <option value="{{$i->id}}">{{$i->vname}}</option>
+                        <option value="{{$i->id}}" wire:click="opening_Balance({{$i->id}})">{{$i->vname}}</option>
                     @endforeach
                 </x-input.model-select>
             </div>
 
-            <x-input.model-date wire:model.live="start_date" :label="'From Date'"/>
+            <x-input.model-date wire:change.debounce="sale_Total"  wire:model.live="start_date" :label="'From Date'"/>
 
             <x-input.model-date wire:model.live="end_date" :label="'To Date'"/>
             <div>
-                <button class="bg-cyan-700 rounded-lg shadow-2xl px-2 py-1 text-white " wire:click="print">Export</button>
+                <button class="bg-cyan-700 rounded-lg shadow-2xl px-2 py-1 text-white " wire:click="print">Print</button>
             </div>
 
         </div>
@@ -38,6 +38,22 @@
                     $totalSales = 0;
                     $totalReceipt = 0;
                 @endphp
+                <x-table.row>
+                            @if($by_company!=null)
+                    <x-table.cell colspan="3">
+                        <div class="text-right font-bold">
+                        {{ $vname }}</div>
+                    </x-table.cell>
+                        <x-table.cell colspan="1">
+                            @if($start_date!=null)
+                                {{$old_balance}}
+                            @else
+                            <div class="text-right font-bold">
+                                {{ $opening_balance }}</div>
+                            @endif
+                        </x-table.cell>
+                            @endif
+                </x-table.row>
 
                 @forelse ($list as $index =>  $row)
                     <x-table.row>
@@ -74,21 +90,21 @@
                 <x-table.row>
                     <td colspan="3" class="px-2 text-md text-right text-gray-400 border border-gray-300">&nbsp;TOTALS&nbsp;&nbsp;&nbsp;
                     </td>
-                    <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalSales)}}</td>
+                    <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalSales+$opening_balance)}}</td>
                     <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalReceipt)}}</td>
                 </x-table.row>
 
                 <x-table.row>
                     <td colspan="3" class="px-2 text-md text-right text-gray-400 border border-gray-300">&nbsp;Balance&nbsp;&nbsp;&nbsp;
                     </td>
-                    <td class="px-2 text-right  text-md border text-blue-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalSales-$totalReceipt)}}</td>
+                    <td class="px-2 text-right  text-md border text-blue-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalSales+$opening_balance-$totalReceipt)}}</td>
                     <td class="px-2 text-right  text-md border text-blue-500 border-gray-300"></td>
                 </x-table.row>
 
             </x-slot>
-            <x-slot name="table_pagination">
-                {{ $list->links() }}
-            </x-slot>
+{{--            <x-slot name="table_pagination">--}}
+{{--                {{ $list->links() }}--}}
+{{--            </x-slot>--}}
         </x-forms.table>
     </x-forms.m-panel>
 </div>

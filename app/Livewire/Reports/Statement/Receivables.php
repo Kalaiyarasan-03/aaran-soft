@@ -22,6 +22,9 @@ class Receivables extends Component
     public $byOrder;
     public $start_date;
     public $end_date;
+    public mixed $opening_balance;
+    public mixed $old_balance;
+    public mixed $sale_total=0;
     #endregion
 
     #region[Contact]
@@ -30,6 +33,42 @@ class Receivables extends Component
         $this->contact = Contact::where('company_id', '=', session()->get('company_id'))->get();
     }
     #endregion
+
+    #region[opening_balance]
+
+    public function opening_Balance($id)
+    {
+     $obj=Contact::find($id);
+     $this->vname=$obj->vname;
+
+     $this->opening_balance=$obj->opening_balance;
+
+    }
+
+    public function sale_Total()
+    {
+        if ($this->start_date!=null) {
+            $sale_all=Sale::where('contact_id', '=', $this->by_company)
+                ->get();
+            $sale = Sale::when($this->start_date, function ($query, $start_date) {
+                return $query->whereDate('invoice_date', '<', $start_date);
+            })->where('contact_id', '=', $this->by_company)
+                ->get();
+
+            $data=$sale_all[0];
+            foreach ($sale as $i) {
+                $this->sale_total += floatval($i->grand_total);
+            }
+            if ($data['invoice_date']!=$this->start_date) {
+                $this->old_balance =floatval($this->opening_balance+ $this->sale_total);
+            }else{
+              $this->opening_Balance($this->by_company);
+              $this->old_balance=$this->opening_balance;
+            }
+        }
+    }
+    #endregion
+
 
     #region[List]
 
@@ -48,14 +87,15 @@ class Receivables extends Component
             'receipts.receipt_amount',
         ])
             ->where('active_id', '=', $this->activeRecord)
-            ->when($this->by_company, function ($query, $by_company) {
-                return $query->where('contact_id', $by_company);
-            })
+            ->where('contact_id', '=', $this->by_company)
+//            ->when($this->by_company, function ($query, $by_company) {
+//                return $query->where('contact_id', $by_company);
+//            })
             ->when($this->start_date, function ($query, $start_date) {
-                return $query->whereDate('invoice_date', '>=', $start_date);
+                return $query->whereDate('vdate', '>=', $start_date);
             })
             ->when($this->end_date, function ($query, $end_date) {
-                return $query->whereDate('invoice_date', '<=', $end_date);
+                return $query->whereDate('vdate', '<=', $end_date);
             })
             ->where('company_id', '=', session()->get('company_id'));
 
@@ -70,20 +110,19 @@ class Receivables extends Component
             DB::raw("'' as receipt_amount"),
         ])
             ->where('active_id', '=', $this->activeRecord)
-            ->when($this->by_company, function ($query, $by_company) {
-                return $query->where('contact_id', $by_company);
-            })
+            ->where('contact_id', '=', $this->by_company)
             ->when($this->start_date, function ($query, $start_date) {
-                return $query->whereDate('vdate', '>=', $start_date);
+                return $query->whereDate('invoice_date', '>=', $start_date);
             })
             ->when($this->end_date, function ($query, $end_date) {
-                return $query->whereDate('vdate', '<=', $end_date);
+                return $query->whereDate('invoice_date', '<=', $end_date);
             })
             ->where('company_id', '=', session()->get('company_id'))
             ->union($sales)
             ->orderBy('vdate')
-            ->orderBy('mode')
-            ->paginate($this->perPage);
+            ->orderBy('mode')->get();
+
+
     }
 
     #endregion
@@ -91,9 +130,9 @@ class Receivables extends Component
 
     public function print()
     {
-        if ($this->by_company&&$this->start_date&&$this->end_date !=null) {
+        if ($this->by_company!=null) {
             $this->redirect(route('receviables.print',
-                ['party' => $this->by_company, 'start_date' => $this->start_date, 'end_date' => $this->end_date]));
+                ['party' => $this->by_company, 'start_date' => $this->start_date?:'', 'end_date' => $this->end_date?:'',]));
         }
     }
 
