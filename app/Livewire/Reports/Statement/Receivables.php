@@ -91,8 +91,10 @@ class Receivables extends Component
 
     public function print()
     {
-
-        $this->redirect(route('receviables.print',['party'=>$this->by_company,'start_date'=>$this->start_date,'end_date'=>$this->end_date]));
+        if ($this->by_company&&$this->start_date&&$this->end_date !=null) {
+            $this->redirect(route('receviables.print',
+                ['party' => $this->by_company, 'start_date' => $this->start_date, 'end_date' => $this->end_date]));
+        }
     }
 
     #region[Render]
