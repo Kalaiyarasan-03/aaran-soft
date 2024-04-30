@@ -72,6 +72,15 @@
                 </div>
             </div>
 
+            @forelse ($images as $row)
+                <div class="h-40 w-40 lg:mr-8">
+                    <img class="rounded-xl justify-items-start h-40 w-40 transition duration-300 ease-in-out hover:scale-110"
+                         src="{{ \Illuminate\Support\Facades\Storage::url($row->image) }}">
+                </div>
+            @empty
+
+            @endforelse
+
             @forelse ($replies as $row)
                 <div class="p-1 flex flex-row justify-between border-b border-gray-200  ">
                     <div class="px-5 ">
