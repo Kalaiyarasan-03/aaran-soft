@@ -21,6 +21,8 @@ class Customise
             config('clients.THIRUMURUGAN_PRINTERS') => in_array($feature, config('thirumurugan_printing.features', [])),
             config('clients.BEST_PRINT') => in_array($feature, config('best_print.features', [])),
             config('clients.SAIRF_SOURCING') => in_array($feature, config('sairfsourcing.features', [])),
+
+            config('clients.SK_ENTERPRISES') => in_array($feature, config('sk_enterprises.features', [])),
         };
     }
 
