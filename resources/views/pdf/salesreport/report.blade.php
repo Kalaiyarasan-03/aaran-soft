@@ -156,7 +156,7 @@
     <tbody>
     <tr>
         <td colspan="4" style="text-align: right;">Opening Balance</td>
-        <td>{{$old_balance}}</td>
+        <td>{{number_format($old_balance,2,'.','')}}</td>
         <td></td>
     </tr>
 
@@ -182,12 +182,12 @@
 @endforeach
     <tr>
         <td colspan="4" style="text-align: right;"><b>Total</b></td>
-        <td><b>{{$totalSales+$old_balance}}</b></td>
-        <td><b>{{$totalReceipt}}</b></td>
+        <td><b>{{number_format($totalSales+$old_balance,2,'.','')}}</b></td>
+        <td><b>{{number_format($totalReceipt,2,'.','')}}</b></td>
     </tr>
     <tr>
         <td colspan="4" style="text-align: right;"><b>Balance</b></td>
-        <td><b>{{$totalSales+$old_balance-$totalReceipt}}</b></td>
+        <td><b>{{number_format($totalSales+$old_balance-$totalReceipt,2,'.','')}}</b></td>
         <td></td>
     </tr>
     </tbody>

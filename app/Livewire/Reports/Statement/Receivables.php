@@ -26,6 +26,7 @@ class Receivables extends Component
     public mixed $opening_balance;
     public mixed $old_balance = 0;
     public mixed $sale_total = 0;
+    public mixed $receipt_total = 0;
     public $invoiceDate_first;
     #endregion
 
@@ -67,8 +68,19 @@ class Receivables extends Component
                 $this->sale_total += floatval($i->grand_total);
             }
 
+
+            $receipt = Receipt::when($this->start_date, function ($query, $start_date) {
+                return $query->whereDate('vdate', '<', $start_date);
+            })->where('contact_id', '=', $this->by_company)
+                ->get();
+
+            $this->receipt_total = 0;
+            foreach ($receipt as $i) {
+                $this->receipt_total += floatval($i->receipt_amount);
+            }
+
             if ($this->start_date > $this->invoiceDate_first) {
-                $this->old_balance = floatval($this->opening_balance + $this->sale_total);
+                $this->old_balance = floatval($this->opening_balance + $this->sale_total-$this->receipt_total);
             } elseif ($this->start_date <= $this->invoiceDate_first) {
                 $this->opening_Balance($this->by_company);
                 $this->old_balance = $this->opening_balance;

@@ -85,6 +85,7 @@ class ReportController extends Controller
     public mixed $opening_balance;
     public mixed $old_balance = 0;
     public mixed $sale_total = 0;
+    public mixed $receipt_total = 0;
     public function getBalance($party, $start_date, $end_date)
     {
         $obj = Contact::find($party);
@@ -105,8 +106,18 @@ class ReportController extends Controller
             $this->sale_total += floatval($i->grand_total);
         }
 
+        $receipt = Receipt::when($start_date, function ($query, $start_date) {
+            return $query->whereDate('vdate', '<', $start_date);
+        })->where('contact_id', '=', $party)
+            ->get();
+
+        $this->receipt_total = 0;
+        foreach ($receipt as $i) {
+            $this->receipt_total += floatval($i->receipt_amount);
+        }
+
         if ($start_date >$data['invoice_date']) {
-            $this->old_balance = floatval($this->opening_balance + $this->sale_total);
+            $this->old_balance = floatval($this->opening_balance + $this->sale_total-$this->receipt_total);
         } elseif ($start_date <=$data['invoice_date']) {
             $this->old_balance = $obj->opening_balance;
         }
