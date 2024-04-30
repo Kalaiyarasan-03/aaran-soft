@@ -50,7 +50,7 @@ class View extends Component
 //        $this->redirect(route('posts'));
     }
 
-        #region[Cashbook properties]
+        #region[mount]
         public function mount($id)
     {
         if ($id) {

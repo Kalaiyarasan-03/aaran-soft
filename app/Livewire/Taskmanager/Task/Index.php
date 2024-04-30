@@ -51,8 +51,8 @@ class Index extends Component
     #region[Save]
     public function getSave(): string
     {
-        if ($this->vname != '') {
-            if ($this->vid == "")
+        if ($this->vname) {
+            if ($this->vid == "") {
                 $obj = Task::create([
                     'client_id' => $this->client_id,
                     'title' => $this->vname,
@@ -62,44 +62,38 @@ class Index extends Component
                     'status' => 1,
                     'verified' => $this->verified,
                     'verified_on' => $this->verified_on,
-                    'image' => $this->save_image(),
                     'user_id' => Auth::user()->id,
                     'active_id' => $this->active_id ? 1 : 0
                 ]);
-            $this->save_item($obj->id);
-            $message = "Saved";
+                $this->save_item($obj->id, $this->photos);
+                $message = "Saved";
 
-        } else {
-            $obj = Task::find($this->vid);
-            $obj->client_id = $this->client_id;
-            $obj->title = $this->vname;
-            $obj->body = $this->body;
-            $obj->channel = $this->channel;
-            $obj->allocated = $this->allocated;
-            $obj->status = $this->status;
-            $obj->verified = $this->verified;
-            $obj->verified_on = $this->verified_on;
-            if ($obj->image != $this->image) {
-                $obj->image = $this->save_image();
             } else {
-                $obj->image = $this->image;
+                $obj = Task::find($this->vid);
+                $obj->client_id = $this->client_id;
+                $obj->title = $this->vname;
+                $obj->body = $this->body;
+                $obj->channel = $this->channel;
+                $obj->allocated = $this->allocated;
+                $obj->status = $this->status;
+                $obj->verified = $this->verified;
+                $obj->verified_on = $this->verified_on;
+                $obj->active_id = $this->active_id;
+                $obj->save();
+                $message = "Updated";
             }
-            $obj->active_id = $this->active_id;
-            $obj->save();
-            $message = "Updated";
+
+            $this->client_id = '';
+            $this->vname = '';
+            $this->body = '';
+            $this->channel = '';
+            $this->allocated = '';
+            $this->verified = '';
+            $this->verified_on = '';
+            $this->status = '';
+
+            return $message;
         }
-
-        $this->client_id = '';
-        $this->vname = '';
-        $this->body = '';
-        $this->channel = '';
-        $this->allocated = '';
-        $this->verified = '';
-        $this->verified_on = '';
-        $this->status = '';
-        $this->image = '';
-
-        return $message;
     }
     #endregion
 
@@ -117,7 +111,6 @@ class Index extends Component
             $this->status = $obj->status;
             $this->verified = $obj->verified;
             $this->verified_on = $obj->verified_on;
-            $this->image = $obj->image;
             $this->active_id = $obj->active_id;
 
             return $obj;
@@ -127,35 +120,35 @@ class Index extends Component
     #endregion
 
     #region[image]
-    public function updatedImage()
+    public function updatedImage($id)
     {
-        $this->validate([
-            'image' => 'image|max:1024',
-        ]);
-        $this->isUploaded = true;
-    }
+            $this->validate([
+                'image' => 'image|max:1024',
+            ]);
+            $this->isUploaded = true;
+        }
 
-    public function save_item($id)
+
+    public function save_item($id, $images)
     {
-        foreach ($this->photos as $photo) {
+        foreach ($images as $image) {
             Image::create([
-                'task_id' => 'id',
-                'image' => $this->save_image(),
+                'task_id' => $id,
+                'image' => $this->save_image($image),
             ]);
         }
     }
 
-    public function save_image()
+    public function save_image($image)
     {
-        if ($this->image == '') {
-            return $this->image = 'empty';
+        if ($image == '') {
+            return $image = 'empty';
         } else {
-            foreach ($this->image as $photos) {
-                $image_name = $this->image->getClientOriginalName();
-                return $this->image->storeAs('photos', $image_name, 'public');
-            }
+            $image_name = $image->getClientOriginalName();
+            return $image->storeAs('photos', $image_name, 'public');
         }
     }
+
 
 
 #endregion
@@ -185,7 +178,7 @@ class Index extends Component
         $this->body = '';
         $this->channel = '';
         $this->allocated = '';
-        $this->image = '';
+        $this->photos = '';
 
     }
 

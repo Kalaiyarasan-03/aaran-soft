@@ -33,8 +33,8 @@ class AllTask extends Component
     public $verified;
     public $verified_on;
 
-    public $image;
-    public $isUploaded=false;
+    public $image = [];
+    public $isUploaded = false;
     #endregion
 
     #region[Mount]
@@ -42,7 +42,7 @@ class AllTask extends Component
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->users = User::all();
-        $this->clients = Client::where('active_id','=',Active::ACTIVE )->get();
+        $this->clients = Client::where('active_id', '=', Active::ACTIVE)->get();
     }
     #endregion
 
@@ -103,54 +103,28 @@ class AllTask extends Component
     }
     #endregion
 
-    public function save_images(Request $request)
-    {
-        $uploadedImages = [];
 
-        // Validate the request
-        $request->validate([
-            'images.*' => 'image|max:1024', // Validate each file in the 'images' array
+    #region[Image]
+    public function updatedImage()
+    {
+        $this->validate([
+            'image' => 'image|max:1024',
         ]);
 
-        // Check if files were uploaded
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                if ($image->isValid()) {
-                    $image_name = $image->getClientOriginalName();
-                    $image->storeAs('photos', $image_name, 'public');
-                    $uploadedImages[] = 'photos/' . $image_name;
-                }
-            }
-        }
+        $this->isUploaded = true;
+    }
 
-        // Check if any images were uploaded
-        if (empty($uploadedImages)) {
-            return 'No images uploaded';
+    public function save_image(Request $request)
+    {
+        if ($this->image == '') {
+            return $this->image = 'empty';
         } else {
-            return $uploadedImages;
+            foreach ($this->image as $photos)
+                $image_name = $this->image->getClientOriginalName();
+            return $this->image->storeAs('photos', $image_name, 'public');
         }
     }
-    #region[Image]
-//    public function updatedImage()
-//    {
-//        $this->validate([
-//            'image'=>'image|max:1024',
-//        ]);
-//
-//        $this->isUploaded=true;
-//    }
-//
-//       public function save_image(Request $request)
-//    {
-//        if ($this->image == '') {
-//            return $this->image = 'empty';
-//        } else {
-//        $image_name=$this->image->getClientOriginalName();
-//            return $this->image->storeAs('photos', $image_name,'public');
-//        }
-//    }
     #endregion
-//        return $this->image->storeAs('photos',$image_name,'public');
 
     #region[get Obj]
     public function getObj($id)
@@ -166,7 +140,7 @@ class AllTask extends Component
             $this->status = $obj->status;
             $this->verified = $obj->verified;
             $this->verified_on = $obj->verified_on;
-            $this->image=$obj->image;
+            $this->image = $obj->image;
             $this->active_id = $obj->active_id;
 
             return $obj;

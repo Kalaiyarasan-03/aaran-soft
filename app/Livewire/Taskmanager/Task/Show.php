@@ -7,6 +7,7 @@ use Aaran\Taskmanager\Models\Task;
 use App\Enums\Active;
 use App\Enums\Status;
 use App\Livewire\Trait\CommonTrait;
+use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -34,6 +35,7 @@ class Show extends Component
     public $commentsCount;
     public $verified;
     public $verified_on;
+    public $images;
     #endregion
 
     #region[Mount]
@@ -43,6 +45,7 @@ class Show extends Component
 
         $this->replies = Reply::where('task_id', $id)->get();
         $this->commentsCount = Reply::where('task_id', $id)->count();
+        $this->images = Image::where('task_id','=', $id)->get();
     }
     #endregion
 

@@ -143,8 +143,9 @@
 
                     Photo Preview:
                     <img
-                        src="{{$isUploaded? $image->temporaryUrl() : url(\Illuminate\Support\Facades\Storage::url($image)) }}"
-                        width="100" height="100">
+{{--                        src="{{$isUploaded? $photos->temporaryUrl() : url(\Illuminate\Support\Facades\Storage::url($image)) }}"--}}
+                        src="{{$image->temporaryUrl()}}"
+                        width="100" height="100" alt="{{$image}}">
                     @endforeach
                 @endif
             </div>

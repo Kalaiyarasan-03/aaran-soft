@@ -150,7 +150,7 @@
                 </div>
 
                 <div>
-                    <input multiple="multiple" type="file" wire:model="image" class="">
+                    <input type="file" wire:model="image" multiple class="">
                     <button wire:click.prevent="save_image"></button>
                 </div>
             </div>
