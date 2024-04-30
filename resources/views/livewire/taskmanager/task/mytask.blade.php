@@ -20,6 +20,13 @@
                         </div>
                     </div>
 
+                    <div class="p-5">
+                        <div class="h-40 w-40 lg:mr-8">
+                            <img class="rounded-xl justify-items-start h-40 w-40 transition duration-300 ease-in-out hover:scale-110"
+                                 src="{{ \Illuminate\Support\Facades\Storage::url($row->image) }}">
+                        </div>
+                    </div>
+
                     <div class="w-full">
                         <div class="flex justify-between w-full py-1">
                             <a href="{{ route('tasks.show',[$row->id]) }}"
@@ -127,6 +134,21 @@
             <x-input.model-text wire:model="verified" :label="'Verified'"/>
             <x-input.model-date wire:model="verified_on" :label="'Verified On'"/>
             @endadmin
+
+{{--            <div class=" flex-items-center pt-2">--}}
+                <label class="w-[10rem] text-zinc-500 tracking-wide py-2">Image</label>
+                <div class="flex-shrink-0 h-80 w-80 mr-4">
+                    @if($image)
+                        Photo Preview:
+                        <img
+                            src="{{$isUploaded? $image->temporaryUrl() : url(\Illuminate\Support\Facades\Storage::url($image)) }}"
+                            width="50" height="50">
+                    @endif
+                </div>
+            <div>
+                <input type="file" wire:model="image" class="">
+                <button wire:click.prevent="save_image"></button>
+            </div>
         </x-forms.create>
 
     </x-forms.m-panel>

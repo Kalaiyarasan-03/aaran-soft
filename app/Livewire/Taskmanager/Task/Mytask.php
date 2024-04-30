@@ -10,10 +10,12 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
 
 class Mytask extends Component
 {
     use CommonTrait;
+    use WithFileUploads;
 
     #region[properties]
     public string $client_id = '1';
@@ -29,6 +31,9 @@ class Mytask extends Component
     public $commentsCount;
     public $verified;
     public $verified_on;
+
+    public $image;
+    public $isUploaded=false;
     #endregion
 
     #region[Mount]
@@ -55,6 +60,7 @@ class Mytask extends Component
                     'status' => 1,
                     'verified' => $this->verified,
                     'verified_on' => $this->verified_on,
+                    'image' => $this->save_image(),
                     'user_id' => Auth::user()->id,
                     'active_id' => $this->active_id ? 1 : 0
                 ]);
@@ -70,6 +76,11 @@ class Mytask extends Component
                 $obj->status = $this->status;
                 $obj->verified = $this->verified;
                 $obj->verified_on = $this->verified_on;
+                if ($obj->image != $this->image) {
+                    $obj->image = $this->save_image();
+                } else {
+                    $obj->image = $this->image;
+                }
                 $obj->active_id = $this->active_id;
                 $obj->save();
                 $message = "Updated";
@@ -83,6 +94,7 @@ class Mytask extends Component
             $this->status = '';
             $this->verified = '';
             $this->verified_on = '';
+            $this->image = '';
 
             return $message;
         }
@@ -104,6 +116,7 @@ class Mytask extends Component
             $this->status = $obj->status;
             $this->verified = $obj->verified;
             $this->verified_on = $obj->verified_on;
+            $this->image=$obj->image;
             $this->active_id = $obj->active_id;
 
             return $obj;
@@ -123,6 +136,28 @@ class Mytask extends Component
             ->with('user',)
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
+    }
+    #endregion
+
+    #region[Image]
+    public function updatedImage()
+    {
+        $this->validate([
+            'image'=>'image|max:1024',
+        ]);
+
+        $this->isUploaded=true;
+    }
+
+    public function save_image()
+    {
+        if ($this->image == '') {
+            return $this->image = 'empty';
+        } else {
+        $image_name=$this->image->getClientOriginalName();
+            return $this->image->storeAs('photos', $image_name,'public');
+        }
+//        return $this->image->storeAs('photos',$image_name,'public');
     }
     #endregion
 

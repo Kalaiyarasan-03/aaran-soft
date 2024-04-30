@@ -8,12 +8,15 @@ use App\Enums\Active;
 use App\Livewire\Trait\CommonTrait;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AllTask extends Component
 {
     use CommonTrait;
+    use WithFileUploads;
 
     #region[properties]
     public string $client_id;
@@ -29,6 +32,9 @@ class AllTask extends Component
     public $commentsCount;
     public $verified;
     public $verified_on;
+
+    public $image;
+    public $isUploaded=false;
     #endregion
 
     #region[Mount]
@@ -55,6 +61,7 @@ class AllTask extends Component
                     'status' => 1,
                     'verified' => $this->verified,
                     'verified_on' => $this->verified_on,
+                    'image' => $this->save_image(),
                     'user_id' => Auth::user()->id,
                     'active_id' => $this->active_id ? 1 : 0
                 ]);
@@ -70,6 +77,11 @@ class AllTask extends Component
                 $obj->status = $this->status;
                 $obj->verified = $this->verified;
                 $obj->verified_on = $this->verified_on;
+                if ($obj->image != $this->image) {
+                    $obj->image = $this->save_image();
+                } else {
+                    $obj->image = $this->image;
+                }
                 $obj->active_id = $this->active_id;
                 $obj->save();
                 $message = "Updated";
@@ -83,12 +95,62 @@ class AllTask extends Component
             $this->verified = '';
             $this->verified_on = '';
             $this->status = '';
+            $this->image = '';
 
             return $message;
         }
         return '';
     }
     #endregion
+
+    public function save_images(Request $request)
+    {
+        $uploadedImages = [];
+
+        // Validate the request
+        $request->validate([
+            'images.*' => 'image|max:1024', // Validate each file in the 'images' array
+        ]);
+
+        // Check if files were uploaded
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                if ($image->isValid()) {
+                    $image_name = $image->getClientOriginalName();
+                    $image->storeAs('photos', $image_name, 'public');
+                    $uploadedImages[] = 'photos/' . $image_name;
+                }
+            }
+        }
+
+        // Check if any images were uploaded
+        if (empty($uploadedImages)) {
+            return 'No images uploaded';
+        } else {
+            return $uploadedImages;
+        }
+    }
+    #region[Image]
+//    public function updatedImage()
+//    {
+//        $this->validate([
+//            'image'=>'image|max:1024',
+//        ]);
+//
+//        $this->isUploaded=true;
+//    }
+//
+//       public function save_image(Request $request)
+//    {
+//        if ($this->image == '') {
+//            return $this->image = 'empty';
+//        } else {
+//        $image_name=$this->image->getClientOriginalName();
+//            return $this->image->storeAs('photos', $image_name,'public');
+//        }
+//    }
+    #endregion
+//        return $this->image->storeAs('photos',$image_name,'public');
 
     #region[get Obj]
     public function getObj($id)
@@ -104,6 +166,7 @@ class AllTask extends Component
             $this->status = $obj->status;
             $this->verified = $obj->verified;
             $this->verified_on = $obj->verified_on;
+            $this->image=$obj->image;
             $this->active_id = $obj->active_id;
 
             return $obj;

@@ -6,14 +6,17 @@ use Aaran\Audit\Models\Client;
 use Aaran\Taskmanager\Models\Task;
 use App\Enums\Active;
 use App\Livewire\Trait\CommonTrait;
+use App\Models\Image;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Index extends Component
 {
     use CommonTrait;
+    use WithFileUploads;
 
     #region[properties]
     public string $client_id;
@@ -29,6 +32,11 @@ class Index extends Component
     public $commentsCount;
     public $verified;
     public $verified_on;
+
+    public $image;
+    public $isUploaded = false;
+    public $photos = [];
+    public $task_id;
     #endregion
 
     #region[Mount]
@@ -36,17 +44,16 @@ class Index extends Component
     {
         $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
         $this->users = User::all();
-        $this->clients = Client::where('active_id','=',Active::ACTIVE )->get();
+        $this->clients = Client::where('active_id', '=', Active::ACTIVE)->get();
     }
     #endregion
 
     #region[Save]
     public function getSave(): string
     {
-        if ($this->vname) {
-
-            if ($this->vid == "") {
-                Task::create([
+        if ($this->vname != '') {
+            if ($this->vid == "")
+                $obj = Task::create([
                     'client_id' => $this->client_id,
                     'title' => $this->vname,
                     'body' => $this->body,
@@ -55,38 +62,44 @@ class Index extends Component
                     'status' => 1,
                     'verified' => $this->verified,
                     'verified_on' => $this->verified_on,
+                    'image' => $this->save_image(),
                     'user_id' => Auth::user()->id,
                     'active_id' => $this->active_id ? 1 : 0
                 ]);
-                $message = "Saved";
+            $this->save_item($obj->id);
+            $message = "Saved";
 
+        } else {
+            $obj = Task::find($this->vid);
+            $obj->client_id = $this->client_id;
+            $obj->title = $this->vname;
+            $obj->body = $this->body;
+            $obj->channel = $this->channel;
+            $obj->allocated = $this->allocated;
+            $obj->status = $this->status;
+            $obj->verified = $this->verified;
+            $obj->verified_on = $this->verified_on;
+            if ($obj->image != $this->image) {
+                $obj->image = $this->save_image();
             } else {
-                $obj = Task::find($this->vid);
-                $obj->client_id = $this->client_id;
-                $obj->title = $this->vname;
-                $obj->body = $this->body;
-                $obj->channel = $this->channel;
-                $obj->allocated = $this->allocated;
-                $obj->status = $this->status;
-                $obj->verified = $this->verified;
-                $obj->verified_on = $this->verified_on;
-                $obj->active_id = $this->active_id;
-                $obj->save();
-                $message = "Updated";
+                $obj->image = $this->image;
             }
-
-            $this->client_id = '';
-            $this->vname = '';
-            $this->body = '';
-            $this->channel = '';
-            $this->allocated = '';
-            $this->verified = '';
-            $this->verified_on = '';
-            $this->status = '';
-
-            return $message;
+            $obj->active_id = $this->active_id;
+            $obj->save();
+            $message = "Updated";
         }
-        return '';
+
+        $this->client_id = '';
+        $this->vname = '';
+        $this->body = '';
+        $this->channel = '';
+        $this->allocated = '';
+        $this->verified = '';
+        $this->verified_on = '';
+        $this->status = '';
+        $this->image = '';
+
+        return $message;
     }
     #endregion
 
@@ -104,6 +117,7 @@ class Index extends Component
             $this->status = $obj->status;
             $this->verified = $obj->verified;
             $this->verified_on = $obj->verified_on;
+            $this->image = $obj->image;
             $this->active_id = $obj->active_id;
 
             return $obj;
@@ -112,7 +126,41 @@ class Index extends Component
     }
     #endregion
 
-    #region[List]
+    #region[image]
+    public function updatedImage()
+    {
+        $this->validate([
+            'image' => 'image|max:1024',
+        ]);
+        $this->isUploaded = true;
+    }
+
+    public function save_item($id)
+    {
+        foreach ($this->photos as $photo) {
+            Image::create([
+                'task_id' => 'id',
+                'image' => $this->save_image(),
+            ]);
+        }
+    }
+
+    public function save_image()
+    {
+        if ($this->image == '') {
+            return $this->image = 'empty';
+        } else {
+            foreach ($this->image as $photos) {
+                $image_name = $this->image->getClientOriginalName();
+                return $this->image->storeAs('photos', $image_name, 'public');
+            }
+        }
+    }
+
+
+#endregion
+
+#region[List]
     public function getList()
     {
         $this->sortField = 'id';
@@ -127,18 +175,33 @@ class Index extends Component
             ->orderBy($this->sortField, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }
-    #endregion
 
-    #region[Render]
-    public function reRender(): void
+#endregion
+
+    public function clearFields()
+    {
+        $this->vname = '';
+        $this->client_id = '';
+        $this->body = '';
+        $this->channel = '';
+        $this->allocated = '';
+        $this->image = '';
+
+    }
+
+#region[Render]
+    public
+    function reRender(): void
     {
         $this->render();
     }
-    public function render()
+
+    public
+    function render()
     {
         return view('livewire.taskmanager.task.index', [
             'list' => $this->getList()
         ]);
     }
-    #endregion
+#endregion
 }

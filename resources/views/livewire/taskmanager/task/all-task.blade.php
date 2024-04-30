@@ -3,8 +3,10 @@
 
 
     <x-forms.m-panel>
-        <x-forms.top-controls :show-filters="$showFilters"/>
 
+        <!-- Top Controls --------------------------------------------------------------------------------------------->
+
+        <x-forms.top-controls :show-filters="$showFilters"/>
 
         @forelse ($list as $index=> $row)
             <div class="flex flex-col gap-3">
@@ -15,10 +17,16 @@
                             {{ $index+1 }}
                         </a>
                         <div
-                                class="h-1/4 flex items-center justify-center bg-blue-300  {{ \App\Enums\Status::tryFrom($row->status)->getStyle() }}">
+                            class="h-1/4 flex items-center justify-center bg-blue-300  {{ \App\Enums\Status::tryFrom($row->status)->getStyle() }}">
                             {{ \App\Enums\Status::tryFrom($row->status)->getName() }}
                         </div>
                     </div>
+                                    <div class="p-5">
+                                        <div class="h-40 w-40 lg:mr-8">
+                                            <img class="rounded-xl justify-items-start h-40 w-40 transition duration-300 ease-in-out hover:scale-110"
+                                                 src="{{ \Illuminate\Support\Facades\Storage::url($row->image) }}">
+                                        </div>
+                                    </div>
 
                     <div class="w-full">
                         <div class="flex justify-between w-full py-1">
@@ -28,7 +36,7 @@
                             </a>
                             <div class="p-1">
                                 <a
-                                        class="cursor-pointer px-3 text-center rounded-full outline outline-1 outline-green-600 bg-green-100 flex flex-shrink-0">{{ \App\Enums\Channels::tryFrom($row->channel)->getName() }}</a>
+                                    class="cursor-pointer px-3 text-center rounded-full outline outline-1 outline-green-600 bg-green-100 flex flex-shrink-0">{{ \App\Enums\Channels::tryFrom($row->channel)->getName() }}</a>
                             </div>
                             <div class="text-lg text-right px-2 flex flex-row gap-3 flex-shrink-0">
                                 <a class="cursor-pointer">By : {{ $row->user->name }}</a>
@@ -49,11 +57,13 @@
                                 <div class="flex flex-row gap-2">
                                     <span class=" text-sm py-0.5 text-gray-500">Assign To :</span>
                                     <span
-                                            class=" text-md text-gray-600">
+                                        class=" text-md text-gray-600">
                                         {{ \Aaran\Taskmanager\Models\Task::allocate($row->allocated) }}
                                     </span>
 
                                 </div>
+
+{{--                                <div class="flex">--}}
 
 
                                 <a href="{{ route('tasks.show',[$row->id]) }}"
@@ -67,26 +77,22 @@
 {{--                                           {{ \Aaran\Taskmanager\Models\Reply::counts($row->id)}}--}}
                                         </span>
                                 </a>
-
-
                             </div>
 
 
                             <div class="px-3 py-1 flex flex-row gap-3 items-center">
                                 {{ \App\Helper\ConvertTo::dateTime($row->updated_at)}}
                                 <div
-                                        class="text-center flex items-center w-4 h-4 mr-2 text-sm rounded-full {{\App\Enums\Active::tryFrom($row->active_id)->getStyle()}}">
+                                    class="text-center flex items-center w-4 h-4 mr-2 text-sm rounded-full {{\App\Enums\Active::tryFrom($row->active_id)->getStyle()}}">
                                     &nbsp;
                                 </div>
                             </div>
-
-
                         </div>
-
                     </div>
 
                 </div>
             </div>
+
         @empty
 
             <div class="flex justify-center items-center space-x-2">
@@ -97,7 +103,7 @@
         @endforelse
 
 
-        <!-- Create Record -->
+        <!-- Create Record -------------------------------------------------------------------------------------------->
         <x-forms.create :id="$vid">
 
             <x-input.model-select wire:model="client_id" :label="'Client'">
@@ -113,7 +119,6 @@
                 <x-input.rich-text wire:model="body" :placeholder="''"/>
             </div>
 
-
             <x-input.model-select wire:model="channel" :label="'Channel'">
                 <option class="text-gray-400"> choose ..</option>
                 @foreach(\App\Enums\Channels::cases() as $channel)
@@ -127,10 +132,28 @@
                     <option value="{{$user->id}}">{{$user->name}}</option>
                 @endforeach
             </x-input.model-select>
+
             @admin
             <x-input.model-text wire:model="verified" :label="'Verified'"/>
             <x-input.model-date wire:model="verified_on" :label="'Verified On'"/>
             @endadmin
+
+            <div class=" flex-items-center pt-2">
+                <label class="w-[10rem] text-zinc-500 tracking-wide py-2">Image</label>
+                <div class="flex-shrink-0 h-40 w-40 mr-4">
+                    @if($image)
+                        Photo Preview:
+                        <img
+                            src="{{$isUploaded? $image->temporaryUrl() : url(\Illuminate\Support\Facades\Storage::url($image)) }}"
+                            width="50" height="50">
+                    @endif
+                </div>
+
+                <div>
+                    <input multiple="multiple" type="file" wire:model="image" class="">
+                    <button wire:click.prevent="save_image"></button>
+                </div>
+            </div>
 
         </x-forms.create>
 
