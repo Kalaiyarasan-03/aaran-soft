@@ -8,6 +8,7 @@ use Aaran\Master\Models\Contact;
 use Aaran\Master\Models\Order;
 use App\Livewire\Trait\CommonTrait;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -23,8 +24,9 @@ class Receivables extends Component
     public $start_date;
     public $end_date;
     public mixed $opening_balance;
-    public mixed $old_balance=0;
-    public mixed $sale_total=0;
+    public mixed $old_balance = 0;
+    public mixed $sale_total = 0;
+    public $invoiceDate_first;
     #endregion
 
     #region[Contact]
@@ -38,33 +40,38 @@ class Receivables extends Component
 
     public function opening_Balance($id)
     {
-     $obj=Contact::find($id);
-     $this->vname=$obj->vname;
+        $obj = Contact::find($id);
+        $this->vname = $obj->vname;
 
-     $this->opening_balance=$obj->opening_balance;
+        $this->opening_balance = $obj->opening_balance;
+        $sale_all = Sale::where('contact_id', '=', $id)
+            ->get();
+        $data = $sale_all[0];
+        $this->invoiceDate_first = $data['invoice_date'];
 
     }
 
     public function sale_Total()
     {
-        if ($this->start_date!=null) {
-            $sale_all=Sale::where('contact_id', '=', $this->by_company)
-                ->get();
+
+        if ($this->start_date != null) {
+
+
             $sale = Sale::when($this->start_date, function ($query, $start_date) {
                 return $query->whereDate('invoice_date', '<', $start_date);
             })->where('contact_id', '=', $this->by_company)
                 ->get();
 
-            $data=$sale_all[0];
+            $this->sale_total = 0;
             foreach ($sale as $i) {
                 $this->sale_total += floatval($i->grand_total);
             }
 
-            if ($data['invoice_date']!=$this->start_date) {
-                $this->old_balance =floatval($this->opening_balance+ $this->sale_total);
-            }else{
-              $this->opening_Balance($this->by_company);
-              $this->old_balance=$this->opening_balance;
+            if ($this->start_date > $this->invoiceDate_first) {
+                $this->old_balance = floatval($this->opening_balance + $this->sale_total);
+            } elseif ($this->start_date <= $this->invoiceDate_first) {
+                $this->opening_Balance($this->by_company);
+                $this->old_balance = $this->opening_balance;
             }
         }
     }
@@ -75,7 +82,6 @@ class Receivables extends Component
 
     private function getList()
     {
-
 
 
         $sales = Receipt::select([
@@ -131,9 +137,13 @@ class Receivables extends Component
 
     public function print()
     {
-        if ($this->by_company!=null) {
+
+        if ($this->by_company != null) {
             $this->redirect(route('receviables.print',
-                ['party' => $this->by_company, 'start_date' => $this->start_date?:'', 'end_date' => $this->end_date?:'',]));
+                [
+                    'party' => $this->by_company, 'start_date' => $this->start_date ?: $this->invoiceDate_first,
+                    'end_date' => $this->end_date ?: Carbon::now()->format('Y-m-d'),
+                ]));
         }
     }
 
