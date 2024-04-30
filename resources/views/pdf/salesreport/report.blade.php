@@ -21,7 +21,7 @@
         }
 
         th, td {
-            font-size: xx-small;
+            font-size: x-small;
             border: solid 1px rgba(161, 161, 161, 0.9);
             border-collapse: collapse;
             padding: 2px;
@@ -120,30 +120,76 @@
             height: auto;
 
         }
-
-
+        hr {
+            border: none;
+            height: 1.5px;
+            /* Set the hr color */
+            color: #333;  /* old IE */
+            background-color: #333;  /* Modern Browsers */
+        }
     </style>
 
 </head>
 <body>
-<h3 style="text-align: center">Sales Report</h3>
+<h2 style="text-align: center">
+    <div style="font-family:Times,serif; width: 100%;color: #3b82f6;">{{$cmp->get('company_name')}}</div>
+</h2>
+<hr>
+<div style="text-align: left;">
+    Party Name :&nbsp;&nbsp;&nbsp;&nbsp;<b>{{$contact->vname}}</b>
+</div>
+
+<div style="text-align: center;font-size: 15px;padding: 10px;">
+    <b>Statement&nbsp;{{$start_date.' to '.$end_date}}</b>
+</div>
+
 <table width="100%">
     <thead style="background-color: lightgray;">
     <tr>
-        <td>Invoice No</td>
-        <td>Invoice date</td>
-        <td>Party Name</td>
-        <td>Total Amount</td>
+        <td style="font-size: xx-small;">Date</td>
+        <td style="font-size: xx-small;">Voucher no</td>
+        <td style="font-size: xx-small;">Voucher type</td>
+        <td style="font-size: xx-small;">Cheque No</td>
+        <td style="font-size: xx-small;">Invoice amount</td>
+        <td style="font-size: xx-small;">Receipt amount</td>
     </tr></thead>
     <tbody>
+    <tr>
+        <td colspan="4" style="text-align: right;">Opening Balance</td>
+        <td>{{$old_balance}}</td>
+        <td></td>
+    </tr>
+
+    @php
+        $totalSales = 0;
+        $totalReceipt = 0;
+    @endphp
+
 @foreach( $obj as $row )
     <tr>
-        <td>{{$row->invoice_no}}</td>
-        <td> {{$row->invoice_date}}</td>
-        <td> {{$row->contact_name}}</td>
+        <td> {{date('d-m-Y', strtotime($row->vdate))}}</td>
+        <td>{{$row->vno}}</td>
+        <td> {{$row->mode}}</td>
+        <td> {{$row->chq_no}}</td>
         <td> {{$row->grand_total}}</td>
+        <td> {{$row->receipt_amount}}</td>
     </tr>
+
+    @php
+        $totalSales += floatval($row->grand_total);
+        $totalReceipt += floatval($row->receipt_amount);
+    @endphp
 @endforeach
+    <tr>
+        <td colspan="4" style="text-align: right;"><b>Total</b></td>
+        <td><b>{{$totalSales+$old_balance}}</b></td>
+        <td><b>{{$totalReceipt}}</b></td>
+    </tr>
+    <tr>
+        <td colspan="4" style="text-align: right;"><b>Balance</b></td>
+        <td><b>{{$totalSales+$old_balance-$totalReceipt}}</b></td>
+        <td></td>
+    </tr>
     </tbody>
 </table>
 </body>
