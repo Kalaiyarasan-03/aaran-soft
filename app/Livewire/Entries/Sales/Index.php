@@ -43,6 +43,7 @@ class Index extends Component
                 return $query->where('contact_id',$filter);
             })
             ->where('company_id', '=',  session()->get('company_id'))
+            ->where('acyear', '=',  session()->get('acyear'))
             ->orderBy($this->sortField_1, $this->sortAsc ? 'asc' : 'desc')
             ->paginate($this->perPage);
     }

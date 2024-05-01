@@ -12,7 +12,7 @@ class CityList extends Component
     use CommonTrait;
 
     #region[save]
-    public function getSave(): string
+    public function getSave(): void
     {
 
         $this->validate(['vname' => 'required|unique:cities,vname']);
@@ -31,9 +31,9 @@ class CityList extends Component
                 $obj->save();
                 $message = "Updated";
             }
-            return $message;
+
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
-        return '';
     }
     #endregion
 

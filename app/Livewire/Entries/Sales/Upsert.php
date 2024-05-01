@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Rule;
 use Livewire\Component;
+use mysql_xdevapi\Exception;
 
 class Upsert extends Component
 {
@@ -764,7 +765,7 @@ class Upsert extends Component
     #endregion
 
     #region[Save]
-    public function save(): string
+    public function save(): void
     {
 
         try {
@@ -837,15 +838,14 @@ class Upsert extends Component
                     $this->saveItem($obj->id);
                     $message = "Updated";
                 }
+
+                $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
                 $this->getRoute();
-                return $message;
             }
-        } catch (\Exception $exception)
-        {
-            return $exception->getMessage();
+        } catch (\Exception $exception) {
+            echo($exception->getMessage());
         }
-            return '';
-        }
+    }
 
     public function saveItem($id): void
     {
