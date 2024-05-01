@@ -95,7 +95,6 @@ class Receivables extends Component
     private function getList()
     {
 
-
         $sales = Receipt::select([
             'receipts.company_id',
             'receipts.contact_id',
@@ -107,9 +106,6 @@ class Receivables extends Component
         ])
             ->where('active_id', '=', $this->activeRecord)
             ->where('contact_id', '=', $this->by_company)
-//            ->when($this->by_company, function ($query, $by_company) {
-//                return $query->where('contact_id', $by_company);
-//            })
             ->when($this->start_date, function ($query, $start_date) {
                 return $query->whereDate('vdate', '>=', $start_date);
             })
@@ -139,7 +135,7 @@ class Receivables extends Component
             ->where('company_id', '=', session()->get('company_id'))
             ->union($sales)
             ->orderBy('vdate')
-            ->orderBy('mode')->get();
+            ->orderBy('mode')->paginate($this->perPage);
 
 
     }

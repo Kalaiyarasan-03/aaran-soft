@@ -41,10 +41,12 @@
                 @endphp
                 <x-table.row>
                     @if($by_company!=null)
+
                         <x-table.cell colspan="3">
                             <div class="text-right font-bold">
                                 {{ $vname }}</div>
                         </x-table.cell>
+
                         <x-table.cell colspan="1">
                             @if($start_date!=null)
                                 <div class="text-right font-bold">
@@ -113,9 +115,9 @@
                 </x-table.row>
 
             </x-slot>
-            {{--            <x-slot name="table_pagination">--}}
-            {{--                {{ $list->links() }}--}}
-            {{--            </x-slot>--}}
+                        <x-slot name="table_pagination">
+                            {{ $list->links() }}
+                        </x-slot>
         </x-forms.table>
     </x-forms.m-panel>
 </div>
