@@ -9,14 +9,21 @@
 
             </div>
 
-                @if(Aaran\Aadmin\Src\Customise::hasAttendance())
-                    <livewire:attendance.attendance.index/>
-                @endif
+
+            @if(Aaran\Aadmin\Src\Customise::hasAttendance())
+                <livewire:attendance.attendance.index/>
+            @endif
+
+
+            {{--            <button  wire:click="sendNotify"--}}
+            {{--            >button--}}
+            {{--            </button>--}}
 
 
         </div>
         <div class="fixed right-0 px-2 py-2 text-gray-400 bottom-0">
-            v-{{config('aadmin.soft_version')}}-DB-{{config('aadmin.soft_version')}}-{{\Livewire\str()->ucfirst(config('aadmin.app_type'))}}
+            v-{{config('aadmin.soft_version')}}-DB-{{config('aadmin.soft_version')}}
+            -{{\Livewire\str()->ucfirst(config('aadmin.app_type'))}}
         </div>
     </div>
 </div>

@@ -36,6 +36,7 @@
 
     </div>
 </div>
+<x-notify/>
 
 @stack('modals')
 
