@@ -8,12 +8,13 @@
         <x-input.advance-search-filter :show-filters="$showFilters" :contacts="$contacts" :orders="''"/>
         <x-forms.table>
 
-        <!-- Table Header --------------------------------------------------------------------------------------------->
+            <!-- Table Header --------------------------------------------------------------------------------------------->
             <x-slot name="table_header">
                 <x-table.header-serial/>
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Order No</x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Purchase No</x-table.header-text>
-                <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Purchase Date</x-table.header-text>
+                <x-table.header-text wire:click.prevent="sortBy('purchase_no')" center>Purchase Date
+                </x-table.header-text>
                 <x-table.header-text wire:click.prevent="sortBy('purchase_no')" left>Party Name</x-table.header-text>
                 <x-table.header-text center>Total Qty</x-table.header-text>
                 <x-table.header-text center>Total Taxable</x-table.header-text>
@@ -24,6 +25,15 @@
 
             <!-- Table Body ------------------------------------------------------------------------------------------->
             <x-slot name="table_body">
+
+                @php
+                    $totalQty = 0;
+                    $totalTaxable = 0;
+                    $totalGst = 0;
+                    $totalGrandtotal = 0;
+
+                @endphp
+
                 @forelse ($list as $index =>  $row)
 
                     <x-table.row>
@@ -59,7 +69,7 @@
 
                         <x-table.cell-text center>
                             <a href="{{route('purchases.upsert',[$row->id])}}">
-                                {{ $row->total_qty}}
+                                {{ $row->total_qty + 0}}
                             </a>
                         </x-table.cell-text>
 
@@ -92,7 +102,7 @@
                                     </x-button.link>
                                 </a>
                                 <x-button.link wire:click="getDelete({{$row->id}})"
-                                              >&nbsp;
+                                >&nbsp;
                                     <x-icons.icon :icon="'trash'"
                                                   class="text-red-600 h-5 hover:bg-red-500 hover:text-white hover:rounded-sm hover:font-bold w-auto block"/>
                                 </x-button.link>
@@ -101,9 +111,31 @@
 
                     </x-table.row>
 
+                    @php
+                        $totalQty  += floatval($row->total_qty + 0);
+                        $totalTaxable  += floatval($row->total_taxable);
+                        $totalGst  += floatval($row->total_gst);
+                        $totalGrandtotal  += floatval($row->grand_total);
+
+                    @endphp
+
                 @empty
                     <x-table.empty/>
                 @endforelse
+
+
+                <x-table.row>
+                    <x-table.cell-text :colspan="5" :class="'text-blue-600 font-semibold'" right>&nbsp;TOTALS&nbsp;&nbsp;&nbsp;</x-table.cell-text>
+                    <x-table.cell-text center :class="'text-blue-600 font-semibold'">{{ $totalQty}}</x-table.cell-text>
+                    <x-table.cell-text right
+                                       :class="'text-blue-600 font-semibold'">{{ \App\Helper\ConvertTo::decimal2($totalTaxable)}}</x-table.cell-text>
+                    <x-table.cell-text right
+                                       :class="'text-blue-600 font-semibold'">{{ \App\Helper\ConvertTo::decimal2($totalGst)}}</x-table.cell-text>
+                    <x-table.cell-text right
+                                       :class="'text-blue-600 font-semibold'">{{ \App\Helper\ConvertTo::decimal2($totalGrandtotal)}}</x-table.cell-text>
+                </x-table.row>
+
+
             </x-slot>
 
             <!-- Pagination ----------------------------------------------------------------------------------------->

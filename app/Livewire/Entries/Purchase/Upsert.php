@@ -28,7 +28,7 @@ class Upsert extends Component
     public string $acyear = '';
     public string $purchase_no = '';
     public string $purchase_date = '';
-    public string $Entry_no = '';
+    public string $entry_no = '';
     public string $sales_type = '';
     public string $bundle = '';
     public mixed $total_qty = 0;
@@ -497,7 +497,7 @@ class Upsert extends Component
                     'contact_id' => $this->contact_id,
                     'purchase_no' => $this->purchase_no,
                     'purchase_date' => $this->purchase_date,
-                    'Entry_no' => $this->Entry_no,
+                    'Entry_no' => $this->entry_no,
                     'order_id' => $this->order_id ?: '1',
                     'sales_type' => $this->sales_type,
                     'transport_id' => $this->transport_id ?: '1',
@@ -523,15 +523,15 @@ class Upsert extends Component
                 $obj->contact_id = $this->contact_id;
                 $obj->purchase_no = $this->purchase_no;
                 $obj->purchase_date = $this->purchase_date;
-                $obj->Entry_no = $this->Entry_no;
-                $obj->order_id = $this->order_id;
+                $obj->Entry_no = $this->entry_no;
+                $obj->order_id = $this->order_id ?: '1';
                 $obj->sales_type = $this->sales_type;
-                $obj->transport_id = $this->transport_id;
+                $obj->transport_id = $this->transport_id ?: '1';
                 $obj->bundle = $this->bundle;
                 $obj->total_qty = $this->total_qty;
                 $obj->total_taxable = $this->total_taxable;
                 $obj->total_gst = $this->total_gst;
-                $obj->ledger_id = $this->ledger_id;
+                $obj->ledger_id = $this->ledger_id ?: '1';
                 $obj->additional = $this->additional;
                 $obj->round_off = $this->round_off;
                 $obj->grand_total = $this->grand_total;
@@ -555,8 +555,8 @@ class Upsert extends Component
             Purchaseitem::create([
                 'purchase_id' => $id,
                 'product_id' => $sub['product_id'],
-                'colour_id' => $sub['colour_id'],
-                'size_id' => $sub['size_id'],
+                'colour_id' => $sub['colour_id'] ?: '1',
+                'size_id' => $sub['size_id'] ?: '1',
                 'qty' => $sub['qty'],
                 'price' => $sub['price'],
                 'gst_percent' => $sub['gst_percent'],
@@ -568,7 +568,7 @@ class Upsert extends Component
     #region[Mount]
     public function mount($id): void
     {
-        $this->Entry_no = Purchase::nextNo();
+        $this->entry_no = Purchase::nextNo();
         if ($id != 0) {
             $obj = Purchase::find($id);
             $this->vid = $obj->id;
@@ -578,7 +578,7 @@ class Upsert extends Component
             $this->contact_name = $obj->contact->vname;
             $this->purchase_no = $obj->purchase_no;
             $this->purchase_date = $obj->purchase_date;
-            $this->Entry_no = $obj->Entry_no;
+            $this->entry_no = $obj->Entry_no;
             $this->order_id = $obj->order_id;
             $this->order_name = $obj->order->vname;
             $this->sales_type = $obj->sales_type;
@@ -636,8 +636,8 @@ class Upsert extends Component
     public function addItems(): void
     {
         if ($this->itemIndex == "") {
-            if (!(empty($this->colour_name)) &&
-                !(empty($this->size_name)) &&
+            if (!(empty($this->product_name)) &&
+                !(empty($this->price)) &&
                 !(empty($this->qty))
             ) {
                 $this->itemList[] = [
@@ -774,7 +774,7 @@ class Upsert extends Component
             $this->contact_name = $obj->contact->vname;
             $this->purchase_no = $obj->purchase_no;
             $this->purchase_date = $obj->purchase_date;
-            $this->Entry_no = $obj->Entry_no;
+            $this->entry_no = $obj->Entry_no;
             $this->order_id = $obj->order_id;
             $this->order_name = $obj->order->vname;
             $this->sales_type = $obj->sales_type;

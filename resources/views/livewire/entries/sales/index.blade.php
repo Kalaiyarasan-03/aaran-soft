@@ -42,13 +42,6 @@
                 @forelse ($list as $index =>  $row)
 
                     <x-table.row>
-                        {{--                        <x-table.cell-text center>--}}
-                        {{--                            <a href="">--}}
-                        {{--                                {{ $index + 1 }}--}}
-                        {{--                            </a>--}}
-                        {{--                        </x-table.cell-text>--}}
-
-
                         <x-table.cell-text center>
                             <a href="{{route('sales.upsert',[$row->id])}}">
                                 {{ $row->invoice_no}}
@@ -128,11 +121,14 @@
                 @endforelse
 
                 <x-table.row>
-                    <x-table.cell-text :colspan="3" :class="'text-blue-600 font-semibold'" right >&nbsp;TOTALS&nbsp;&nbsp;&nbsp;</x-table.cell-text>
+                    <x-table.cell-text :colspan="3" :class="'text-blue-600 font-semibold'" right>&nbsp;TOTALS&nbsp;&nbsp;&nbsp;</x-table.cell-text>
                     <x-table.cell-text center :class="'text-blue-600 font-semibold'">{{ $totalQty}}</x-table.cell-text>
-                    <x-table.cell-text right :class="'text-blue-600 font-semibold'">{{ \App\Helper\ConvertTo::decimal2($totalTaxable)}}</x-table.cell-text>
-                    <x-table.cell-text right :class="'text-blue-600 font-semibold'">{{ \App\Helper\ConvertTo::decimal2($totalGst)}}</x-table.cell-text>
-                    <x-table.cell-text right :class="'text-blue-600 font-semibold'">{{ \App\Helper\ConvertTo::decimal2($totalGrandtotal)}}</x-table.cell-text>
+                    <x-table.cell-text right
+                                       :class="'text-blue-600 font-semibold'">{{ \App\Helper\ConvertTo::decimal2($totalTaxable)}}</x-table.cell-text>
+                    <x-table.cell-text right
+                                       :class="'text-blue-600 font-semibold'">{{ \App\Helper\ConvertTo::decimal2($totalGst)}}</x-table.cell-text>
+                    <x-table.cell-text right
+                                       :class="'text-blue-600 font-semibold'">{{ \App\Helper\ConvertTo::decimal2($totalGrandtotal)}}</x-table.cell-text>
                 </x-table.row>
 
             </x-slot>
