@@ -93,11 +93,11 @@
                     <td colspan="3" class="px-2 text-md text-right text-gray-400 border border-gray-300">&nbsp;TOTALS&nbsp;&nbsp;&nbsp;
                     </td>
                     @if($start_date!=null)
-                        <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalSales+$old_balance)}}</td>
-                        <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalReceipt)}}</td>
+                        <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::decimal2($totalSales+$old_balance)}}</td>
+                        <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::decimal2($totalReceipt)}}</td>
                     @else
-                        <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalSales+$opening_balance)}}</td>
-                        <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalReceipt)}}</td>
+                        <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::decimal2($totalSales+$opening_balance)}}</td>
+                        <td class="px-2 text-right  text-md border text-zinc-500 border-gray-300">{{ \App\Helper\ConvertTo::decimal2($totalReceipt)}}</td>
                     @endif
                 </x-table.row>
 
@@ -105,9 +105,9 @@
                     <td colspan="3" class="px-2 text-md text-right text-gray-400 border border-gray-300">&nbsp;Balance&nbsp;&nbsp;&nbsp;
                     </td>
                     @if($start_date!=null)
-                        <td class="px-2 text-right  text-md border text-blue-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalSales+$old_balance-$totalReceipt)}}</td>
+                        <td class="px-2 text-right  text-md border text-blue-500 border-gray-300">{{ \App\Helper\ConvertTo::decimal2($totalSales+$old_balance-$totalReceipt)}}</td>
                     @else
-                        <td class="px-2 text-right  text-md border text-blue-500 border-gray-300">{{ \App\Helper\ConvertTo::rupeesFormat($totalSales+$opening_balance-$totalReceipt)}}</td>
+                        <td class="px-2 text-right  text-md border text-blue-500 border-gray-300">{{ \App\Helper\ConvertTo::decimal2($totalSales+$opening_balance-$totalReceipt)}}</td>
                     @endif
                     <td class="px-2 text-right  text-md border text-blue-500 border-gray-300"></td>
                 </x-table.row>
