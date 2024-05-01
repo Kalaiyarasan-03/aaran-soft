@@ -15,8 +15,7 @@ return [
         SaleEntry::order(),
         SaleEntry::Po_no(),
         SaleEntry::Dc_no(),
-        SaleEntry::no_of_roll(),
-        SaleEntry::productDescription(),
+//        SaleEntry::productDescription(),
     ],
 
     'menus'=>[
