@@ -360,30 +360,5 @@
     </x-forms.m-panel>
 
     <!-- Save Button area --------------------------------------------------------------------------------------------->
-    <section>
-        <div class="px-8 py-6 gap-4 bg-gray-100 rounded-b-md border border-gray-300 border-t-0 shadow-lg w-full ">
-            <div class="flex flex-col md:flex-row justify-between gap-3 mt-5 mb-0">
-                <div class="flex gap-3">
-                    <x-button.save/>
-                    <x-button.back/>
-                </div>
-                <div>
-                    <label for="active_id" class="inline-flex relative items-center cursor-pointer">
-                        <input type="checkbox" id="active_id" class="sr-only peer"
-                               wire:model="active_id">
-                        <div
-                            class="w-10 h-5 bg-gray-200 rounded-full peer peer-focus:ring-2
-                                        peer-focus:ring-blue-300
-                                         peer-checked:after:translate-x-full peer-checked:after:border-white
-                                         after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300
-                                         after:border after:rounded-full after:h-4 after:w-4 after:transition-all
-                                         peer-checked:bg-blue-600">
-
-                        </div>
-                        <span class="ml-3 text-sm font-medium text-gray-900">Active</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-    </section>
+    <x-forms.m-panel-bottom-button save back active />
 </div>
