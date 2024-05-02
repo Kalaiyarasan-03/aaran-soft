@@ -44,9 +44,9 @@
 
                                 <div>
                                     <header class="mt-8 lg:mt-0">
-                            <span class="mt-2 block text-gray-400 text-xs">
-                                Published <time>{{ $row->created_at->diffForHumans() }}</time>
-                            </span>
+                                        <span class="mt-2 block text-gray-400 text-xs">
+                                            Published <time>{{ $row->created_at->diffForHumans() }}</time>
+                                        </span>
                                     </header>
                                 </div>
 
