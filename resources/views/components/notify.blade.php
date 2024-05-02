@@ -14,7 +14,7 @@
         },
     }"
     @notify.window="add($event)"
-    class="fixed bottom-0 right-0 flex w-full max-w-xs flex-col space-y-4 pr-4 pb-4 sm:justify-start"
+    class="fixed top-0 right-0 flex w-full max-w-xs flex-col space-y-4 pr-4 pb-4 sm:justify-start"
     role="status"
     aria-live="polite"
 >
@@ -42,11 +42,65 @@
 
 {{--            sss--}}
 
-            <div x-show="notification.type === 'success'" class="flex-shrink-0 bg-blue-400">
-                <span aria-hidden="true" class="inline-flex h-6 w-6 items-center justify-center bg-blue-400 rounded-full border-2
-                border-gray-400 text-xl font-bold text-gray-400">!</span>
-                <p x-text="notification.content" class="text-sm font-medium leading-5 text-gray-900 bg-blue-400"></p>
+            <div x-show="notification.type === 'success'" class="inline-flex rounded-xl pointer-events-auto p-2 max-w-sm h-12 bg-green-500 gap-2">
+                <span aria-hidden="true" class="inline-flex h-6 w-6 items-center justify-center ml-2 my-auto rounded-full border-2 border-green-200 text-lg font-bold text-white">&check;</span>
+                <p x-text="notification.content" class="text-sm font-semibold flex-shrink-0 ml-1.5 my-auto text-white">you have saved successfully </p>
+                <span class="my-auto ml-3 flex rounded-full bg-green-500">
+                    <button @click="transitionOut()" class="close rounded-full hover:bg-green-600">
+                        <x-icons.icon :icon="'x-mark'" class="w-8 h-auto block font-bold text-white"/>
+                    </button>
+                </span>
             </div>
+{{--            <div x-show="notification.type === 'info'" class="inline-flex rounded-xl pointer-events-auto p-2 max-w-sm h-12 bg-blue-600 gap-2">--}}
+{{--                <span aria-hidden="true" class="inline-flex h-6 w-6 items-center justify-center ml-2 my-auto rounded-full border-2 border-white text-lg font-bold text-white">!</span>--}}
+{{--                <p x-text="notification.content" class="text-sm font-semibold leading-5 ml-1.5 my-auto text-white">you have saved info</p>--}}
+{{--                <span class="my-auto ml-3 flex rounded-full bg-blue-600">--}}
+{{--                    <button @click="transitionOut()" class="close rounded-full hover:bg-blue-700">--}}
+{{--                        <x-icons.icon :icon="'x-mark'" class="w-8 font-bold h-auto block text-white"/>--}}
+{{--                    </button>--}}
+{{--                </span>--}}
+{{--            </div>--}}
+{{--            <div x-show="notification.type === 'success'" class="inline-flex rounded-xl pointer-events-auto p-2 max-w-sm h-12 bg-red-500 gap-2">--}}
+{{--                <span aria-hidden="true" class="inline-flex h-8 w-8 items-center justify-center my-auto rounded-full border-2 border-white text-lg font-bold text-white">--}}
+{{--                    <x-icons.icon :icon="'error'" class="w-6 font-semibold h-auto block text-white"/>--}}
+{{--                </span>--}}
+{{--                <p x-text="notification.content" class="text-sm font-semibold leading-5 ml-1.5 my-auto text-white">you have saved successfully</p>--}}
+{{--                <span class="my-auto ml-3 flex border border-red-500 rounded-full bg-red-500 ">--}}
+{{--                    <button @click="transitionOut()" class="close font-semibold text-2xl rounded-3xl hover:bg-white">--}}
+{{--                        <x-icons.icon :icon="'x-mark'" class="w-8 font-semibold h-auto block text-white  hover:text-gray-800"/>--}}
+{{--                    </button>--}}
+{{--                </span>--}}
+{{--            </div>--}}
+{{--            <div x-show="notification.type === 'success'" class="inline-flex rounded-xl pointer-events-auto p-2 max-w-sm h-12 bg-yellow-400 gap-2">--}}
+{{--                <span aria-hidden="true" class="inline-flex h-8 w-8 items-center justify-center my-auto rounded-full border-2 border-white text-lg font-bold text-black">--}}
+{{--                    <x-icons.icon :icon="'error'" class="w-6 font-semibold h-auto block text-white"/>--}}
+{{--                </span>--}}
+{{--                <p x-text="notification.content" class="text-sm font-semibold leading-5 ml-1.5 my-auto text-white">you have saved successfully</p>--}}
+{{--                <span class="my-auto ml-3 flex  rounded-full bg-yellow-400 ">--}}
+{{--                    <button @click="transitionOut()" class="close font-semibold text-2xl rounded-3xl hover:bg-white">--}}
+{{--                        <x-icons.icon :icon="'x-mark'" class="w-8 font-semibold h-auto block text-white  hover:text-gray-800"/>--}}
+{{--                    </button>--}}
+{{--                </span>--}}
+{{--            </div>--}}
+{{--            <div x-show="notification.type === 'success'" class="inline-flex rounded-xl pointer-events-auto p-2 max-w-sm h-12 bg-gray-300 gap-2">--}}
+{{--                <span aria-hidden="true" class="inline-flex h-8 w-8 items-center justify-center my-auto rounded-full border-2 border-white text-lg font-bold text-black">--}}
+{{--                    <x-icons.icon :icon="'error'" class="w-6 font-semibold h-auto block text-white"/>--}}
+{{--                </span>--}}
+{{--                <p x-text="notification.content" class="text-sm font-semibold leading-5 ml-1.5 my-auto text-white">you have saved successfully</p>--}}
+{{--                <span class="my-auto ml-3 flex  rounded-full bg-gray-300 ">--}}
+{{--                    <button @click="transitionOut()" class="close font-semibold text-2xl rounded-3xl hover:bg-white">--}}
+{{--                        <x-icons.icon :icon="'x-mark'" class="w-8 font-semibold h-auto block text-white  hover:text-gray-800"/>--}}
+{{--                    </button>--}}
+{{--                </span>--}}
+{{--            </div>--}}
+
+
+
+{{--            <div x-show="notification.type === 'success'" class=" inline-flex">--}}
+{{--                <span aria-hidden="true" class="inline-flex h-6 w-6 items-center justify-center rounded-full border-2 border-green-600 text-lg font-bold text-green-600">&check;</span>--}}
+{{--                <span class="sr-only">Success:</span>--}}
+{{--                <p x-text="notification.content" class="text-sm font-medium leading-5 text-gray-900 pointer-events-auto relative w-full max-w-sm rounded-md border border-gray-200 bg-white py-4 pl-6 pr-4 shadow-lg"></p>--}}
+{{--            </div>--}}
 
 
 {{--            <div class="flex items-start">--}}
