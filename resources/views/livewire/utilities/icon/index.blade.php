@@ -204,6 +204,7 @@
                 <x-icons.utilities :icon="'clipboard-document-list'"/>
                 <x-icons.utilities :icon="'clip-board'"/>
                 <x-icons.utilities :icon="'thumbs-up'"/>
+                <x-icons.utilities :icon="'logo'"/>
 
 
                 </div>
