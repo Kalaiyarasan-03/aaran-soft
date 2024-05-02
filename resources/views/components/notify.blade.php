@@ -55,7 +55,7 @@
             <div x-show="notification.type === 'info'" class="inline-flex rounded-xl pointer-events-auto p-2 max-w-sm h-12 bg-blue-600 gap-2">
                 <span aria-hidden="true" class="inline-flex h-6 w-6 items-center justify-center ml-2 my-auto rounded-full border-2 border-white text-lg font-bold text-white">!</span>
                 <p x-text="notification.content" class="text-sm font-semibold leading-5 ml-1.5 my-auto text-white">you have saved infooo</p>
-                <span class="ml-11 flex rounded-full bg-blue-600">
+                <span class="ml-3 flex rounded-full bg-blue-600">
                     <button @click="transitionOut()" class="close rounded-full text-right hover:bg-blue-700">
                         <x-icons.icon :icon="'x-mark'" class="w-8  font-bold h-auto text-right block text-white"/>
                     </button>

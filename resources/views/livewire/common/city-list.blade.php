@@ -37,13 +37,6 @@
                 </x-slot>
 
                 <!-- Pagination/Loading-------------------------------------------------------------------------------->
-                <x-slot name="table_pagination">
-                    <div wire:loading class="absolute inset-0 bg-white opacity-75"></div>
-                    <div wire:loading.flex class="flex justify-center items-center absolute inset-0">
-                        <x-icons.spinner size="medium" class="text-gray-500"/>
-                    </div>
-                    {{ $list->links() }}
-                </x-slot>
             </x-forms.table>
         </div>
 
