@@ -16,6 +16,7 @@ class CityList extends Component
     {
 
         $this->validate(['vname' => 'required|unique:cities,vname']);
+
         if ($this->vname != '') {
             if ($this->vid == "") {
                 City::create([

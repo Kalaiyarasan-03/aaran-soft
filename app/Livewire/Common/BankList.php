@@ -13,30 +13,25 @@ class BankList extends Component
 
     #region[save]
 
-    public function getSave(): string
+    public function getSave(): void
     {
-        try {
-            if ($this->vname != '') {
-                if ($this->vid == "") {
-                    Bank::create([
-                        'vname' => Str::ucfirst($this->vname),
-                        'active_id' => $this->active_id,
-                    ]);
-                    $message = "Saved";
+        if ($this->vname != '') {
+            if ($this->vid == "") {
+                Bank::create([
+                    'vname' => Str::ucfirst($this->vname),
+                    'active_id' => $this->active_id,
+                ]);
+                $message = "Saved";
 
-                } else {
-                    $obj = Bank::find($this->vid);
-                    $obj->vname = Str::ucfirst($this->vname);
-                    $obj->active_id = $this->active_id;
-                    $obj->save();
-                    $message = "Updated";
-                }
-                return $message;
+            } else {
+                $obj = Bank::find($this->vid);
+                $obj->vname = Str::ucfirst($this->vname);
+                $obj->active_id = $this->active_id;
+                $obj->save();
+                $message = "Updated";
             }
-        } catch (\Throwable $th) {
-            throw $th;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
-        return '';
     }
     #endregion
 
