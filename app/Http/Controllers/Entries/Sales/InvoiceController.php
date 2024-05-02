@@ -117,7 +117,7 @@ class InvoiceController extends Controller
             config('clients.SK_PRINTERS') =>  'pdf.sundar.sk_printers',
             config('clients.SARA_SCREENS') =>  'pdf.offset.sales.sara_screens',
             config('clients.ESSA_KNITTING') =>  'pdf.Knitting.esha_knittings',
-            config('clients.BEST_PRINT') =>  'pdf.offset.sales.best_print',
+            config('clients.BEST_PRINT') =>  'pdf.offset.sales.best_print1',
             default =>'pdf.garments.letterpad_withoutbank' ,
         };
 
