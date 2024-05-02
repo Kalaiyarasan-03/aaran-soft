@@ -92,7 +92,7 @@ class Index extends Component
             $this->verified_on = '';
             $this->status = '';
 
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
     }
     #endregion

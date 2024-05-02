@@ -96,7 +96,7 @@ class Mytask extends Component
             $this->verified_on = '';
             $this->image = '';
 
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

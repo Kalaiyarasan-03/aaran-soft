@@ -506,7 +506,7 @@ class Upsert extends Component
                 $this->contact_dc = '';
                 $this->dc_date = '';
                 $this->total_qty = '';
-                return $message;
+                $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
             }
         }
         return '';

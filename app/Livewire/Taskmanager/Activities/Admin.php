@@ -83,7 +83,7 @@ class Admin extends Component
             $this->verified = '';
             $this->verified_on = '';
             $this->reRender();
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

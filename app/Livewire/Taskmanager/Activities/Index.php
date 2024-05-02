@@ -75,7 +75,7 @@ class Index extends Component
             $this->cdate = (Carbon::parse(Carbon::now())->format('Y-m-d'));
            $this->clearFields();
             $this->reRender();
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

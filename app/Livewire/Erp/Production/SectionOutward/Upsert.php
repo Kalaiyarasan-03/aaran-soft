@@ -495,7 +495,7 @@ class Upsert extends Component
 
                     DB::table('section_outward_items')->where('section_outward_id', '=', $obj->id)->delete();
                     $this->saveItem($obj->id);
-                    $message = "Updated";
+                    $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
                 }
                 $this->getRoute();
                 $this->vno = '';

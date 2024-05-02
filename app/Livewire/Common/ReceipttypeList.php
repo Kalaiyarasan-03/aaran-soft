@@ -29,7 +29,7 @@ class ReceipttypeList extends Component
                 $obj->save();
                 $message = "Updated";
             }
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

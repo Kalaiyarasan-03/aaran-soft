@@ -51,7 +51,7 @@ class Index extends Component
                 $message = "Updated";
             }
             $this->clearFields();
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }
