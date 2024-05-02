@@ -90,7 +90,7 @@ class Index extends Component
                 $message = "Updated";
             }
             $this->clearfields();
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

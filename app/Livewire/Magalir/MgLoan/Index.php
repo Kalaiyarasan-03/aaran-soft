@@ -79,7 +79,7 @@ class Index extends Component
             }
             $this->clearFields();
             $this->generateDues();
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

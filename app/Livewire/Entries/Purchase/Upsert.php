@@ -542,7 +542,7 @@ class Upsert extends Component
                 $message = "Updated";
             }
             $this->getRoute();
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

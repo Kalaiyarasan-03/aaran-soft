@@ -110,7 +110,7 @@ class Index extends Component
 
             redirect()->to(route('mgClubs.members',$this->mg_club_id));
             $this->clearFields();
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

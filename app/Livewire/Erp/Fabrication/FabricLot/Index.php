@@ -43,7 +43,7 @@ class Index extends Component
                 }
 
                 $this->desc = '';
-                return $message;
+                $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
             }
         }
         return '';

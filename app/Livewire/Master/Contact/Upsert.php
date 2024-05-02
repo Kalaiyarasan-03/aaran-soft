@@ -347,8 +347,7 @@ class Upsert extends Component
             $this->msme_type = '';
             $this->opening_balance = '';
             $this->effective_from = '';
-
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

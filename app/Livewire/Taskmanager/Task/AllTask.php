@@ -96,8 +96,7 @@ class AllTask extends Component
             $this->verified_on = '';
             $this->status = '';
             $this->image = '';
-
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

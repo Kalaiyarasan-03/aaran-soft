@@ -54,7 +54,7 @@ class Balance extends Component
             $this->client_bank_id = '';
             $this->balance = '';
 
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

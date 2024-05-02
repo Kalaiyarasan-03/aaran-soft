@@ -60,7 +60,7 @@ class Index extends Component
             $this->vname = '';
             $this->desc = '';
             $this->active_id = '1';
-            return $message;
+            $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
         }
         return '';
     }

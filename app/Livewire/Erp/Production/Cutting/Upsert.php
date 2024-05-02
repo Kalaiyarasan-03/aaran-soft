@@ -459,7 +459,7 @@ class Upsert extends Component
                 $this->jobcardItemName = '';
 
                 $this->getRoute();
-                return $message;
+                $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
             }
         }
         return '';

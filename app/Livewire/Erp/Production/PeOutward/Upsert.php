@@ -508,7 +508,7 @@ class Upsert extends Component
                 $this->contact_id = '';
                 $this->jobcard_id = '';
                 $this->total_qty = '';
-                return $message;
+                $this->dispatch('notify', ...['type' => 'success', 'content' => $message . ' Successfully']);
             }
         }
         return '';
