@@ -7,17 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Printing SalesInovice DC</title>
 
-
-    <style>
-
-        {{--@font-face {--}}
-        {{--    font-family: 'Cooper Blk BT';--}}
-        {{--    src: url({{ public_path("fonts/Cooper-Black-BT.ttf") }}) format("truetype");--}}
-        {{--    font-weight: 700;--}}
-        {{--    font-style: normal;--}}
-        {{--}--}}
-    </style>
-
     <style type="text/css">
         * {
             font-family: Verdana, Arial, sans-serif, "Cooper Black BT";
@@ -146,11 +135,14 @@
         <td colspan="2" style="justify-items: center;">
             <div style="height: 120px;" class="bg-blue-400 ">
                 <div style="text-align: center;">
-                <img style="height: 40px;width: 55%;padding-top: 10px;"
-                     src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
-                <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
-                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
+                    <img style="height: 40px;width: 55%;padding-top: 10px;"
+                         src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
+                <div style="text-align: center; width: 100%; padding-top: 12px;">{{$cmp->get('address_1')}}
+                    ,{{$cmp->get('address_2')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}
+                    &nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}
+                    &nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
     </tr>
@@ -242,7 +234,7 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
                 <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">
@@ -278,7 +270,7 @@
             <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td colspan="3" align="right" style="border-left: none;">&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td align="right">{{$obj->total_qty+0}}</td>
+            <td align="center">{{$obj->total_qty+0}}</td>
             <td align="right"></td>
             <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
             <td colspan="2" align="right"></td>
@@ -286,7 +278,8 @@
             <td colspan="1" align="right">{{number_format($obj->grand_total,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
                 <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
 
                 </div>
@@ -326,12 +319,13 @@
                 <div>ACCOUNT NO</div>
                 <div>IFSC CODE</div>
             </td>
-            <td colspan="4"  align="left"
+            <td colspan="4" align="left"
                 style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none;font-size: 10px">
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
             </td>
             <td align="right" style="border-bottom: none; border-left: none;">
                 &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
@@ -352,6 +346,7 @@
                 style="border-bottom: none; border-left: none;">{{number_format($obj->round_off,2,'.','')}}</td>
         </tr>
     @else
+
         @foreach($list as $index => $row)
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -373,7 +368,7 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
                 <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">
@@ -410,7 +405,7 @@
             <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td colspan="3" align="right" style="border-left: none;">&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td align="right">{{$obj->total_qty+0}}</td>
+            <td align="center">{{$obj->total_qty+0}}</td>
             <td align="right"></td>
             <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
             <td colspan="2" align="right"></td>
@@ -471,7 +466,8 @@
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
             </td>
             <td align="right" style="border-bottom: none; border-left: none;">
                 &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
@@ -505,9 +501,12 @@
             style="border-bottom: none; border-left: none;font-weight: bold; font-size:medium;">{{number_format($obj->grand_total,2,'.','')}}</td>
     </tr>
     <tr>
-        <td colspan="6" style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver Sign
+        <td colspan="6"
+            style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver
+            Sign
         </td>
-        <td colspan="7" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
+        <td colspan="7"
+            style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
             &nbsp;FOR&nbsp;{{$cmp->get('company_name')}}
             <div style="padding-top: 34px;  margin-top:16px">Authorized signatory</div>
         </td>
@@ -526,9 +525,12 @@
                 <div style="text-align: center;">
                     <img style="height: 40px;width: 55%;padding-top: 10px;"
                          src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
-                <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
-                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
+                <div style="text-align: center; width: 100%; padding-top: 12px;">{{$cmp->get('address_1')}}
+                    ,{{$cmp->get('address_2')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}
+                    &nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}
+                    &nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
     </tr>
@@ -620,7 +622,7 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
                 <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">
@@ -656,7 +658,7 @@
             <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td colspan="3" align="right" style="border-left: none;">&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td align="right">{{$obj->total_qty+0}}</td>
+            <td align="center">{{$obj->total_qty+0}}</td>
             <td align="right"></td>
             <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
             <td colspan="2" align="right"></td>
@@ -664,7 +666,8 @@
             <td colspan="1" align="right">{{number_format($obj->grand_total,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
                 <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
 
                 </div>
@@ -704,12 +707,13 @@
                 <div>ACCOUNT NO</div>
                 <div>IFSC CODE</div>
             </td>
-            <td colspan="4"  align="left"
+            <td colspan="4" align="left"
                 style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none;font-size: 10px">
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
             </td>
             <td align="right" style="border-bottom: none; border-left: none;">
                 &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
@@ -751,7 +755,7 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
                 <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">
@@ -788,7 +792,7 @@
             <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td colspan="3" align="right" style="border-left: none;">&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td align="right">{{$obj->total_qty+0}}</td>
+            <td align="center">{{$obj->total_qty+0}}</td>
             <td align="right"></td>
             <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
             <td colspan="2" align="right"></td>
@@ -849,7 +853,8 @@
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
             </td>
             <td align="right" style="border-bottom: none; border-left: none;">
                 &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
@@ -883,9 +888,12 @@
             style="border-bottom: none; border-left: none;font-weight: bold; font-size:medium;">{{number_format($obj->grand_total,2,'.','')}}</td>
     </tr>
     <tr>
-        <td colspan="6" style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver Sign
+        <td colspan="6"
+            style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver
+            Sign
         </td>
-        <td colspan="7" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
+        <td colspan="7"
+            style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
             &nbsp;FOR&nbsp;{{$cmp->get('company_name')}}
             <div style="padding-top: 34px;  margin-top:16px">Authorized signatory</div>
         </td>
@@ -896,6 +904,7 @@
 
 
 <div class="page-break"></div>
+
 <table width="100%" class="print:*">
     <thead>
     <tr>
@@ -904,9 +913,12 @@
                 <div style="text-align: center;">
                     <img style="height: 40px;width: 55%;padding-top: 10px;"
                          src="{{ public_path('images/client_logo/bestprint.png')}}"/></div>
-                <div style="text-align: center; width: 100%; padding-top: 12px;" >{{$cmp->get('address_1')}},{{$cmp->get('address_2')}}</div>
-                <div style="text-align: center; width: 100%;" >&nbsp;{{$cmp->get('contact')}}&nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
-                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}&nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
+                <div style="text-align: center; width: 100%; padding-top: 12px;">{{$cmp->get('address_1')}}
+                    ,{{$cmp->get('address_2')}}</div>
+                <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}
+                    &nbsp;-&nbsp;{{ $cmp->get('email') }}</div>
+                <div style="text-align: center; width: 100%;">{{$cmp->get('gstin')}}
+                    &nbsp;-&nbsp; {{$cmp->get('msme')}}</div>
             </div>
         </td>
     </tr>
@@ -998,7 +1010,7 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
                 <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">
@@ -1034,7 +1046,7 @@
             <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td colspan="3" align="right" style="border-left: none;">&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td align="right">{{$obj->total_qty+0}}</td>
+            <td align="center">{{$obj->total_qty+0}}</td>
             <td align="right"></td>
             <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
             <td colspan="2" align="right"></td>
@@ -1042,7 +1054,8 @@
             <td colspan="1" align="right">{{number_format($obj->grand_total,2,'.','')}}</td>
         </tr>
         <tr>
-            <td colspan="7" align="left" style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
+            <td colspan="7" align="left"
+                style="border-bottom: none;border-top: none; margin-bottom: 0px;font-size: 10px">
                 <div>We hereby certify that our registration under the GST Act 2017 is inforceon the date on which
 
                 </div>
@@ -1082,12 +1095,13 @@
                 <div>ACCOUNT NO</div>
                 <div>IFSC CODE</div>
             </td>
-            <td colspan="4"  align="left"
+            <td colspan="4" align="left"
                 style="border-bottom: none;border-top: none;font-weight: bolder;border-right: none;border-left: none;font-size: 10px">
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
             </td>
             <td align="right" style="border-bottom: none; border-left: none;">
                 &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
@@ -1129,7 +1143,7 @@
                 <td align="center" style="border-bottom: none;border-top: none;">{{$row['dc_no']}} </td>
                 <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['hsncode']}}</td>
                 <td align="left" style="border-bottom: none;border-top: none;">&nbsp;{{$row['product_name']}}</td>
-                <td align="right" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
+                <td align="center" style="border-bottom: none;border-top: none;">&nbsp;{{$row['qty']+0}}</td>
                 <td align="right" style="border-bottom: none;border-top: none;">
                     &nbsp;{{number_format($row['price'],2,'.','')}}</td>
                 <td align="center" style="border-bottom: none;border-top: none;">
@@ -1166,7 +1180,7 @@
             <td colspan=2" align="left" style="border-right: none;">&nbsp;E&OE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
             <td colspan="3" align="right" style="border-left: none;">&nbsp;Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </td>
-            <td align="right">{{$obj->total_qty+0}}</td>
+            <td align="center">{{$obj->total_qty+0}}</td>
             <td align="right"></td>
             <td align="right">{{number_format($obj->total_taxable,2,'.','')}}</td>
             <td colspan="2" align="right"></td>
@@ -1227,7 +1241,8 @@
                 <div>:&nbsp;{{$cmp->get('acc_no')}}</div>
                 <div>:&nbsp;{{$cmp->get('ifsc_code')}}</div>
             </td>
-            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">&nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
+            <td colspan="5" align="left" style="border-bottom: none;border-right: none;">
+                &nbsp;Add&nbsp;:&nbsp;{{ $obj->ledger_name }}
             </td>
             <td align="right" style="border-bottom: none; border-left: none;">
                 &nbsp;{{ number_format($obj->additional,2,'.','') }}</td>
@@ -1261,9 +1276,12 @@
             style="border-bottom: none; border-left: none;font-weight: bold; font-size:medium;">{{number_format($obj->grand_total,2,'.','')}}</td>
     </tr>
     <tr>
-        <td colspan="6" style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver Sign
+        <td colspan="6"
+            style="height: 40px; text-align: left; vertical-align: top; padding-top: 5px ;border-right: none;">Receiver
+            Sign
         </td>
-        <td colspan="7" style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
+        <td colspan="7"
+            style="height: 40px; text-align: center; vertical-align: top; padding-top: 5px; border-left: none;">
             &nbsp;FOR&nbsp;{{$cmp->get('company_name')}}
             <div style="padding-top: 34px;  margin-top:16px">Authorized signatory</div>
         </td>

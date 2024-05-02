@@ -11,10 +11,10 @@
         },
         remove(notification) {
             this.notifications = this.notifications.filter(i => i.id !== notification.id)
-        },
+        }
     }"
     @notify.window="add($event)"
-    class="fixed top-0 right-0 flex w-full max-w-xs flex-col space-y-4 pr-4 pb-4 sm:justify-start"
+    class="fixed top-0 right-0 flex w-full max-w-xs flex-col space-y-4 pr-2 pb-4 sm:justify-start"
     role="status"
     aria-live="polite"
 >
@@ -26,17 +26,17 @@
                 init() {
                     this.$nextTick(() => this.show = true)
 
-                    setTimeout(() => this.transitionOut(), 2000)
+                    setTimeout(() => this.transitionOut(), 5000)
                 },
                 transitionOut() {
                     this.show = false
 
-                    setTimeout(() => this.remove(this.notification), 500)
+                    setTimeout(() => this.remove(this.notification), 2000)
                 },
             }"
             x-show="show"
             x-transition.duration.500ms
-{{--            class="pointer-events-auto relative w-full max-w-sm rounded-md border border-gray-200 bg-white py-4 pl-6 pr-4 shadow-lg"--}}
+            class="pointer-events-auto relative w-full"
         >
 
 
@@ -45,7 +45,7 @@
             <div x-show="notification.type === 'success'" class="inline-flex rounded-xl pointer-events-auto p-2 max-w-sm h-12 bg-green-500 gap-2">
                 <span aria-hidden="true" class="inline-flex h-6 w-6 items-center justify-center ml-2 my-auto rounded-full border-2 border-green-200 text-lg font-bold text-white">&check;</span>
                 <p x-text="notification.content" class="text-sm font-semibold flex-shrink-0 ml-1.5 my-auto text-white">you have saved successfully </p>
-                <span class="my-auto ml-3 flex rounded-full bg-green-500">
+                <span class="ml-3 flex rounded-full bg-green-500">
                     <button @click="transitionOut()" class="close rounded-full hover:bg-green-600">
                         <x-icons.icon :icon="'x-mark'" class="w-8 h-auto block font-bold text-white"/>
                     </button>
