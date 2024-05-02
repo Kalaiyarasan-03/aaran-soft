@@ -23,7 +23,7 @@ class S03_UserSeeder extends Seeder
 
         User::create([
             'name' => 'Developer',
-            'email' => ' ',
+            'email' => 'developer@gmail.com',
             'password' => bcrypt('123456789'),
             'email_verified_at' => now(),
             'remember_token' => Str::random(10),
