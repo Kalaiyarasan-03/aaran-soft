@@ -4,6 +4,11 @@ namespace App\Livewire\Master\Product;
 
 use Aaran\Common\Models\Hsncode;
 use Aaran\Master\Models\Product;
+use App\Enums\Active;
+use App\Enums\GST;
+use App\Enums\GstPercent;
+use App\Enums\ProductType;
+use App\Enums\Units;
 use App\Livewire\Trait\CommonTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -16,20 +21,21 @@ class Upsert extends Component
     use CommonTrait;
 
     #region[product properties]
+    public string $product_type = '';
+
     public $hsncode_id = '';
+    public string $units = '';
+    public string $gst_percent = '';
+
+    #endregion
+
+    #region[hsn-code]
+
     public $hsncode_no = '';
     public Collection $hsncodeCollection;
     public $highlightHsncode = 0;
     public $hsncodeTyped = false;
-    public string $vid = '';
-    public string $vname = '';
-    public string $product_type;
-    public string $units;
-    public string $gst_percent;
-    public $company_id;
-    #endregion
 
-    #region[hsn-code]
     public function decrementHsncode(): void
     {
         if ($this->highlightHsncode === 0) {
@@ -88,11 +94,11 @@ class Upsert extends Component
             if ($this->vid == "") {
                 Product::create([
                     'vname' => Str::ucfirst($this->vname),
-                    'product_type' => $this->product_type,
-                    'hsncode_id' => $this->hsncode_id,
-                    'units' => $this->units,
-                    'gst_percent' => $this->gst_percent,
-                    'active_id' => $this->active_id,
+                    'product_type' => $this->product_type ?: ProductType::GOODS,
+                    'hsncode_id' => $this->hsncode_id ?: '1',
+                    'units' => $this->units ?: Units::KGS,
+                    'gst_percent' => $this->gst_percent ?: GstPercent::T1,
+                    'active_id' => $this->active_id ?: '0',
                     'company_id' => session()->get('company_id'),
                     'user_id' => Auth::id()
                 ]);
@@ -102,11 +108,11 @@ class Upsert extends Component
             } else {
                 $obj = Product::find($this->vid);
                 $obj->vname = Str::ucfirst($this->vname);
-                $obj->product_type = $this->product_type;
-                $obj->hsncode_id = $this->hsncode_id;
-                $obj->units = $this->units;
-                $obj->gst_percent = $this->gst_percent;
-                $obj->active_id = $this->active_id;
+                $obj->product_type = $this->product_type ?: ProductType::GOODS;
+                $obj->hsncode_id = $this->hsncode_id ?: '1';
+                $obj->units = $this->units ?: Units::KGS;
+                $obj->gst_percent = $this->gst_percent ?: GstPercent::T1;
+                $obj->active_id = $this->active_id ?: '0';
                 $obj->company_id = session()->get('company_id');
                 $obj->user_id = Auth::id();
                 $obj->save();
