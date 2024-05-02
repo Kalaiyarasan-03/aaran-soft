@@ -7,8 +7,8 @@
 
 <x-button.base
     {{ $attributes->merge(['class' => 'inline-block text-white transition-all rounded-md shadow-md
-                bg-gradient-to-r from-blue-600 to-blue-500 hover:bg-gradient-to-b dark:shadow-blue-900
-                shadow-blue-200 hover:shadow-2xl hover:shadow-blue-400 hover:-tranneutral-y-px']) }}
+                bg-gradient-to-r from-red-600 to-red-600 hover:bg-gradient-to-b dark:shadow-red-900
+                shadow-red-200 hover:shadow-2xl hover:shadow-red-400 hover:-tranneutral-y-px']) }}
 >
     {{ $slot }}
 </x-button.base>
