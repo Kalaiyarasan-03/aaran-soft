@@ -224,6 +224,10 @@
     @endif
     </thead>
     <tbody>
+    @php
+        $gstPercent = 0;
+    @endphp
+
     @if($obj->sales_type==0)
         <tr>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
@@ -240,11 +244,6 @@
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
             <td align="center" style="border-bottom: none;border-top: none;">&nbsp;</td>
         </tr>
-
-        @php
-            $gstPercent = 0;
-        @endphp
-
         @foreach($list as $index => $row)
             <tr>
                 <td align="center" style="border-bottom: none;border-top: none;">{{$index+1}} </td>
