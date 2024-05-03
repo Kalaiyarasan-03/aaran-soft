@@ -7,16 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Invoice-{{$obj->invoice_no}}</title>
 
-
-    <style>
-        {{--@font-face {--}}
-        {{--    font-family: 'Cooper Blk BT';--}}
-        {{--    src: url({{ public_path("fonts/Cooper-Black-BT.ttf") }}) format("truetype");--}}
-        {{--    font-weight: 700;--}}
-        {{--    font-style: normal;--}}
-        {{--}--}}
-    </style>
-
     <style type="text/css">
         * {
             font-family: Verdana, Arial, sans-serif, "Cooper Black BT";
@@ -146,12 +136,12 @@
             <div>
                 <img
                     style="position: fixed;margin-left: 20px;padding-top: 5px;height: 90px;width: auto;padding-left: 60px;"
-                    src="{{ public_path('/storage/'.$cmp->get('logo'))}}"/>
+                    src="{{ public_path('/storage/'.$cmp->get('logo'))}}" alt="logo"/>
             </div>
             <div style="height: 100px;padding-left: 60px;" class="bg-blue-400 ">
                 <div style="text-align: center;">
                     <img style="height: 40px;width: auto;padding-top: 10px;"
-                         src="{{ public_path('images/sara_screen.png')}}"/></div>
+                         src="{{ public_path('images/sara_screen.png')}}" alt="logo"/></div>
                 <div style="text-align: center; width: 100%;">{{$cmp->get('address_1')}}
                     ,{{$cmp->get('address_2')}}</div>
                 <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}
