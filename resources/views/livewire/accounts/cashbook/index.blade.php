@@ -75,16 +75,34 @@
 
                         <x-table.cell>
                             <div class="w-full flex justify-center gap-3">
-
+                                <div class="group inline-block relative cursor-pointer max-w-fit min-w-fit">
+                                    <div class="absolute hidden group-hover:block pr-0.5 whitespace-nowrap top-1 w-full">
+                                        <div class="flex flex-col justify-start items-center -translate-y-full">
+                                            <div class="bg-blue-500  shadow-md text-white rounded-lg py-1 px-3 cursor-default text-base">
+                                                Edit
+                                            </div>
+                                            <div class="w-0 h-0 border-l-[12px] border-r-[12px] border-t-[8px] border-l-transparent border-r-transparent border-t-blue-500 -mt-[1px]"></div>
+                                        </div>
+                                    </div>
                                 <x-button.link wire:click="edit({{$row->id}})">&nbsp;
                                     <x-icons.icon :icon="'pencil'"
                                                   class="text-blue-500 h-5 w-auto block"/>
                                 </x-button.link>
-
+                                </div>
+                                <div class="group inline-block relative cursor-pointer max-w-fit min-w-fit">
+                                    <div class="absolute hidden group-hover:block pr-0.5 whitespace-nowrap top-1 w-full">
+                                        <div class="flex flex-col justify-start items-center -translate-y-full">
+                                            <div class="bg-red-500  shadow-md text-white rounded-lg py-1 px-3 cursor-default text-base">
+                                                delete
+                                            </div>
+                                            <div class="w-0 h-0 border-l-[12px] border-r-[12px] border-t-[8px] border-l-transparent border-r-transparent border-t-red-500 -mt-[1px]"></div>
+                                        </div>
+                                    </div>
                                 <x-button.link wire:click="getDelete({{$row->id}})">&nbsp;
                                     <x-icons.icon :icon="'trash'"
                                                   class="text-red-600 h-5 w-auto block"/>
                                 </x-button.link>
+                                </div>
                             </div>
                         </x-table.cell>
                     <tr/>
@@ -207,6 +225,7 @@
                                                         inline-flex items-center px-4 py-2 rounded-md font-semibold text-xs text-white uppercase tracking-widest
                                                         transition-all shadow-xs
                                                         bg-gradient-to-r from-blue-600 to-blue-500 hover:bg-gradient-to-b dark:shadow-blue-900
+                                                        focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500
                                                         shadow-blue-200 hover:shadow-2xl hover:shadow-blue-200 hover:-tranneutral-y-px">
                             <x-icons.icon :icon="'save'" class="h-5 w-auto block px-1.5"/>
                             SAVE

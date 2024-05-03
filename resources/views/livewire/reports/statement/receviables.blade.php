@@ -16,8 +16,8 @@
             <x-input.model-date wire:change.debounce="sale_Total" wire:model.live="start_date" :label="'From Date'"/>
 
             <x-input.model-date wire:model.live="end_date" :label="'To Date'"/>
-            <div>
-                <button class="bg-cyan-700 rounded-lg shadow-2xl px-2 py-1 text-white " wire:click="print">Print
+            <div class="pt-4">
+                <button class="bg-cyan-700 rounded-lg shadow-2xl px-2 py-1 text-white" wire:click="print">Print
                 </button>
             </div>
 

@@ -113,17 +113,37 @@
 
                         <x-table.cell-text center>
                             <div class="w-full flex justify-center gap-3">
+                                <div class="group inline-block relative cursor-pointer max-w-fit min-w-fit">
+                                    <div class="absolute hidden group-hover:block pr-0.5 whitespace-nowrap top-1 w-full">
+                                        <div class="flex flex-col justify-start items-center -translate-y-full">
+                                            <div class="bg-blue-500  shadow-md text-white rounded-lg py-1 px-3 cursor-default text-base">
+                                                Edit
+                                            </div>
+                                            <div class="w-0 h-0 border-l-[12px] border-r-[12px] border-t-[8px] border-l-transparent border-r-transparent border-t-blue-500 -mt-[1px]"></div>
+                                        </div>
+                                    </div>
                                 <a href="{{route('companies.upsert',[$row->id])}}">
                                     <x-button.link>&nbsp;
                                         <x-icons.icon :icon="'pencil'"
                                                       class="text-blue-500 hover:text-white  hover:rounded-sm hover:bg-blue-500 h-5 w-auto block"/>
                                     </x-button.link>
                                 </a>
+                                </div>
+                                <div class="group inline-block relative cursor-pointer max-w-fit min-w-fit">
+                                    <div class="absolute hidden group-hover:block pr-0.5 whitespace-nowrap top-1 w-full">
+                                        <div class="flex flex-col justify-start items-center -translate-y-full">
+                                            <div class="bg-red-500  shadow-md text-white rounded-lg py-1 px-3 cursor-default text-base">
+                                                delete
+                                            </div>
+                                            <div class="w-0 h-0 border-l-[12px] border-r-[12px] border-t-[8px] border-l-transparent border-r-transparent border-t-red-500 -mt-[1px]"></div>
+                                        </div>
+                                    </div>
                                 <x-button.link wire:click="set_delete({{$row->id}})"
                                                wire:confirm="Are you sure you want to delete this ?">&nbsp;
                                     <x-icons.icon :icon="'trash'"
                                                   class="text-red-600 h-5 hover:bg-red-500 hover:text-white hover:rounded-sm hover:font-bold w-auto block"/>
                                 </x-button.link>
+                                </div>
                             </div>
                         </x-table.cell-text>
                     </x-table.row>
