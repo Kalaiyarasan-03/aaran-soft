@@ -138,7 +138,7 @@
             <div style="height: 120px;" class="bg-blue-400 ">
                 <div style="text-align: center;">
                     <img style="height: 40px;width: 55%;padding-top: 10px;"
-                         src="{{ public_path('/storage/'.$cmp->get('logo'))}}" alt="logo"/>
+                         src="{{ public_path('images/client_logo/bestprint_black.png')}}" alt="Best Print"/></div>
                 <div style="text-align: center; width: 100%; padding-top: 12px;">{{$cmp->get('address_1')}}
                     ,{{$cmp->get('address_2')}}</div>
                 <div style="text-align: center; width: 100%;">&nbsp;{{$cmp->get('contact')}}
